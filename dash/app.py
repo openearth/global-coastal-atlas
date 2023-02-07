@@ -13,6 +13,7 @@ VALID_USERNAME_PASSWORD_PAIRS = {
                                 }
 # initialize dash app
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 auth = dash_auth.BasicAuth(
     app,
     VALID_USERNAME_PASSWORD_PAIRS
