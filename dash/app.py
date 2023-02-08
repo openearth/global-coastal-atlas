@@ -22,7 +22,7 @@ app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # load shoreline monitor dataframe
 #path_shorelineNL = r'P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\datasets\ShorelineMonitor\shoreline_NL.csv'
-path_shorelineNL = r'assets/data/Shoreline_NL.csv'
+path_shorelineNL = r'dash/assets/data/shoreline_NL.csv'
 df = pd.read_csv(path_shorelineNL)
 df['changerate'] = df['changerate'].round(2)
 df['color_cr'] = np.where(df['changerate'] < 0, 'red', 'green')
