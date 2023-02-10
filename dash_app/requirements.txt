@@ -10,6 +10,7 @@ dash-html-components==2.0.0
 dash-table==5.0.0
 debugpy==1.6.6
 decorator==5.1.1
+entrypoints==0.4
 executing==1.2.0
 Flask==2.2.2
 gunicorn==20.1.0
@@ -18,7 +19,7 @@ ipython==7.34.0
 itsdangerous==2.1.2
 jedi==0.18.2
 Jinja2==3.1.2
-jupyter_client==8.0.2
+jupyter_client==8.0.0a1
 jupyter_core==5.2.0
 MarkupSafe==2.1.2
 matplotlib-inline==0.1.6
