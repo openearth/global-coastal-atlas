@@ -16,7 +16,7 @@ VALID_USERNAME_PASSWORD_PAIRS = {
 # initialize dash app
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 server = app.server
-
+####
 # auth = dash_auth.BasicAuth(
 #     app,
 #     VALID_USERNAME_PASSWORD_PAIRS
@@ -25,9 +25,9 @@ from assets.callbacks.data_container import data_container
 from assets.callbacks.dash_figures import shoreline_scatter, geo_figure
 
 # load shoreline monitor dataframe
-df = pd.read_csv('dash_app/assets/data/all_data.csv')
+df = pd.read_csv(r'all_data.csv')
 # Icons
-delt_png = 'dash_app/assets/images/deltares.png'
+delt_png = 'deltares.png'
 delt_base64 = base64.b64encode(open(delt_png, 'rb').read()).decode('ascii')
 
 fig = px.scatter_mapbox(
