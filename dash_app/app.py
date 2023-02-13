@@ -15,6 +15,7 @@ VALID_USERNAME_PASSWORD_PAIRS = {
                                 }
 # initialize dash app
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app.title = "Dutch Coastal Atlas"
 server = app.server
 ####
 # auth = dash_auth.BasicAuth(
@@ -237,8 +238,20 @@ def create_timeseries(clickdata, tempres, themeval):
                             dbc.Col(html.Div('Temporal resolution:', style = {'color': 'white', 'font-size': 20, "textAlign": "center"})),
                             dbc.Col(dcc.RadioItems(options = [
                                                             {'label': 'Annual', 'value': 'annual', 'disabled': False},
-                                                            {'label': 'Monthly', 'value': 'monthly', 'disabled': disable, 
-                                                             'title' : 'Only availale for transects within hotspots' if pd.isna(hotspot) else ''}
+                                                            {'label': 'Monthly', 'value': 'monthly', 'disabled': disable}
+                                                        ],
+                                                value = value,
+                                                id= {'type': 'radio_tempres', 'index': themeval},
+                                                labelStyle= {'color': 'white', 'font-size': 20, 'textAlign': 'left'},
+                                                inputStyle={"margin-right": "5px", 'margin-left': '10px'}
+                                            )     
+                                    ),
+                            ], style = {'margin-top': '10px'}),
+                    dbc.Row([
+                            dbc.Col(html.Div('Future projection:', style = {'color': 'white', 'font-size': 20, "textAlign": "center"})),
+                            dbc.Col(dcc.RadioItems(options = [
+                                                            {'label': 'GHG emission', 'value': 'ghg'},
+                                                            {'label': 'Machine learning', 'value': 'ml'}
                                                         ],
                                                 value = value,
                                                 id= {'type': 'radio_tempres', 'index': themeval},
