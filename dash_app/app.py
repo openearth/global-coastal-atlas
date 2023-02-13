@@ -11,7 +11,7 @@ import json
 # from dash_funcs import shoreline_figure, empty_fig
 
 VALID_USERNAME_PASSWORD_PAIRS = {
-                                    'Deltares': 'Globalcoastalatlas'
+                                    'Deltares': 'Globalcoastalatlas123'
                                 }
 # initialize dash app
 app = Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
