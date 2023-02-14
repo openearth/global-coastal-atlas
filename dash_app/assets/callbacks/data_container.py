@@ -104,5 +104,12 @@ def data_container(value, filter_json, button_json):
                             ])
                     
         return container
+    if value == 4:
+        container = dbc.Col([
+                                html.Br(), 
+                                dbc.Row(html.H2('Socio-economic', style = {'color': 'white', 'textAlign': 'center'}))
+                            ])
+                    
+        return container
     else:
         return None

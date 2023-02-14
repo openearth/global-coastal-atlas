@@ -49,7 +49,7 @@ button_group = dcc.RadioItems(
                 {"label": html.Div(["Shoreline Development"], style= button_style), "value": 1},
                 {"label": html.Div(["Coastal Topography"], style= button_style), "value": 2},
                 {"label": html.Div(["Sea Conditions"], style= button_style),"value": 3},
-                {'label': html.Div(["Socio-economic"], style= button_style),"value": 3}
+                {'label': html.Div(["Socio-economic"], style= button_style),"value": 4}
             ], 
             value= 0,
             id="choose_theme",
