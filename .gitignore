@@ -1,2 +1,6 @@
 .vscode
 notebooks/00. data/
+notebooks/01. utils/__pychache__/
+notebooks/02. snapshots/
+.env
+*.cpython

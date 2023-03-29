@@ -3,6 +3,8 @@ import json
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
+from statsmodels.tsa.seasonal import STL
+from plotly.subplots import make_subplots
 
 def historical_shorelinepositions(df, box, sdate= '1984-01-01', resolution = 'annual'):
     sdate = pd.to_datetime(sdate)
@@ -23,13 +25,13 @@ def historical_shorelinepositions(df, box, sdate= '1984-01-01', resolution = 'an
     dt, dist = np.delete(dt, outl), np.delete(dist, outl)
     fig = px.scatter(x = dt, y = dist, trendline= 'ols', trendline_color_override="blue" ,
                          title= box, color_discrete_sequence = ["#212529"])
-    fig.update_layout(margin=dict(l=5,r=5,b=5,t=30), paper_bgcolor="#212529", plot_bgcolor='#9C9C9C', 
-                        showlegend= False, font_color = 'white', font_size = 15,
+    fig.update_layout(margin=dict(l=5,r=5,b=5,t=50),
+                        showlegend= False, font_size = 15,
                         xaxis_title = 'Time [years]', yaxis_title = 'Shoreline position [m]',
                         )
     if len(dt_o) > 0:
         fig2 = px.scatter(x = dt_o, y = dist_o, trendline_color_override="red" ,
-                            title= box, color_discrete_sequence = ["red"])
+                        title= box, color_discrete_sequence = ["red"])
         fig.add_trace(fig2.data[0])
 
     fig.for_each_trace(lambda trace: trace.update(marker= {'size': 10}))
@@ -128,10 +130,70 @@ def future_shorelinepositions(df, box):
     
     fig.show()
 
+
+def Oscillation_STL(df_STL):
+    df_STL = df_STL[df_STL.index.year <= 2021]
+    years = np.unique(df_STL.index.year.values)
+    df_STL_year = [df_STL[df_STL.index.year == year_] for year_ in years]
+
+    maxima, minima = [], []
+    for df_STL_y in df_STL_year:
+        y = df_STL_y.values
+
+        max_ind = np.argmax(y)
+        min_ind = np.argmin(y)
+
+        maxima_y = y[max_ind]; maxima.append(maxima_y)
+
+        # for local minima
+        minima_y = y[min_ind]; minima.append(minima_y)
+
+    mean_ampl = np.mean(maxima) - np.mean(minima)
+
+    df_STL = df_STL.resample('D').interpolate(method= 'linear')
+
+    y2, T2 = df_STL.values, df_STL.index
+
+    cross = y2[y2 != 0]
+    zero_cross = np.where(np.diff(np.sign(cross)))[0]
+
+    y2, T2 = y2[zero_cross], T2[zero_cross]
+
+    periods = []
+    for i in range(0, len(T2)-2, 2):
+        p = (T2[i+2] - T2[i]).days
+        periods.append(p)
+
+    return np.mean(periods), mean_ampl
+
+
 def seasonal_shorelinepositions(df, box):
-    dt, dist = json.loads(df[df['transect_id'] == box]['dt_annual'].values[0]), json.loads(df[df['transect_id'] == box]['dist_annual'].values[0])
+    dt, dist = json.loads(df[df['transect_id'] == box]['dt'].values[0]), json.loads(df[df['transect_id'] == box]['dist'].values[0])
+    sdate = pd.to_datetime('1984-04-01')
     dt = [(sdate + pd.DateOffset(x)) if (sdate + pd.DateOffset(x)).day == 1
                                         else (sdate + pd.DateOffset(x) + pd.offsets.MonthBegin(-1)) if (sdate + pd.DateOffset(x)).day < 15
                                         else (sdate + pd.DateOffset(x) + pd.offsets.MonthBegin(0)) for x in dt]
-    
+    outl = json.loads(df[df['transect_id'] == box]['outliers'].values[0])
+    dt, dist = np.delete(dt,outl), np.delete(dist,outl)
+    df = pd.DataFrame(data= dist, index = dt, columns = [box]).sort_index()
+    df = df[df.index >= pd.to_datetime('2013-03-01')]
+    df.index = pd.to_datetime(df.index.date)
+
+    df_filled = df.resample('MS').asfreq(np.nan).interpolate(method = 'spline', order = 3)
+    #df_filled = df.assign(box=df[box].fillna(df[box].rolling(24,min_periods=1,).mean()))
+    y = df_filled[box].values
     stl = STL(y, period= 12, seasonal= 61, robust= True, seasonal_deg = 0).fit()
+    stl_seas_trend = stl.trend + stl.seasonal
+    df_stl = pd.Series(stl.seasonal, index = df_filled.index).to_frame()
+    Ps, Ds = Oscillation_STL(df_STL= df_stl)
+
+    fig = make_subplots(rows=2, cols= 1, row_heights = [0.35, 0.65])
+    fig.add_trace(go.Scatter(name = 'Seasonal component',  x = df.index, y = stl.seasonal, mode = 'lines', line=dict(color='green', dash = 'solid')), row=1, col=1)
+    fig = fig.add_trace(go.Scatter(name = 'Shoreline positions',  x = df.index, y = df[box].values, mode = 'markers', marker=dict(color='rgba(0, 0, 0)')), row=2, col=1)
+    fig.add_trace(go.Scatter(x = df.index, y = stl_seas_trend, mode = 'lines', line=dict(color='green', dash = 'dash'), showlegend= False), row=2, col=1)
+
+    fig.update_layout(
+    title=dict(text=f'{box}\n: period = {int(Ps)} days and displacement = {round(Ds,1)} m', font=dict(size=15), y=0.95), height = 800)
+                              
+
+    fig.show()
