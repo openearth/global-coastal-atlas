@@ -52,12 +52,10 @@ if __name__ == "__main__":
     VARIABLES = ["changerate"]
 
     # what are the dimensions that you wnat to use as to affect the marker color (never include stations)
-    ADDITIONAL_DIMENSIONS = []  # "time"
+    ADDITIONAL_DIMENSIONS = []
 
     # which of these dimensions do you want to use, i.e. also specify the subsets (if there are a lot maybe make a selection)
-    MAP_SELECTION_DIMS = (
-        {}
-    )  # "time": ["1985-01-01T00:00:00.000000000","1990-01-01T00:00:00.000000000","1995-01-01T00:00:00.000000000","2000-01-01T00:00:00.000000000","2005-01-01T00:00:00.000000000","2010-01-01T00:00:00.000000000","2015-01-01T00:00:00.000000000","2021-01-01T00:00:00.000000000"]
+    MAP_SELECTION_DIMS = {}
 
     # which dimensions to ignore (if n... in front of dim, it goes searching in additional_dimension for dim without n infron (ntime -> time))
     DIMENSIONS_TO_IGNORE = ["stations"]  # dimensions to ignore
