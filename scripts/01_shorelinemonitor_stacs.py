@@ -1,14 +1,15 @@
 import os
 import pathlib
 import sys
-from curses import color_content
+import json
+from posixpath import join as urljoin
 
 # make modules importable when running this file as script
 sys.path.append(str(pathlib.Path(__file__).parent.parent))
-sys.path.append(r'P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\coclicodata')
+sys.path.append(r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\coclicodata")
 
 import pystac
-from etl import rel_root
+from etl import rel_root, p_drive
 from etl.cloud_services import dataset_from_google_cloud
 from etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
 from pystac import Catalog, CatalogType, Collection, Summaries
@@ -36,15 +37,26 @@ from stac.utils import (
 if __name__ == "__main__":
     # hard-coded input params at project level
     BUCKET_NAME = "dgds-data-public"
-    BUCKET_PROJ = "coclico"
+    BUCKET_PROJ = "gca"
     MAPBOX_PROJ = "global-data-viewer"
+
+    # hard-coded input params at project level
+    gca_data_dir = pathlib.Path(
+        p_drive, "1000545-054-globalbeaches", "15_GlobalCoastalAtlas", "datasets"
+    )
+    dataset_dir = gca_data_dir.joinpath("01_Shorelinemonitor_annual")
+
+    # opening metadata
+    metadata_fp = dataset_dir.joinpath("metadata_shorelinemonitor.json")
+    with open(metadata_fp, "r") as f:
+        metadata = json.load(f)
 
     # STAC configs
     STAC_DIR = "current"
     TEMPLATE_COLLECTION = "template"  # stac template for dataset collection
-    COLLECTION_TITLE = "Shoreline Monitor"
-    COLLECTION_ID = "shorelinemonitor"  # name of stac collection
-    DATASET_DESCRIPTION = """Dataset with extreme Storm Surge Levels (SSL) at the European scale. SSL are estimated for three climate scenarios (Historical, RCP4.5 and RCP8.5) for eight return periods (5, 10, 20, 50, 100, 200, 500 and 1000) according to the Peak Over Threshold method. This dataset is part of the [LISCOAST](https://data.jrc.ec.europa.eu/collection/LISCOAST) project. See this [article](https://doi.org/10.1007/s00382-016-3019-5) for more dataset-specific information."""
+    COLLECTION_TITLE = metadata["TITLE"]
+    COLLECTION_ID = metadata["TITLE_ABBREVIATION"]  # name of stac collection
+    DATASET_DESCRIPTION = metadata["DESCRIPTION"]
 
     # hard-coded input params which differ per dataset
     DATASET_FILENAME = "shoreline_monitor.zarr"
@@ -52,10 +64,9 @@ if __name__ == "__main__":
     X_DIMENSION = "lon"  # False, None or str; spatial lon dim used by datacube
     Y_DIMENSION = "lat"  # False, None or str; spatial lat dim ""
     TEMPORAL_DIMENSION = False  # False, None or str; temporal ""
-    ADDITIONAL_DIMENSIONS = []  # False, None, or str; additional dims ""
+    ADDITIONAL_DIMENSIONS = []  # Empty list or list of str; additional dims ""
     DIMENSIONS_TO_IGNORE = [
         "stations",
-        "ntime",
     ]  # List of str; dims ignored by datacube
 
     # hard-coded frontend properties
@@ -65,8 +76,8 @@ if __name__ == "__main__":
 
     # these are added at collection level
     UNITS = "m"
-    PLOT_SERIES = "scenarios"
-    PLOT_X_AXIS = "rp"
+    PLOT_SERIES = "sp"
+    PLOT_X_AXIS = "time"
     PLOT_TYPE = "line"
     MIN = 0
     MAX = 3
@@ -153,24 +164,27 @@ if __name__ == "__main__":
         y_dimension=Y_DIMENSION,
         temporal_dimension=TEMPORAL_DIMENSION,
         additional_dimensions=ADDITIONAL_DIMENSIONS,
+        reference_system=ds.CRS,
     )
 
     # generate stac feature keys (strings which will be stac item ids) for mapbox layers
-    dimvals = get_dimension_values(ds, dimensions_to_ignore=DIMENSIONS_TO_IGNORE)
-    dimcombs = get_dimension_dot_product(dimvals)
+    if len(ADDITIONAL_DIMENSIONS) > 0:
+        dimvals = get_dimension_values(ds, dimensions_to_ignore=DIMENSIONS_TO_IGNORE)
+        dimcombs = get_dimension_dot_product(dimvals)
+    else:
+        dimvals = {}
+        dimcombs = []
 
     # TODO: check what can be customized in the layout
     layout = Layout()
 
     # create stac collection per variable and add to dataset collection
     for var in VARIABLES:
-
         # add zarr store as asset to stac_obj
         collection.add_asset("data", gen_zarr_asset(title, gcs_api_zarr_store))
 
         # stac items are generated per AdditionalDimension (non spatial)
         for dimcomb in dimcombs:
-
             mapbox_url = get_mapbox_url(MAPBOX_PROJ, DATASET_FILENAME, var)
 
             # generate stac item key and add link to asset to the stac item
