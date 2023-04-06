@@ -38,14 +38,31 @@ def historical_shorelinepositions(df, box, sdate= '1984-01-01', resolution = 'an
     
     fig.show()
 
-def future_shorelinepositions(df, box):
+def future_shorelinepositions(df_fut, df_annual, box):
 
-    date_range = pd.date_range(start = '1984-01-01', end = '2100-01-01', freq = 'AS')
+
+    date_range = [pd.to_datetime(x) for x in ['1984-01-01', '2021-01-01', '2050-01-01', '2100-01-01']]
+    yamb = df_fut[df_fut['transect_id'] == box]['Ambient'].values[0]
+    yamb = yamb if type(yamb) == list else json.loads(yamb)
     
+    y_rcp45_5 = df_fut[df_fut['transect_id'] == box]['RCP4.5_p5'].values[0]
+    y_rcp45_5 = y_rcp45_50 if type(y_rcp45_5) == list else json.loads(y_rcp45_5)
+    y_rcp45_50 = df_fut[df_fut['transect_id'] == box]['RCP4.5_p50'].values[0]
+    y_rcp45_50 = y_rcp45_50 if type(y_rcp45_50) == list else json.loads(y_rcp45_50)
+    y_rcp45_95 = df_fut[df_fut['transect_id'] == box]['RCP4.5_p95'].values[0]
+    y_rcp45_95 = y_rcp45_95 if type(y_rcp45_95) == list else json.loads(y_rcp45_95)
+
+    y_rcp85_5 = df_fut[df_fut['transect_id'] == box]['RCP8.5_p5'].values[0]
+    y_rcp85_5 = y_rcp85_50 if type(y_rcp85_5) == list else json.loads(y_rcp85_5)
+    y_rcp85_50 = df_fut[df_fut['transect_id'] == box]['RCP8.5_p50'].values[0]
+    y_rcp85_50 = y_rcp85_50 if type(y_rcp85_50) == list else json.loads(y_rcp85_50)
+    y_rcp85_95 = df_fut[df_fut['transect_id'] == box]['RCP8.5_p95'].values[0]
+    y_rcp85_95 = y_rcp85_95 if type(y_rcp85_95) == list else json.loads(y_rcp85_95)
+
     fig = go.Figure(go.Scatter(
             name='Ambient',
             x=date_range,
-            y=df[df['transect_id'] == box]['Ambient'].values[0],
+            y=yamb,
             mode='lines',
             line=dict(color='rgb(17, 17, 17)', dash = 'dash'),
         ))
@@ -55,13 +72,13 @@ def future_shorelinepositions(df, box):
         go.Scatter(
             name='RCP4.5',
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP4.5_p50'].values[0],
+            y=y_rcp45_50,
             mode='lines',
             line=dict(color='rgb(15, 183, 245)'),
         ),
         go.Scatter(
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP4.5_p5'].values[0],
+            y=y_rcp45_5,
             mode='lines',
             marker=dict(color="#444"),
             line=dict(width=0),
@@ -69,7 +86,7 @@ def future_shorelinepositions(df, box):
         ),
         go.Scatter(
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP4.5_p95'].values[0],
+            y=y_rcp45_95,
             marker=dict(color="#444"),
             line=dict(width=0),
             mode='lines',
@@ -81,13 +98,13 @@ def future_shorelinepositions(df, box):
         go.Scatter(
             name='RCP8.5',
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP8.5_p50'].values[0],
+            y=y_rcp85_50,
             mode='lines',
             line=dict(color='rgb(24, 24, 24)'),
         ),
         go.Scatter(
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP8.5_p5'].values[0],
+            y=y_rcp85_5,
             mode='lines',
             marker=dict(color="#444"),
             line=dict(width=0),
@@ -95,7 +112,7 @@ def future_shorelinepositions(df, box):
         ),
         go.Scatter(
             x=date_range,
-            y=df[df['transect_id'] == box]['RCP8.5_p95'].values[0],
+            y=y_rcp85_95,
             marker=dict(color="#444"),
             line=dict(width=0),
             mode='lines',
@@ -105,9 +122,9 @@ def future_shorelinepositions(df, box):
         )
     ]
 
-    dt, dist = json.loads(df[df['transect_id'] == box]['dt_annual'].values[0]), json.loads(df[df['transect_id'] == box]['dist_annual'].values[0])
-    dist = np.array(dist) - df[df['transect_id'] == box]['intercept'].values[0]
-    outl1, outl2 = json.loads(df[df['transect_id'] == box]['outliers_1'].values[0]), json.loads(df[df['transect_id'] == box]['outliers_2'].values[0])
+    dt, dist = json.loads(df_annual[df_annual['transect_id'] == box]['dt'].values[0]), json.loads(df_annual[df_annual['transect_id'] == box]['dist'].values[0])
+    dist = np.array(dist) - df_annual[df_annual['transect_id'] == box]['intercept'].values[0]
+    outl1, outl2 = json.loads(df_annual[df_annual['transect_id'] == box]['outliers_1'].values[0]), json.loads(df_annual[df_annual['transect_id'] == box]['outliers_2'].values[0])
     outl2 = [int(float(m) + sum(1 for i, n in enumerate(outl1) if int(m) >= (n - i))) for m in outl2]
     outl = outl1 + outl2
     dt = [(date_range[0] + pd.DateOffset(int(x)*365))  for x in dt]
