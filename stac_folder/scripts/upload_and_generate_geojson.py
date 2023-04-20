@@ -41,12 +41,12 @@ if __name__ == "__main__":
     gca_data_dir = pathlib.Path(
         p_drive, "1000545-054-globalbeaches", "15_GlobalCoastalAtlas", "datasets"
     )
-    dataset_dir = gca_data_dir.joinpath("02_Shorelinemonitor_monthly")
+    dataset_dir = gca_data_dir.joinpath("07_Drivers")
 
     credentials_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
 
-    IN_FILENAME = "ShorelineMonitor_HR.zarr"  # original filename as on P drive
-    OUT_FILENAME = "shoreline_monitor_hr.zarr"  # file name in the cloud and on MapBox
+    IN_FILENAME = "drivers.zarr"  # original filename as on P drive
+    OUT_FILENAME = "drivers.zarr"  # file name in the cloud and on MapBox
 
     # what do you want to show as marker color
     VARIABLES = ["changerate"]
@@ -90,7 +90,7 @@ if __name__ == "__main__":
     # fpath = pathlib.Path.home().joinpath(
     #     "data", "tmp", "shoreline_change_projections.zarr"
     # )
-    fpath = r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\datasets\02_Shorelinemonitor_monthly\ShorelineMonitor_HR.zarr"
+    fpath = r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\datasets\07_Drivers\drivers.zarr"
     ds = xr.open_zarr(fpath)
 
     ds = zero_terminated_bytes_as_str(ds)
