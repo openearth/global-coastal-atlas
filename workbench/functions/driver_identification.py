@@ -3,34 +3,50 @@ import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
-from sklearn.preprocessing import PolynomialFeatures
 from sklearn.svm import SVR
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
 from sklearn.metrics import r2_score
 from statsmodels.tsa.seasonal import STL
 from scipy.signal import argrelextrema
-import scipy
+import warnings
+import numpy.polynomial.polynomial as poly
+import statsmodels.api as sm
+
+from .driver_funcs import Fit_Sine, Oscillation_STL, identify_shorelinejump, identify_structure, merge_characteristics
 
 class identify_drivers():
 
-    def __init__(self, ds, transect):
-        
-        station = list(ds['transect_id'].values).index(str.encode(transect)) # select station
+    def __init__(self, ds):
         self.ds = ds
-        self.sp = ds.isel(stations=station)["sp"].values
-        self.time = ds.time
-        self.transect = transect
 
+
+    def raw_timeseries(self, transect):
+
+        station = list(self.ds['transect_id'].values).index(str.encode(transect)) # select station
         outl_idx = [i for i,x in enumerate(self.ds.isel(stations= station)['outliers'].values) if x == 1]
-        self.df_empty = pd.DataFrame({transect: self.sp}, index = self.time)
-        self.df_empty.iloc[outl_idx] = np.nan
+        timeseries = pd.DataFrame({transect: self.ds.isel(stations= station)['sp'].values}, index = self.ds.time)
+        timeseries[outl_idx] = np.nan
 
-        self.df_filled = None
+        return timeseries
 
-    def fill_timeseries(self):
+    def process_timeseries(self, timeseries, transect, remove_nans = True):
         """
         Fill missing values using several ML algorithm
         """
+
+        datetime_index = list(timeseries.index.values)
+        timeseries.index = np.arange(0, len(timeseries))
+
+        if remove_nans:
+        # drop NaN rows at the start
+            while timeseries.iloc[0].isnull().all():
+                timeseries = timeseries.drop(0).reset_index(drop= True)
+                del datetime_index[0]
+
+            # drop NaN rows at the end
+            while timeseries.iloc[-1].isnull().all():
+                timeseries = timeseries.drop(len(timeseries)-1).reset_index(drop= True)
+                del datetime_index[-1]
 
         # Create a list of candidate models
         models = [
@@ -40,11 +56,10 @@ class identify_drivers():
             GradientBoostingRegressor()
         ]
 
-        datetime_index = self.df_empty.index
-        self.df_empty.index = np.arange(0, len(self.df_empty))
+        
         # Split the data into training and validation sets
-        train_data = self.df_empty.dropna()
-        valid_indices = self.df_empty.index[~self.df_empty[self.transect].isna()]
+        train_data = timeseries.dropna()
+        valid_indices = timeseries.index[~timeseries[transect].isna()]
 
         # Initialize best model and R-squared value
         best_model = None
@@ -54,7 +69,7 @@ class identify_drivers():
         for model in models:
             # Fit the model to the training data
             X_train = train_data.index.values.reshape(-1, 1)
-            y_train = train_data[self.transect]
+            y_train = train_data[transect]
 
             model.fit(X_train, y_train)
 
@@ -63,7 +78,7 @@ class identify_drivers():
             y_valid_pred = model.predict(X_valid)
 
             # Calculate the R-squared metric for the model's predictions on the validation set
-            y_valid_true = self.df_empty.loc[valid_indices, self.transect]
+            y_valid_true = timeseries.loc[valid_indices, transect]
             r2 = r2_score(y_valid_true, y_valid_pred)
 
             # Save the model and its R-squared value if it's the best so far
@@ -72,89 +87,66 @@ class identify_drivers():
                 best_r2 = r2
 
         # Use the selected model to predict the missing values in the original timeseries data
-        empty_indices =  self.df_empty.index[self.df_empty[self.transect].isna()]
-        X_fill = empty_indices.values.reshape(-1, 1)
+        empty_indices =  timeseries.index[timeseries[transect].isna()].values
+        X_fill = empty_indices.reshape(-1, 1)
         y_fill = best_model.predict(X_fill)
 
-        self.df_filled = self.df_empty.copy()
+        timeseries_filled = timeseries.copy()
+        timeseries_filled.iloc[empty_indices] = y_fill.reshape(-1, 1)
         # Replace the missing values with the predicted values
-        self.df_filled.loc[empty_indices, self.transect] = y_fill
 
-        self.df_empty.index = datetime_index
-        self.df_filled.index = datetime_index
+        timeseries.index = datetime_index
+        timeseries_filled.index = datetime_index
 
-        return self.df_filled
+        return timeseries, timeseries_filled
 
-    @staticmethod
-    def Fit_Sine(tt, yy):
-
-        tt = np.array(tt)
-        yy = np.array(yy)
-        ff = np.fft.fftfreq(len(tt), (tt[1]-tt[0]))   # assume uniform spacing
-        Fyy = abs(np.fft.fft(yy))
-        #guess_freq = abs(ff[np.argmax(Fyy[1:])+1])   # excluding the zero frequency "peak", which is related to offset
-        guess_freq = 0.086
-        guess_amp = np.std(yy) * 2.**0.5
-        guess_phase = 0.
-        guess = np.array([guess_amp,  2.*np.pi*guess_freq, guess_phase])
-
-        def sinfunc(t, A, w, p):  return A *  np.sin(w*t + p)
-
-        try:
-            popt, pcov = scipy.optimize.curve_fit(sinfunc, tt, yy, p0=guess)
-            A, w, p = popt
-            f = w/(2.*np.pi)
-            fitfunc = lambda t: A  * np.sin(w*t + p)
-
-            res = {"amp": A, "omega": w, "phase": p, "freq": f,
-                "period": 1./f, "fitfunc": fitfunc, "maxcov": np.max(pcov), "rawres": (guess,popt,pcov)}
-
-            x_fit = np.arange(0, len(tt))
-            fit = res["fitfunc"](x_fit)
-        except RuntimeError:
-            fit = np.arange(0, len(tt))
-
-        return fit
+    def stl_decompositions(self, timeseries, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
+        return STL(timeseries, period= period, seasonal = seasonal, robust = robust, seasonal_deg = seasonal_deg)
     
-    @staticmethod
-    def Oscillation_STL(df_STL):
-        df_STL = df_STL[df_STL.index.year <= 2021]
-        years = np.unique(df_STL.index.year.values)
-        df_STL_year = [df_STL[df_STL.index.year == year_] for year_ in years]
+    def get_hotspot(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
 
-        maxima, minima = [], []
-        for df_STL_y in df_STL_year:
-            y = df_STL_y.values
+        station = list(self.ds['transect_id'].values).index(str.encode(transect)) # select station
+        hotspot_id = self.ds.isel(stations=station)['hotspot_id'].values
+        ds_hotspot_idx = np.where(self.ds['hotspot_id'] == hotspot_id)[0]
+        ds_hotspot = self.ds.isel(stations=ds_hotspot_idx)
+        transects = [x.decode("utf-8") for x in ds_hotspot['transect_id'].values]
+        sp = ds_hotspot['sp'].values
+        dict_sp = dict(zip(transects, sp))
 
-            max_ind = np.argmax(y)
-            min_ind = np.argmin(y)
+        lons = ds_hotspot['lon'].values
+        lats = ds_hotspot['lat'].values
 
-            maxima_y = y[max_ind]; maxima.append(maxima_y)
+        df_hotspot = pd.DataFrame(dict_sp, index= self.ds.time)
 
-            # for local minima
-            minima_y = y[min_ind]; minima.append(minima_y)
+        datetime_index = list(df_hotspot.index.values)
+        df_hotspot.index = np.arange(0, len(df_hotspot))
 
-        mean_ampl = np.mean(maxima) - np.mean(minima)
+        # drop NaN rows at the start
+        while df_hotspot.iloc[0].isnull().all():
+            df_hotspot = df_hotspot.drop(0).reset_index(drop= True)
+            del datetime_index[0]
 
-        df_STL = df_STL.resample('D').interpolate(method= 'linear')
+        # drop NaN rows at the end
+        while df_hotspot.iloc[-1].isnull().all():
+            df_hotspot = df_hotspot.drop(len(df_hotspot)-1).reset_index(drop= True)
+            del datetime_index[-1]
 
-        y2, T2 = df_STL.values, df_STL.index
+        df_hotspot.index = datetime_index
 
-        cross = y2[y2 != 0]
-        zero_cross = np.where(np.diff(np.sign(cross)))[0]
+        trend05_dict = {}
+        for transect in df_hotspot.columns:
+            timeseries, timeseries_filled = self.process_timeseries(timeseries = df_hotspot[transect].to_frame(), transect= transect, remove_nans= False)
+            df_hotspot[transect] = timeseries_filled.values
 
-        y2, T2 = y2[zero_cross], T2[zero_cross]
+            lowess = sm.nonparametric.lowess
+            stl = self.stl_decompositions(df_hotspot[transect], period = period, seasonal = seasonal, robust = robust, seasonal_deg = seasonal_deg).fit()
+            z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= 0.5)
+            trend_05 = pd.Series(z[:, 1], index= df_hotspot[transect].index)
+            trend05_dict[transect] = trend_05
 
-        periods = []
-        for i in range(0, len(T2)-2, 2):
-            p = (T2[i+2] - T2[i]).days
-            periods.append(p)
+        return df_hotspot, trend05_dict, lons, lats
 
-        return np.mean(periods), mean_ampl
-
-
-    def seasonality(self, period = 12):
-        pass
+    def seasonality(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
         """
         Generate the parameters needed to identify seasonality at a certain transect
         ---
@@ -164,51 +156,53 @@ class identify_drivers():
         returns:
             dict
         """
-        matplotlib.rcParams.update({'font.size': 20})
 
-        
-        final_decade_empt = self.df_empty[self.df_empty.index >= pd.to_datetime('2013-03-01')]
+        raw_timeseries = self.raw_timeseries(transect = transect)
+        timeseries, timeseries_filled = self.process_timeseries(timeseries= raw_timeseries, transect= transect)
+        final_decade_empt = timeseries[timeseries.index >= pd.to_datetime('2013-03-01')]
 
-        pmis_2013 = (final_decade_empt.isna().sum() / len(final_decade_empt) * 100).values
-        df_transectf = self.df_filled
+        pmis_2013 = ((final_decade_empt.isna().sum() / len(final_decade_empt)) * 100).values[0]
+        df_transectf = timeseries_filled
         # Decompose
         final_decade = df_transectf[df_transectf.index >= pd.to_datetime('2013-03-01')]
         years = np.unique(final_decade.index.year)
         
         if pmis_2013 <= 40 and len(years) >= 3:
-            stl = STL(final_decade, period= period, seasonal= 61, robust= True, seasonal_deg = 0).fit()
+            stl = self.stl_decompositions(final_decade, period= period, seasonal= seasonal, robust= robust, seasonal_deg = seasonal_deg).fit()
             df_stl = pd.concat([stl.seasonal, stl.trend, stl.resid], axis= 1)
             stl_seasonal = df_stl.season
             stl_trend = df_stl.trend
 
 
             # Metrics
-            Ps_10, Rs_10 = self.Oscillation_STL(df_STL= stl_seasonal)
-            FS_seas_10 = self.Fit_Sine(tt= np.arange(0, len(stl_seasonal)), yy= stl_seasonal)
+            Ps_10, Ds_10 = Oscillation_STL(df_STL= stl_seasonal)
+            FS_seas_10 = Fit_Sine(tt= np.arange(0, len(stl_seasonal)), yy= stl_seasonal)
             r2_sine_10 = round(r2_score(stl_seasonal, FS_seas_10), 2)
             Fit_series = pd.Series(FS_seas_10, index= stl_seasonal.index)
 
-            fig, (ax1, ax2) = plt.subplots(2, 1, figsize= (20, 15), sharex= True)
+            fig, (ax1, ax2) = plt.subplots(2, 1, figsize= (15, 8), sharex= True)
 
             transect_10_f = df_transectf[df_transectf.index >=pd.to_datetime('2013-03-01')]
-            transect_10_e = self.df_empty[self.df_empty.index >= pd.to_datetime('2013-03-01')]
+            transect_10_e = timeseries[timeseries.index >= pd.to_datetime('2013-03-01')]
             filled_pos = transect_10_f[pd.isna(transect_10_e)]
 
             #plot1
-            ax1.plot(transect_10_e.index, transect_10_e.values, label= 'SDS Positions', color= 'k', marker = 'o', linestyle = 'None', alpha = 0.4)
-            ax1.plot(filled_pos.index, filled_pos.values, label= 'Filled Positions', color= 'k', marker = 'x', markersize = 10, linestyle = 'None', alpha = 0.6)
-            ax1.plot(stl_trend.index, (stl_trend + stl_seasonal).values, label= 'Seasonal Component', color= 'g')
-            ax1.plot(stl_trend.index, stl_trend.values, label= 'Trend', color= 'r')
+            ax1.plot(transect_10_e.index, transect_10_e.values, label= 'shoreline positions', color= 'k', marker = 'o', linestyle = 'None', alpha = 0.4)
+            ax1.plot(filled_pos.index, filled_pos.values, label= 'filled positions', color= 'k', marker = 'x', markersize = 10, linestyle = 'None', alpha = 0.6)
+            ax1.plot(stl_trend.index, (stl_trend + stl_seasonal).values, label= 'seasonal', color= 'g')
+            ax1.plot(stl_trend.index, stl_trend.values, label= 'trend', color= 'r')
             handles, labels = ax1.get_legend_handles_labels()
             order = [0, 1, 2, 3]
             ax1.legend([handles[idx] for idx in order],[labels[idx] for idx in order])
-            ax1.set_ylabel('Distance w.r.t Origin [m]')
+            ax1.set_ylabel('Shoreline Position [m]')
+            ax1.grid()
 
             #plot2
-            ax2.plot(stl_seasonal.index, stl_seasonal.values, label= 'Seasonal Component', color= 'g')
-            ax2.plot(stl_seasonal.index, FS_seas_10,  label= 'Sinusoidal fit', color= 'r', linestyle = '--')
+            ax2.plot(stl_seasonal.index, stl_seasonal.values, label= 'seasonal', color= 'g')
+            ax2.plot(stl_seasonal.index, FS_seas_10,  label= 'sinusoidal fit', color= 'r', linestyle = '--')
             ax2.set_ylabel('Seasonal Shoreline Position [m]')
             ax2.set_xlabel('Time [years]')
+            ax2.grid()
 
             #period of erosion vs accretion
             seas_10_daily = Fit_series.resample('D').interpolate()
@@ -230,7 +224,7 @@ class identify_drivers():
                 if seas_yr2[maxi_y2] < seas_yr2[0]: maxi_y2 = 0
                 if seas_yr2[mini_y2] > seas_yr2[0]: mini_y2 = 0
     
-                ax2.plot(seas_yr2.index[maxi_y2], seas_yr2.iloc[maxi_y2], color= 'k', marker= 'o', linestyle= 'None', label= 'Seasonal Extrema' if i == 0 else None)
+                ax2.plot(seas_yr2.index[maxi_y2], seas_yr2.iloc[maxi_y2], color= 'k', marker= 'o', linestyle= 'None', label= 'seasonal extrema' if i == 0 else None)
                 ax2.plot(seas_yr2.index[mini_y2], seas_yr2.iloc[mini_y2], color= 'k', marker= 'o', linestyle= 'None')
 
                 maxi.append(seas_yr.index[maxi_y].month)
@@ -255,14 +249,186 @@ class identify_drivers():
 
 
             params = {
-                        'Ds': round(Rs_10, 0), 'Ps': round(Ps_10, 0),'r2': r2_sine_10, 
-                        'Width_fit': [[min_width_fit, max_width_fit]], 'Width_data': [[min_width_data, max_width_data]], 
-                        "Taccr": Taccr, 'Pmis2013': pmis_2013, 'Y2013': len(years)
+                        'Ds': round(Ds_10, 0), 'r2': r2_sine_10, 't_max_seasonal_sp': max_width_data,
+                        't_min_seasonal_sp': min_width_data, "t_accr": Taccr, 'perc_mis2013': round(pmis_2013, 2)
                         }
         else:
+            warnings.warn("There are more than 40% missing values after 2013. Seasonality can not accurately be determined and identification is classified as unknown.")
+
             params = {
-                        'Ds': 0, 'Ps': 0, 'r2': 0, 'Width_fit': [[0, 0]],
-                        'Width_data': [[0, 0]], "Taccr": 0, 'Pmis2013': pmis_2013, 
-                        'Y2013': len(years)
-            }
+                        'Ds': None, 'r2': None, 't_max_seasonal_sp': None,
+                        't_min_seasonal_sp': None, "t_accr": None, 'perc_mis2013': round(pmis_2013, 2)
+                        }
+
         return params
+    
+    def reclamation(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
+        
+        raw_timeseries = self.raw_timeseries(transect = transect)
+        timeseries, timeseries_filled = self.process_timeseries(timeseries= raw_timeseries, transect= transect)
+
+        stl = self.stl_decompositions(timeseries_filled, period= period, seasonal= seasonal, robust= robust, seasonal_deg = seasonal_deg).fit()
+
+        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'reclamation', limit= limit)
+
+        return params
+    
+    def nourishment(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
+
+        raw_timeseries = self.raw_timeseries(transect = transect)
+        timeseries, timeseries_filled = self.process_timeseries(timeseries= raw_timeseries, transect= transect)
+
+        stl = self.stl_decompositions(timeseries_filled, period= period, seasonal= seasonal, robust= robust, seasonal_deg = seasonal_deg).fit()
+
+        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'nourishment', limit= limit)
+
+        return params
+    
+    def littoral_driftbarrier(self, transect, n, min_transects=4, lim=0.9, stable_reg = 1, plot= True, save= False, frac= 0.5):
+
+        #check if there is a port in the hotspot and transects are missing
+        dist_covered = []
+        timeseries_filled, trend05_dict, lons, lats = self.get_hotspot(transect= transect)
+        transects = timeseries_filled.columns
+        ldb_type = 'Unknown'
+        ncharc, list_cr = [[None, None]], [[None], [None]]
+        max_dist = None
+        end_trend_lst = [None]
+
+        if len(transects) >= min_transects:
+            for transect in transects:
+                dist_covered.append(np.trapz(trend05_dict[transect].diff().dropna())/ (len(timeseries_filled)/12))
+
+            r2, idx, dist_transects, sameslope = identify_structure(transects= transects, lons= lons, lats= lats, dist_covered= dist_covered, 
+                                                                    plot= plot)
+            r2 = [r if not np.isnan(r) else 0 for r in r2 ]
+            if len(r2) > 1:
+                dfs = [timeseries_filled[transects[:idx[0]]], timeseries_filled[transects[idx[1]:]]]
+                dist_perhs = [np.sum(dist_transects[:idx[0]]), np.sum(dist_transects[idx[1]:])]
+
+            else:
+                dfs = [timeseries_filled]
+                dist_perhs = [np.sum(dist_transects)]
+
+            max_dist = max(dist_transects)
+            Metrics = {}
+            num_transects = []
+            ncharc, list_cr, end_trend_lst = [], [], []
+            for i, df in enumerate(dfs):
+                num_transects.append(len(df.columns))
+                if len(df.columns) >= min_transects:
+                    transects, transecte = df.columns[0], df.columns[-1]
+
+                    ts = trend05_dict[transects]
+                    te = trend05_dict[transecte]
+
+                    ends, ende = np.trapz(abs(ts.diff().dropna())), np.trapz(abs(te.diff().dropna()))
+
+                    N = int(len(df.columns) * (1/n))
+                    if ends >= ende:
+                        closest_transects = df.columns[0:1+N]
+                        furthest_transects = df.columns[-1-N:]
+                    else:
+                        closest_transects = df.columns[-1-N:]
+                        furthest_transects = df.columns[0:1+N]
+
+                    # First Metric
+                    closest_df = df[closest_transects]
+                    closest_df_mean = closest_df.mean(axis= 1)
+                    stl = STL(closest_df_mean, period= 12, seasonal= 37, robust= True).fit()
+                    lowess = sm.nonparametric.lowess
+                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= frac)
+                    trend_closest = pd.Series(z[:, 1], index= df.index)
+                    dist_closest = np.trapz(trend_closest.diff().dropna())
+
+                    furthest_df = df[furthest_transects]
+                    furthest_df_mean = furthest_df.mean(axis= 1)
+                    stl = STL(furthest_df_mean, period= 12, seasonal= 37, robust= True).fit()
+                    lowess = sm.nonparametric.lowess
+                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= frac)
+                    trend_furthest = pd.Series(z[:, 1], index= df.index)
+                    dist_furthest = np.trapz(trend_furthest.diff().dropna())
+
+                    last_10_trend = trend_closest[(trend_closest.index <= trend_closest.index[-1]) & (trend_closest.index >= trend_closest.index[-1]-pd.DateOffset(years = 10))]
+                    last_20_trend = trend_closest[(trend_closest.index <= trend_closest.index[-1]-pd.DateOffset(years = 10)) & (trend_closest.index >= trend_closest.index[-1]-pd.DateOffset(years = 20))]
+                    dY_10 = np.trapz(last_10_trend.diff().dropna())
+                    dY_20 = np.trapz(last_20_trend.diff().dropna())
+                    dYdiff = dY_10 / dY_20
+                    end_trend_lst.append(dYdiff)
+                    close_dates = merge_characteristics(trend = trend_closest, lim= lim, stable_reg= stable_reg)
+                    furth_dates = merge_characteristics(trend= trend_furthest, lim= lim, stable_reg= stable_reg)
+
+                    ncharc.append([len(close_dates), len(furth_dates)])
+
+                    M1 = abs(round((dist_closest-dist_furthest) / dist_furthest, 1))
+                    ldb_type = 'Updrift'
+                    if dist_closest < 0:
+                        ldb_type = 'Downdrift'
+                    cr_clst, cr_flst = [], []
+
+                    for dcl in close_dates:
+                        ts_c = trend_closest[(trend_closest.index >= dcl[0]) & (trend_closest.index <= dcl[1])]
+                        ys = ts_c.values
+                        xs = np.arange(0, len(ts_c))
+                        coefs = poly.polyfit(xs, ys, 1)
+                        ys_sl = poly.polyval(xs, coefs)
+                        cr_cl = (ys_sl[-1] - ys_sl[0]) / ((ts_c.index[-1] - ts_c.index[0]).days / 365)
+                        cr_clst.append(cr_cl)
+                    for dfu in furth_dates:
+                        ts_f = trend_furthest[(trend_furthest.index >= dfu[0]) & (trend_furthest.index <= dfu[1])]
+                        ys = ts_f.values
+                        xs = np.arange(0, len(ts_f))
+                        coefs = poly.polyfit(xs, ys, 1)
+                        ys_sl = poly.polyval(xs, coefs)
+                        cr_f = (ys_sl[-1] - ys_sl[0]) / ((ts_f.index[-1] - ts_f.index[0]).days / 365)
+                        cr_flst.append(cr_f)
+
+                    list_cr.append([cr_clst, cr_flst])
+
+                    if dist_furthest > 0: label1, label2, c1, c2 = 'Trend$_{close}$', 'Trend$_{far}$', 'k', 'r'
+                    else: label1, label2, c1, c2 = 'Trend$_{close}$', 'Trend$_{far}$',  'r', 'k'
+
+                    fig, ax = plt.subplots(figsize= (20, 7.5))
+
+                    trend_closest.plot(ax = ax, label = label1, color= c1)
+                    trend_furthest.plot(ax= ax, label = label2, color= c2)
+
+                    for i, dcl in enumerate(close_dates):
+                        ts_c = trend_closest[(trend_closest.index >= dcl[0]) & (trend_closest.index <= dcl[1])]
+                        ys = ts_c.values
+                        xs = np.arange(0, len(ts_c))
+                        coefs = poly.polyfit(xs, ys, 1)
+                        ys_sl = poly.polyval(xs, coefs)
+                        cr_cl = (ys_sl[-1] - ys_sl[0]) / ((ts_c.index[-1] - ts_c.index[0]).days / 365)
+                        tc_spl = pd.Series(ys_sl, index = ts_c.index)
+                        tc_spl.plot(ax=ax, color = 'k', linestyle = '--', linewidth = 4, label= "")
+
+                    for dfu in furth_dates:
+                        ts_f = trend_furthest[(trend_furthest.index >= dfu[0]) & (trend_furthest.index <= dfu[1])]
+                        ys = ts_f.values
+                        xs = np.arange(0, len(ts_f))
+                        coefs = poly.polyfit(xs, ys, 1)
+                        ys_sl = poly.polyval(xs, coefs)
+                        cr_f = (ys_sl[-1] - ys_sl[0]) / ((ts_f.index[-1] - ts_f.index[0]).days / 365)
+                        tf_spl = pd.Series(ys_sl, index = ts_f.index)
+                        tf_spl.plot(ax=ax, color = 'r', linestyle = '--', linewidth = 4, label= "")
+                        
+                        ax.legend()
+                        ax.set_ylabel('Shoreline Position [m]')
+                        ax.set_xlabel('Time [years]')
+                        ax.grid()
+
+                    Metrics[f'{ldb_type}_{i+1}'] = M1
+
+                else:
+                    Metrics[f'Unknown_{i+1}'] = 0
+                    ncharc.append([None, None])
+                    list_cr.append([[None], [None]])
+                    end_trend_lst.append(None)
+            if len(Metrics) > 1 and not sameslope and not any(['Unknown' in m or 'Downdrift' in m for m in Metrics.keys()]):
+                ldb_type = 'Double Updrift'
+            elif len(Metrics) > 1 and sameslope:
+                ldb_type = f'Splitted'
+            return Metrics, r2, dist_perhs, ldb_type, num_transects, ncharc, list_cr, max_dist, end_trend_lst
+        else:
+            return {'Unknown': 0}, [0], [0], ldb_type, [len(transects)], ncharc, list_cr, max_dist, end_trend_lst
