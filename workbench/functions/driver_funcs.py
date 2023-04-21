@@ -355,7 +355,7 @@ def identify_structure(transects, lons, lats,  dist_covered, plot):
             dist_covered = np.array(dist_covered)
             fig, ax = plt.subplots(figsize= (20, 7.5))
             ax.plot(x, dist_covered, marker= 'o', markersize = 5, color = 'k', linestyle= 'None')
-            ax.plot(x, ys_sl,marker= 'o', markersize = 2, label= f' linf. fit (r$_2$ = {round(r2[0], 2)})')
+            ax.plot(x, ys_sl,marker= 'o', markersize = 2, label= f' lin. fit (r$_2$ = {round(r2[0], 2)})')
             ax.set_ylabel('Changerate [m/yr]')
             ax.set_xticks(x)
             ax.set_xticklabels([tr for tr in transects], rotation = 60)

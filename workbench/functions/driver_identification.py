@@ -17,11 +17,27 @@ from .driver_funcs import Fit_Sine, Oscillation_STL, identify_shorelinejump, ide
 class identify_drivers():
 
     def __init__(self, ds):
+        """
+        Parameters:
+            - ds (xr.ArrayDataset): dataset containing monthly shoreline positions resolution (ds_hr).
+
+        Returns:
+            None.
+        """
         self.ds = ds
 
 
     def raw_timeseries(self, transect):
+        """
+        This function extracts the timeseries of shoreline positions for a given transect. Outliers are also removed from this
+        timeseries.
 
+        Parameters:
+            - transects (str): transect of a hotspot in the ds dataset.
+
+        Returns:
+            - timeseries (pd.DataFrame): timeseries of the transect.
+        """
         station = list(self.ds['transect_id'].values).index(str.encode(transect)) # select station
         outl_idx = [i for i,x in enumerate(self.ds.isel(stations= station)['outliers'].values) if x == 1]
         timeseries = pd.DataFrame({transect: self.ds.isel(stations= station)['sp'].values}, index = self.ds.time)
@@ -31,7 +47,17 @@ class identify_drivers():
 
     def process_timeseries(self, timeseries, transect, remove_nans = True):
         """
-        Fill missing values using several ML algorithm
+        Fill missing values using several ML algorithm.
+
+        Parameters:
+            - timeseries (pd.DataFrame): indexes are monthly datetimes. Can be retrieved via the raw_timeseries function.
+            - transect (str): transect of a hotspot in the ds dataset. Corresponds to the transect in the timeseries dataframe.
+            - remove_nans (bool): remove the NaN-values at the start and the end of the timeseries.
+
+        Returns:
+            - tuple: A tuple containing:
+                - timeseries (pd.DataFrame): timeseries of the transect containing NaN-values.
+                - timeseries_filled (pd.DataFrame): timeseries of the transect with no NaN-values.
         """
 
         datetime_index = list(timeseries.index.values)
@@ -100,11 +126,42 @@ class identify_drivers():
 
         return timeseries, timeseries_filled
 
-    def stl_decompositions(self, timeseries, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
-        return STL(timeseries, period= period, seasonal = seasonal, robust = robust, seasonal_deg = seasonal_deg)
+    def stl_decompositions(self, timeseries_filled, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
+        """
+        Decompose a timeseries into a trend, seasonal and remainder component.
+
+        Parameters:
+            - timeseries (pd.DataFrame): timeseries of the transect with no NaN-values.
+            - period (int): Periodicity of the sequence. If None and endog is a pandas Series or DataFrame, attempts to determine 
+                          from endog. If endog is a ndarray, period must be provided.
+            - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
+            - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
+            - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+
+        Returns:
+            - pd.DataFrame: containting the STL decomposed signals.
+        """
+        return STL(timeseries_filled, period= period, seasonal = seasonal, robust = robust, seasonal_deg = seasonal_deg)
     
     def get_hotspot(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
+        """
+        Retrieve the entire hotspot of a certain transect.
 
+        Parameters:
+            - transect (str): transect of a hotspot in the ds dataset.
+            - period (int): Periodicity of the sequence. If None and endog is a pandas Series or DataFrame, attempts to determine 
+                          from endog. If endog is a ndarray, period must be provided.
+            - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
+            - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
+            - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+
+        Returns:
+            tuple: containing four items:
+                - df_hotspot (pd.DataFrame): timeseries dataframe with all the transects containing no NaN-values.
+                - trend05_dict (dict): dictionary with the keys the transects and the values the smoothed timeseries in a pd.Series.
+                - lons (lst): the longitutes of the transects.
+                - lats (lst): the latitudes of the transects.
+        """
         station = list(self.ds['transect_id'].values).index(str.encode(transect)) # select station
         hotspot_id = self.ds.isel(stations=station)['hotspot_id'].values
         ds_hotspot_idx = np.where(self.ds['hotspot_id'] == hotspot_id)[0]
@@ -148,13 +205,18 @@ class identify_drivers():
 
     def seasonality(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0):
         """
-        Generate the parameters needed to identify seasonality at a certain transect
+        Generate the parameters needed to identify seasonality at a certain transect. Also a plot is created to visualize the identification.
         ---
-        arguments:
-            period (int): period of the seasonal oscillaiton
+        Parameters:
+            - transect (str): transect of a hotspot in the ds dataset.
+            - period (int): Periodicity of the sequence. If None and endog is a pandas Series or DataFrame, attempts to determine 
+                          from endog. If endog is a ndarray, period must be provided.
+            - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
+            - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
+            - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
         ---
         returns:
-            dict
+            - params (dict): dictionary containing the identification parameters.
         """
 
         raw_timeseries = self.raw_timeseries(transect = transect)
@@ -263,7 +325,20 @@ class identify_drivers():
         return params
     
     def reclamation(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
-        
+        """
+        Generate the parameters needed to identify a reclamation at a certain transect. Also a plot is created to visualize the identification.
+        ---
+        Parameters:
+            - transect (str): transect of a hotspot in the ds dataset.
+            - period (int): Periodicity of the sequence. If None and endog is a pandas Series or DataFrame, attempts to determine 
+                          from endog. If endog is a ndarray, period must be provided.
+            - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
+            - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
+            - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+        ---
+        Returns:
+            - params (dict): dictionary containing the identification parameters.
+        """
         raw_timeseries = self.raw_timeseries(transect = transect)
         timeseries, timeseries_filled = self.process_timeseries(timeseries= raw_timeseries, transect= transect)
 
@@ -275,6 +350,21 @@ class identify_drivers():
     
     def nourishment(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
 
+        """
+        Generate the parameters needed to identify a nourishment at a certain transect. Also a plot is created to visualize the identification.
+        ---
+        Parameters:
+            - transect (str): transect of a hotspot in the ds dataset.
+            - period (int): Periodicity of the sequence. If None and endog is a pandas Series or DataFrame, attempts to determine 
+                        from endog. If endog is a ndarray, period must be provided.
+            - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
+            - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
+            - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+        ---
+        Returns:
+            - params (dict): dictionary containing the identification parameters.
+        """
+
         raw_timeseries = self.raw_timeseries(transect = transect)
         timeseries, timeseries_filled = self.process_timeseries(timeseries= raw_timeseries, transect= transect)
 
@@ -284,7 +374,27 @@ class identify_drivers():
 
         return params
     
-    def littoral_driftbarrier(self, transect, n, min_transects=4, lim=0.9, stable_reg = 1, plot= True, save= False, frac= 0.5):
+    def littoral_driftbarrier(self, transect, n, min_transects=4, lim=0.9, stable_reg = 1, smooth_frac= 0.5):
+
+        """
+        Generate the parameters needed to identify a littoral drift barrier at a certain transect. Also a plot is created to 
+        visualize the identification.
+        ---
+        Parameters:
+            - transect (str): transect of a hotspot in the ds dataset.
+            - n (int): the 1/n proportion of the transects at the start and end of the hotspot are evaluated against each other.
+                        Suppose there are 10 transects and n equals 5. Then the 1/5 * 10 = 2 transects at the start and the end are 
+                        evaluated regarding there shoreline changes.
+            - min_transects (int): minimum amount of transects considered in a hotspot at which this function is executed.
+                        Littoral drift barriers are expected to have a large spatial extent.
+            - lim (float): limit of r2 in the merge_characteristics function. A characteristic is defined as shoreline positions in time
+                        that can be fit by a linear line with a r2 below the lim compared to the shoreline positions.
+            - stable_reg (int): the maximum changerate when the changerate of a characteristic is classified in the stable regime (m/yr).
+            - smooth_frac (float): smoothening of the timeseries. Should be between 0 and 1.
+        ---
+        Returns:
+            - params (dict): dictionary containing the identification parameters.
+        """
 
         #check if there is a port in the hotspot and transects are missing
         dist_covered = []
@@ -292,15 +402,14 @@ class identify_drivers():
         transects = timeseries_filled.columns
         ldb_type = 'Unknown'
         ncharc, list_cr = [[None, None]], [[None], [None]]
-        max_dist = None
         end_trend_lst = [None]
 
         if len(transects) >= min_transects:
             for transect in transects:
                 dist_covered.append(np.trapz(trend05_dict[transect].diff().dropna())/ (len(timeseries_filled)/12))
 
-            r2, idx, dist_transects, sameslope = identify_structure(transects= transects, lons= lons, lats= lats, dist_covered= dist_covered, 
-                                                                    plot= plot)
+            r2, idx, dist_transects, sameslope = identify_structure(transects= transects, lons= lons, lats= lats, 
+                                                                    dist_covered= dist_covered, plot= True)
             r2 = [r if not np.isnan(r) else 0 for r in r2 ]
             if len(r2) > 1:
                 dfs = [timeseries_filled[transects[:idx[0]]], timeseries_filled[transects[idx[1]:]]]
@@ -337,7 +446,7 @@ class identify_drivers():
                     closest_df_mean = closest_df.mean(axis= 1)
                     stl = STL(closest_df_mean, period= 12, seasonal= 37, robust= True).fit()
                     lowess = sm.nonparametric.lowess
-                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= frac)
+                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= smooth_frac)
                     trend_closest = pd.Series(z[:, 1], index= df.index)
                     dist_closest = np.trapz(trend_closest.diff().dropna())
 
@@ -345,7 +454,7 @@ class identify_drivers():
                     furthest_df_mean = furthest_df.mean(axis= 1)
                     stl = STL(furthest_df_mean, period= 12, seasonal= 37, robust= True).fit()
                     lowess = sm.nonparametric.lowess
-                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= frac)
+                    z = lowess(endog= stl.trend + stl.resid, exog= np.arange(0, len(stl.trend.index)), frac= smooth_frac)
                     trend_furthest = pd.Series(z[:, 1], index= df.index)
                     dist_furthest = np.trapz(trend_furthest.diff().dropna())
 
@@ -429,6 +538,6 @@ class identify_drivers():
                 ldb_type = 'Double Updrift'
             elif len(Metrics) > 1 and sameslope:
                 ldb_type = f'Splitted'
-            return Metrics, r2, dist_perhs, ldb_type, num_transects, ncharc, list_cr, max_dist, end_trend_lst
+            return {'metric': Metrics, 'r2': r2, 'ldb_type': ldb_type, 'num_transects': num_transects, 'num_chars': ncharc}
         else:
-            return {'Unknown': 0}, [0], [0], ldb_type, [len(transects)], ncharc, list_cr, max_dist, end_trend_lst
+            return {'metric': {'Unknown': 0}, 'r2': [0], 'ldb_type': ldb_type, 'num_transects': [len(transects)], 'num_chars': ncharc}
