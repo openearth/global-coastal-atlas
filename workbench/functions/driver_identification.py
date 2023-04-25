@@ -33,7 +33,7 @@ class identify_drivers():
         timeseries.
 
         Parameters:
-            - transects (str): transect of a hotspot in the ds dataset.
+            - transect (str): transect in a hotspot in the ds dataset.
 
         Returns:
             - timeseries (pd.DataFrame): timeseries of the transect.
@@ -324,7 +324,7 @@ class identify_drivers():
 
         return params
     
-    def reclamation(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
+    def reclamation(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, thresh = 2):
         """
         Generate the parameters needed to identify a reclamation at a certain transect. Also a plot is created to visualize the identification.
         ---
@@ -335,6 +335,8 @@ class identify_drivers():
             - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
             - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
             - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+            - thresh (float): threshold of when something is considered a shoreline jump. Is defined as the mean of the differences between consecutive data 
+                          plus thresh times the standard deviation of these differences.
         ---
         Returns:
             - params (dict): dictionary containing the identification parameters.
@@ -344,11 +346,11 @@ class identify_drivers():
 
         stl = self.stl_decompositions(timeseries_filled, period= period, seasonal= seasonal, robust= robust, seasonal_deg = seasonal_deg).fit()
 
-        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'reclamation', limit= limit)
+        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'reclamation', thresh= thresh)
 
         return params
     
-    def nourishment(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, limit = 2):
+    def nourishment(self, transect, period = 12, seasonal = 61, robust = True, seasonal_deg = 0, thresh = 2):
 
         """
         Generate the parameters needed to identify a nourishment at a certain transect. Also a plot is created to visualize the identification.
@@ -360,6 +362,8 @@ class identify_drivers():
             - seasonal (int): Length of the seasonal smoother. Must be an odd integer, and should normally be >= 7 (default).
             - robust (bool): Flag indicating whether to use a weighted version that is robust to some forms of outliers.
             - seasonal_deg (int): Degree of seasonal LOESS. 0 (constant) or 1 (constant and trend).
+            - thresh (float): threshold of when something is considered a shoreline jump. Is defined as the mean of the differences between consecutive data 
+                          plus thresh times the standard deviation of these differences.
         ---
         Returns:
             - params (dict): dictionary containing the identification parameters.
@@ -370,7 +374,7 @@ class identify_drivers():
 
         stl = self.stl_decompositions(timeseries_filled, period= period, seasonal= seasonal, robust= robust, seasonal_deg = seasonal_deg).fit()
 
-        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'nourishment', limit= limit)
+        params = identify_shorelinejump(stl_trend = stl.trend, df_filled= timeseries_filled, df_empty= timeseries, driver= 'nourishment', thresh= thresh)
 
         return params
     

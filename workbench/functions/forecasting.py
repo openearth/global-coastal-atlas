@@ -11,35 +11,58 @@ from statsmodels.tsa.exponential_smoothing.ets import ETSModel
 
 class local_forecasting():
 
-    def __init__(self, ds, transect, steps, freq = 'AS', alpha = 0.05):
+    def __init__(self, ds, transect, steps, alpha = 0.05):
+        """
+        Parameters:
+            - ds (xr.ArrayDataset): dataset containing annual shoreline positions resolution.
+            - transect (str): transect in a hotspot in the ds dataset.
+            - steps (int): number of steps (years) in the future to which the forecasting extends.
+   
+        """
 
-            self.params_sarima = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (2, 0, 0), (0, 2, 0), (0, 0, 2)]
-            self.seas_sarima = [(1, 0, 0, 12), (0, 1, 0, 12), (0, 0, 1, 12), (2, 0, 0, 12), (0, 2, 0, 12), (0, 0, 2, 12)]
+        self.params_sarima = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (2, 0, 0), (0, 2, 0), (0, 0, 2)]
+        self.seas_sarima = [(1, 0, 0, 12), (0, 1, 0, 12), (0, 0, 1, 12), (2, 0, 0, 12), (0, 2, 0, 12), (0, 0, 2, 12)]
 
-            self.ds = ds
-            self.transect = transect
-            self.steps = steps
-            self.alpha = alpha
-            self.freq = freq
+        self.ds = ds
+        self.transect = transect
+        self.steps = steps
+        self.alpha = alpha
 
 
-    def find_timeseries(self, model_change = False):
+    def find_timeseries(self):
+        """
+        This function extracts the timeseries of shoreline positions for a given transect. Outliers are also removed from this
+        timeseries.
+
+        Returns:
+            - A tuple containing:
+                - y (pd.DataFrame): timeseries of the shoreline positions with the outliers removed
+                - a (float): changerate of the timeseries in y in m/yr
+                - b (float): intercept of the timeseries in y in m
+        """
+
         station = list(self.ds['transect_id'].values).index(str.encode(f'{self.transect}'))
         self.station = station
         a, b = self.ds.isel(stations=station)["changerate"].values, self.ds.isel(stations=station)["intercept"].values
         y = pd.DataFrame(data = (self.ds.isel(stations=station)["sp"].values), index = self.ds.time, columns = ['shoreline positions'])
         outl_idx = [i for i,x in enumerate(self.ds.isel(stations= self.station)['outliers'].values) if x == 1]
-        if model_change:
-            y.iloc[outl_idx] = np.nan
-            y = y.interpolate(method= 'linear')
-        y.index.freq = self.freq
-
+        
+        y.iloc[outl_idx] = np.nan
+        y.index.freq = 'AS'
         
         return y, a, b
     
     def create_models(self):
+        
+        """
+        ML algorithms are trained on the data for several combinations of parameters.
 
-        y, a, b = self.find_timeseries(model_change= True)
+
+        Returns:
+            - models (dict): dictionary containing the ML algorithms trained on the data and with several combinations of parameters
+        """
+
+        y, a, b = self.find_timeseries()
 
         models = {
                 'ARIMA': {
@@ -78,6 +101,13 @@ class local_forecasting():
     
     def best_aic_model(self):
 
+        """
+        Function that choses the best ML model based on the aic metric.
+
+        Returns:
+            - min_model (-): model with the least aic.
+        """
+
         aic_results = {}
 
         warnings.filterwarnings("ignore")
@@ -101,7 +131,19 @@ class local_forecasting():
     
 
     def prediction_s_arima(self, model):
-         
+        
+        """
+        Function that makes a prediction using either the ARIMA or SARIMAX model.
+
+        Parameters;
+            - model (-): should be of the class ARIMA or SARIMAX.
+
+        Returns:
+            - A tuple containing:
+                - y50 (pd.Series): the mean values of the prediction.
+                - y_conf (pd.DataFrame): the lower and upper values of the prediction corresponding to the confidence interval of alpha.
+        """
+
         forecast = model.get_forecast(self.steps)
         
         y50 = forecast.predicted_mean
@@ -112,14 +154,23 @@ class local_forecasting():
 
     def prediction_est(self, model, y):
         
-        if self.freq == 'AS':
-            offset1 = pd.DateOffset(years=1)
-            offset2 = pd.DateOffset(years = self.steps - 1)
-        else:
-            offset1 = pd.DateOffset(months=1)
-            offset2 = pd.DateOffset(months = self.steps - 1)
+        """
+        Function that makes a prediction using the Exponential Smoothing (EST) model.
+
+        Parameters;
+            - model (-): should be of the class EST.
+
+        Returns:
+            - A tuple containing:
+                - y50 (pd.Series): the mean values of the prediction.
+                - y_conf (pd.DataFrame): the lower and upper values of the prediction corresponding to the confidence interval of alpha.
+        """
+
+        offset1 = pd.DateOffset(years=1)
+        offset2 = pd.DateOffset(years = self.steps - 1)
+
         ys = y.index[-1] + offset1
-        index = pd.date_range(ys, ys + offset2, freq = self.freq)
+        index = pd.date_range(ys, ys + offset2, freq = 'AS')
         y50 = pd.Series(model.forecast(self.steps), index= index)
         
         simulations = model.simulate(
@@ -136,6 +187,11 @@ class local_forecasting():
     
     def plot(self):
         
+        """
+        Function that makes visualizes for each model the future forecast corresponding to the parameters with the lowest AIC value.
+
+        """
+
         fig, ax = plt.subplots(3, 1, figsize=(20, 15), sharey = True)
 
         y, a, b = self.find_timeseries()
