@@ -1,0 +1,399 @@
+{
+    "type": "Collection",
+    "id": "shore_mon_drivers",
+    "stac_version": "1.0.0",
+    "description": "The Shoreline Monitor Drivers dataset aims to identify the drivers (factors) that contribute to changes in the shoreline at specific locations of high shoreline evolution (hotspots), as described by Kras (2019). This identification process involves analyzing the temporal and spatial characteristics of these locations using monthly satellite-derived shoreline (SDS) data (Luijendijk et al., 2018). The analysis focuses on drivers that have a spatial scale of approximately 10-20 km, including seasonality, reclamations, nourishments, and littoral drift barriers.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "sp",
+    "deltares:plotxAxis": "time",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -132.490895,
+                176.920454
+            ],
+            "description": "Longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -54.91724,
+                66.240552
+            ],
+            "description": "Latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "changerate": {
+            "type": "data",
+            "description": "Changerate",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Changerate",
+                "units": "m/yr"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        },
+        "country_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        },
+        "date_nourishment": {
+            "type": "data",
+            "description": "Nourishment Date(s)",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "yr",
+            "attrs": {
+                "long_name": "Nourishment Date(s)",
+                "units": "yr"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                14481
+            ]
+        },
+        "hotspot_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "Latitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "Latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "ldb_type": {
+            "type": "data",
+            "description": "Littoral Drift Barrier Type",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Littoral Drift Barrier Type"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                14481
+            ]
+        },
+        "littoraldb_id_conf": {
+            "type": "data",
+            "description": "Littoral Drift Barrier Identification Confidentially",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Littoral Drift Barrier Identification Confidentially"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "Longitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "Longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "nourishment_id_conf": {
+            "type": "data",
+            "description": "Nourishment Identification Confidentially",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Nourishment Identification Confidentially"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "reclamation_id_conf": {
+            "type": "data",
+            "description": "Reclamation Identification Confidentially",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Reclamation Identification Confidentially"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "seasonal_displacement": {
+            "type": "data",
+            "description": "Seasonal Displacement",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Seasonal Displacement",
+                "units": "m"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "seasonal_id_conf": {
+            "type": "data",
+            "description": "Seasonality Identification Confidentially",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Seasonality Identification Confidentially"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "t_max_seasonal_sp": {
+            "type": "data",
+            "description": "Time of Maximum Seasonal Shoreline Position",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Time of Maximum Seasonal Shoreline Position"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "t_min_seasonal_sp": {
+            "type": "data",
+            "description": "Time of Minimum Seasonal Shoreline Position",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Time of Minimum Seasonal Shoreline Position"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "t_recl_construction": {
+            "type": "data",
+            "description": "Time of Reclamation Construction",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Time of Reclamation Construction"
+            },
+            "shape": [
+                57924
+            ],
+            "chunks": [
+                28962
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                57924
+            ]
+        }
+    },
+    "title": "The Shoreline Monitor Drivers",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "CoCliCo"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/drivers.zarr",
+            "title": "shore_mon_drivers zarr root",
+            "description": "The root of the shore_mon_drivers zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

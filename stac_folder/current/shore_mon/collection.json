@@ -1,0 +1,471 @@
+{
+    "type": "Collection",
+    "id": "shore_mon",
+    "stac_version": "1.0.0",
+    "description": "The Shoreline Monitor is a dataset that incorporates a 500-m spaced shore-normal transect system, a sandy beach detection method and a change detection method called satellite derived shorelines (SDS) to provide annual shoreline positions over the period 1984-2021 for each of the 1.8 million transects in the world",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "sp",
+    "deltares:plotxAxis": "time",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.33421444099997,
+                179.667697861
+            ],
+            "description": "Longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -57.8280019112,
+                66.4159042598
+            ],
+            "description": "Latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "changerate": {
+            "type": "data",
+            "description": "Changerate",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Changerate",
+                "units": "m/yr"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "changerate_unc": {
+            "type": "data",
+            "description": "Changerate Uncertainty",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Changerate Uncertainty",
+                "units": "m/yr"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "coastline_idint": {
+            "type": "auxiliary",
+            "description": "coastline_idint",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "coastline_idint"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                1837203
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                1837203
+            ]
+        },
+        "country_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                1837203
+            ]
+        },
+        "err_changerate": {
+            "type": "auxiliary",
+            "description": "Error Changerate",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Error Changerate",
+                "units": "m/yr"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "err_timespan": {
+            "type": "auxiliary",
+            "description": "err_timespan",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "yr",
+            "attrs": {
+                "long_name": "err_timespan",
+                "units": "yr"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "intercept": {
+            "type": "auxiliary",
+            "description": "Intercept",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Intercept",
+                "units": "m"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "intercept_unc": {
+            "type": "auxiliary",
+            "description": "Intercept Uncertainty",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Intercept Uncertainty",
+                "units": "m"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "Latitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "Latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "Longitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "Longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "low_detect_shlined": {
+            "type": "auxiliary",
+            "description": "low_detect_shlined",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "low_detect_shlined"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "no_sedcomp": {
+            "type": "auxiliary",
+            "description": "no_sedcomp",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "no_sedcomp"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "no_shorelines": {
+            "type": "auxiliary",
+            "description": "Number Of Shorelines",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Number Of Shorelines"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "outliers": {
+            "type": "data",
+            "description": "Outliers detection method 1",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "attrs": {
+                "long_name": "Outliers detection method 1"
+            },
+            "shape": [
+                1837203,
+                38
+            ],
+            "chunks": [
+                114826,
+                3
+            ]
+        },
+        "rmse": {
+            "type": "auxiliary",
+            "description": "Root Mean Squared Error",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Root Mean Squared Error",
+                "units": "m"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "sandy": {
+            "type": "data",
+            "description": "Sandy",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {
+                "long_name": "Sandy"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                459301
+            ]
+        },
+        "sp": {
+            "type": "data",
+            "description": "Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                1837203,
+                38
+            ],
+            "chunks": [
+                57413,
+                3
+            ]
+        },
+        "timespan": {
+            "type": "auxiliary",
+            "description": "Timespand",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "yr",
+            "attrs": {
+                "long_name": "Timespand",
+                "units": "yr"
+            },
+            "shape": [
+                1837203
+            ],
+            "chunks": [
+                57413
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                1837203
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                1837203
+            ]
+        }
+    },
+    "title": "The Shoreline Monitor",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "CoCliCo"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/shoreline_monitor.zarr",
+            "title": "shore_mon zarr root",
+            "description": "The root of the shore_mon zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

@@ -1,0 +1,390 @@
+{
+    "type": "Collection",
+    "id": "shore_mon_fut",
+    "stac_version": "1.0.0",
+    "description": "The Shoreline Monitor Future Projections is a dataset that provides future shoreline projections on a global scale for all sandy coasts. Shoreline projections are based on the ambient change rates of shoreline evolution from Luijendijk (2018) and sea level rise based on several GreenHouse Gas (GHG) emissions.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "sp",
+    "deltares:plotxAxis": "time",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.298460565,
+                179.43053413299995
+            ],
+            "description": "Longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -55.9733177971,
+                66.408393672
+            ],
+            "description": "Latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "changerate": {
+            "type": "data",
+            "description": "Changerate",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Changerate",
+                "units": "m/yr"
+            },
+            "shape": [
+                504815
+            ],
+            "chunks": [
+                63102
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                504815
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                504815
+            ]
+        },
+        "country_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                504815
+            ]
+        },
+        "intercept": {
+            "type": "data",
+            "description": "Intercept",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Intercept",
+                "units": "m"
+            },
+            "shape": [
+                504815
+            ],
+            "chunks": [
+                63102
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "Latitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "Latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                504815
+            ],
+            "chunks": [
+                63102
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "Longitude",
+            "dimensions": [
+                "stations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "Longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                504815
+            ],
+            "chunks": [
+                63102
+            ]
+        },
+        "sp_ambient": {
+            "type": "data",
+            "description": "Ambient Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Ambient Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp45_p5": {
+            "type": "data",
+            "description": "RCP4.5 5th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP4.5 5th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp45_p50": {
+            "type": "data",
+            "description": "RCP4.5 50th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP4.5 50th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp45_p95": {
+            "type": "data",
+            "description": "RCP4.5 95th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP4.5 95th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp85_p5": {
+            "type": "data",
+            "description": "RCP8.5 5th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP8.5 5th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp85_p50": {
+            "type": "data",
+            "description": "RCP8.5 50th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP8.5 50th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "sp_rcp85_p95": {
+            "type": "data",
+            "description": "RCP8.5 95th percentile Shoreline Position",
+            "dimensions": [
+                "stations",
+                "time"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RCP8.5 95th percentile Shoreline Position",
+                "units": "m"
+            },
+            "shape": [
+                504815,
+                4
+            ],
+            "chunks": [
+                63102,
+                1
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                504815
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "stations"
+            ],
+            "attrs": {},
+            "shape": [
+                504815
+            ]
+        }
+    },
+    "title": "The Shoreline Monitor Future Projections",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "CoCliCo"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/shoreline_monitor_fut.zarr",
+            "title": "shore_mon_fut zarr root",
+            "description": "The root of the shore_mon_fut zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

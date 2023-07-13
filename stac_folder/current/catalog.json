@@ -1,0 +1,154 @@
+{
+    "type": "Catalog",
+    "id": "coclico-catalog",
+    "stac_version": "1.0.0",
+    "description": "CoCliCo Catalog",
+    "links": [
+        {
+            "rel": "root",
+            "href": "./catalog.json",
+            "type": "application/json",
+            "title": "CoCliCo STAC Catalog"
+        },
+        {
+            "rel": "child",
+            "href": "./ssl/collection.json",
+            "type": "application/json",
+            "title": "Extreme surge level"
+        },
+        {
+            "rel": "child",
+            "href": "./wef/collection.json",
+            "type": "application/json",
+            "title": "Wave energy flux"
+        },
+        {
+            "rel": "child",
+            "href": "./eesl/collection.json",
+            "type": "application/json",
+            "title": "Extreme sea level"
+        },
+        {
+            "rel": "child",
+            "href": "./floodmaps/collection.json",
+            "type": "application/json",
+            "title": "Floodmaps"
+        },
+        {
+            "rel": "child",
+            "href": "./sc/collection.json",
+            "type": "application/json",
+            "title": "Shoreline change"
+        },
+        {
+            "rel": "child",
+            "href": "./cbca/collection.json",
+            "type": "application/json",
+            "title": "Cost benefit coastal adaptation"
+        },
+        {
+            "rel": "child",
+            "href": "./cfr/collection.json",
+            "type": "application/json",
+            "title": "Coastal flood risk"
+        },
+        {
+            "rel": "child",
+            "href": "./cm/collection.json",
+            "type": "application/json",
+            "title": "Coastal mask"
+        },
+        {
+            "rel": "child",
+            "href": "./smd/collection.json",
+            "type": "application/json",
+            "title": "Global shoreline morphodynamics"
+        },
+        {
+            "rel": "child",
+            "href": "./cisi/collection.json",
+            "type": "application/json",
+            "title": "Critical Infrastructure Spatial Index"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_fut/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor Future Projections"
+        },
+        {
+            "rel": "child",
+            "href": "./sed_class/collection.json",
+            "type": "application/json",
+            "title": "Beach Sediment Classification"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor"
+        },
+        {
+            "rel": "child",
+            "href": "./world_pop/collection.json",
+            "type": "application/json",
+            "title": "World Population"
+        },
+        {
+            "rel": "child",
+            "href": "./world_gdp/collection.json",
+            "type": "application/json",
+            "title": "World Gridded GDP"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_hr/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor High Resolution"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_drivers/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor Drivers"
+        }
+    ],
+    "assets": {
+        "metadata": {
+            "href": "https://www.deltares.nl/en/news/development-of-a-new-european-platform-on-climate-services-for-coastal-risks-and-adaptation/",
+            "type": "application/html",
+            "title": "Deltares Website",
+            "description": "Deltares Website about CoCliCo",
+            "roles": [
+                "metadata"
+            ]
+        }
+    },
+    "summaries": {
+        "keywords": [
+            "CoCliCo"
+        ]
+    },
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "various",
+    "title": "CoCliCo STAC Catalog"
+}
