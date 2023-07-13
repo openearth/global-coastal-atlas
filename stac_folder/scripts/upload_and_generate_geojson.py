@@ -4,10 +4,9 @@ import sys
 from importlib.resources import path
 
 # make modules importable when running this file as script
-sys.path.append(str(pathlib.Path(__file__).parent.parent))
+# sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
 # import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-cwd = pathlib.Path().resolve()
 sys.path.append(
     str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
 )  # import functionality from local clone of coclicodata (make sure you pull the latest version)

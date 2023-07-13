@@ -5,10 +5,9 @@ import json
 from posixpath import join as urljoin
 
 # make modules importable when running this file as script
-sys.path.append(str(pathlib.Path(__file__).parent.parent))
+# sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
 # import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-cwd = pathlib.Path().resolve()
 sys.path.append(
     str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
 )  # import functionality from local clone of coclicodata (make sure you pull the latest version)
@@ -20,7 +19,7 @@ from etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
 from pystac import Catalog, CatalogType, Collection, Summaries
 from stac.blueprint import (
     IO,
-    Layout,
+    LayoutZarr,
     extend_links,
     gen_default_collection_props,
     gen_default_item,
@@ -51,6 +50,7 @@ if __name__ == "__main__":
         p_drive,
         "11208003-latedeo2022",
         "020_InternationalDeltaPortfolio",
+        "datasets",
         "04_extreme_sea_levels_at_different_global_warming_levels",
     )
     dataset_dir = gca_data_dir.joinpath("5DeltasESL")
@@ -158,10 +158,15 @@ if __name__ == "__main__":
     title = ds.attrs.get("title", COLLECTION_ID)
 
     # load coclico data catalog
-    catalog = Catalog.from_file(os.path.join(rel_root, STAC_DIR, "catalog.json"))
+    catalog = Catalog.from_file(
+        os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR, "catalog.json")
+    )
 
     template_fp = os.path.join(
-        rel_root, STAC_DIR, TEMPLATE_COLLECTION, "collection.json"
+        pathlib.Path(__file__).parent.parent,
+        STAC_DIR,
+        TEMPLATE_COLLECTION,
+        "collection.json",
     )
 
     # generate collection for dataset
@@ -205,7 +210,7 @@ if __name__ == "__main__":
         dimcombs = []
 
     # TODO: check what can be customized in the layout
-    layout = Layout()
+    layout = LayoutZarr()
 
     # create stac collection per variable and add to dataset collection
     for var in VARIABLES:
@@ -270,11 +275,12 @@ if __name__ == "__main__":
     catalog.add_child(collection)
 
     collection.normalize_hrefs(
-        os.path.join(rel_root, STAC_DIR, COLLECTION_ID), strategy=layout
+        os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR, COLLECTION_ID),
+        strategy=layout,
     )
 
     catalog.save(
         catalog_type=CatalogType.SELF_CONTAINED,
-        dest_href=os.path.join(rel_root, STAC_DIR),
+        dest_href=os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR),
         stac_io=IO(),
     )
