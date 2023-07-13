@@ -4,13 +4,18 @@ import sys
 from importlib.resources import path
 
 # make modules importable when running this file as script
-sys.path.append(r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\coclicodata")
 sys.path.append(str(pathlib.Path(__file__).parent.parent))
+
+# import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
+cwd = pathlib.Path().resolve()
+sys.path.append(
+    str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
+)  # import functionality from local clone of coclicodata (make sure you pull the latest version)
 
 import os
 import geojson
 import xarray as xr
-from etl import p_drive
+from etl import p_drive, rel_root
 from etl.cloud_services import (
     dataset_to_google_cloud,
     dataset_from_google_cloud,
@@ -43,6 +48,7 @@ if __name__ == "__main__":
         p_drive,
         "11208003-latedeo2022",
         "020_InternationalDeltaPortfolio",
+        "datasets",
         "04_extreme_sea_levels_at_different_global_warming_levels",
     )
     dataset_dir = gca_data_dir.joinpath("5DeltasESL")
@@ -97,7 +103,7 @@ if __name__ == "__main__":
     # fpath = pathlib.Path.home().joinpath(
     #     "data", "tmp", "shoreline_change_projections.zarr"
     # )
-    fpath = r"p:\11208003-latedeo2022\020_InternationalDeltaPortfolio\04_extreme_sea_levels_at_different_global_warming_levels\5DeltasESL\ESLbyGWL.zarr"
+    fpath = dataset_dir.joinpath("ESLbyGWL.zarr")
     ds = xr.open_zarr(fpath)
 
     ds = zero_terminated_bytes_as_str(ds)
