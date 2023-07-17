@@ -14,13 +14,13 @@
             "rel": "root",
             "href": "../collection.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         },
         {
             "rel": "parent",
             "href": "../collection.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         }
     ],
     "stac_extensions": [
@@ -28,7 +28,8 @@
     ],
     "title": "template",
     "keywords": [
-        "CoCliCo"
+        "GlobalCoastalAtlas",
+        "DeltaPortfolio"
     ],
     "providers": [
         {
