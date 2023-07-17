@@ -1,14 +1,14 @@
 {
     "type": "Catalog",
-    "id": "coclico-catalog",
+    "id": "gca-catalog",
     "stac_version": "1.0.0",
-    "description": "CoCliCo Catalog",
+    "description": "GlobalCoastalAtlas Catalog",
     "links": [
         {
             "rel": "root",
             "href": "./catalog.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         },
         {
             "rel": "child",
@@ -61,10 +61,10 @@
     ],
     "assets": {
         "metadata": {
-            "href": "https://www.deltares.nl/en/news/development-of-a-new-european-platform-on-climate-services-for-coastal-risks-and-adaptation/",
+            "href": "https://www.deltares.nl/",
             "type": "application/html",
             "title": "Deltares Website",
-            "description": "Deltares Website about CoCliCo",
+            "description": "Deltares Website",
             "roles": [
                 "metadata"
             ]
@@ -72,7 +72,8 @@
     },
     "summaries": {
         "keywords": [
-            "CoCliCo"
+            "GlobalCoastalAtlas",
+            "DeltaPortfolio"
         ]
     },
     "extent": {
@@ -96,5 +97,5 @@
         }
     },
     "license": "various",
-    "title": "CoCliCo STAC Catalog"
+    "title": "GlobalCoastalAtlas STAC Catalog"
 }
