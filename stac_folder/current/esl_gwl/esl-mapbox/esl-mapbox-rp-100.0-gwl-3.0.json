@@ -42,7 +42,7 @@
         "deltares:onclick": {},
         "rp": 100.0,
         "gwl": 3.0,
-        "datetime": "2023-07-13T14:07:03.163594Z"
+        "datetime": "2023-07-17T14:08:41.791469Z"
     },
     "geometry": {
         "type": "Polygon",
@@ -82,7 +82,7 @@
             "rel": "root",
             "href": "../../catalog.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         },
         {
             "rel": "parent",

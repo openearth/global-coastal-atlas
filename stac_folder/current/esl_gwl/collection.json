@@ -188,13 +188,13 @@
             "rel": "root",
             "href": "../catalog.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         },
         {
             "rel": "parent",
             "href": "../catalog.json",
             "type": "application/json",
-            "title": "CoCliCo STAC Catalog"
+            "title": "GlobalCoastalAtlas STAC Catalog"
         }
     ],
     "stac_extensions": [
@@ -369,7 +369,8 @@
     },
     "license": "proprietary",
     "keywords": [
-        "CoCliCo"
+        "GlobalCoastalAtlas",
+        "DeltaPortfolio"
     ],
     "providers": [
         {
