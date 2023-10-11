@@ -1,4 +1,4 @@
-name: coclico
+name: globalcoastalatlas
 channels:
   - conda-forge
   - nodefaults
