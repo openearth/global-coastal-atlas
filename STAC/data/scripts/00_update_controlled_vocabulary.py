@@ -8,6 +8,7 @@ import pystac_client
 file_path_repo = os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd())))
 file_path_catalog = r'https://storage.googleapis.com/dgds-data-public/gca/gca-stac/catalog.json'
 file_path_readme = os.path.join(file_path_repo, 'README.md')
+file_path_vocab_xlsx = os.path.join(file_path_repo, 'STAC', 'data', 'vocab.xlsx')
 
 # Function to convert dimensions to dict
 def convert_dim_to_dict(k, v):
@@ -60,13 +61,15 @@ vocab_df = vocab_df.groupby(['name', 'long_name', 'units', 'dtype', 'stucture_ty
 vocab_df = vocab_df.sort_values(['stucture_type','ncollections', 'name'],
                                       ascending=[True, False, True]).reset_index(drop=True)
 
+# Save vocabulary to xlsx
+vocab_df.to_excel(file_path_vocab_xlsx, index=False)
+
 # Function to convert dataframe to markdown
 def convert_df_to_md(df, comment):
     df = df.copy()
 
-    # Shorten collections to n and convert to string
-    n = 2
-    df['collections'] = df['collections'].apply(lambda x: ', '.join(x[:n]+['...']) if len(x) > n else ', '.join(x))
+    # Remove collections column
+    df = df.drop(columns=['collections'])
 
     # Convert dataframe to markdown
     md = df.to_markdown(index=False)
