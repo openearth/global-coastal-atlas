@@ -52,8 +52,9 @@ for collection in collections:
             'collections': [collection.id],
             'ncollections': 1}
         
-        if vocab_dict['type'].startswith('|'):
-            vocab_dict['type'] = vocab_dict['type'][:2]+'##'
+        if vocab_dict['type'].startswith('|S'):
+            vocab_dict['type'] = 'string'
+            
         
         # Add first value to vocabulary dictionary
         values = ds[var].isel({dim: 0 for dim in ds[var].dims}).values.tolist()
@@ -109,11 +110,6 @@ vocab_mk_df = vocab_mk_df.drop(columns=['collections', 'values'])
 def convert_df_to_md(df, comment):
     df = df.copy()
 
-    # Replace | with <code>&#124;</code>
-    for col in df.columns:
-        if df[col].dtype == object:
-            df[col] = df[col].str.replace('|', '<code>&#124;</code>')
-
     # Convert dataframe to markdown
     md = df.to_markdown(index=False)
 
@@ -138,5 +134,3 @@ readme = replace_table_in_readme(readme, vocab_mk)
 
 with open(file_path_readme, 'w') as file:
     file.write(readme)
-
-# %%
