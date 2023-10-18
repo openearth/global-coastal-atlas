@@ -22,64 +22,65 @@ The table below contains the controlled vocabulary used for the datasets in the 
 
 [comment]: <vocab table>
 
- | name                  | long_name                                            | units         | dtype   | stucture_type   |   ncollections |
-|:----------------------|:-----------------------------------------------------|:--------------|:--------|:----------------|---------------:|
-| lat                   | Latitude                                             |               |         | dim             |              7 |
-| lon                   | Longitude                                            |               |         | dim             |              7 |
-| gwl                   | global warming level                                 |               |         | dim             |              1 |
-| lat                   | latitude                                             |               |         | dim             |              1 |
-| lon                   | longitude                                            |               |         | dim             |              1 |
-| rp                    | return period                                        |               |         | dim             |              1 |
-| lat                   | Latitude                                             | degrees_north |         | var             |              7 |
-| lon                   | Longitude                                            | degrees_east  |         | var             |              7 |
-| transect_geom         |                                                      |               |         | var             |              7 |
-| transect_id           |                                                      |               |         | var             |              7 |
-| continent             |                                                      |               |         | var             |              6 |
-| country               |                                                      |               |         | var             |              6 |
-| changerate            | Changerate                                           | m/yr          |         | var             |              4 |
-| country_id            |                                                      |               |         | var             |              3 |
-| intercept             | Intercept                                            | m             |         | var             |              3 |
-| hotspot_id            |                                                      |               |         | var             |              2 |
-| outliers              | Outliers detection method 1                          |               |         | var             |              2 |
-| sp                    | Shoreline Position                                   | m             |         | var             |              2 |
-| changerate_unc        | Changerate Uncertainty                               | m/yr          |         | var             |              1 |
-| coastline_idint       | coastline_idint                                      |               |         | var             |              1 |
-| date_nourishment      | Nourishment Date(s)                                  | yr            |         | var             |              1 |
-| err_changerate        | Error Changerate                                     | m/yr          |         | var             |              1 |
-| err_timespan          | err_timespan                                         | yr            |         | var             |              1 |
-| esl                   | extreme sea level                                    | m             |         | var             |              1 |
-| gdp                   | GDP per capita                                       |               |         | var             |              1 |
-| intercept_unc         | Intercept Uncertainty                                | m             |         | var             |              1 |
-| lat                   | latitude                                             | degrees_north |         | var             |              1 |
-| ldb_type              | Littoral Drift Barrier Type                          |               |         | var             |              1 |
-| littoraldb_id_conf    | Littoral Drift Barrier Identification Confidentially |               |         | var             |              1 |
-| lon                   | longitude                                            | degrees_east  |         | var             |              1 |
-| low_detect_shlined    | low_detect_shlined                                   |               |         | var             |              1 |
-| no_sedcomp            | no_sedcomp                                           |               |         | var             |              1 |
-| no_shorelines         | Number Of Shorelines                                 |               |         | var             |              1 |
-| nourishment_id_conf   | Nourishment Identification Confidentially            |               |         | var             |              1 |
-| pop_10_m              | Population below 10 m MSL                            |               |         | var             |              1 |
-| pop_1_m               | Population below 1 m MSL                             |               |         | var             |              1 |
-| pop_5_m               | Population below 5 m MSL                             |               |         | var             |              1 |
-| pop_tot               | Total population                                     |               |         | var             |              1 |
-| reclamation_id_conf   | Reclamation Identification Confidentially            |               |         | var             |              1 |
-| rmse                  | Root Mean Squared Error                              | m             |         | var             |              1 |
-| sandy                 | Sandy                                                |               |         | var             |              1 |
-| seasonal_displacement | Seasonal Displacement                                | m             |         | var             |              1 |
-| seasonal_id_conf      | Seasonality Identification Confidentially            |               |         | var             |              1 |
-| sediment_label        | Sediment Label                                       |               |         | var             |              1 |
-| sp_ambient            | Ambient Shoreline Position                           | m             |         | var             |              1 |
-| sp_rcp45_p5           | RCP4.5 5th percentile Shoreline Position             | m             |         | var             |              1 |
-| sp_rcp45_p50          | RCP4.5 50th percentile Shoreline Position            | m             |         | var             |              1 |
-| sp_rcp45_p95          | RCP4.5 95th percentile Shoreline Position            | m             |         | var             |              1 |
-| sp_rcp85_p5           | RCP8.5 5th percentile Shoreline Position             | m             |         | var             |              1 |
-| sp_rcp85_p50          | RCP8.5 50th percentile Shoreline Position            | m             |         | var             |              1 |
-| sp_rcp85_p95          | RCP8.5 95th percentile Shoreline Position            | m             |         | var             |              1 |
-| stations              |                                                      |               |         | var             |              1 |
-| t_max_seasonal_sp     | Time of Maximum Seasonal Shoreline Position          |               |         | var             |              1 |
-| t_min_seasonal_sp     | Time of Minimum Seasonal Shoreline Position          |               |         | var             |              1 |
-| t_recl_construction   | Time of Reclamation Construction                     |               |         | var             |              1 |
-| timespan              | Timespand                                            | yr            |         | var             |              1 | 
+| group      | name                  | long_name                                            | units         | type                   |   ncollections | duplicate   |
+|:-----------|:----------------------|:-----------------------------------------------------|:--------------|:-----------------------|---------------:|:------------|
+| dimension  | ensemble              | ensemble                                             | 1             | int32                  |              1 |             |
+| dimension  | gwl                   | global warming level                                 | degrees       | float64                |              1 |             |
+| dimension  | rp                    | return period                                        | yr            | float64                |              1 |             |
+| dimension  | time                  | Time                                                 |               | datetime64[ns]         |              3 |             |
+| coordinate | changerate            | Changerate                                           | m/yr          | float32                |              1 |             |
+| coordinate | coastline_idint       | coastline_idint                                      |               | float64                |              1 |             |
+| coordinate | continent             | Continent                                            |               | <code>&#124;</code>S## |              6 |             |
+| coordinate | country               | Country                                              |               | <code>&#124;</code>S## |              6 |             |
+| coordinate | country_id            | Country Identity                                     |               | <code>&#124;</code>S## |              3 |             |
+| coordinate | err_changerate        | Error Changerate                                     | m/yr          | float64                |              1 |             |
+| coordinate | err_timespan          | err_timespan                                         | yr            | float64                |              1 |             |
+| coordinate | hotspot_id            | Hotspot Identity                                     |               | <code>&#124;</code>S## |              2 |             |
+| coordinate | intercept             | Intercept                                            | m             | float32                |              1 |             |
+| coordinate | intercept             | Intercept                                            | m             | float64                |              1 | X           |
+| coordinate | intercept_unc         | Intercept Uncertainty                                | m             | float64                |              1 |             |
+| coordinate | lat                   | Latitude                                             | degrees_north | float64                |              7 |             |
+| coordinate | lat                   | latitude                                             | degrees_north | float64                |              1 | X           |
+| coordinate | lon                   | Longitude                                            | degrees_east  | float64                |              7 |             |
+| coordinate | lon                   | longitude                                            | degrees_east  | float64                |              1 | X           |
+| coordinate | low_detect_shlined    | low_detect_shlined                                   |               | float64                |              1 |             |
+| coordinate | no_sedcomp            | no_sedcomp                                           |               | float64                |              1 |             |
+| coordinate | no_shorelines         | Number Of Shorelines                                 |               | float64                |              1 |             |
+| coordinate | rmse                  | Root Mean Squared Error                              | m             | float64                |              1 |             |
+| coordinate | stations              | stations                                             | 1             | <code>&#124;</code>S## |              1 |             |
+| coordinate | timespan              | Timespand                                            | yr            | float64                |              1 |             |
+| coordinate | transect_geom         | Transect Geometry                                    |               | <code>&#124;</code>S## |              7 |             |
+| coordinate | transect_id           | Transect Identity                                    |               | <code>&#124;</code>S## |              7 |             |
+| variable   | changerate            | Changerate                                           | m/yr          | float64                |              3 | X           |
+| variable   | changerate_unc        | Changerate Uncertainty                               | m/yr          | float64                |              1 |             |
+| variable   | date_nourishment      | Nourishment Date(s)                                  | yr            | <code>&#124;</code>S## |              1 |             |
+| variable   | esl                   | extreme sea level                                    | m             | float64                |              1 |             |
+| variable   | gdp                   | GDP per capita                                       |               | float64                |              1 |             |
+| variable   | intercept             | Intercept                                            | m             | float64                |              1 | X           |
+| variable   | ldb_type              | Littoral Drift Barrier Type                          |               | <code>&#124;</code>S## |              1 |             |
+| variable   | littoraldb_id_conf    | Littoral Drift Barrier Identification Confidentially |               | <code>&#124;</code>S## |              1 |             |
+| variable   | nourishment_id_conf   | Nourishment Identification Confidentially            |               | <code>&#124;</code>S## |              1 |             |
+| variable   | outliers              | Outliers detection method 1                          |               | float32                |              2 |             |
+| variable   | pop_10_m              | Population below 10 m MSL                            |               | float64                |              1 |             |
+| variable   | pop_1_m               | Population below 1 m MSL                             |               | float64                |              1 |             |
+| variable   | pop_5_m               | Population below 5 m MSL                             |               | float64                |              1 |             |
+| variable   | pop_tot               | Total population                                     |               | float64                |              1 |             |
+| variable   | reclamation_id_conf   | Reclamation Identification Confidentially            |               | <code>&#124;</code>S## |              1 |             |
+| variable   | sandy                 | Sandy                                                |               | int8                   |              1 |             |
+| variable   | seasonal_displacement | Seasonal Displacement                                | m             | float64                |              1 |             |
+| variable   | seasonal_id_conf      | Seasonality Identification Confidentially            |               | <code>&#124;</code>S## |              1 |             |
+| variable   | sediment_label        | Sediment Label                                       |               | int32                  |              1 |             |
+| variable   | sp                    | Shoreline Position                                   | m             | float64                |              2 |             |
+| variable   | sp_ambient            | Ambient Shoreline Position                           | m             | float64                |              1 |             |
+| variable   | sp_rcp45_p5           | RCP4.5 5th percentile Shoreline Position             | m             | float64                |              1 |             |
+| variable   | sp_rcp45_p50          | RCP4.5 50th percentile Shoreline Position            | m             | float64                |              1 |             |
+| variable   | sp_rcp45_p95          | RCP4.5 95th percentile Shoreline Position            | m             | float64                |              1 |             |
+| variable   | sp_rcp85_p5           | RCP8.5 5th percentile Shoreline Position             | m             | float64                |              1 |             |
+| variable   | sp_rcp85_p50          | RCP8.5 50th percentile Shoreline Position            | m             | float64                |              1 |             |
+| variable   | sp_rcp85_p95          | RCP8.5 95th percentile Shoreline Position            | m             | float64                |              1 |             |
+| variable   | t_max_seasonal_sp     | Time of Maximum Seasonal Shoreline Position          |               | float64                |              1 |             |
+| variable   | t_min_seasonal_sp     | Time of Minimum Seasonal Shoreline Position          |               | float64                |              1 |             |
+| variable   | t_recl_construction   | Time of Reclamation Construction                     |               | float64                |              1 |             |
 
 [comment]: <vocab table>
 
