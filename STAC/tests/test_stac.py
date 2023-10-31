@@ -6,6 +6,12 @@ def test_stac_catalog():
     catalog = pystac_client.Client.open(stac_folder / "catalog.json")
     
     used_uris = set()
+    import jsonschema
+    import jsonschema.exceptions
+    import jsonschema.validators
+    from referencing import Registry, Resource
+
+    from pystac.validation.local_validator import get_local_schema_cache
 
     used_uris.update(catalog.validate())
 
