@@ -33,6 +33,7 @@ dependencies:
   - datacube
   - google-cloud-storage
   - statsmodels
+  - pytest
   - pip:
       - xstac
       - mapbox
