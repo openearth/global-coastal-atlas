@@ -5,11 +5,9 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version: [3.10]
-
+    defaults:
+      run:
+        shell: bash -el {0}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -17,7 +15,7 @@ jobs:
     - name: Set up Conda
       uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: "3.10"
         miniforge-variant: Mambaforge
         miniforge-version: latest
         activate-environment: globalcoastalatlas
