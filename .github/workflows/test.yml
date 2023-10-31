@@ -26,8 +26,9 @@ jobs:
       run: echo "today=$(/bin/date -u '+%Y%m%d')" >> $GITHUB_OUTPUT
       shell: bash
 
-    - name: Cache Conda env
-      uses: actions/cache@v2
+    - name: Restore cached Conda env
+      id: cache
+      uses: actions/cache/restore@v3
       with:
         path: ${{ env.CONDA }}/envs
         key:
@@ -37,11 +38,18 @@ jobs:
       env:
         # Increase this value to reset cache if etc/example-environment.yml has not changed
         CACHE_NUMBER: 0
-      id: cache
 
     - name: Update environment
       run:
         mamba env update -n globalcoastalatlas -f environment.yml
+      if: steps.cache.outputs.cache-hit != 'true'
+
+    - name: Save Conda env Primes
+      id: cache-conda-save
+      uses: actions/cache/save@v3
+      with:
+        path: ${{ env.CONDA }}/envs
+        key: ${{ steps.cache.outputs.cache-primary-key }}
       if: steps.cache.outputs.cache-hit != 'true'
 
     - name: Run Pytest
