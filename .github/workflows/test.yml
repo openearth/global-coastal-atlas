@@ -44,7 +44,7 @@ jobs:
         mamba env update -n globalcoastalatlas -f environment.yml
       if: steps.cache.outputs.cache-hit != 'true'
 
-    - name: Save Conda env Primes
+    - name: Save Conda Env
       id: cache-conda-save
       uses: actions/cache/save@v3
       with:
