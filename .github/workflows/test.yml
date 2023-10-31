@@ -45,7 +45,7 @@ jobs:
       if: steps.cache.outputs.cache-hit != 'true'
 
     - name: Run Pytest
-      run: pytest STAC/tests --junit-xml=test-results.xml
+      run: python -m pytest STAC/tests --junit-xml=test-results.xml
 
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v2
