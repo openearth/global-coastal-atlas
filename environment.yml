@@ -27,7 +27,7 @@ dependencies:
   - fiona
   - geojson
   - gcsfs
-  - pystac
+  - "pystac[validation]"
   - pystac-client
   - python-dotenv
   - datacube
