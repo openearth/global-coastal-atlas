@@ -1,20 +1,8 @@
 import pathlib
-import sys
 import pystac
 import pystac_client
 import os
-
-# make modules importable when running this file as script
-# sys.path.append(str(pathlib.Path(__file__).parent.parent))
-
-# import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-sys.path.append(
-    str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
-)  # import functionality from local clone of coclicodata (make sure you pull the latest version)
-
-from etl.cloud_services import dir_to_google_cloud
-from etl.keys import load_google_credentials
-from etl import p_drive, rel_root
+from coclicodata.etl.cloud_utils import dir_to_google_cloud, load_google_credentials, p_drive
 
 if __name__ == "__main__":
     # hard-coded input params
