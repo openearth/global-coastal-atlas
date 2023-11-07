@@ -28,10 +28,15 @@ dependencies:
   - geojson
   - gcsfs
   - pystac
+  - jsonschema>=4.18
+  - pystac-client
   - python-dotenv
   - datacube
   - google-cloud-storage
-  - pip3:
+  - statsmodels
+  - pytest
+  - pip:
       - xstac
       - mapbox
       - mapboxcli # requires monkey patch for python 3.10
+      - git+https://github.com/openearth/coclicodata.git@main#egg=coclicodata
