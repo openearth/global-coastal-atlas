@@ -1,25 +1,18 @@
+# %%
 import os
 import pathlib
 import sys
 import json
 from posixpath import join as urljoin
 
-# make modules importable when running this file as script
-# sys.path.append(str(pathlib.Path(__file__).parent.parent))
-
-# import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-sys.path.append(
-    str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
-)  # import functionality from local clone of coclicodata (make sure you pull the latest version)
-
 import pystac
-from etl import rel_root, p_drive
-from etl.cloud_services import dataset_from_google_cloud
-from etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
+from coclicodata.drive_config import p_drive
+from coclicodata.etl.cloud_utils import dataset_from_google_cloud
+from coclicodata.etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
 from pystac import Catalog, CatalogType, Collection, Summaries
-from stac.blueprint import (
-    IO,
-    LayoutZarr,
+from coclicodata.coclico_stac.io import CoCliCoStacIO
+from coclicodata.coclico_stac.layouts import CoCliCoZarrLayout
+from coclicodata.coclico_stac.templates import (
     extend_links,
     gen_default_collection_props,
     gen_default_item,
@@ -29,9 +22,9 @@ from stac.blueprint import (
     gen_zarr_asset,
     get_template_collection,
 )
-from stac.coclico_extension import CoclicoExtension
-from stac.datacube import add_datacube
-from stac.utils import (
+from coclicodata.coclico_stac.extension import CoclicoExtension
+from coclicodata.coclico_stac.datacube import add_datacube
+from coclicodata.coclico_stac.utils import (
     get_dimension_dot_product,
     get_dimension_values,
     get_mapbox_item_id,

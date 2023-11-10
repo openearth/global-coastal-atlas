@@ -1,33 +1,29 @@
+# %%
 import pathlib
-import pandas as pd
 import sys
 from importlib.resources import path
+import os
 
 # make modules importable when running this file as script
 # sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-# import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-sys.path.append(
-    str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
-)  # import functionality from local clone of coclicodata (make sure you pull the latest version)
-
-import os
 import geojson
 import xarray as xr
-from etl import p_drive, rel_root
-from etl.cloud_services import (
+from coclicodata.etl.cloud_utils import (
+    p_drive,
     dataset_to_google_cloud,
     dataset_from_google_cloud,
     geojson_to_mapbox,
+    load_env_variables,
+    load_google_credentials,
 )
-from etl.extract import (
+from coclicodata.etl.extract import (
     clear_zarr_information,
     get_geojson,
     get_mapbox_url,
     zero_terminated_bytes_as_str,
 )
-from etl.keys import load_env_variables, load_google_credentials
-from stac.utils import (
+from coclicodata.coclico_stac.utils import (
     get_dimension_dot_product,
     get_dimension_values,
     get_mapbox_item_id,
