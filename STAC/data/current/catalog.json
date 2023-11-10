@@ -57,6 +57,12 @@
             "href": "./esl_gwl/collection.json",
             "type": "application/json",
             "title": "ESL by GWL"
+        },
+        {
+            "rel": "child",
+            "href": "./esl_gwl/collection.json",
+            "type": "application/json",
+            "title": "ESL by GWL"
         }
     ],
     "assets": {
