@@ -168,6 +168,7 @@ if __name__ == "__main__":
         collection_id=COLLECTION_ID,
         title=COLLECTION_TITLE,
         description=DATASET_DESCRIPTION,
+        keywords=[],
     )
 
     # add datacube dimensions derived from xarray dataset to dataset stac_obj
@@ -203,7 +204,7 @@ if __name__ == "__main__":
         dimcombs = []
 
     # TODO: check what can be customized in the layout
-    layout = LayoutZarr()
+    layout = CoCliCoZarrLayout()
 
     # create stac collection per variable and add to dataset collection
     for var in VARIABLES:
@@ -275,5 +276,5 @@ if __name__ == "__main__":
     catalog.save(
         catalog_type=CatalogType.SELF_CONTAINED,
         dest_href=os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR),
-        stac_io=IO(),
+        stac_io=CoCliCoStacIO(),
     )
