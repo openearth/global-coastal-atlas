@@ -16,6 +16,9 @@ The repository is structured as follows:
 ## Way of working
 
 When adding a dataset, please make sure to open a branch and follow the entire data workflow as described in `STAC/docs`.
+
+Check whether your changes to the STAC are OK by running `python -m pytest` in the root folder of this branch in the (Miniforge) prompt.
+Note, make sure you activated the correct environment ("globalcoastalatlas" in this case). You can also do this in VS Code 'testing' by adding the branch. 
 Only when all components are correctly ingested and visualized, open a pull request to main in order to update the platform.
 
 # local development guide Horizon VM
