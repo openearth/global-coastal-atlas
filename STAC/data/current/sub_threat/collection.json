@@ -9,7 +9,8 @@
             "href": "./eapa-mapbox/eapa-mapbox-time-2010.json",
             "type": "application/json",
             "properties": {
-                "time": 2010
+                "time": 2010,
+                "variables": "eapa"
             }
         },
         {
@@ -17,7 +18,8 @@
             "href": "./eapa-mapbox/eapa-mapbox-time-2040.json",
             "type": "application/json",
             "properties": {
-                "time": 2040
+                "time": 2040,
+                "variables": "eapa"
             }
         },
         {
@@ -25,7 +27,8 @@
             "href": "./egdp-mapbox/egdp-mapbox-time-2010.json",
             "type": "application/json",
             "properties": {
-                "time": 2010
+                "time": 2010,
+                "variables": "egdp"
             }
         },
         {
@@ -33,7 +36,8 @@
             "href": "./egdp-mapbox/egdp-mapbox-time-2040.json",
             "type": "application/json",
             "properties": {
-                "time": 2040
+                "time": 2040,
+                "variables": "egdp"
             }
         },
         {
@@ -41,7 +45,8 @@
             "href": "./epsi-mapbox/epsi-mapbox-time-2010.json",
             "type": "application/json",
             "properties": {
-                "time": 2010
+                "time": 2010,
+                "variables": "epsi"
             }
         },
         {
@@ -49,7 +54,8 @@
             "href": "./epsi-mapbox/epsi-mapbox-time-2040.json",
             "type": "application/json",
             "properties": {
-                "time": 2040
+                "time": 2040,
+                "variables": "epsi"
             }
         },
         {
@@ -284,6 +290,11 @@
         "time": [
             2010,
             2040
+        ],
+        "variables": [
+            "eapa",
+            "egdp",
+            "epsi"
         ]
     },
     "assets": {

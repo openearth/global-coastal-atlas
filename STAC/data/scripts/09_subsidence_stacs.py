@@ -227,6 +227,9 @@ if __name__ == "__main__":
             for k, v in dimcomb.items():
                 feature.properties[k] = v
 
+            # added specifically for GCA
+            feature.properties["variables"] = var
+
             # add stac item to collection
             collection.add_item(feature, strategy=layout)
 
@@ -238,7 +241,15 @@ if __name__ == "__main__":
     collection.summaries = Summaries({})
     # TODO: check if maxcount is required (inpsired on xstac library)
     # stac_obj.summaries.maxcount = 50
+
+    # added specifically for GCA
+    # extend dimvals with data variables
+    dimvals["variables"] = VARIABLES
+
+    # TODO: for GCA specifically extend v to dict with more info to be able to have labels in drop downs
     for k, v in dimvals.items():
+        add_dict = {"label": ds[k].long_name, "values": v}
+        print("THIS IS NOT FINALIZED YET, CHECK FOR TIME AND VARIABLES..")
         collection.summaries.add(k, v)
 
     # this calls CollectionCoclicoExtension since stac_obj==pystac.Collection

@@ -41,7 +41,8 @@
         "deltares:stations": "locationId",
         "deltares:onclick": {},
         "time": 2010,
-        "datetime": "2023-11-07T13:34:44.214294Z"
+        "variables": "egdp",
+        "datetime": "2023-11-22T15:20:08.936712Z"
     },
     "geometry": {
         "type": "Polygon",
