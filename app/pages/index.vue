@@ -10,11 +10,15 @@ type ItemType = typeof itemShape
 type CatalogType = typeof catalogShape
 type CollectionType = typeof collectionShape
 
+let url = useRequestURL()
+
 let {
-  public: { mapboxToken, stacRoot },
+  public: { mapboxToken },
 } = useRuntimeConfig()
 
-let catalogPath = `${stacRoot}/catalog.json`
+let baseURL = url.protocol + '//' + url.host + '/stac'
+
+let catalogPath = `${baseURL}/catalog.json`
 
 let { data: catalogJson } = await useFetch<CatalogType>(catalogPath)
 
@@ -26,7 +30,7 @@ let collections = (
   await Promise.all(
     childrenLinks.map(async (childLink) => {
       let { data } = await useFetch<CollectionType>(
-        `${stacRoot}/${childLink.href}`,
+        `${baseURL}/${childLink.href}`,
       )
       return data.value
     }),
@@ -92,8 +96,7 @@ let activeItemUrl = computed(() => {
 })
 
 let { data } = await useAsyncData(
-  () =>
-    $fetch(`${stacRoot}/${activeCollectionId.value}/${activeItemUrl.value}`),
+  () => $fetch(`${baseURL}/${activeCollectionId.value}/${activeItemUrl.value}`),
   { watch: [activeItemUrl] },
 )
 

@@ -27,4 +27,13 @@ export default defineNuxtConfig({
       noExternal: ['vuetify'],
     },
   },
+  serverHandlers:
+    process.env.NODE_ENV === 'development'
+      ? [
+          {
+            route: '/stac/**',
+            handler: '~/dev/stac/[...].ts',
+          },
+        ]
+      : [],
 })

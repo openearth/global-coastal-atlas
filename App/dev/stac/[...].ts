@@ -5,11 +5,7 @@ export default defineEventHandler(async (event) => {
 
   if (!path) throw new Error('No path provided')
 
-  let json = await fs.readFile(
-    process.env.NODE_ENV === 'development'
-      ? `${process.cwd()}/../STAC/data/current/${path}`
-      : `${process.cwd()}/public/stac/${path}`,
-  )
+  let json = await fs.readFile(`${process.cwd()}/../STAC/data/current/${path}`)
 
   return json
 })
