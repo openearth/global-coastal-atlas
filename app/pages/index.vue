@@ -1,47 +1,53 @@
 <script setup lang="ts">
-import { MapboxMap, MapboxLayer } from "@studiometa/vue-mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import { MapboxMap, MapboxLayer } from '@studiometa/vue-mapbox-gl'
+import 'mapbox-gl/dist/mapbox-gl.css'
+
+import itemShape from '../../STAC/data/current/sub_threat/epsi-mapbox/epsi-mapbox-time-2010.json'
+import catalogShape from '../../STAC/data/current/catalog.json'
+import collectionShape from '../../STAC/data/current/sub_threat/collection.json'
+
+type ItemType = typeof itemShape
+type CatalogType = typeof catalogShape
+type CollectionType = typeof collectionShape
 
 let {
   public: { mapboxToken, stacRoot },
-} = useRuntimeConfig();
+} = useRuntimeConfig()
 
-let catalogPath = `${stacRoot}/catalog.json`;
+let catalogPath = `${stacRoot}/catalog.json`
 
-let { data: catalogJson } = await useFetch(catalogPath);
+let { data: catalogJson } = await useFetch<CatalogType>(catalogPath)
 
-let catalog = catalogJson.value;
+let catalog = catalogJson.value
 
-let childrenLinks = catalog.links.filter((link) => link.rel === "child");
+let childrenLinks = catalog?.links.filter(link => link.rel === 'child') ?? []
 
 let collections = (
   await Promise.all(
-    childrenLinks.map(async (childLink) => {
-      let { data } = await useFetch(`${stacRoot}/${childLink.href}`);
-      return data.value;
-    })
+    childrenLinks.map(async childLink => {
+      let { data } = await useFetch<CollectionType>(
+        `${stacRoot}/${childLink.href}`,
+      )
+      return data.value
+    }),
   )
-).filter((collection) => collection.links.some((link) => link.rel === "item"));
+).filter(collection => collection?.links.some(link => link.rel === 'item'))
 
-let activeCollectionId = ref(collections[0].id);
+let activeCollectionId = ref(collections[0]?.id)
 
 let activeCollection = computed(() => {
   return collections.find(
-    (collection) => collection.id === activeCollectionId.value
-  );
-});
+    collection => collection?.id === activeCollectionId.value,
+  )
+})
 
 let summaries = computed(() => {
-  let newSummaries = {
-    ...(activeCollection.value.summaries ??
-      activeCollection.value["cube:dimensions"] ??
-      {}),
-  };
-  delete newSummaries.lat;
-  delete newSummaries.lon;
-
-  return newSummaries;
-});
+  return Object.entries(
+    activeCollection.value?.['cube:variables'] || {},
+  ).filter(([key, value]) => {
+    return value.type !== 'data'
+  })
+})
 
 // let { data: activeCollection } = await useFetch(currentCollectionPath);
 
@@ -52,9 +58,9 @@ let variables = ref(
     return {
       ...acc,
       [key]: values[0],
-    };
-  }, {} as Record<string, string>)
-);
+    }
+  }, {} as Record<string, string>),
+)
 
 watchEffect(
   () => {
@@ -63,42 +69,42 @@ watchEffect(
         return {
           ...acc,
           [key]: values[0],
-        };
+        }
       },
-      {} as Record<string, string>
-    );
+      {} as Record<string, string>,
+    )
   },
-  { flush: "pre" }
-);
+  { flush: 'pre' },
+)
 
 let activeItemUrl = computed(() => {
-  if (!activeCollection.value) return;
+  if (!activeCollection.value) return
   let foundLink =
     activeCollection.value.links
-      .filter((l) => l.rel === "item")
-      .find((link) => {
+      .filter(l => l.rel === 'item')
+      .find(link => {
         return Object.entries(variables.value).every(
-          ([key, value]) => link.properties?.[key] === value
-        );
-      }) ?? activeCollection.value.links.filter((l) => l.rel === "item")[0];
+          ([key, value]) => link.properties?.[key] === value,
+        )
+      }) ?? activeCollection.value.links.filter(l => l.rel === 'item')[0]
 
-  return foundLink?.href;
-});
+  return foundLink?.href
+})
 
 let { data } = await useAsyncData(
   () =>
     $fetch(`${stacRoot}/${activeCollectionId.value}/${activeItemUrl.value}`),
-  { watch: [activeItemUrl] }
-);
+  { watch: [activeItemUrl] },
+)
 
 let geojson = computed(() => {
   // let item = JSON.parse(data.value);
-  let item = data.value;
+  let item = data.value
 
-  if (!item?.assets) return {};
+  if (!item?.assets) return {}
 
-  let { mapbox } = item.assets;
-  let { properties } = item;
+  let { mapbox } = item.assets
+  let { properties } = item
 
   // if (visual) {
   //   return {
@@ -114,15 +120,15 @@ let geojson = computed(() => {
 
   return {
     id: item.id,
-    type: properties["deltares:type"],
+    type: properties['deltares:type'],
     source: {
       type: mapbox.type,
       url: mapbox.href,
     },
-    "source-layer": mapbox.source,
-    paint: properties["deltares:paint"],
-  };
-});
+    'source-layer': mapbox.source,
+    paint: properties['deltares:paint'],
+  }
+})
 </script>
 
 <template>
