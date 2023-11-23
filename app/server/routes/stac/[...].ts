@@ -1,11 +1,15 @@
-import fs from "node:fs/promises";
+import fs from 'node:fs/promises'
 
 export default defineEventHandler(async (event) => {
-  let path = event.context.params?.["_"];
+  let path = event.context.params?.['_']
 
-  if (!path) throw new Error("No path provided");
+  if (!path) throw new Error('No path provided')
 
-  let json = await fs.readFile(`${process.cwd()}/../STAC/data/current/${path}`);
+  let json = await fs.readFile(
+    process.env.NODE_ENV === 'development'
+      ? `${process.cwd()}/../STAC/data/current/${path}`
+      : `${process.cwd()}/public/stac/${path}`,
+  )
 
-  return json;
-});
+  return json
+})

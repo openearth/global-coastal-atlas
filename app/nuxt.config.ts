@@ -1,4 +1,4 @@
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -9,12 +9,12 @@ export default defineNuxtConfig({
       mapboxToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN,
     },
   },
-  css: ["vuetify/styles"],
+  css: ['vuetify/styles'],
   modules: [
     (_options, nuxt) => {
-      nuxt.hooks.hook("vite:extendConfig", (config) => {
-        config.plugins?.push(vuetify({ autoImport: true }));
-      });
+      nuxt.hooks.hook('vite:extendConfig', (config) => {
+        config.plugins?.push(vuetify({ autoImport: true }))
+      })
     },
   ],
   vite: {
@@ -24,7 +24,7 @@ export default defineNuxtConfig({
       },
     },
     ssr: {
-      noExternal: ["vuetify"],
+      noExternal: ['vuetify'],
     },
   },
-});
+})

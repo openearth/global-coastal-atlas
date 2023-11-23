@@ -20,24 +20,24 @@ let { data: catalogJson } = await useFetch<CatalogType>(catalogPath)
 
 let catalog = catalogJson.value
 
-let childrenLinks = catalog?.links.filter(link => link.rel === 'child') ?? []
+let childrenLinks = catalog?.links.filter((link) => link.rel === 'child') ?? []
 
 let collections = (
   await Promise.all(
-    childrenLinks.map(async childLink => {
+    childrenLinks.map(async (childLink) => {
       let { data } = await useFetch<CollectionType>(
         `${stacRoot}/${childLink.href}`,
       )
       return data.value
     }),
   )
-).filter(collection => collection?.links.some(link => link.rel === 'item'))
+).filter((collection) => collection?.links.some((link) => link.rel === 'item'))
 
 let activeCollectionId = ref(collections[0]?.id)
 
 let activeCollection = computed(() => {
   return collections.find(
-    collection => collection?.id === activeCollectionId.value,
+    (collection) => collection?.id === activeCollectionId.value,
   )
 })
 
@@ -81,12 +81,12 @@ let activeItemUrl = computed(() => {
   if (!activeCollection.value) return
   let foundLink =
     activeCollection.value.links
-      .filter(l => l.rel === 'item')
-      .find(link => {
+      .filter((l) => l.rel === 'item')
+      .find((link) => {
         return Object.entries(variables.value).every(
           ([key, value]) => link.properties?.[key] === value,
         )
-      }) ?? activeCollection.value.links.filter(l => l.rel === 'item')[0]
+      }) ?? activeCollection.value.links.filter((l) => l.rel === 'item')[0]
 
   return foundLink?.href
 })
