@@ -20,7 +20,11 @@ let baseURL = url.protocol + '//' + url.host + '/stac'
 
 let catalogPath = `${baseURL}/catalog.json`
 
-let { data: catalogJson } = await useFetch<CatalogType>(catalogPath)
+let headers = useRequestHeaders()
+
+let { data: catalogJson } = await useFetch<CatalogType>(catalogPath, {
+  headers,
+})
 
 let catalog = catalogJson.value
 
@@ -31,6 +35,9 @@ let collections = (
     childrenLinks.map(async (childLink) => {
       let { data } = await useFetch<CollectionType>(
         `${baseURL}/${childLink.href}`,
+        {
+          headers,
+        },
       )
       return data.value
     }),
