@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
+    "prebuild": "cp -R ../STAC/data/current ./public/stac",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
