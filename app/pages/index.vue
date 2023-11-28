@@ -103,7 +103,10 @@ let activeItemUrl = computed(() => {
 })
 
 let { data } = await useAsyncData(
-  () => $fetch(`${baseURL}/${activeCollectionId.value}/${activeItemUrl.value}`),
+  () =>
+    $fetch(`${baseURL}/${activeCollectionId.value}/${activeItemUrl.value}`, {
+      headers,
+    }),
   { watch: [activeItemUrl] },
 )
 
