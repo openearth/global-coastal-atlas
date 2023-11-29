@@ -2,7 +2,7 @@
 import { MapboxMap, MapboxLayer } from '@studiometa/vue-mapbox-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 
-import itemShape from '../../STAC/data/current/sub_threat/epsi-mapbox/epsi-mapbox-time-2010.json'
+import itemShape from '../../STAC/data/current/sub_threat/eapa-mapbox/eapa-mapbox-time-2010.json'
 import catalogShape from '../../STAC/data/current/catalog.json'
 import collectionShape from '../../STAC/data/current/sub_threat/collection.json'
 
@@ -53,11 +53,7 @@ let activeCollection = computed(() => {
 })
 
 let summaries = computed(() => {
-  return Object.entries(
-    activeCollection.value?.['cube:variables'] || {},
-  ).filter(([key, value]) => {
-    return value.type !== 'data'
-  })
+  return activeCollection.value?.summaries
 })
 
 // let { data: activeCollection } = await useFetch(currentCollectionPath);
@@ -65,7 +61,7 @@ let summaries = computed(() => {
 // let activeCollection = ref(currentCollection);
 
 let variables = ref(
-  Object.entries(summaries.value).reduce((acc, [key, values]) => {
+  Object.entries(summaries.value ?? {}).reduce((acc, [key, values]) => {
     return {
       ...acc,
       [key]: values[0],
@@ -75,7 +71,7 @@ let variables = ref(
 
 watchEffect(
   () => {
-    variables.value = Object.entries(summaries.value).reduce(
+    variables.value = Object.entries(summaries.value ?? {}).reduce(
       (acc, [key, values]) => {
         return {
           ...acc,
@@ -95,7 +91,8 @@ let activeItemUrl = computed(() => {
       .filter((l) => l.rel === 'item')
       .find((link) => {
         return Object.entries(variables.value).every(
-          ([key, value]) => link.properties?.[key] === value,
+          ([key, value]) =>
+            link.properties?.[key as keyof typeof link.properties] === value,
         )
       }) ?? activeCollection.value.links.filter((l) => l.rel === 'item')[0]
 
