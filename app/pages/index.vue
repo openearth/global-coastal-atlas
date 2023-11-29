@@ -10,6 +10,16 @@ type ItemType = typeof itemShape
 type CatalogType = typeof catalogShape
 type CollectionType = typeof collectionShape
 
+type Option =
+  | {
+      label: string
+      value: number
+    }
+  | {
+      label: string
+      value: string
+    }
+
 let url = useRequestURL()
 
 let {
@@ -61,24 +71,24 @@ let summaries = computed(() => {
 // let activeCollection = ref(currentCollection);
 
 let variables = ref(
-  Object.entries(summaries.value ?? {}).reduce((acc, [key, values]) => {
+  Object.entries(summaries.value ?? {}).reduce((acc, [key, summary]) => {
     return {
       ...acc,
-      [key]: values[0],
+      [key]: summary.options[0],
     }
-  }, {} as Record<string, string>),
+  }, {} as Record<string, Option>),
 )
 
 watchEffect(
   () => {
     variables.value = Object.entries(summaries.value ?? {}).reduce(
-      (acc, [key, values]) => {
+      (acc, [key, summary]) => {
         return {
           ...acc,
-          [key]: values[0],
+          [key]: summary.options[0],
         }
       },
-      {} as Record<string, string>,
+      {} as Record<string, Option>,
     )
   },
   { flush: 'pre' },
@@ -91,8 +101,9 @@ let activeItemUrl = computed(() => {
       .filter((l) => l.rel === 'item')
       .find((link) => {
         return Object.entries(variables.value).every(
-          ([key, value]) =>
-            link.properties?.[key as keyof typeof link.properties] === value,
+          ([key, option]) =>
+            link.properties?.[key as keyof typeof link.properties] ===
+            option.value,
         )
       }) ?? activeCollection.value.links.filter((l) => l.rel === 'item')[0]
 
@@ -154,22 +165,25 @@ let geojson = computed(() => {
     <v-radio-group v-model="activeCollectionId">
       <v-expansion-panels :model-value="activeCollectionId">
         <v-expansion-panel
-          :value="collection.id"
+          :value="collection?.id"
           v-for="collection in collections"
-          :key="collection.id"
+          :key="collection?.id"
         >
           <v-expansion-panel-title readonly hide-actions>
-            <v-radio :label="collection.title" :value="collection.id" />
+            <v-radio :label="collection?.title" :value="collection?.id" />
           </v-expansion-panel-title>
           <v-expansion-panel-text>
             <div
-              v-for="(options, key) in collection.summaries"
+              v-for="(summary, key) in collection?.summaries"
               style="display: flex; gap: 8px; flex-wrap: wrap"
             >
               <v-select
-                :label="key"
-                :items="options"
+                :label="summary.label"
+                :items="summary.options"
+                item-title="label"
+                item-value="value"
                 density="compact"
+                return-object
                 v-model="variables[key]"
               />
             </div>
