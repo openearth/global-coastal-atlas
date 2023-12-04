@@ -246,11 +246,20 @@ if __name__ == "__main__":
     # extend dimvals with data variables
     dimvals["variables"] = VARIABLES
 
-    # TODO: for GCA specifically extend v to dict with more info to be able to have labels in drop downs
+    # for GCA specifically extend v to dict with more info to be able to have labels in drop downs
     for k, v in dimvals.items():
-        add_dict = {"label": ds[k].long_name, "values": v}
-        print("THIS IS NOT FINALIZED YET, CHECK FOR TIME AND VARIABLES..")
-        collection.summaries.add(k, v)
+        try:
+            add_dict = {"label": ds[k].long_name, "options": []}
+            for sv in v:
+                add_vals = {"label": str(sv), "value": sv}
+                add_dict["options"].append(add_vals)
+
+        except:  # if variable added
+            add_dict = {"label": "Variables", "options": []}
+            for sv in v:
+                add_vals = {"label": ds[sv].long_name, "value": sv}
+                add_dict["options"].append(add_vals)
+        collection.summaries.add(k, add_dict)
 
     # this calls CollectionCoclicoExtension since stac_obj==pystac.Collection
     coclico_ext = CoclicoExtension.ext(collection, add_if_missing=True)
