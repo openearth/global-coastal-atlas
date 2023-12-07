@@ -1,0 +1,2485 @@
+{
+    "type": "Collection",
+    "id": "waves_by_cowclip",
+    "stac_version": "1.0.0",
+    "description": "Wind-wave conditions as statitics and percentiles for different RCPs covering the world. ",
+    "links": [
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=0/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=5/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=50/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=95/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=4.5/ens_perc=100/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=0/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=5/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=50/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=95/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=1991/rcp=8.5/ens_perc=100/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=0/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=5/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=50/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=95/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=4.5/ens_perc=100/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=0/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=5/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=50/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=95/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=avg/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=avg/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=avg/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=max/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=max/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=max/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p10/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p10/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p10/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p50/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p50/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p50/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p90/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p90/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p90/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p95/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p95/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p95/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p99/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p99/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=p99/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=std/Tm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=std/Dm.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "item",
+            "href": "./items/time=2090/rcp=8.5/ens_perc=100/var_stat=std/Hs.json",
+            "type": "application/json"
+        },
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "",
+    "deltares:plotSeries": "rpc",
+    "deltares:plotxAxis": "time",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "title": "Waves by the Coordinated Ocean Wave Climate Project",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "keywords": [
+        "climate projections",
+        "wind-waves",
+        "oceans"
+    ],
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ]
+}

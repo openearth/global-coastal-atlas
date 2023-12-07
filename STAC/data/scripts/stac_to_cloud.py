@@ -1,3 +1,4 @@
+#%%
 import pathlib
 import pystac
 import pystac_client
@@ -9,7 +10,7 @@ if __name__ == "__main__":
     GCS_PROJECT = "DGDS - I1000482-002"
     BUCKET_NAME = "dgds-data-public"
     BUCKET_PROJ = "gca"
-    STAC_NAME = "gca-stac"
+    STAC_NAME = "gca-stac3"
     IN_DIRNAME = "current"
 
     # hard-coded input params at project level
@@ -41,3 +42,5 @@ if __name__ == "__main__":
         bucket_proj=BUCKET_PROJ,
         dir_name=STAC_NAME,
     )
+
+# %%
