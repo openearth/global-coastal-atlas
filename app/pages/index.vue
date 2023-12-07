@@ -4,6 +4,8 @@ import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import * as turf from '@turf/turf'
+import groupBy from 'lodash/groupBy'
+import mean from 'lodash/mean'
 
 import itemShape from '../../STAC/data/current/sub_threat/eapa-mapbox/eapa-mapbox-time-2010.json'
 import catalogShape from '../../STAC/data/current/catalog.json'
@@ -211,36 +213,59 @@ function instantiateDraw(map) {
                 },
                 dimension + 1,
               )
-            : {
+            : indices.includes(index)
+            ? {
                 ...props,
                 [dimensions[dimension]]: index,
                 value: curr,
-              },
+              }
+            : {},
         )
       }, [])
     }
 
-    console.log(flattenArray(allData.data, {}, 0))
+    let rows = flattenArray(allData.data, {}, 0)
 
-    let series: EChartsOption['series'] = []
-    // Transform data into ECharts format
-    for (const [rp, gwlArray] of Object.entries(allData.data)) {
-      for (const [gwl, allValues] of Object.entries(gwlArray)) {
-        if (!series.some((item) => item.name === gwlValues[gwl])) {
-          series.push({
-            name: gwlValues[gwl],
-            type: 'line',
-            data: [],
-          })
-        }
+    let bucketDimension = 'gwl'
+    let aggregateBy = 'rp'
+    let aggregateFunction = mean
 
-        let values = indices.map((i) => allValues[i])
-        let gwlIndex = series.findIndex((item) => item.name === gwlValues[gwl])
-        series[gwlIndex].data.push(
-          values.reduce((acc, curr) => acc + curr, 0) / values.length,
-        )
+    let groupedBuckets = Object.values(groupBy(rows, bucketDimension))
+    let groupedByAggregate = groupedBuckets.map((values) =>
+      Object.values(groupBy(values, aggregateBy)),
+    )
+    let aggregated = groupedByAggregate.map((values) =>
+      values.map((nestedValues) =>
+        aggregateFunction(nestedValues.map((item) => item.value)),
+      ),
+    )
+    console.log({ aggregated })
+
+    let series: EChartsOption['series'] = aggregated.map((values, index) => {
+      return {
+        name: gwlValues[index],
+        type: 'line',
+        data: values,
       }
-    }
+    })
+    // Transform data into ECharts format
+    // for (const [rp, gwlArray] of Object.entries(allData.data)) {
+    //   for (const [gwl, allValues] of Object.entries(gwlArray)) {
+    //     if (!series.some((item) => item.name === gwlValues[gwl])) {
+    //       series.push({
+    //         name: gwlValues[gwl],
+    //         type: 'line',
+    //         data: [],
+    //       })
+    //     }
+
+    //     let values = indices.map((i) => allValues[i])
+    //     let gwlIndex = series.findIndex((item) => item.name === gwlValues[gwl])
+    //     series[gwlIndex].data.push(
+    //       values.reduce((acc, curr) => acc + curr, 0) / values.length,
+    //     )
+    //   }
+    // }
 
     option.value = {
       title: {
