@@ -1,0 +1,7 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "ens_perc"
+    ],
+    "long_name": "model ensemble percentile",
+    "units": "1"
+}
