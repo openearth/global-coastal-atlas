@@ -1,0 +1,13 @@
+{
+    "_ARRAY_DIMENSIONS": [
+        "time",
+        "lat",
+        "lon",
+        "rcp",
+        "ens_perc",
+        "nvar_stat"
+    ],
+    "coordinates": "var_stat",
+    "long_name": "wave period",
+    "units": "s"
+}

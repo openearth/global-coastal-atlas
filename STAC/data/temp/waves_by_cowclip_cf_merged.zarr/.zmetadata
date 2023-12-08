@@ -1,0 +1,304 @@
+{
+    "metadata": {
+        ".zattrs": {},
+        ".zgroup": {
+            "zarr_format": 2
+        },
+        "Dm/.zarray": {
+            "chunks": [
+                1,
+                91,
+                181,
+                1,
+                3,
+                4
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f4",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                2,
+                181,
+                361,
+                2,
+                5,
+                8
+            ],
+            "zarr_format": 2
+        },
+        "Dm/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "time",
+                "lat",
+                "lon",
+                "rcp",
+                "ens_perc",
+                "nvar_stat"
+            ],
+            "coordinates": "var_stat",
+            "long_name": "wave direction",
+            "units": "degrees"
+        },
+        "Hs/.zarray": {
+            "chunks": [
+                1,
+                91,
+                181,
+                1,
+                3,
+                4
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f4",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                2,
+                181,
+                361,
+                2,
+                5,
+                8
+            ],
+            "zarr_format": 2
+        },
+        "Hs/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "time",
+                "lat",
+                "lon",
+                "rcp",
+                "ens_perc",
+                "nvar_stat"
+            ],
+            "coordinates": "var_stat",
+            "long_name": "significant wave height",
+            "units": "m"
+        },
+        "Tm/.zarray": {
+            "chunks": [
+                1,
+                91,
+                181,
+                1,
+                3,
+                4
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f4",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                2,
+                181,
+                361,
+                2,
+                5,
+                8
+            ],
+            "zarr_format": 2
+        },
+        "Tm/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "time",
+                "lat",
+                "lon",
+                "rcp",
+                "ens_perc",
+                "nvar_stat"
+            ],
+            "coordinates": "var_stat",
+            "long_name": "wave period",
+            "units": "s"
+        },
+        "ens_perc/.zarray": {
+            "chunks": [
+                5
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<i4",
+            "fill_value": null,
+            "filters": null,
+            "order": "C",
+            "shape": [
+                5
+            ],
+            "zarr_format": 2
+        },
+        "ens_perc/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "ens_perc"
+            ],
+            "long_name": "model ensemble percentile",
+            "units": "1"
+        },
+        "lat/.zarray": {
+            "chunks": [
+                181
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f4",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                181
+            ],
+            "zarr_format": 2
+        },
+        "lat/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "lat"
+            ],
+            "long_name": "latitude",
+            "standard_name": "latitude",
+            "units": "degrees_north"
+        },
+        "lon/.zarray": {
+            "chunks": [
+                361
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f4",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                361
+            ],
+            "zarr_format": 2
+        },
+        "lon/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "lon"
+            ],
+            "long_name": "longitude",
+            "standard_name": "longitude",
+            "units": "degrees_east"
+        },
+        "rcp/.zarray": {
+            "chunks": [
+                2
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<f8",
+            "fill_value": "NaN",
+            "filters": null,
+            "order": "C",
+            "shape": [
+                2
+            ],
+            "zarr_format": 2
+        },
+        "rcp/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "rcp"
+            ],
+            "long_name": "radiative forcing pathway",
+            "units": "1"
+        },
+        "time/.zarray": {
+            "chunks": [
+                2
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "<i8",
+            "fill_value": null,
+            "filters": null,
+            "order": "C",
+            "shape": [
+                2
+            ],
+            "zarr_format": 2
+        },
+        "time/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "time"
+            ],
+            "calendar": "proleptic_gregorian",
+            "long_name": "time",
+            "standard_name": "time",
+            "units": "days since 1991-07-02 12:00:00"
+        },
+        "var_stat/.zarray": {
+            "chunks": [
+                8
+            ],
+            "compressor": {
+                "blocksize": 0,
+                "clevel": 5,
+                "cname": "lz4",
+                "id": "blosc",
+                "shuffle": 1
+            },
+            "dtype": "|S3",
+            "fill_value": null,
+            "filters": null,
+            "order": "C",
+            "shape": [
+                8
+            ],
+            "zarr_format": 2
+        },
+        "var_stat/.zattrs": {
+            "_ARRAY_DIMENSIONS": [
+                "nvar_stat"
+            ],
+            "long_name": "variable statistic",
+            "units": "1"
+        }
+    },
+    "zarr_consolidated_format": 1
+}
