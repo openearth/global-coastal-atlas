@@ -1,5 +1,12 @@
-import shapely  # type: ignore
+from enum import Enum
+import shapely
 import xarray as xr
+import numpy as np
+
+
+class DatasetType(Enum):
+    RASTER = "raster"
+    POINT = "point"
 
 
 class ZarrSlicer:
@@ -32,12 +39,32 @@ class ZarrSlicer:
         Returns:
             xr.Dataset: sliced xarray dataset
         """
-        points = ZarrSlicer._create_points_from_xarr(xarr)
-        boolean_mask = ZarrSlicer._get_boolean_mask_from_points(points, polygon)
-        coordinate_dim = ZarrSlicer._get_spatial_dimension(xarr)
-        sliced_xarr = xarr.sel({coordinate_dim: boolean_mask})
+        dataset_type = ZarrSlicer._get_dataset_type(xarr)
 
+        if dataset_type == DatasetType.RASTER:
+            spatial_dims = ZarrSlicer._get_spatial_dimensions(xarr)
+            indexer = ZarrSlicer._get_indexer_from_raster(xarr, polygon, spatial_dims)
+        elif dataset_type == DatasetType.POINT:
+            points = ZarrSlicer._create_points_from_xarr(xarr)
+            boolean_mask = ZarrSlicer._get_boolean_mask_from_points(points, polygon)
+            spatial_dims = ZarrSlicer._get_spatial_dimensions(xarr)
+
+            indexer = {spatial_dims[0]: boolean_mask}
+        else:
+            raise ValueError("Dataset type not supported")
+
+        sliced_xarr = xarr.sel(indexer)
         return sliced_xarr
+
+    @staticmethod
+    def _get_dataset_type(xarr: xr.Dataset) -> str:
+        """Get dataset type from xarray dataset. We differentiate between
+        raster and point datasets"""
+        # if lat and lon are dimensions, we assume it is a raster dataset
+        if "lat" in xarr.dims and "lon" in xarr.dims:
+            return DatasetType.RASTER
+        else:
+            return DatasetType.POINT
 
     @staticmethod
     def _create_points_from_xarr(xarr: xr.Dataset) -> shapely.MultiPoint:
@@ -48,9 +75,10 @@ class ZarrSlicer:
         return points
 
     @staticmethod
-    def _get_spatial_dimension(xarr: xr.Dataset) -> str:
+    def _get_spatial_dimensions(xarr: xr.Dataset) -> list[str]:
         """Get spatial dimension from xarray dataset"""
-        return xarr.lat.dims[0]
+        dims = {xarr.lat.dims[0], xarr.lon.dims[0]}
+        return list(dims)
 
     @staticmethod
     def _get_boolean_mask_from_points(
@@ -58,6 +86,29 @@ class ZarrSlicer:
     ) -> [bool]:
         """Get boolean mask from points and polygon"""
         return shapely.within(points, polygon)
+
+    @staticmethod
+    def _get_indexer_from_raster(
+        raster: xr.Dataset, polygon: shapely.Polygon, spatial_dims: list[str]
+    ) -> [bool]:
+        """Get boolean mask from raster and polygon"""
+        spatial_dim_size = {dim: len(raster[dim].values) for dim in spatial_dims}
+
+        coords = np.stack(
+            np.meshgrid(raster[spatial_dims[1]].values, raster[spatial_dims[0]].values),
+            -1,
+        ).reshape(
+            spatial_dim_size[spatial_dims[0]], spatial_dim_size[spatial_dims[1]], 2
+        )
+
+        raster_points = shapely.points(coords)
+
+        mask = shapely.within(raster_points, polygon_shape)
+
+        # Reduce mask to square shape
+        # TODO: create point wise indexing for DataSet;
+        indexer = {"lat": mask.any(axis=1), "lon": mask.any(axis=0)}
+        return indexer
 
     @staticmethod
     def _create_shape_from_geojson(geojson: str) -> shapely.Polygon:
@@ -108,7 +159,9 @@ if __name__ == "__main__":
 
     polygon_shape: shapely.Polygon = ZarrSlicer._create_shape_from_geojson(geojson_str)
 
-    zarr_url = "https://storage.googleapis.com/dgds-data-public/gca/ESLbyGWL.zarr"
+    # zarr_url = "https://storage.googleapis.com/dgds-data-public/gca/ESLbyGWL.zarr"
+    # zarr_url = "https://storage.googleapis.com/dgds-data-public/gca/Global_TLS.zarr"
+    zarr_url = "./../temp/waves_by_cowclip_cf_merged.zarr"
     ds = ZarrSlicer._get_dataset_from_zarr_url(zarr_url)
 
     print(f"zarr size: {ds.nbytes / 1e9} GB")
