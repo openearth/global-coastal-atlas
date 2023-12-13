@@ -3,7 +3,6 @@ import { MapboxMap, MapboxLayer } from '@studiometa/vue-mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
-import * as turf from '@turf/turf'
 import groupBy from 'lodash/groupBy'
 import mean from 'lodash/mean'
 
