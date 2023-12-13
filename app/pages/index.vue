@@ -5,6 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import groupBy from 'lodash/groupBy'
 import mean from 'lodash/mean'
+import notebookTemplate from '~/assets/sliced_dataset_workbench.ipynb?raw'
 
 import itemShape from '../../STAC/data/current/sub_threat/eapa-mapbox/eapa-mapbox-time-2010.json'
 import catalogShape from '../../STAC/data/current/catalog.json'
@@ -169,9 +170,11 @@ let geojson = computed(() => {
 })
 
 const option = ref(null)
+let draw = ref<MapboxDraw>(null)
+let polygons = ref([])
 
 function instantiateDraw(map) {
-  let draw = new MapboxDraw({
+  draw = new MapboxDraw({
     displayControlsDefault: false,
     controls: {
       polygon: true,
@@ -188,11 +191,11 @@ function instantiateDraw(map) {
 
   async function updateArea(e) {
     const data = draw.getAll()
+    polygons.value = data.features
+
+    return
 
     let { allData, indices, rpValues, gwlValues } = await getDataByPolygon(data)
-
-    // console.log(groupedData)
-    console.log({ allData })
 
     let dimensions = ['rp', 'gwl', 'ensemble', 'nstations']
 
@@ -238,7 +241,6 @@ function instantiateDraw(map) {
         aggregateFunction(nestedValues.map((item) => item.value)),
       ),
     )
-    console.log({ aggregated })
 
     let series: EChartsOption['series'] = aggregated.map((values, index) => {
       return {
@@ -317,6 +319,26 @@ use([
 ])
 
 provide(THEME_KEY, 'light')
+
+async function downloadNotebook() {
+  let polygonJson = JSON.stringify(
+    draw.getAll().features[0].geometry,
+  ).replaceAll('"', '\\"')
+  let content = notebookTemplate
+    .replace('__POLYGON__', polygonJson)
+    .replace('__ZARR__', activeCollection.value?.assets.data.href ?? 'ERROR')
+  let file = new File([content], 'sliced_dataset_workbench.ipynb', {
+    type: 'application/x-ipynb+json',
+  })
+
+  let url = URL.createObjectURL(file)
+  let a = document.createElement('a')
+  a.href = url
+  a.download = 'notebook.ipynb'
+  a.click()
+
+  URL.revokeObjectURL(url)
+}
 </script>
 
 <template>
@@ -373,7 +395,7 @@ provide(THEME_KEY, 'light')
     />
   </MapboxMap>
 
-  <div
+  <!--<div
     v-if="option"
     style="
       position: fixed;
@@ -388,5 +410,19 @@ provide(THEME_KEY, 'light')
     <client-only>
       <v-chart :option="option" class="chart" :init-options="chartInit" />
     </client-only>
+  </div>-->
+
+  <div
+    v-if="polygons?.length > 0"
+    style="
+      position: fixed;
+      top: 24px;
+      display: flex;
+      justify-content: center;
+      z-index: 1;
+      width: 100%;
+    "
+  >
+    <v-btn @click="downloadNotebook"> Download Notebook </v-btn>
   </div>
 </template>

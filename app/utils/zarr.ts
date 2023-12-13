@@ -12,7 +12,6 @@ async function getDimension(path: string) {
 }
 
 export async function getDataByPolygon(searchWithin: turf.Polygon) {
-  console.log({ searchWithin })
   let lats = await getDimension('lat')
   let lons = await getDimension('lon')
 
