@@ -12,7 +12,7 @@
                 ],
                 [
                     "get",
-                    "time-2010"
+                    "time-2040"
                 ],
                 0,
                 "hsla(110, 90%, 80%, 0.25)",
@@ -27,7 +27,7 @@
         "deltares:onclick": {},
         "time": 2040,
         "variables": "eapa",
-        "datetime": "2023-12-04T14:35:49.578339Z"
+        "datetime": "2023-12-13T11:00:58.965405Z"
     },
     "geometry": {
         "type": "Polygon",
