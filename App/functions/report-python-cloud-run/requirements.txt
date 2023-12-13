@@ -1,0 +1,6 @@
+Flask
+gunicorn
+shapely
+xarray
+pystac
+reportlab
