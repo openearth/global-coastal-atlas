@@ -18,6 +18,15 @@ export default defineNuxtConfig({
     },
   ],
   vite: {
+    server: {
+      fs: {
+        allow: [
+          "C:/SnapVolumesTemp/MountPoints/",
+          "..",
+          "."
+        ]
+      }
+    },
     vue: {
       template: {
         transformAssetUrls,
