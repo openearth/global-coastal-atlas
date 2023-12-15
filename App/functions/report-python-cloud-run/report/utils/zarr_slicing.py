@@ -66,7 +66,7 @@ class ZarrSlicer:
         Returns:
             bool: True if xarray dataset contains data
         """
-        return not np.isnan(xarr).all()
+        return xarr.nbytes > 0
 
     @staticmethod
     def _get_dataset_type(xarr: xr.Dataset) -> DatasetType:

@@ -1,16 +1,28 @@
 from io import BytesIO
+import json
 import os
 
-from flask import Flask, make_response
+from shapely import Polygon  # type: ignore
+from shapely.geometry import shape  # type: ignore
+from flask import Flask, make_response, request
 
-from report.report import create_report_pdf
+from report.report import (
+    create_report_html,
+    create_report_pdf,
+    POLYGON_DEFAULT,
+    STAC_ROOT_DEFAULT,
+)
 
 app = Flask(__name__)
 
 
 @app.route("/")
 def return_report():
-    pdf_object: BytesIO = create_report_pdf()
+    polygon_str = POLYGON_DEFAULT
+    geo: dict = json.loads(polygon_str)
+    polygon: Polygon = shape(geo)
+    web_page_content = create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
+    pdf_object = create_report_pdf(web_page_content)
 
     response = make_response(pdf_object.getvalue())
     response.headers["Content-Type"] = "application/pdf"
