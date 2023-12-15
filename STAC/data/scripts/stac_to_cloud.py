@@ -2,14 +2,18 @@ import pathlib
 import pystac
 import pystac_client
 import os
-from coclicodata.etl.cloud_utils import dir_to_google_cloud, load_google_credentials, p_drive
+from coclicodata.etl.cloud_utils import (
+    dir_to_google_cloud,
+    load_google_credentials,
+    p_drive,
+)
 
 if __name__ == "__main__":
     # hard-coded input params
     GCS_PROJECT = "DGDS - I1000482-002"
     BUCKET_NAME = "dgds-data-public"
     BUCKET_PROJ = "gca"
-    STAC_NAME = "gca-stac"
+    STAC_NAME = "gca-stac2"
     IN_DIRNAME = "current"
 
     # hard-coded input params at project level

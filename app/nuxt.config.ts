@@ -27,6 +27,9 @@ export default defineNuxtConfig({
       noExternal: ['vuetify'],
     },
   },
+  build: {
+    transpile: [/echarts/, /zrender/, /tslib/, /resize-detector/],
+  },
   serverHandlers:
     process.env.NODE_ENV === 'development'
       ? [

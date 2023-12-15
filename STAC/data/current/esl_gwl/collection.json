@@ -1,410 +1,376 @@
 {
-    "type": "Collection",
-    "id": "esl_gwl",
-    "stac_version": "1.0.0",
-    "description": "Extreme sea level projections for five return periods (5, 10, 20 50 and 100 year) for different global warming levels (present-day, 1.5 degree, 3 degree and 5 degree difference) for five different delta's across the world  for the year 2100.",
-    "links": [
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-0.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 5.0,
-                "gwl": 0.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-1.5.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 5.0,
-                "gwl": 1.5
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-3.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 5.0,
-                "gwl": 3.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-5.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 5.0,
-                "gwl": 5.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-0.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 10.0,
-                "gwl": 0.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-1.5.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 10.0,
-                "gwl": 1.5
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-3.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 10.0,
-                "gwl": 3.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-5.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 10.0,
-                "gwl": 5.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-0.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 20.0,
-                "gwl": 0.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-1.5.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 20.0,
-                "gwl": 1.5
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-3.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 20.0,
-                "gwl": 3.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-5.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 20.0,
-                "gwl": 5.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-0.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 50.0,
-                "gwl": 0.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-1.5.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 50.0,
-                "gwl": 1.5
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-3.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 50.0,
-                "gwl": 3.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-5.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 50.0,
-                "gwl": 5.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-0.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 100.0,
-                "gwl": 0.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-1.5.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 100.0,
-                "gwl": 1.5
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-3.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 100.0,
-                "gwl": 3.0
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-5.0.json",
-            "type": "application/json",
-            "properties": {
-                "rp": 100.0,
-                "gwl": 5.0
-            }
-        },
-        {
-            "rel": "root",
-            "href": "../catalog.json",
-            "type": "application/json",
-            "title": "GlobalCoastalAtlas STAC Catalog"
-        },
-        {
-            "rel": "parent",
-            "href": "../catalog.json",
-            "type": "application/json",
-            "title": "GlobalCoastalAtlas STAC Catalog"
-        }
-    ],
-    "stac_extensions": [
-        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
-        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
-        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
-    ],
-    "deltares:units": "m",
-    "deltares:plotSeries": "esl",
-    "deltares:plotxAxis": "rp",
-    "deltares:plotType": "line",
-    "deltares:min": 0,
-    "deltares:max": 3,
-    "deltares:linearGradient": [
-        {
-            "color": "hsl(110,90%,80%)",
-            "offset": "0.000%",
-            "opacity": 100
-        },
-        {
-            "color": "hsla(55,88%,53%,0.5)",
-            "offset": "50.000%",
-            "opacity": 100
-        },
-        {
-            "color": "hsl(0,90%,70%)",
-            "offset": "100.000%",
-            "opacity": 100
-        }
-    ],
-    "cube:dimensions": {
-        "rp": {
-            "values": [
-                5.0,
-                10.0,
-                20.0,
-                50.0,
-                100.0
-            ],
-            "description": "return period",
-            "reference_system": "EPSG:4326",
-            "type": "temporal"
-        },
-        "lon": {
-            "axis": "x",
-            "extent": [
-                -92.959,
-                108.193
-            ],
-            "description": "longitude",
-            "reference_system": "EPSG:4326",
-            "type": "spatial"
-        },
-        "lat": {
-            "axis": "y",
-            "extent": [
-                4.323,
-                56.589
-            ],
-            "description": "latitude",
-            "reference_system": "EPSG:4326",
-            "type": "spatial"
-        },
-        "gwl": {
-            "values": [
-                0.0,
-                1.5,
-                3.0,
-                5.0
-            ],
-            "description": "global warming level",
-            "reference_system": "EPSG:4326",
-            "type": "temporal"
-        }
+  "type": "Collection",
+  "id": "esl_gwl",
+  "stac_version": "1.0.0",
+  "description": "Extreme sea level projections for five return periods (5, 10, 20 50 and 100 year) for different global warming levels (present-day, 1.5 degree, 3 degree and 5 degree difference) for five different delta's across the world  for the year 2100.",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-0.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 5.0,
+        "gwl": 0.0
+      }
     },
-    "cube:variables": {
-        "esl": {
-            "type": "data",
-            "description": "extreme sea level",
-            "dimensions": [
-                "rp",
-                "gwl",
-                "ensemble",
-                "nstations"
-            ],
-            "unit": "m",
-            "attrs": {
-                "long_name": "extreme sea level",
-                "units": "m"
-            },
-            "shape": [
-                5,
-                4,
-                3,
-                230
-            ],
-            "chunks": [
-                5,
-                4,
-                3,
-                230
-            ]
-        },
-        "lat": {
-            "type": "auxiliary",
-            "description": "latitude",
-            "dimensions": [
-                "nstations"
-            ],
-            "unit": "degrees_north",
-            "attrs": {
-                "long_name": "latitude",
-                "standard_name": "longitude",
-                "units": "degrees_north"
-            },
-            "shape": [
-                230
-            ],
-            "chunks": [
-                230
-            ]
-        },
-        "lon": {
-            "type": "auxiliary",
-            "description": "longitude",
-            "dimensions": [
-                "nstations"
-            ],
-            "unit": "degrees_east",
-            "attrs": {
-                "long_name": "longitude",
-                "standard_name": "longitude",
-                "units": "degrees_east"
-            },
-            "shape": [
-                230
-            ],
-            "chunks": [
-                230
-            ]
-        },
-        "stations": {
-            "type": "auxiliary",
-            "dimensions": [
-                "nstations"
-            ],
-            "attrs": {},
-            "shape": [
-                230
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-1.5.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 5.0,
+        "gwl": 1.5
+      }
     },
-    "title": "ESL by GWL",
-    "extent": {
-        "spatial": {
-            "bbox": [
-                [
-                    -180.0,
-                    -90.0,
-                    180.0,
-                    90.0
-                ]
-            ]
-        },
-        "temporal": {
-            "interval": [
-                [
-                    null,
-                    null
-                ]
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-3.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 5.0,
+        "gwl": 3.0
+      }
     },
-    "license": "proprietary",
-    "providers": [
-        {
-            "name": "Deltares",
-            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
-            "roles": [
-                "producer",
-                "processor"
-            ],
-            "url": "https://www.deltares.nl"
-        }
-    ],
-    "summaries": {
-        "rp": [
-            5.0,
-            10.0,
-            20.0,
-            50.0,
-            100.0
-        ],
-        "gwl": [
-            0.0,
-            1.5,
-            3.0,
-            5.0
-        ]
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-5.0-gwl-5.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 5.0,
+        "gwl": 5.0
+      }
     },
-    "assets": {
-        "data": {
-            "href": "https://storage.googleapis.com/dgds-data-public/gca/ESLbyGWL.zarr",
-            "title": "esl_gwl zarr root",
-            "description": "The root of the esl_gwl zarr dataset on public Google Cloud Storage.",
-            "roles": [
-                "data",
-                "zarr-root",
-                "gcs"
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-0.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 10.0,
+        "gwl": 0.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-1.5.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 10.0,
+        "gwl": 1.5
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-3.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 10.0,
+        "gwl": 3.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-10.0-gwl-5.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 10.0,
+        "gwl": 5.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-0.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 20.0,
+        "gwl": 0.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-1.5.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 20.0,
+        "gwl": 1.5
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-3.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 20.0,
+        "gwl": 3.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-20.0-gwl-5.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 20.0,
+        "gwl": 5.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-0.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 50.0,
+        "gwl": 0.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-1.5.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 50.0,
+        "gwl": 1.5
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-3.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 50.0,
+        "gwl": 3.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-50.0-gwl-5.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 50.0,
+        "gwl": 5.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-0.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 100.0,
+        "gwl": 0.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-1.5.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 100.0,
+        "gwl": 1.5
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-3.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 100.0,
+        "gwl": 3.0
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./esl-mapbox/esl-mapbox-rp-100.0-gwl-5.0.json",
+      "type": "application/json",
+      "properties": {
+        "rp": 100.0,
+        "gwl": 5.0
+      }
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
     }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+    "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+  ],
+  "deltares:units": "m",
+  "deltares:plotSeries": "esl",
+  "deltares:plotxAxis": "rp",
+  "deltares:plotType": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [
+    {
+      "color": "hsl(110,90%,80%)",
+      "offset": "0.000%",
+      "opacity": 100
+    },
+    {
+      "color": "hsla(55,88%,53%,0.5)",
+      "offset": "50.000%",
+      "opacity": 100
+    },
+    {
+      "color": "hsl(0,90%,70%)",
+      "offset": "100.000%",
+      "opacity": 100
+    }
+  ],
+  "cube:dimensions": {
+    "rp": {
+      "values": [5.0, 10.0, 20.0, 50.0, 100.0],
+      "description": "return period",
+      "reference_system": "EPSG:4326",
+      "type": "temporal"
+    },
+    "lon": {
+      "axis": "x",
+      "extent": [-92.959, 108.193],
+      "description": "longitude",
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    },
+    "lat": {
+      "axis": "y",
+      "extent": [4.323, 56.589],
+      "description": "latitude",
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    },
+    "gwl": {
+      "values": [0.0, 1.5, 3.0, 5.0],
+      "description": "global warming level",
+      "reference_system": "EPSG:4326",
+      "type": "temporal"
+    }
+  },
+  "cube:variables": {
+    "esl": {
+      "type": "data",
+      "description": "extreme sea level",
+      "dimensions": ["rp", "gwl", "ensemble", "nstations"],
+      "unit": "m",
+      "attrs": {
+        "long_name": "extreme sea level",
+        "units": "m"
+      },
+      "shape": [5, 4, 3, 230],
+      "chunks": [5, 4, 3, 230]
+    },
+    "lat": {
+      "type": "auxiliary",
+      "description": "latitude",
+      "dimensions": ["nstations"],
+      "unit": "degrees_north",
+      "attrs": {
+        "long_name": "latitude",
+        "standard_name": "longitude",
+        "units": "degrees_north"
+      },
+      "shape": [230],
+      "chunks": [230]
+    },
+    "lon": {
+      "type": "auxiliary",
+      "description": "longitude",
+      "dimensions": ["nstations"],
+      "unit": "degrees_east",
+      "attrs": {
+        "long_name": "longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east"
+      },
+      "shape": [230],
+      "chunks": [230]
+    },
+    "stations": {
+      "type": "auxiliary",
+      "dimensions": ["nstations"],
+      "attrs": {},
+      "shape": [230]
+    }
+  },
+  "title": "ESL by GWL",
+  "extent": {
+    "spatial": {
+      "bbox": [[-180.0, -90.0, 180.0, 90.0]]
+    },
+    "temporal": {
+      "interval": [[null, null]]
+    }
+  },
+  "license": "proprietary",
+  "providers": [
+    {
+      "name": "Deltares",
+      "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+      "roles": ["producer", "processor"],
+      "url": "https://www.deltares.nl"
+    }
+  ],
+  "summaries": {
+    "rp": {
+      "label": "Risk Profile",
+      "options": [
+        {
+          "label": "5.0",
+          "value": 5.0
+        },
+        {
+          "label": "10.0",
+          "value": 10.0
+        },
+        {
+          "label": "20.0",
+          "value": 20.0
+        },
+        {
+          "label": "50.0",
+          "value": 50.0
+        },
+        {
+          "label": "100.0",
+          "value": 100.0
+        }
+      ]
+    },
+    "gwl": {
+      "label": "Global Water Level",
+      "options": [
+        {
+          "label": "0.0",
+          "value": 0.0
+        },
+        {
+          "label": "1.5",
+          "value": 1.5
+        },
+        {
+          "label": "3.0",
+          "value": 3.0
+        },
+        {
+          "label": "5.0",
+          "value": 5.0
+        }
+      ]
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/dgds-data-public/gca/ESLbyGWL.zarr",
+      "title": "esl_gwl zarr root",
+      "description": "The root of the esl_gwl zarr dataset on public Google Cloud Storage.",
+      "roles": ["data", "zarr-root", "gcs"]
+    }
+  }
 }
