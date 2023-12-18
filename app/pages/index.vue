@@ -41,7 +41,7 @@ type Option =
 let url = useRequestURL()
 
 let {
-  public: { mapboxToken },
+  public: { mapboxToken, pdfEndpoint },
 } = useRuntimeConfig()
 
 let baseURL = url.protocol + '//' + url.host + '/stac'
@@ -339,6 +339,14 @@ async function downloadNotebook() {
 
   URL.revokeObjectURL(url)
 }
+
+let pdfLink = computed(() => {
+  let polygonJson = encodeURIComponent(
+    JSON.stringify(draw.getAll().features[0].geometry),
+  )
+
+  return `${pdfEndpoint}?polygon=${polygonJson}`
+})
 </script>
 
 <template>
@@ -415,14 +423,19 @@ async function downloadNotebook() {
   <div
     v-if="polygons?.length > 0"
     style="
-      position: fixed;
-      top: 24px;
+      position: absolute;
+      right: 32px;
+      bottom: 80px;
       display: flex;
-      justify-content: center;
-      z-index: 1;
-      width: 100%;
+      gap: 12px;
+      flex-direction: column;
     "
   >
-    <v-btn @click="downloadNotebook"> Download Notebook </v-btn>
+    <v-btn @click="downloadNotebook" prepend-icon="mdi-language-python"
+      >Download Notebook</v-btn
+    >
+    <v-btn :href="pdfLink" target="_blank" prepend-icon="mdi-file-pdf-box"
+      >Download PDF</v-btn
+    >
   </div>
 </template>

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     public: {
       stacRoot: process.env.NUXT_STAC_ROOT,
       mapboxToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN,
+      pdfEndpoint: process.env.NUXT_PUBLIC_PDF_ENDPOINT,
     },
   },
   css: ['vuetify/styles'],
