@@ -4,7 +4,6 @@ import os
 from shapely import Polygon  # type: ignore
 from shapely.geometry import shape  # type: ignore
 from flask import Flask, make_response, request, render_template
-import urllib
 
 from report.report import (
     create_report_html,
@@ -26,11 +25,12 @@ def return_report():
 
     origin = request.headers.get("Referer")
     print(f"detected origin: {origin}")
-    if not origin or "localhost" in origin:
-        stac_root = STAC_ROOT_DEFAULT
-    else:
-        stac_root = origin + "/STAC/catalog.json"
-    # polygon_str = POLYGON_DEFAULT
+
+    # For now we pin the stac_root on a default because we
+    # don't have a way to pass it in from the client and cant handle the password
+    # protected preview deployments
+    stac_root = STAC_ROOT_DEFAULT
+
     polygon = shape(json.loads(polygon_str))
     if not isinstance(polygon, Polygon):
         raise ValueError("Invalid polygon")
@@ -47,16 +47,24 @@ def return_report():
 @app.route("/html")
 def return_html():
     """Return a report for the given polygon"""
-    polygon_str = request.data.decode("utf-8")
+    polygon_str = request.args.get("polygon")
+
     if not polygon_str:
         polygon_str = POLYGON_DEFAULT
-    # polygon_str = POLYGON_DEFAULT
-    geo = json.loads(polygon_str)
-    polygon = shape(geo)
+
+    origin = request.headers.get("Referer")
+    print(f"detected origin: {origin}")
+
+    # For now we pin the stac_root on a default because we
+    # don't have a way to pass it in from the client and cant handle the password
+    # protected preview deployments
+    stac_root = STAC_ROOT_DEFAULT
+
+    polygon = shape(json.loads(polygon_str))
     if not isinstance(polygon, Polygon):
         raise ValueError("Invalid polygon")
 
-    web_page_content = create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
+    web_page_content = create_report_html(polygon=polygon, stac_root=stac_root)
 
     return render_template(web_page_content)
 
