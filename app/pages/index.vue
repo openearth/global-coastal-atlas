@@ -193,6 +193,12 @@ function instantiateDraw(map) {
     const data = draw.getAll()
     polygons.value = data.features
 
+    let polygonJson = encodeURIComponent(
+      JSON.stringify(draw.getAll().features[0].geometry),
+    )
+
+    pdfLink.value = `${pdfEndpoint}?polygon=${polygonJson}`
+
     return
 
     let { allData, indices, rpValues, gwlValues } = await getDataByPolygon(data)
@@ -340,13 +346,7 @@ async function downloadNotebook() {
   URL.revokeObjectURL(url)
 }
 
-let pdfLink = computed(() => {
-  let polygonJson = encodeURIComponent(
-    JSON.stringify(draw.getAll().features[0].geometry),
-  )
-
-  return `${pdfEndpoint}?polygon=${polygonJson}`
-})
+let pdfLink = ref('')
 </script>
 
 <template>
