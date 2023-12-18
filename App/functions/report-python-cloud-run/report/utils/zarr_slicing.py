@@ -66,7 +66,8 @@ class ZarrSlicer:
         Returns:
             bool: True if xarray dataset contains data
         """
-        return xarr.nbytes > 0
+        # Check if any of the dimensions has a size of 0
+        return 0 not in list(xarr.sizes.mapping.values())
 
     @staticmethod
     def _get_dataset_type(xarr: xr.Dataset) -> DatasetType:
