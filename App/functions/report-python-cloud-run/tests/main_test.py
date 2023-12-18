@@ -26,6 +26,14 @@ def test_main_handler(client):
     assert r.status_code == 200
 
 
+def test_main_handler_empty_polygon(client):
+    r = client.get(
+        "/?polygon=%7B%22coordinates%22%3A%5B%5B%5B-4.918202520050414%2C58.52351957545039%5D%2C%5B-1.2336741157175197%2C57.89499975654721%5D%2C%5B-0.6371314216833355%2C59.83577280094184%5D%2C%5B-4.918202520050414%2C58.52351957545039%5D%5D%5D%2C%22type%22%3A%22Polygon%22%7D"
+    )
+
+    assert r.status_code == 200
+
+
 # def test_handler_with_env_variable(client):
 #     os.environ["NAME"] = "Foo"
 #     r = client.get("/")
