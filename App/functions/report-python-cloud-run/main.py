@@ -3,7 +3,7 @@ import os
 
 from shapely import Polygon  # type: ignore
 from shapely.geometry import shape  # type: ignore
-from flask import Flask, make_response, request, render_template
+from flask import Flask, make_response, render_template_string, request
 
 from report.report import (
     create_report_html,
@@ -66,7 +66,7 @@ def return_html():
 
     web_page_content = create_report_html(polygon=polygon, stac_root=stac_root)
 
-    return render_template(web_page_content)
+    return render_template_string(web_page_content)
 
 
 if __name__ == "__main__":
