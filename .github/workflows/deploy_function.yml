@@ -52,7 +52,7 @@ on:
 
 env:
   PROJECT_ID: dgds-i1000482-002
-  GAR_LOCATION: europe-west4
+  GAR_LOCATION: europe-west3
   SERVICE: gca-report-function
   REPOSITORY: gca-artifacts
   REGION: europe-west4 # TODO: update Cloud Run service region
