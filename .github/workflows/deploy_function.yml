@@ -55,7 +55,7 @@ env:
   GAR_LOCATION: europe-west3
   SERVICE: gca-report-function
   REPOSITORY: gca-artifacts
-  REGION: europe-west4 # TODO: update Cloud Run service region
+  REGION: europe-west3
 
 jobs:
   deploy:
