@@ -25,7 +25,8 @@ def return_report():
         polygon_str = POLYGON_DEFAULT
 
     origin = request.headers.get("Referer")
-    if not origin:
+    print(f"detected origin: {origin}")
+    if not origin or origin == "/":
         stac_root = STAC_ROOT_DEFAULT
     else:
         stac_root = origin + "/STAC/catalog.json"
