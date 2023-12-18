@@ -26,7 +26,7 @@ def return_report():
 
     origin = request.headers.get("Referer")
     print(f"detected origin: {origin}")
-    if not origin or origin == "/":
+    if not origin or "localhost" in origin:
         stac_root = STAC_ROOT_DEFAULT
     else:
         stac_root = origin + "/STAC/catalog.json"
