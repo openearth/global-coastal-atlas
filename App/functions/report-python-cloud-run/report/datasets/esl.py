@@ -1,15 +1,16 @@
-import base64
-from io import BytesIO, StringIO
 import matplotlib
 
 matplotlib.use("Agg")
 from matplotlib import colors
 from matplotlib import pyplot as plt
+
+plt.rcParams["svg.fonttype"] = "none"
 import numpy as np
 import xarray as xr
 
-import geopandas as gpd
+import geopandas as gpd  # type: ignore
 
+from .utils import plot_to_base64
 from .datasetcontent import DatasetContent
 
 
@@ -98,7 +99,4 @@ def create_esl_plot(xarr):
     plt.colorbar(im1, cax=cax)  # Similar to fig.colorbar(im, cax = cax)
     cax.set_title("ESL in meters")
     #
-    imgdata = BytesIO()
-    fig.savefig(imgdata, format="png")
-
-    return base64.b64encode(imgdata.getbuffer()).decode("ascii")
+    return plot_to_base64(fig)

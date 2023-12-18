@@ -15,17 +15,11 @@ STAC_ROOT_DEFAULT = "https://raw.githubusercontent.com/openearth/global-coastal-
 
 
 @dataclass
-class WebPageContent:
-    html: str
-    css: str
-
-
-@dataclass
 class ReportContent:
     datasets: list[DatasetContent]
 
 
-def create_report_html(polygon: Polygon, stac_root: str) -> WebPageContent:
+def create_report_html(polygon: Polygon, stac_root: str) -> str:
     htmlpath = Path(__file__).parent / Path("template.html.jinja")
     csspath = Path(__file__).parent / Path("template.css")
 
@@ -33,14 +27,14 @@ def create_report_html(polygon: Polygon, stac_root: str) -> WebPageContent:
         template = jinja2.Template(f.read())
 
     data = generate_report_content(polygon=polygon, stac_root=stac_root)
-    html = template.render(data=data)
     css: str = csspath.read_bytes().decode()
+    html = template.render(data=data, css=css)
 
-    return WebPageContent(html=html, css=css)
+    return html
 
 
-def create_report_pdf(page_content: WebPageContent) -> BytesIO:
-    story = fitz.Story(html=page_content.html, user_css=page_content.css)
+def create_report_pdf(page_content: str) -> BytesIO:
+    story = fitz.Story(html=page_content)
 
     MEDIABOX = fitz.paper_rect("A4")  # output page format: Letter
     WHERE = MEDIABOX + (36, 36, -36, -36)  # leave borders of 0.5 inches
@@ -87,8 +81,7 @@ if __name__ == "__main__":
             [2.3915028831735015, 51.7360381463356],
         ]
     )
-
-    pdf = create_report_pdf(
-        create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
-    )
+    html = create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
+    print(html)
+    pdf = create_report_pdf(html)
     print(pdf.getvalue())

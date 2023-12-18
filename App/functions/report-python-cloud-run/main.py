@@ -1,10 +1,10 @@
-from io import BytesIO
 import json
 import os
 
 from shapely import Polygon  # type: ignore
 from shapely.geometry import shape  # type: ignore
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, render_template
+import urllib
 
 from report.report import (
     create_report_html,
@@ -16,18 +16,48 @@ from report.report import (
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def return_report():
-    polygon_str = POLYGON_DEFAULT
-    geo: dict = json.loads(polygon_str)
-    polygon: Polygon = shape(geo)
-    web_page_content = create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
+    """Return a report for the given polygon"""
+    polygon_str = request.args.get("polygon")
+
+    if not polygon_str:
+        polygon_str = POLYGON_DEFAULT
+
+    origin = request.headers.get("Referer")
+    if not origin:
+        stac_root = STAC_ROOT_DEFAULT
+    else:
+        stac_root = origin + "/STAC/catalog.json"
+    # polygon_str = POLYGON_DEFAULT
+    polygon = shape(json.loads(polygon_str))
+    if not isinstance(polygon, Polygon):
+        raise ValueError("Invalid polygon")
+
+    web_page_content = create_report_html(polygon=polygon, stac_root=stac_root)
     pdf_object = create_report_pdf(web_page_content)
 
     response = make_response(pdf_object.getvalue())
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=coastal_report.pdf"
     return response
+
+
+@app.route("/html")
+def return_html():
+    """Return a report for the given polygon"""
+    polygon_str = request.data.decode("utf-8")
+    if not polygon_str:
+        polygon_str = POLYGON_DEFAULT
+    # polygon_str = POLYGON_DEFAULT
+    geo = json.loads(polygon_str)
+    polygon = shape(geo)
+    if not isinstance(polygon, Polygon):
+        raise ValueError("Invalid polygon")
+
+    web_page_content = create_report_html(polygon=polygon, stac_root=STAC_ROOT_DEFAULT)
+
+    return render_template(web_page_content)
 
 
 if __name__ == "__main__":
