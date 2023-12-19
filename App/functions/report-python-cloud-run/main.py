@@ -41,6 +41,7 @@ def return_report():
     response = make_response(pdf_object.getvalue())
     response.headers["Content-Type"] = "application/pdf"
     response.headers["Content-Disposition"] = "inline; filename=coastal_report.pdf"
+    response.headers["Access-Control-Allow-Origin"] = "*"  # CORS
     return response
 
 
@@ -66,7 +67,9 @@ def return_html():
 
     web_page_content = create_report_html(polygon=polygon, stac_root=stac_root)
 
-    return render_template_string(web_page_content)
+    response = make_response(render_template_string(web_page_content))
+    response.headers["Access-Control-Allow-Origin"] = "*"  # CORS
+    return response
 
 
 if __name__ == "__main__":
