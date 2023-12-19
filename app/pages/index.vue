@@ -23,6 +23,7 @@ import {
   GridComponent,
 } from 'echarts/components'
 import VChart, { THEME_KEY } from 'vue-echarts'
+import { endsWith } from 'lodash'
 
 type ItemType = typeof itemShape
 type CatalogType = typeof catalogShape
@@ -346,6 +347,24 @@ async function downloadNotebook() {
   URL.revokeObjectURL(url)
 }
 
+let isLoadingPdf = ref(false)
+async function downloadPdf() {
+  isLoadingPdf.value = true
+  let file = await $fetch(`${pdfLink.value}`, {
+    headers,
+  })
+
+  let url = URL.createObjectURL(file)
+  // let a = document.createElement('a')
+  // a.href = url
+  // a.download = 'report.pdf'
+  // a.click()
+
+  // URL.revokeObjectURL(url)
+  let w = window.open(url)
+  isLoadingPdf.value = false
+}
+
 let pdfLink = ref('')
 </script>
 
@@ -434,7 +453,10 @@ let pdfLink = ref('')
     <v-btn @click="downloadNotebook" prepend-icon="mdi-language-python"
       >Download Notebook</v-btn
     >
-    <v-btn :href="pdfLink" target="_blank" prepend-icon="mdi-file-pdf-box"
+    <v-btn
+      @click="downloadPdf"
+      :loading="isLoadingPdf"
+      prepend-icon="mdi-file-pdf-box"
       >Download PDF</v-btn
     >
   </div>
