@@ -1,3 +1,4 @@
+from pathlib import Path
 import matplotlib
 
 matplotlib.use("Agg")
@@ -35,7 +36,7 @@ def create_esl_plot(xarr):
     # ens = 50 # look at ds.ensemble.values for options
     rp = 50.0  # look at ds.rp.values for options
     world = gpd.read_file(
-        """https://public.opendatasoft.com/api/explore/v2.1/catalog/datasets/world-administrative-boundaries/exports/shp?lang=en&timezone=Europe%2FBerlin"""
+        Path(__file__).parent.parent.parent / "data" / "world_administrative.zip"
     )
     cmap = matplotlib.cm.RdYlGn_r
     norm = colors.BoundaryNorm(np.arange(0, 7.5, 0.5), cmap.N)
