@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     public: {
       stacRoot: process.env.NUXT_STAC_ROOT,
       mapboxToken: process.env.NUXT_PUBLIC_MAPBOX_TOKEN,
+      pdfEndpoint: process.env.NUXT_PUBLIC_PDF_ENDPOINT,
     },
   },
   css: ['vuetify/styles'],
@@ -35,6 +36,9 @@ export default defineNuxtConfig({
     ssr: {
       noExternal: ['vuetify'],
     },
+  },
+  build: {
+    transpile: [/echarts/, /zrender/, /tslib/, /resize-detector/],
   },
   serverHandlers:
     process.env.NODE_ENV === 'development'

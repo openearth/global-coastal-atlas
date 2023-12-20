@@ -39,40 +39,33 @@ if __name__ == "__main__":
 
     # hard-coded input params at project level
     gca_data_dir = pathlib.Path(
-        # p_drive, "1000545-054-globalbeaches", "15_GlobalCoastalAtlas", "datasets"
         p_drive,
         "11208003-latedeo2022",
         "020_InternationalDeltaPortfolio",
         "datasets",
-        "04_extreme_sea_levels_at_different_global_warming_levels",
     )
-    dataset_dir = gca_data_dir.joinpath("5DeltasESL")
-
-    credentials_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
-
-    IN_FILENAME = "ESLbyGWL.zarr"  # original filename as on P drive
-    OUT_FILENAME = "ESLbyGWL.zarr"  # file name in the cloud and on MapBox
-
-    # what variable(s) do you want to show as marker color?
-    VARIABLES = ["esl"]
-
-    # what are the dimensions that you want to use as to affect the marker color (never include stations). These will be the drop down menu's.
-    ADDITIONAL_DIMENSIONS = ["gwl", "rp"]
-
-    # which of these dimensions do you want to use, i.e. also specify the subsets (if there are a lot maybe make a selection). These will be the values in the drop down menu's. If only one (like mean), specify a value without a list to squeeze the dataset.
+    dataset_dir = gca_data_dir.joinpath(r"00_mapping_global_threat_of_land_subsidence")
+    cred_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
+    IN_FILENAME = "Global_TLS.zarr"  # original filename as on P drive
+    OUT_FILENAME = "Global_TLS.zarr"  # file name in the cloud and on MapBox
+    VARIABLES = [
+        "eapa",
+        "egdp",
+        "epsi",
+    ]  # what variable(s) do you want to show as marker color?
+    # dimensions to include, i.e. what are the dimensions that you want to use as to affect the marker color (never include stations). These will be the drop down menu's. Note down without n.. in front.
+    ADDITIONAL_DIMENSIONS = ["time"]
+    # use these to reduce dimension like {ensemble: "mean", "time": [1995, 2020, 2100]}, i.e. which of the dimensions do you want to use. Also specify the subsets (if there are a lot maybe make a selection). These will be the values in the drop down menu's. If only one (like mean), specify a value without a list to squeeze the dataset. Needs to span the entire dim space (except for (n)stations).
     MAP_SELECTION_DIMS = {
-        "gwl": [0.0, 1.5, 3.0, 5.0],
-        "rp": [5.0, 10.0, 20.0, 50.0, 100.0],
-        "ensemble": 50,
+        "time": [2010, 2040],
     }
-
-    # which dimensions to ignore (if n... in front of dim, it goes searching in additional_dimension for dim without n in front (ntime -> time)). This spans up the remainder of the dimension space.
+    # which dimensions to ignore (if n... in front of dim, it goes searching in additional_dimension for dim without n in front (ntime -> time). Except for nstations, just specify station in this case). This spans up the remainder of the dimension space.
     DIMENSIONS_TO_IGNORE = ["stations"]  # dimensions to ignore
 
     # TODO: safe cloud creds in password client
     load_env_variables(env_var_keys=["MAPBOX_ACCESS_TOKEN"])
     load_google_credentials(
-        google_token_fp=credentials_dir.joinpath("google_credentials.json")
+        google_token_fp=cred_dir.joinpath("google_credentials.json")
     )
 
     # TODO: come up with checks for data
@@ -94,16 +87,17 @@ if __name__ == "__main__":
         bucket_name=BUCKET_NAME, bucket_proj=BUCKET_PROJ, zarr_filename=OUT_FILENAME
     )
 
-    # read data from local source
+    # # read data from local source
     # fpath = pathlib.Path.home().joinpath(
     #     "data", "tmp", "shoreline_change_projections.zarr"
     # )
-    fpath = dataset_dir.joinpath("ESLbyGWL.zarr")
-    ds = xr.open_zarr(fpath)
+    # fpath = dataset_dir.joinpath(IN_FILENAME)
+    # ds = xr.open_zarr(fpath)
 
     ds = zero_terminated_bytes_as_str(ds)
 
     # remove characters that cause problems in the frontend.
+
     ds = rm_special_characters(
         ds=ds, dimensions_to_check=ADDITIONAL_DIMENSIONS, characters=["%"]
     )
@@ -133,7 +127,7 @@ if __name__ == "__main__":
             variable=var,
             dimension_combinations=dimcombs,
             stations_dim=(  # note, make nstations if stations has string, else make stations
-                "nstations"
+                "stations"
             ),
         )
 
@@ -148,6 +142,7 @@ if __name__ == "__main__":
             )
 
             fn = mapbox_url.split(".")[1]
+
             fp = pathlib.Path(outdir, fn).with_suffix(".geojson")
 
             with open(fp, "w") as f:
@@ -156,6 +151,8 @@ if __name__ == "__main__":
                 geojson.dump(collection, f)
             print("Done!")
 
-            # Note, if mapbox cli raises en util collection error, this should be monkey
+            # Note, if mapbox cli raises an util collection error, this should be monkey
             # patched. Instructions are in documentation of the function.
             geojson_to_mapbox(source_fpath=fp, mapbox_url=mapbox_url)
+
+# %%

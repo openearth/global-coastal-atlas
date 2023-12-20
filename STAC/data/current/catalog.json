@@ -60,9 +60,9 @@
         },
         {
             "rel": "child",
-            "href": "./esl_gwl/collection.json",
+            "href": "./sub_threat/collection.json",
             "type": "application/json",
-            "title": "ESL by GWL"
+            "title": "Land Subsidence Threat"
         }
     ],
     "assets": {

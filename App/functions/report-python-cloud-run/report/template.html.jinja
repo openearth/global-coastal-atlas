@@ -1,0 +1,23 @@
+<style>
+{{ css }}
+</style>
+
+<h1>Coastal report</h1>
+<p>In this report some coastal characteristics of the selected area are explained.</p>
+
+{% for dataset in data.datasets %}
+    <h2>{{ dataset.title }}</h2>
+    <p>{{ dataset.text }}</p>
+
+    {% if dataset.image_svg %}
+    {{ dataset.image_svg }}
+    {% endif %}
+
+    {% if dataset.image_base64 %}
+    <img src="data:image/png;base64,{{ dataset.image_base64 }}" />
+    {% endif %}
+    
+{% endfor %}
+{% if not data.datasets %}
+    <p>Unfortunately there was no data available in the region you selected.</p>
+{% endif %}
