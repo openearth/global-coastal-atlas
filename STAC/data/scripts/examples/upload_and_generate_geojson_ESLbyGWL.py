@@ -1,29 +1,28 @@
 import pathlib
-import pandas as pd
 import sys
 from importlib.resources import path
+import os
 
 # make modules importable when running this file as script
-sys.path.append(r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\coclicodata")
-sys.path.append(str(pathlib.Path(__file__).parent.parent))
+# sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-import os
 import geojson
 import xarray as xr
-from etl import p_drive
-from etl.cloud_services import (
+from coclicodata.etl.cloud_utils import (
+    p_drive,
     dataset_to_google_cloud,
     dataset_from_google_cloud,
     geojson_to_mapbox,
+    load_env_variables,
+    load_google_credentials,
 )
-from etl.extract import (
+from coclicodata.etl.extract import (
     clear_zarr_information,
     get_geojson,
     get_mapbox_url,
     zero_terminated_bytes_as_str,
 )
-from etl.keys import load_env_variables, load_google_credentials
-from stac.utils import (
+from coclicodata.coclico_stac.utils import (
     get_dimension_dot_product,
     get_dimension_values,
     get_mapbox_item_id,
@@ -43,11 +42,12 @@ if __name__ == "__main__":
         p_drive,
         "11208003-latedeo2022",
         "020_InternationalDeltaPortfolio",
+        "datasets",
         "04_extreme_sea_levels_at_different_global_warming_levels",
     )
     dataset_dir = gca_data_dir.joinpath("5DeltasESL")
 
-    credentials_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
+    credentials_dir = pathlib.Path(p_drive, "11207608-coclico", "FASTTRACK_DATA")
 
     IN_FILENAME = "ESLbyGWL.zarr"  # original filename as on P drive
     OUT_FILENAME = "ESLbyGWL.zarr"  # file name in the cloud and on MapBox
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     # what are the dimensions that you want to use as to affect the marker color (never include stations). These will be the drop down menu's.
     ADDITIONAL_DIMENSIONS = ["gwl", "rp"]
 
-    # which of these dimensions do you want to use, i.e. also specify the subsets (if there are a lot maybe make a selection). These will be the values in the drop down menu's. If only one (like mean), specify a value without a list to squeeze the dataset.
+    # which of these dimensions do you want to usse, i.e. also specify the subsets (if there are a lot maybe make a selection). These will be the values in the drop down menu's. If only one (like mean), specify a value without a list to squeeze the dataset.
     MAP_SELECTION_DIMS = {
         "gwl": [0.0, 1.5, 3.0, 5.0],
         "rp": [5.0, 10.0, 20.0, 50.0, 100.0],
@@ -80,13 +80,13 @@ if __name__ == "__main__":
     source_data_fp = dataset_dir.joinpath(IN_FILENAME)
 
     # UNCOMMENT TO UPDATE GOOGLE CLOUD
-    dataset_to_google_cloud(
-        ds=source_data_fp,
-        gcs_project=GCS_PROJECT,
-        bucket_name=BUCKET_NAME,
-        bucket_proj=BUCKET_PROJ,
-        zarr_filename=OUT_FILENAME,
-    )
+    # dataset_to_google_cloud(
+    #     ds=source_data_fp,
+    #     gcs_project=GCS_PROJECT,
+    #     bucket_name=BUCKET_NAME,
+    #     bucket_proj=BUCKET_PROJ,
+    #     zarr_filename=OUT_FILENAME,
+    # )
 
     # read data from gcs
     ds = dataset_from_google_cloud(
@@ -97,8 +97,8 @@ if __name__ == "__main__":
     # fpath = pathlib.Path.home().joinpath(
     #     "data", "tmp", "shoreline_change_projections.zarr"
     # )
-    fpath = r"p:\11208003-latedeo2022\020_InternationalDeltaPortfolio\04_extreme_sea_levels_at_different_global_warming_levels\5DeltasESL\ESLbyGWL.zarr"
-    ds = xr.open_zarr(fpath)
+    # fpath = r"p:\11208003-latedeo2022\020_InternationalDeltaPortfolio\04_extreme_sea_levels_at_different_global_warming_levels\5DeltasESL\ESLbyGWL.zarr"
+    # ds = xr.open_zarr(fpath)
 
     ds = zero_terminated_bytes_as_str(ds)
 
