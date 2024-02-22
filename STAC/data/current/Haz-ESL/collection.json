@@ -1,0 +1,310 @@
+{
+    "type": "Collection",
+    "id": "Haz-ESL",
+    "stac_version": "1.0.0",
+    "description": "This dataset provides global probabilistic projections of extreme sea levels, which are driven by the combined effects of the mean sea level (MSL), high tide water level, and water level fluctuations due to climate extremes such as waves and storm surges. These projections indicate the potential intensification of coastal flood hazards under different Representative Concentration Pathways (RCPs), including RCP4.5 and RCP8.5. The data includes parameters such as RSLR, maximum astronomical tide,  100-year meteorological tides, and the  100-year Extreme Sea Level, with values provided for the median,  5th, and  95th percentiles.",
+    "links": [
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-0.0-Time_Horizon-2000.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 0.0,
+                "Time_Horizon": 2000
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-0.0-Time_Horizon-2050.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 0.0,
+                "Time_Horizon": 2050
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-0.0-Time_Horizon-2100.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 0.0,
+                "Time_Horizon": 2100
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-4.5-Time_Horizon-2000.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 4.5,
+                "Time_Horizon": 2000
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-4.5-Time_Horizon-2050.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 4.5,
+                "Time_Horizon": 2050
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-4.5-Time_Horizon-2100.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 4.5,
+                "Time_Horizon": 2100
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-8.5-Time_Horizon-2000.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 8.5,
+                "Time_Horizon": 2000
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-8.5-Time_Horizon-2050.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 8.5,
+                "Time_Horizon": 2050
+            }
+        },
+        {
+            "rel": "item",
+            "href": "./esl-mapbox/esl-mapbox-Scenario-8.5-Time_Horizon-2100.json",
+            "type": "application/json",
+            "properties": {
+                "Scenario": 8.5,
+                "Time_Horizon": 2100
+            }
+        },
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "esl",
+    "deltares:plotxAxis": "Time_Horizon",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "Time_Horizon": {
+            "values": [
+                946684800000000000,
+                2524608000000000000,
+                4102444800000000000
+            ],
+            "description": "time",
+            "reference_system": "EPSG:4326",
+            "type": "temporal"
+        },
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -180.0,
+                180.0
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -58.4557201949639,
+                77.2667793258785
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "Scenario": {
+            "values": [
+                0.0,
+                4.5,
+                8.5
+            ],
+            "description": "RCP Scenario",
+            "reference_system": "EPSG:4326",
+            "type": "temporal"
+        }
+    },
+    "cube:variables": {
+        "esl": {
+            "type": "data",
+            "description": "Extreme sea level",
+            "dimensions": [
+                "Scenario",
+                "Time_Horizon",
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Extreme sea level",
+                "units": "m"
+            },
+            "shape": [
+                3,
+                3,
+                20865
+            ],
+            "chunks": [
+                2,
+                2,
+                10433
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                20865
+            ],
+            "chunks": [
+                20865
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                20865
+            ],
+            "chunks": [
+                20865
+            ]
+        },
+        "stations": {
+            "type": "auxiliary",
+            "description": "stations",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "stations",
+                "units": "1"
+            },
+            "shape": [
+                20865
+            ],
+            "chunks": [
+                20865
+            ]
+        }
+    },
+    "title": "Extreme Sea Level Projections",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "summaries": {
+        "Scenario": [
+            0.0,
+            4.5,
+            8.5
+        ],
+        "Time_Horizon": [
+            2000,
+            2050,
+            2100
+        ]
+    },
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-ESL.zarr",
+            "title": "Haz-ESL zarr root",
+            "description": "The root of the Haz-ESL zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

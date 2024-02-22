@@ -1,0 +1,141 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "id": "B01_x-8.96_y-77.96",
+    "properties": {
+        "created": "2024-02-22T02:01:34.017644Z",
+        "proj:bbox": [
+            -9.000000000000009,
+            -78.0,
+            -6.000000000000019,
+            -75.0
+        ],
+        "proj:shape": [
+            36,
+            36
+        ],
+        "proj:epsg": 4326,
+        "proj:geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        -6.000000000000019,
+                        -78.0
+                    ],
+                    [
+                        -6.000000000000019,
+                        -75.0
+                    ],
+                    [
+                        -9.000000000000009,
+                        -75.0
+                    ],
+                    [
+                        -9.000000000000009,
+                        -78.0
+                    ],
+                    [
+                        -6.000000000000019,
+                        -78.0
+                    ]
+                ]
+            ]
+        },
+        "proj:transform": [
+            0.08333333333333307,
+            0.0,
+            -9.000000000000009,
+            0.0,
+            -0.08333333333333307,
+            -75.0
+        ],
+        "deltares:item_key": "B01_x-8.96_y-77.96",
+        "datetime": "2018-01-01T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -6.000000000000019,
+                    -78.0
+                ],
+                [
+                    -6.000000000000019,
+                    -75.0
+                ],
+                [
+                    -9.000000000000009,
+                    -75.0
+                ],
+                [
+                    -9.000000000000009,
+                    -78.0
+                ],
+                [
+                    -6.000000000000019,
+                    -78.0
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "Total Roads Density (GRIP4)"
+        },
+        {
+            "rel": "root",
+            "href": "../../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "Total Roads Density (GRIP4)"
+        }
+    ],
+    "assets": {
+        "band_data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Vul-Roads_Density_COGs/B01_x-8.96_y-77.96.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "band_data",
+            "file:size": 3508,
+            "raster:bands": [
+                {
+                    "nodata": 0,
+                    "data_type": "uint8",
+                    "spatial_resolution": 30
+                }
+            ],
+            "eo:bands": [
+                {
+                    "name": "band_data",
+                    "description": "Total Roads Density (GRIP4) for this region."
+                }
+            ],
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -9.000000000000009,
+        -78.0,
+        -6.000000000000019,
+        -75.0
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json",
+        "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+    ],
+    "collection": "Vul-Roads_Density_COGs"
+}

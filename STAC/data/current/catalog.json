@@ -63,6 +63,90 @@
             "href": "./sub_threat/collection.json",
             "type": "application/json",
             "title": "Land Subsidence Threat"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp_world_pop/collection.json",
+            "type": "application/json",
+            "title": "World Pop"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ESL/collection.json",
+            "type": "application/json",
+            "title": "Extreme Sea Level Projections"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-Inf_Mort/collection.json",
+            "type": "application/json",
+            "title": "Infant Mortality Rate Indicator"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-GCM_90-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2090-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Exp-NS_Slopes/collection.json",
+            "type": "application/json",
+            "title": "Global Distribution of Nearshore Slopes"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_MYS/collection.json",
+            "type": "application/json",
+            "title": "Mean Years of Schooling"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_RS/collection.json",
+            "type": "application/json",
+            "title": "Recent Shocks"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-GCM_40-50/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2040-2050"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ERA5_04-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-GDP_Cap/collection.json",
+            "type": "application/json",
+            "title": "GDP per Capita"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-GCM_04-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2004-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Land_Sub_2010_COGs/collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2010)"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Land_Sub_2040_COGs/collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2040)"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-Roads_Density_COGs/collection.json",
+            "type": "application/json",
+            "title": "Total Roads Density (GRIP4)"
         }
     ],
     "assets": {

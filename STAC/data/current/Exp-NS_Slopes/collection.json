@@ -1,0 +1,209 @@
+{
+    "type": "Collection",
+    "id": "Exp-NS_Slopes",
+    "stac_version": "1.0.0",
+    "description": "Global nearshore slope estimations using an interpolated MERIT+GEBCO merged dataset with the Open Street Maps (OSM) coastline as MSL. The slope was calculated from elevation profiles that were created by transects perpendicular to the OSM coastline, positioned every 1 km in the alongshore direction. The depths of closure that were used for the slope estimation are also provided.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "",
+    "deltares:plotSeries": "slope",
+    "deltares:plotxAxis": "nstations",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.662,
+                179.662
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -59.4613,
+                71.1793
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "dc": {
+            "type": "data",
+            "description": "Depth of Closure",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Depth of Closure",
+                "units": "m"
+            },
+            "shape": [
+                783438
+            ],
+            "chunks": [
+                48965
+            ]
+        },
+        "error_code": {
+            "type": "auxiliary",
+            "description": "Error",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Error",
+                "units": "1"
+            },
+            "shape": [
+                783438
+            ],
+            "chunks": [
+                48965
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                783438
+            ],
+            "chunks": [
+                48965
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                783438
+            ],
+            "chunks": [
+                48965
+            ]
+        },
+        "slope": {
+            "type": "data",
+            "description": "Nearshore Slope",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Nearshore Slope",
+                "units": "1"
+            },
+            "shape": [
+                783438
+            ],
+            "chunks": [
+                48965
+            ]
+        }
+    },
+    "title": "Global Distribution of Nearshore Slopes",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Exp-NS_Slopes.zarr",
+            "title": "Exp-NS_Slopes zarr root",
+            "description": "The root of the Exp-NS_Slopes zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

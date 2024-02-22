@@ -1,0 +1,213 @@
+{
+    "type": "Collection",
+    "id": "Vul_RS",
+    "stac_version": "1.0.0",
+    "description": "Recent Shocks is a compilation of the latest events and significant occurrences that have had a substantial impact on society, economies, or the environment. It includes data on natural and human-induced disasters, technological failures, and other events that may lead to societal, economic, or environmental changes. The database captures the essence of these events, providing insights into their causes, impacts, and the measures taken to respond and recover.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "Deaths by Natural Disasters",
+    "deltares:plotSeries": "recent_shocks",
+    "deltares:plotxAxis": "country",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.343183657,
+                179.662205291
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -55.978343221,
+                66.4182692639
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "recent_shocks": {
+            "type": "data",
+            "description": "Recent_Shocks (Deaths)",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Recent_Shocks (Deaths)",
+                "units": "1"
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        }
+    },
+    "title": "Recent Shocks",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Vul_RS.zarr",
+            "title": "Vul_RS zarr root",
+            "description": "The root of the Vul_RS zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

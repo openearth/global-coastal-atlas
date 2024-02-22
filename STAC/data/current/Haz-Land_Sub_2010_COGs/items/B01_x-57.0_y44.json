@@ -1,0 +1,141 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "id": "B01_x-57.0_y44.0",
+    "properties": {
+        "created": "2024-02-22T01:05:01.556221Z",
+        "proj:bbox": [
+            -57.000000000049184,
+            44.000000000018396,
+            -54.00000000005039,
+            47.00000000001719
+        ],
+        "proj:shape": [
+            360,
+            360
+        ],
+        "proj:epsg": 4326,
+        "proj:geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        -54.00000000005039,
+                        44.000000000018396
+                    ],
+                    [
+                        -54.00000000005039,
+                        47.00000000001719
+                    ],
+                    [
+                        -57.000000000049184,
+                        47.00000000001719
+                    ],
+                    [
+                        -57.000000000049184,
+                        44.000000000018396
+                    ],
+                    [
+                        -54.00000000005039,
+                        44.000000000018396
+                    ]
+                ]
+            ]
+        },
+        "proj:transform": [
+            0.00833333333332999,
+            0.0,
+            -57.000000000049184,
+            0.0,
+            -0.00833333333332999,
+            47.00000000001719
+        ],
+        "deltares:item_key": "B01_x-57.0_y44.0",
+        "datetime": "2010-01-01T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -54.00000000005039,
+                    44.000000000018396
+                ],
+                [
+                    -54.00000000005039,
+                    47.00000000001719
+                ],
+                [
+                    -57.000000000049184,
+                    47.00000000001719
+                ],
+                [
+                    -57.000000000049184,
+                    44.000000000018396
+                ],
+                [
+                    -54.00000000005039,
+                    44.000000000018396
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2010)"
+        },
+        {
+            "rel": "root",
+            "href": "../../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2010)"
+        }
+    ],
+    "assets": {
+        "band_data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-Land_Sub_2010_COGs/B01_x-57.0_y44.0.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "band_data",
+            "file:size": 4497,
+            "raster:bands": [
+                {
+                    "nodata": 0,
+                    "data_type": "uint8",
+                    "spatial_resolution": 30
+                }
+            ],
+            "eo:bands": [
+                {
+                    "name": "band_data",
+                    "description": "Potential Global Subsidence (2010) for this region."
+                }
+            ],
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -57.000000000049184,
+        44.000000000018396,
+        -54.00000000005039,
+        47.00000000001719
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json",
+        "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+    ],
+    "collection": "Haz-Land_Sub_2010_COGs"
+}

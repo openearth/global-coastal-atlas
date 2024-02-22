@@ -1,0 +1,234 @@
+{
+    "type": "Collection",
+    "id": "Vul-Inf_Mort",
+    "stac_version": "1.0.0",
+    "description": "The Infant Mortality Rate Indicator measures the number of infants dying before reaching one year of age, per  1,000 live births in a given year. This indicator is essential for understanding child health and the quality of maternal and neonatal care services in a country.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "Deaths",
+    "deltares:plotSeries": "Infant_mort_3yr_mean",
+    "deltares:plotxAxis": "country",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.343183657,
+                179.662205291
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -55.978343221,
+                66.4182692639
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "Infant_mort_3yr_mean": {
+            "type": "auxiliary",
+            "description": "Infant Mortality rate (3 year Average)",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Infant Mortality rate (3 year Average)",
+                "units": "1"
+            },
+            "shape": [
+                1739919
+            ],
+            "chunks": [
+                54373
+            ]
+        },
+        "Infant_mortality": {
+            "type": "data",
+            "description": "Infant Mortality rate",
+            "dimensions": [
+                "nstations",
+                "time"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Infant Mortality rate",
+                "units": "1"
+            },
+            "shape": [
+                1739919,
+                63
+            ],
+            "chunks": [
+                54373,
+                4
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739919
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739919
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                1739919
+            ],
+            "chunks": [
+                54373
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                1739919
+            ],
+            "chunks": [
+                54373
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739919
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739919
+            ]
+        }
+    },
+    "title": "Infant Mortality Rate Indicator",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Vul-Inf_Mort.zarr",
+            "title": "Vul-Inf_Mort zarr root",
+            "description": "The root of the Vul-Inf_Mort zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}
