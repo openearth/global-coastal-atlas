@@ -1,0 +1,141 @@
+{
+    "type": "Feature",
+    "stac_version": "1.0.0",
+    "id": "DeltaDTM_v1_0_N70W154",
+    "properties": {
+        "created": "2024-03-07T02:50:27.427950Z",
+        "proj:bbox": [
+            -154.00041666666667,
+            70.0001388888889,
+            -153.00041666666667,
+            71.00013888888888
+        ],
+        "proj:shape": [
+            1200,
+            3600
+        ],
+        "proj:epsg": 9518,
+        "proj:geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        -153.00041666666667,
+                        70.0001388888889
+                    ],
+                    [
+                        -153.00041666666667,
+                        71.00013888888888
+                    ],
+                    [
+                        -154.00041666666667,
+                        71.00013888888888
+                    ],
+                    [
+                        -154.00041666666667,
+                        70.0001388888889
+                    ],
+                    [
+                        -153.00041666666667,
+                        70.0001388888889
+                    ]
+                ]
+            ]
+        },
+        "proj:transform": [
+            0.0008333333333333333,
+            0.0,
+            -154.00041666666667,
+            0.0,
+            -0.0002777777777777778,
+            71.00013888888888
+        ],
+        "deltares:item_key": "DeltaDTM_v1_0_N70W154",
+        "datetime": "2024-01-01T00:00:00Z"
+    },
+    "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+            [
+                [
+                    -153.00041666666667,
+                    70.0001388888889
+                ],
+                [
+                    -153.00041666666667,
+                    71.00013888888888
+                ],
+                [
+                    -154.00041666666667,
+                    71.00013888888888
+                ],
+                [
+                    -154.00041666666667,
+                    70.0001388888889
+                ],
+                [
+                    -153.00041666666667,
+                    70.0001388888889
+                ]
+            ]
+        ]
+    },
+    "links": [
+        {
+            "rel": "collection",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "DeltaDTM: A global coastal digital terrain model"
+        },
+        {
+            "rel": "root",
+            "href": "../../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../collection.json",
+            "type": "application/json",
+            "title": "DeltaDTM: A global coastal digital terrain model"
+        }
+    ],
+    "assets": {
+        "band_data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Exp-Delta_DEM_COGs/DeltaDTM_v1_0_N70W154.tif",
+            "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+            "title": "band_data",
+            "file:size": 304336,
+            "raster:bands": [
+                {
+                    "nodata": 0,
+                    "data_type": "uint8",
+                    "spatial_resolution": 30
+                }
+            ],
+            "eo:bands": [
+                {
+                    "name": "band_data",
+                    "description": "DeltaDTM: A global coastal digital terrain model for this region."
+                }
+            ],
+            "roles": [
+                "data"
+            ]
+        }
+    },
+    "bbox": [
+        -154.00041666666667,
+        70.0001388888889,
+        -153.00041666666667,
+        71.00013888888888
+    ],
+    "stac_extensions": [
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json",
+        "https://stac-extensions.github.io/file/v2.0.0/schema.json",
+        "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+    ],
+    "collection": "Exp-Delta_DEM_COGs"
+}

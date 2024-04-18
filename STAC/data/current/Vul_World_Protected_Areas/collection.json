@@ -1,0 +1,565 @@
+{
+    "type": "Collection",
+    "id": "Vul_World_Protected_Areas",
+    "stac_version": "1.0.0",
+    "description": "The World Database on Protected Areas (WDPA) and other effective area-based conservation measures (OECM) database are joint products of UNEP and IUCN, managed by UNEP-WCMC and the IUCN. These databases store information on the global distribution of terrestrial and marine protected areas and OECMs, including those designated at the national level and under regional and international conventions and agreements.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "Governance type",
+    "deltares:plotSeries": "GOV_TYPE",
+    "deltares:plotxAxis": "country",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.343183657,
+                179.662205291
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -55.978343221,
+                66.4182692639
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "CONS_OBJ": {
+            "type": "data",
+            "description": "CONS_OBJ",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "CONS_OBJ",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "DESIG_TYPE": {
+            "type": "data",
+            "description": "DESIG_TYPE",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "DESIG_TYPE",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "GIS_AREA": {
+            "type": "data",
+            "description": "GIS_AREA",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "GIS_AREA",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "GIS_M_AREA": {
+            "type": "data",
+            "description": "GIS_M_AREA",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "GIS_M_AREA",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "GOV_TYPE": {
+            "type": "data",
+            "description": "GOV_TYPE",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "GOV_TYPE",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                27185
+            ]
+        },
+        "INT_CRIT": {
+            "type": "data",
+            "description": "INT_CRIT",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "INT_CRIT",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                27185
+            ]
+        },
+        "ISO3": {
+            "type": "data",
+            "description": "ISO3",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "ISO3",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "IUCN_CAT": {
+            "type": "data",
+            "description": "IUCN_CAT",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "IUCN_CAT",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "MARINE": {
+            "type": "data",
+            "description": "MARINE",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "MARINE",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "METADATAID": {
+            "type": "data",
+            "description": "METADATAID",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "METADATAID",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "NO_TAKE": {
+            "type": "data",
+            "description": "NO_TAKE",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "NO_TAKE",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "NO_TK_AREA": {
+            "type": "data",
+            "description": "NO_TK_AREA",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "NO_TK_AREA",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "OWN_TYPE": {
+            "type": "data",
+            "description": "OWN_TYPE",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "OWN_TYPE",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                27185
+            ]
+        },
+        "PARENT_ISO3": {
+            "type": "data",
+            "description": "PARENT_ISO3",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "PARENT_ISO3",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "PA_DEF": {
+            "type": "data",
+            "description": "PA_DEF",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "PA_DEF",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "REP_AREA": {
+            "type": "data",
+            "description": "REP_AREA",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "REP_AREA",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "REP_M_AREA": {
+            "type": "data",
+            "description": "REP_M_AREA",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "REP_M_AREA",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "STATUS": {
+            "type": "data",
+            "description": "STATUS",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "STATUS",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "STATUS_YR": {
+            "type": "data",
+            "description": "STATUS_YR",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "STATUS_YR",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "VERIF": {
+            "type": "data",
+            "description": "VERIF",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "",
+            "attrs": {
+                "long_name": "VERIF",
+                "units": ""
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "country_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                1739826
+            ],
+            "chunks": [
+                54370
+            ]
+        },
+        "transect_geom": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                1739826
+            ]
+        }
+    },
+    "title": "The World Database on Protected Areas (WDPA) and World Database on Other Effective Area-based Conservation Measures (WD-OECM)",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Vul_World_Protected_Areas.zarr",
+            "title": "Vul_World_Protected_Areas zarr root",
+            "description": "The root of the Vul_World_Protected_Areas zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

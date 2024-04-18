@@ -72,6 +72,12 @@
         },
         {
             "rel": "child",
+            "href": "./Exp_world_pop_parquet/collection.json",
+            "type": "application/json",
+            "title": "World Pop"
+        },
+        {
+            "rel": "child",
             "href": "./Haz-ESL/collection.json",
             "type": "application/json",
             "title": "Extreme Sea Level Projections"
@@ -147,6 +153,120 @@
             "href": "./Vul-Roads_Density_COGs/collection.json",
             "type": "application/json",
             "title": "Total Roads Density (GRIP4)"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp-Delta_DEM_COGs/collection.json",
+            "type": "application/json",
+            "title": "DeltaDTM: A global coastal digital terrain model"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ERA5_93-23/collection.json",
+            "type": "application/json",
+            "title": "ERA5 Significant Height of Combined Wind Waves and Swell"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_World_Protected_Areas/collection.json",
+            "type": "application/json",
+            "title": "The World Database on Protected Areas (WDPA) and World Database on Other Effective Area-based Conservation Measures (WD-OECM)"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MRI-ESM2-0_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MPI-ESM1-2-LR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-KIOST-ESM_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-IPSL-CM6A-LR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-CMCC-CM2-SR5_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-AWI-CM-1-1-MR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-EC-EARTH3_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ACCESS-CM2_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MRI-ESM2-0_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MPI-ESM1-2-LR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-KIOST-ESM_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-IPSL-CM6A-LR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-CMCC-CM2-SR5_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-AWI-CM-1-1-MR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-EC-EARTH3_Projected_40-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ACCESS-CM2_Projected_40-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 "
         }
     ],
     "assets": {

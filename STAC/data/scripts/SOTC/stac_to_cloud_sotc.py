@@ -21,6 +21,7 @@ if __name__ == "__main__":
 
     # upload dir to gcs from local drive
     source_dir_fp = str(pathlib.Path(__file__).parent.parent.parent.joinpath(IN_DIRNAME))
+    # source_dir_fp=r"C:\Users\rowe\Documents\GitHub\global-coastal-atlas\STAC\data\current"
 
     # load google credentials
     load_google_credentials(
@@ -28,9 +29,9 @@ if __name__ == "__main__":
     )
 
     # validate STAC catalog and upload to cloud
-    catalog = pystac_client.Client.open(
-        os.path.join(source_dir_fp, "catalog.json")  # local cloned STAC
-    )
+    # catalog = pystac_client.Client.open(
+    #     os.path.join(source_dir_fp, "catalog.json")  # local cloned STAC
+    # )
 
     # TODO: fix STAC validation to work properly with pystac >1.8
     # if catalog.validate_all() == None:  # no valid STAC

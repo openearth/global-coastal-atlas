@@ -1,0 +1,184 @@
+{
+    "type": "Collection",
+    "id": "Haz-ACCESS-CM2_Projected_40-100",
+    "stac_version": "1.0.0",
+    "description": "The dataset contains projections of significant wave height for the period  2040-2100, based on the Wave Watch 3 model forced with atmospheric variables from Climate Model Intercomparison Project Phase  6 (CMIP6) ACCESS-CM2 model under Shared Socio-Economic Pathway SSP1 and SSP5 (Representative Concentration Pathway  RCP 2.6 and 8.5). It is part of a suite of ocean wave climate model outputs that provide valuable data for climate change impact studies and coastal zone management.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "hs_5_85",
+    "deltares:plotxAxis": "latitude",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "time": {
+            "extent": [
+                "2040-01-01T00:00:00Z",
+                "2100-12-31T21:00:00Z"
+            ],
+            "description": "julian day (UT)",
+            "step": "P0DT3H0M0S",
+            "type": "temporal"
+        },
+        "longitude": {
+            "axis": "x",
+            "extent": [
+                0.0,
+                359.5
+            ],
+            "step": 0.5,
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "latitude": {
+            "axis": "y",
+            "extent": [
+                -90.0,
+                90.0
+            ],
+            "step": 0.5,
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "hs_1_26": {
+            "type": "data",
+            "description": "significant height of wind and swell waves",
+            "dimensions": [
+                "time",
+                "latitude",
+                "longitude"
+            ],
+            "unit": "m",
+            "attrs": {
+                "globwave_name": "significant_wave_height",
+                "long_name": "significant height of wind and swell waves",
+                "standard_name": "sea_surface_wave_significant_height",
+                "units": "m",
+                "valid_max": 32000,
+                "valid_min": 0
+            },
+            "shape": [
+                178240,
+                361,
+                720
+            ],
+            "chunks": [
+                1,
+                361,
+                720
+            ]
+        },
+        "hs_5_85": {
+            "type": "data",
+            "description": "significant height of wind and swell waves",
+            "dimensions": [
+                "time",
+                "latitude",
+                "longitude"
+            ],
+            "unit": "m",
+            "attrs": {
+                "globwave_name": "significant_wave_height",
+                "long_name": "significant height of wind and swell waves",
+                "standard_name": "sea_surface_wave_significant_height",
+                "units": "m",
+                "valid_max": 32000,
+                "valid_min": 0
+            },
+            "shape": [
+                178240,
+                361,
+                720
+            ],
+            "chunks": [
+                1,
+                361,
+                720
+            ]
+        }
+    },
+    "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 ",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-Offshore_Waves/Future_Climate/2040-2100_Phase1_WW3/Haz-ACCESS-CM2_Projected_40-100.zarr",
+            "title": "Haz-ACCESS-CM2_Projected_40-100 zarr root",
+            "description": "The root of the Haz-ACCESS-CM2_Projected_40-100 zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

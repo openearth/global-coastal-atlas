@@ -1,0 +1,191 @@
+{
+    "type": "Collection",
+    "id": "Exp_world_pop_parquet",
+    "stac_version": "1.0.0",
+    "description": "Consits of a 100m resolution a global population distribution dataset for the year 2020. The population data is constrained within areas mapped as containing built settlements and adjusted the the United Nations Population estimates.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "People",
+    "deltares:plotSeries": "Tot_pop_count",
+    "deltares:plotxAxis": "nstation",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.979999264745,
+                179.947499295545
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -55.669999575923,
+                82.2035936220384
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "Tot_pop_count": {
+            "type": "data",
+            "description": "Population count UN Adjusted Constrained",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Population count UN Adjusted Constrained",
+                "units": "1"
+            },
+            "shape": [
+                179243956
+            ],
+            "chunks": [
+                10000
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                179243956
+            ],
+            "chunks": [
+                10000
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                179243956
+            ],
+            "chunks": [
+                10000
+            ]
+        },
+        "stations": {
+            "type": "auxiliary",
+            "description": "stations",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "stations",
+                "units": "1"
+            },
+            "shape": [
+                179243956
+            ],
+            "chunks": [
+                10000
+            ]
+        }
+    },
+    "title": "World Pop",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "gs://dgds-data-public/gca/SOTC/Exp_world_pop.parquet/*.parquet",
+            "title": "Exp_world_pop parquet root",
+            "description": "The root of the Exp_world_pop parquet dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "parquet-root",
+                "gcs"
+            ]
+        }
+    }
+}

@@ -1,0 +1,151 @@
+{
+    "type": "Collection",
+    "id": "Haz-ERA5_93-23",
+    "stac_version": "1.0.0",
+    "description": "European Centre for Medium-Range Weather Forecasts (ECMWF) Reanalysis 5 Significant Height of Combined Wind Waves and Swell is a key oceanographic parameter that describes the wave spectrum. It is used to understand and predict marine phenomena such as sea states, surf conditions, and coastal processes. The dataset provides a comprehensive view of wave characteristics over time and across different regions, which is vital for maritime safety and planning.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "m",
+    "deltares:plotSeries": "swh",
+    "deltares:plotxAxis": "latitude",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "time": {
+            "extent": [
+                "1993-01-01T00:00:00Z",
+                "2023-12-31T23:00:00Z"
+            ],
+            "description": "time",
+            "type": "temporal"
+        },
+        "longitude": {
+            "axis": "x",
+            "extent": [
+                0.0,
+                359.5
+            ],
+            "step": 0.5,
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "latitude": {
+            "axis": "y",
+            "extent": [
+                -90.0,
+                90.0
+            ],
+            "step": -0.5,
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "swh": {
+            "type": "data",
+            "description": "Significant height of combined wind waves and swell",
+            "dimensions": [
+                "time",
+                "latitude",
+                "longitude"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Significant height of combined wind waves and swell",
+                "units": "m"
+            },
+            "shape": [
+                315600,
+                361,
+                720
+            ],
+            "chunks": [
+                1,
+                361,
+                720
+            ]
+        }
+    },
+    "title": "ERA5 Significant Height of Combined Wind Waves and Swell",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-Offshore_Waves/Present_Climate/Haz-ERA5_93-23.zarr",
+            "title": "Haz-ERA5_93-23 zarr root",
+            "description": "The root of the Haz-ERA5_93-23 zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}
