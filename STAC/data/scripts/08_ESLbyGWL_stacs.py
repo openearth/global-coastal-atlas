@@ -41,6 +41,7 @@ if __name__ == "__main__":
     gca_data_dir = pathlib.Path(
         # p_drive, "1000545-054-globalbeaches", "15_GlobalCoastalAtlas", "datasets"
         p_drive,
+        "archivedprojects",
         "11208003-latedeo2022",
         "020_InternationalDeltaPortfolio",
         "datasets",
