@@ -13,11 +13,11 @@ if __name__ == "__main__":
     GCS_PROJECT = "DGDS - I1000482-002"
     BUCKET_NAME = "dgds-data-public"
     BUCKET_PROJ = "gca"
-    STAC_NAME = "gca-stac2"
+    STAC_NAME = "gca-stac"
     IN_DIRNAME = "current"
 
     # hard-coded input params at project level
-    coclico_data_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
+    coclico_data_dir = pathlib.Path(p_drive, "11207608-coclico", "FASTTRACK_DATA")
 
     # upload dir to gcs from local drive
     source_dir_fp = str(pathlib.Path(__file__).parent.parent.joinpath(IN_DIRNAME))
