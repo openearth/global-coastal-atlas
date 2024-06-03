@@ -9,13 +9,15 @@ sys.path.append(str(pathlib.Path(__file__).parent.parent))
 sys.path.append(r"P:\1000545-054-globalbeaches\15_GlobalCoastalAtlas\coclicodata")
 
 import pystac
-from etl import rel_root, p_drive
-from etl.cloud_services import dataset_from_google_cloud
-from etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
+from coclicodata.drive_config import p_drive
+from coclicodata.etl.cloud_utils import dataset_from_google_cloud
+from coclicodata.etl.extract import get_mapbox_url, zero_terminated_bytes_as_str
 from pystac import Catalog, CatalogType, Collection, Summaries
-from stac.blueprint import (
-    IO,
-    Layout,
+
+from pystac.stac_io import DefaultStacIO
+from coclicodata.coclico_stac.io import CoCliCoStacIO
+from coclicodata.coclico_stac.layouts import CoCliCoZarrLayout
+from coclicodata.coclico_stac.templates import (
     extend_links,
     gen_default_collection_props,
     gen_default_item,
@@ -25,9 +27,10 @@ from stac.blueprint import (
     gen_zarr_asset,
     get_template_collection,
 )
-from stac.coclico_extension import CoclicoExtension
-from stac.datacube import add_datacube
-from stac.utils import (
+
+from coclicodata.coclico_stac.extension import CoclicoExtension
+from coclicodata.coclico_stac.datacube import add_datacube
+from coclicodata.coclico_stac.utils import (
     get_dimension_dot_product,
     get_dimension_values,
     get_mapbox_item_id,
@@ -142,10 +145,15 @@ if __name__ == "__main__":
     title = ds.attrs.get("title", COLLECTION_ID)
 
     # load coclico data catalog
-    catalog = Catalog.from_file(os.path.join(rel_root, STAC_DIR, "catalog.json"))
+    catalog = Catalog.from_file(
+        os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR, "catalog.json")
+    )
 
     template_fp = os.path.join(
-        rel_root, STAC_DIR, TEMPLATE_COLLECTION, "collection.json"
+        pathlib.Path(__file__).parent.parent,
+        STAC_DIR,
+        TEMPLATE_COLLECTION,
+        "collection.json",
     )
 
     # generate collection for dataset
@@ -154,6 +162,7 @@ if __name__ == "__main__":
         collection_id=COLLECTION_ID,
         title=COLLECTION_TITLE,
         description=DATASET_DESCRIPTION,
+        keywords=["GlobalCoastalAtlas", "DeltaPortfolio"],
     )
 
     # add datacube dimensions derived from xarray dataset to dataset stac_obj
@@ -176,7 +185,7 @@ if __name__ == "__main__":
         dimcombs = []
 
     # TODO: check what can be customized in the layout
-    layout = Layout()
+    layout = CoCliCoZarrLayout()
 
     # create stac collection per variable and add to dataset collection
     for var in VARIABLES:
@@ -193,13 +202,13 @@ if __name__ == "__main__":
             feature.add_asset("mapbox", gen_mapbox_asset(mapbox_url))
 
             # This calls ItemCoclicoExtension and links CoclicoExtension to the stac item
-            coclico_ext = CoclicoExtension.ext(feature, add_if_missing=True)
+            # coclico_ext = CoclicoExtension.ext(feature, add_if_missing=True)
 
-            coclico_ext.item_key = item_id
-            coclico_ext.paint = get_paint_props(item_id)
-            coclico_ext.type_ = TYPE
-            coclico_ext.stations = STATIONS
-            coclico_ext.on_click = ON_CLICK
+            feature.properties["deltares:item_key"] = item_id
+            feature.properties["deltares:paint"] = get_paint_props(item_id)
+            feature.properties["deltares:type"] = TYPE
+            feature.properties["deltares:stations"] = STATIONS
+            feature.properties["deltares:onclick"] = ON_CLICK
 
             # TODO: include this in our datacube?
             # add dimension key-value pairs to stac item properties dict
@@ -209,7 +218,28 @@ if __name__ == "__main__":
             # add stac item to collection
             collection.add_item(feature, strategy=layout)
 
-    # if no variables present we still need to add zarr reference at colleciton level
+        # stac items are generated for an empty AdditionalDimension (no dropdowns, visualize always the same single layer); consensus is that we always need items in a collection
+        if not dimcombs:
+            mapbox_url = get_mapbox_url(MAPBOX_PROJ, DATASET_FILENAME, var)
+
+            # generate stac item key and add link to asset to the stac item
+            item_id = "value"  # default name in such layers
+            feature = gen_default_item(f"{var}-mapbox-{item_id}")
+            feature.add_asset("mapbox", gen_mapbox_asset(mapbox_url))
+
+            # This calls ItemCoclicoExtension and links CoclicoExtension to the stac item
+            # coclico_ext = CoclicoExtension.ext(feature, add_if_missing=True)
+
+            feature.properties["deltares:item_key"] = item_id
+            feature.properties["deltares:paint"] = get_paint_props(item_id)
+            feature.properties["deltares:type"] = TYPE
+            feature.properties["deltares:stations"] = STATIONS
+            feature.properties["deltares:onclick"] = ON_CLICK
+
+            # add stac item to collection
+            collection.add_item(feature, strategy=layout)
+
+    # if no variables present we still need to add zarr reference at collection level
     if not VARIABLES:
         collection.add_asset("data", gen_zarr_asset(title, gcs_api_zarr_store))
 
@@ -221,18 +251,26 @@ if __name__ == "__main__":
         collection.summaries.add(k, v)
 
     # this calls CollectionCoclicoExtension since stac_obj==pystac.Collection
-    coclico_ext = CoclicoExtension.ext(collection, add_if_missing=True)
+    # coclico_ext = CoclicoExtension.ext(collection, add_if_missing=True)
 
     # Add frontend properties defined above to collection extension properties. The
     # properties attribute of this extension is linked to the extra_fields attribute of
     # the stac collection.
-    coclico_ext.units = UNITS
-    coclico_ext.plot_series = PLOT_SERIES
-    coclico_ext.plot_x_axis = PLOT_X_AXIS
-    coclico_ext.plot_type = PLOT_TYPE
-    coclico_ext.min_ = MIN
-    coclico_ext.max_ = MAX
-    coclico_ext.linear_gradient = LINEAR_GRADIENT
+    # coclico_ext.units = UNITS
+    # coclico_ext.plot_series = PLOT_SERIES
+    # coclico_ext.plot_x_axis = PLOT_X_AXIS
+    # coclico_ext.plot_type = PLOT_TYPE
+    # coclico_ext.min_ = MIN
+    # coclico_ext.max_ = MAX
+    # coclico_ext.linear_gradient = LINEAR_GRADIENT
+
+    collection.extra_fields["deltares:units"] = UNITS
+    collection.extra_fields["deltares:plotSeries"] = PLOT_SERIES
+    collection.extra_fields["deltares:plotxAxis"] = PLOT_X_AXIS
+    collection.extra_fields["deltares:plotType"] = PLOT_TYPE
+    collection.extra_fields["deltares:min"] = MIN
+    collection.extra_fields["deltares:max"] = MAX
+    collection.extra_fields["deltares:linearGradient"] = LINEAR_GRADIENT
 
     # set extra link properties
     extend_links(collection, dimvals.keys())
@@ -241,11 +279,12 @@ if __name__ == "__main__":
     catalog.add_child(collection)
 
     collection.normalize_hrefs(
-        os.path.join(rel_root, STAC_DIR, COLLECTION_ID), strategy=layout
+        os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR, COLLECTION_ID),
+        strategy=layout,
     )
 
     catalog.save(
         catalog_type=CatalogType.SELF_CONTAINED,
-        dest_href=os.path.join(rel_root, STAC_DIR),
-        stac_io=IO(),
+        dest_href=os.path.join(pathlib.Path(__file__).parent.parent, STAC_DIR),
+        stac_io=CoCliCoStacIO(),
     )
