@@ -5,6 +5,12 @@
     "description": "The Shoreline Monitor is a dataset that incorporates a 500-m spaced shore-normal transect system, a sandy beach detection method and a change detection method called satellite derived shorelines (SDS) to provide annual shoreline positions over the period 1984-2021 for each of the 1.8 million transects in the world",
     "links": [
         {
+            "rel": "item",
+            "href": "./changerate-mapbox/changerate-mapbox-value.json",
+            "type": "application/json",
+            "properties": {}
+        },
+        {
             "rel": "root",
             "href": "../catalog.json",
             "type": "application/json",
@@ -19,7 +25,7 @@
     ],
     "stac_extensions": [
         "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
-        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json"
+        "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
     ],
     "deltares:units": "m",
     "deltares:plotSeries": "sp",
