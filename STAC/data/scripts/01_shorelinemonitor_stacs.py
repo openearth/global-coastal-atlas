@@ -54,6 +54,9 @@ if __name__ == "__main__":
     with open(metadata_fp, "r") as f:
         metadata = json.load(f)
 
+    if "Creative Commons" in metadata["LICENSE"] and "4.0" in metadata["LICENSE"]:
+        metadata["LICENSE"] = "CC-BY-4.0"
+
     # STAC configs
     STAC_DIR = "current"
     TEMPLATE_COLLECTION = "template"  # stac template for dataset collection
@@ -137,6 +140,9 @@ if __name__ == "__main__":
     # cast zero terminated bytes to str because json library cannot write handle bytes
     ds = zero_terminated_bytes_as_str(ds)
 
+    # add the crs to match the STAC encoding with small letters
+    ds.attrs["crs"] = ds.attrs["CRS"]
+
     # remove characters that cause problems in the frontend.
     ds = rm_special_characters(
         ds, dimensions_to_check=ADDITIONAL_DIMENSIONS, characters=["%"]
@@ -163,6 +169,19 @@ if __name__ == "__main__":
         title=COLLECTION_TITLE,
         description=DATASET_DESCRIPTION,
         keywords=["GlobalCoastalAtlas", "DeltaPortfolio"],
+        license=metadata["LICENSE"],
+        providers=[
+            pystac.Provider(
+                name="Deltares",
+                roles=[
+                    pystac.provider.ProviderRole.PRODUCER,
+                    pystac.provider.ProviderRole.PROCESSOR,
+                    pystac.provider.ProviderRole.HOST,
+                ],
+                url="https://deltares.nl",
+                description=metadata["PROVIDERS"]["description"],
+            ),
+        ],
     )
 
     # add datacube dimensions derived from xarray dataset to dataset stac_obj
@@ -173,7 +192,7 @@ if __name__ == "__main__":
         y_dimension=Y_DIMENSION,
         temporal_dimension=TEMPORAL_DIMENSION,
         additional_dimensions=ADDITIONAL_DIMENSIONS,
-        reference_system=ds.CRS,
+        # reference_system=ds.CRS, # note, when supplying a CRS string, this is not recognised as valid STAC CRS in a STAC fastAPI. We need to have it created but ds.attrs["CRS"] is not used by xstac. Hence above we set ds.attrs["crs"].
     )
 
     # generate stac feature keys (strings which will be stac item ids) for mapbox layers
