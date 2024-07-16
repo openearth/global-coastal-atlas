@@ -1,333 +1,333 @@
 {
-    "type": "Collection",
-    "id": "sub_threat",
-    "stac_version": "1.0.0",
-    "description": "Subsidence, the lowering of Earth's land surface, is a potentially destructive hazard that can be caused by a wide range of natural or anthropogenic triggers but mainly results from solid or fluid mobilization underground. During the next decades, global population and economic growth will continue to increase groundwater demand and accompanying groundwater depletion and, when exacerbated by droughts, will probably increase land subsidence occurrence and related damages or impacts. To raise awareness and inform decision-making, we evaluate potential global subsidence due to groundwater depletion, a key first step toward formulating effective land-subsidence policies that are lacking in most countries worldwide.",
-    "links": [
-        {
-            "rel": "item",
-            "href": "./eapa-mapbox/eapa-mapbox-time-2010.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2010,
-                "variables": "eapa"
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./eapa-mapbox/eapa-mapbox-time-2040.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2040,
-                "variables": "eapa"
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./egdp-mapbox/egdp-mapbox-time-2010.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2010,
-                "variables": "egdp"
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./egdp-mapbox/egdp-mapbox-time-2040.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2040,
-                "variables": "egdp"
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./epsi-mapbox/epsi-mapbox-time-2010.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2010,
-                "variables": "epsi"
-            }
-        },
-        {
-            "rel": "item",
-            "href": "./epsi-mapbox/epsi-mapbox-time-2040.json",
-            "type": "application/json",
-            "properties": {
-                "time": 2040,
-                "variables": "epsi"
-            }
-        },
-        {
-            "rel": "root",
-            "href": "../catalog.json",
-            "type": "application/json",
-            "title": "GlobalCoastalAtlas STAC Catalog"
-        },
-        {
-            "rel": "parent",
-            "href": "../catalog.json",
-            "type": "application/json",
-            "title": "GlobalCoastalAtlas STAC Catalog"
-        }
-    ],
-    "stac_extensions": [
-        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
-        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
-        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
-    ],
-    "deltares:units": "m",
-    "deltares:plotSeries": "",
-    "deltares:plotxAxis": "time",
-    "deltares:plotType": "line",
-    "deltares:min": 0,
-    "deltares:max": 3,
-    "deltares:linearGradient": [
-        {
-            "color": "hsl(110,90%,80%)",
-            "offset": "0.000%",
-            "opacity": 100
-        },
-        {
-            "color": "hsla(55,88%,53%,0.5)",
-            "offset": "50.000%",
-            "opacity": 100
-        },
-        {
-            "color": "hsl(0,90%,70%)",
-            "offset": "100.000%",
-            "opacity": 100
-        }
-    ],
-    "cube:dimensions": {
-        "time": {
-            "values": [
-                1262304000000000000,
-                2208988800000000000
-            ],
-            "description": "Time",
-            "reference_system": "EPSG:4326",
-            "type": "temporal"
-        },
-        "lon": {
-            "axis": "x",
-            "extent": [
-                -112.49572607506327,
-                171.47479227444026
-            ],
-            "description": "Longitude",
-            "reference_system": "EPSG:4326",
-            "type": "spatial"
-        },
-        "lat": {
-            "axis": "y",
-            "extent": [
-                -41.829914775737656,
-                61.987864223960244
-            ],
-            "description": "Latitude",
-            "reference_system": "EPSG:4326",
-            "type": "spatial"
-        }
+  "type": "Collection",
+  "id": "sub_threat",
+  "stac_version": "1.0.0",
+  "description": "Subsidence, the lowering of Earth's land surface, is a potentially destructive hazard that can be caused by a wide range of natural or anthropogenic triggers but mainly results from solid or fluid mobilization underground. During the next decades, global population and economic growth will continue to increase groundwater demand and accompanying groundwater depletion and, when exacerbated by droughts, will probably increase land subsidence occurrence and related damages or impacts. To raise awareness and inform decision-making, we evaluate potential global subsidence due to groundwater depletion, a key first step toward formulating effective land-subsidence policies that are lacking in most countries worldwide.",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./eapa-mapbox/eapa-mapbox-time-2010.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2010,
+        "variables": "eapa"
+      }
     },
-    "cube:variables": {
-        "country": {
-            "type": "auxiliary",
-            "dimensions": [
-                "stations"
-            ],
-            "attrs": {},
-            "shape": [
-                108
-            ]
-        },
-        "eapa": {
-            "type": "data",
-            "description": "Expected annual people affected",
-            "dimensions": [
-                "time",
-                "stations"
-            ],
-            "unit": "1e6",
-            "attrs": {
-                "long_name": "Expected annual people affected",
-                "units": "1e6"
-            },
-            "shape": [
-                2,
-                108
-            ],
-            "chunks": [
-                2,
-                108
-            ]
-        },
-        "egdp": {
-            "type": "data",
-            "description": "Exposed GDP (in US$)",
-            "dimensions": [
-                "time",
-                "stations"
-            ],
-            "unit": "1e9",
-            "attrs": {
-                "long_name": "Exposed GDP (in US$)",
-                "units": "1e9"
-            },
-            "shape": [
-                2,
-                108
-            ],
-            "chunks": [
-                2,
-                108
-            ]
-        },
-        "epsi": {
-            "type": "data",
-            "description": "Potential subsidence index",
-            "dimensions": [
-                "time",
-                "stations"
-            ],
-            "unit": "1",
-            "attrs": {
-                "long_name": "Potential subsidence index",
-                "units": "1"
-            },
-            "shape": [
-                2,
-                108
-            ],
-            "chunks": [
-                2,
-                108
-            ]
-        },
-        "geometry": {
-            "type": "auxiliary",
-            "dimensions": [
-                "stations"
-            ],
-            "attrs": {},
-            "shape": [
-                108
-            ]
-        },
-        "lat": {
-            "type": "auxiliary",
-            "description": "Latitude",
-            "dimensions": [
-                "stations"
-            ],
-            "unit": "degrees_north",
-            "attrs": {
-                "long_name": "Latitude",
-                "standard_name": "longitude",
-                "units": "degrees_north"
-            },
-            "shape": [
-                108
-            ],
-            "chunks": [
-                108
-            ]
-        },
-        "lon": {
-            "type": "auxiliary",
-            "description": "Longitude",
-            "dimensions": [
-                "stations"
-            ],
-            "unit": "degrees_east",
-            "attrs": {
-                "long_name": "Longitude",
-                "standard_name": "longitude",
-                "units": "degrees_east"
-            },
-            "shape": [
-                108
-            ],
-            "chunks": [
-                108
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./eapa-mapbox/eapa-mapbox-time-2040.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2040,
+        "variables": "eapa"
+      }
     },
-    "title": "Land Subsidence Threat",
-    "extent": {
-        "spatial": {
-            "bbox": [
-                [
-                    -180.0,
-                    -90.0,
-                    180.0,
-                    90.0
-                ]
-            ]
-        },
-        "temporal": {
-            "interval": [
-                [
-                    null,
-                    null
-                ]
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./egdp-mapbox/egdp-mapbox-time-2010.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2010,
+        "variables": "egdp"
+      }
     },
-    "license": "proprietary",
-    "providers": [
-        {
-            "name": "Deltares",
-            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
-            "roles": [
-                "producer",
-                "processor"
-            ],
-            "url": "https://www.deltares.nl"
-        }
-    ],
-    "summaries": {
-        "time": {
-            "label": "Time",
-            "options": [
-                {
-                    "label": "2010",
-                    "value": 2010
-                },
-                {
-                    "label": "2040",
-                    "value": 2040
-                }
-            ]
-        },
-        "variables": {
-            "label": "Variables",
-            "options": [
-                {
-                    "label": "Expected annual people affected",
-                    "value": "eapa"
-                },
-                {
-                    "label": "Exposed GDP (in US$)",
-                    "value": "egdp"
-                },
-                {
-                    "label": "Potential subsidence index",
-                    "value": "epsi"
-                }
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./egdp-mapbox/egdp-mapbox-time-2040.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2040,
+        "variables": "egdp"
+      }
     },
-    "assets": {
-        "data": {
-            "href": "https://storage.googleapis.com/dgds-data-public/gca/Global_TLS.zarr",
-            "title": "sub_threat zarr root",
-            "description": "The root of the sub_threat zarr dataset on public Google Cloud Storage.",
-            "roles": [
-                "data",
-                "zarr-root",
-                "gcs"
-            ]
-        }
+    {
+      "rel": "item",
+      "href": "./epsi-mapbox/epsi-mapbox-time-2010.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2010,
+        "variables": "epsi"
+      }
+    },
+    {
+      "rel": "item",
+      "href": "./epsi-mapbox/epsi-mapbox-time-2040.json",
+      "type": "application/json",
+      "properties": {
+        "time": 2040,
+        "variables": "epsi"
+      }
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
     }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json",
+    "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+  ],
+  "deltares:units": "m",
+  "deltares:plotSeries": "",
+  "deltares:plotxAxis": "time",
+  "deltares:plotType": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [
+    {
+      "color": "hsl(110,90%,80%)",
+      "offset": "0.000%",
+      "opacity": 100
+    },
+    {
+      "color": "hsla(55,88%,53%,0.5)",
+      "offset": "50.000%",
+      "opacity": 100
+    },
+    {
+      "color": "hsl(0,90%,70%)",
+      "offset": "100.000%",
+      "opacity": 100
+    }
+  ],
+  "cube:dimensions": {
+    "time": {
+      "values": [
+        1262304000000000000,
+        2208988800000000000
+      ],
+      "description": "Time",
+      "reference_system": "EPSG:4326",
+      "type": "temporal"
+    },
+    "lon": {
+      "axis": "x",
+      "extent": [
+        -112.49572607506327,
+        171.47479227444026
+      ],
+      "description": "Longitude",
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    },
+    "lat": {
+      "axis": "y",
+      "extent": [
+        -41.829914775737656,
+        61.987864223960244
+      ],
+      "description": "Latitude",
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    }
+  },
+  "cube:variables": {
+    "country": {
+      "type": "auxiliary",
+      "dimensions": [
+        "stations"
+      ],
+      "attrs": {},
+      "shape": [
+        108
+      ]
+    },
+    "eapa": {
+      "type": "data",
+      "description": "Expected annual people affected",
+      "dimensions": [
+        "time",
+        "stations"
+      ],
+      "unit": "1e6",
+      "attrs": {
+        "long_name": "Expected annual people affected",
+        "units": "1e6"
+      },
+      "shape": [
+        2,
+        108
+      ],
+      "chunks": [
+        2,
+        108
+      ]
+    },
+    "egdp": {
+      "type": "data",
+      "description": "Exposed GDP (in US$)",
+      "dimensions": [
+        "time",
+        "stations"
+      ],
+      "unit": "1e9",
+      "attrs": {
+        "long_name": "Exposed GDP (in US$)",
+        "units": "1e9"
+      },
+      "shape": [
+        2,
+        108
+      ],
+      "chunks": [
+        2,
+        108
+      ]
+    },
+    "epsi": {
+      "type": "data",
+      "description": "Potential subsidence index",
+      "dimensions": [
+        "time",
+        "stations"
+      ],
+      "unit": "1",
+      "attrs": {
+        "long_name": "Potential subsidence index",
+        "units": "1"
+      },
+      "shape": [
+        2,
+        108
+      ],
+      "chunks": [
+        2,
+        108
+      ]
+    },
+    "geometry": {
+      "type": "auxiliary",
+      "dimensions": [
+        "stations"
+      ],
+      "attrs": {},
+      "shape": [
+        108
+      ]
+    },
+    "lat": {
+      "type": "auxiliary",
+      "description": "Latitude",
+      "dimensions": [
+        "stations"
+      ],
+      "unit": "degrees_north",
+      "attrs": {
+        "long_name": "Latitude",
+        "standard_name": "longitude",
+        "units": "degrees_north"
+      },
+      "shape": [
+        108
+      ],
+      "chunks": [
+        108
+      ]
+    },
+    "lon": {
+      "type": "auxiliary",
+      "description": "Longitude",
+      "dimensions": [
+        "stations"
+      ],
+      "unit": "degrees_east",
+      "attrs": {
+        "long_name": "Longitude",
+        "standard_name": "longitude",
+        "units": "degrees_east"
+      },
+      "shape": [
+        108
+      ],
+      "chunks": [
+        108
+      ]
+    }
+  },
+  "title": "Land Subsidence Threat",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "proprietary",
+  "providers": [
+    {
+      "name": "Deltares",
+      "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://www.deltares.nl"
+    }
+  ],
+  "summaries": {
+    "time": {
+      "label": "Time",
+      "options": [
+        {
+          "label": "2010",
+          "value": 2010
+        },
+        {
+          "label": "2040",
+          "value": 2040
+        }
+      ]
+    },
+    "variables": {
+      "label": "Variables",
+      "options": [
+        {
+          "label": "Expected annual people affected",
+          "value": "eapa"
+        },
+        {
+          "label": "Exposed GDP (in US$)",
+          "value": "egdp"
+        },
+        {
+          "label": "Potential subsidence index",
+          "value": "epsi"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/dgds-data-public/gca/Global_TLS.zarr",
+      "title": "sub_threat zarr root",
+      "description": "The root of the sub_threat zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  }
 }

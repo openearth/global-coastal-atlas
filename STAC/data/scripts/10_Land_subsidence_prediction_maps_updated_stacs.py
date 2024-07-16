@@ -56,7 +56,7 @@ log.setLevel(logging.ERROR)
 # ## Define variables
 # hard-coded input params at project level
 GCS_PROTOCOL = "https://storage.googleapis.com"
-# GCS_PROJECT = "coclico-11207608-002"
+GCS_PROJECT = "DGDS - I1000482-002"
 BUCKET_NAME = "dgds-data-public"
 BUCKET_PROJ = "gca"
 PROJ_NAME = "Land_subsidence_prediction_maps_updated"
@@ -89,7 +89,7 @@ coclico_data_dir = p_drive.joinpath(
     "11210264-003-delta-portal", "data"
 )  # remote p drive
 google_cred_dir = p_drive.joinpath(
-    "11207608-coclico", "FASTTRACK_DATA", "google_credentials_new.json"
+    "11207608-coclico", "FASTTRACK_DATA", "google_credentials.json"
 )
 
 ds_dir = coclico_data_dir.joinpath(DATASET_DIR)
@@ -496,13 +496,13 @@ if __name__ == "__main__":
     # # upload directory with cogs to google cloud
     load_google_credentials(google_token_fp=google_cred_dir)
 
-    # dir_to_google_cloud(
-    #     dir_path=str(cog_dirs),
-    #     gcs_project=GCS_PROJECT,
-    #     bucket_name=BUCKET_NAME,
-    #     bucket_proj=BUCKET_PROJ,
-    #     dir_name=PROJ_NAME,
-    # )
+    dir_to_google_cloud(
+        dir_path=str(cog_dirs),
+        gcs_project=GCS_PROJECT,
+        bucket_name=BUCKET_NAME,
+        bucket_proj=BUCKET_PROJ,
+        dir_name=PROJ_NAME,
+    )
 
     # %%
     # stac_io = CoCliCoStacIO()

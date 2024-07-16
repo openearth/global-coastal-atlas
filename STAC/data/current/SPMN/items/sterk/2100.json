@@ -1,0 +1,140 @@
+{
+  "type": "Feature",
+  "stac_version": "1.0.0",
+  "id": "sterk/2100.tif",
+  "properties": {
+    "created": "2024-07-16T12:41:15.525142Z",
+    "proj:bbox": [
+      0.0,
+      299900.0,
+      280000.0,
+      624900.0
+    ],
+    "proj:shape": [
+      2800,
+      3250
+    ],
+    "proj:epsg": 28992,
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            280000.0,
+            299900.0
+          ],
+          [
+            280000.0,
+            624900.0
+          ],
+          [
+            0.0,
+            624900.0
+          ],
+          [
+            0.0,
+            299900.0
+          ],
+          [
+            280000.0,
+            299900.0
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      100.0,
+      0.0,
+      0.0,
+      0.0,
+      -100.0,
+      624900.0
+    ],
+    "deltares:item_key": "sterk/2100.tif",
+    "datetime": "2022-02-22T00:00:00Z"
+  },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          7.275164088626112,
+          50.66829922298128
+        ],
+        [
+          7.275164088626112,
+          53.610055523835456
+        ],
+        [
+          3.046475572606294,
+          53.610055523835456
+        ],
+        [
+          3.046475572606294,
+          50.66829922298128
+        ],
+        [
+          7.275164088626112,
+          50.66829922298128
+        ]
+      ]
+    ]
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../../collection.json",
+      "type": "application/json",
+      "title": "Subsidence Prediction Maps of the Netherlands"
+    },
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../../collection.json",
+      "type": "application/json",
+      "title": "Subsidence Prediction Maps of the Netherlands"
+    }
+  ],
+  "assets": {
+    "band_data": {
+      "href": "https://storage.googleapis.com/dgds-data-public/gca/Land_subsidence_prediction_maps_updated/sterk/2100.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "band_data",
+      "file:size": 19430084,
+      "raster:bands": [
+        {
+          "nodata": NaN,
+          "data_type": "float32",
+          "spatial_resolution": 30
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "band_data",
+          "description": "POP_SSPs"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "bbox": [
+    3.046475572606294,
+    50.66829922298128,
+    7.275164088626112,
+    53.610055523835456
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "collection": "SPMN"
+}

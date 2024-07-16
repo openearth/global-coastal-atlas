@@ -1,107 +1,113 @@
 {
-    "type": "Catalog",
-    "id": "gca-catalog",
-    "stac_version": "1.0.0",
-    "description": "GlobalCoastalAtlas Catalog",
-    "links": [
-        {
-            "rel": "root",
-            "href": "./catalog.json",
-            "type": "application/json",
-            "title": "GlobalCoastalAtlas STAC Catalog"
-        },
-        {
-            "rel": "child",
-            "href": "./shore_mon_fut/collection.json",
-            "type": "application/json",
-            "title": "The Shoreline Monitor Future Projections"
-        },
-        {
-            "rel": "child",
-            "href": "./sed_class/collection.json",
-            "type": "application/json",
-            "title": "Beach Sediment Classification"
-        },
-        {
-            "rel": "child",
-            "href": "./shore_mon/collection.json",
-            "type": "application/json",
-            "title": "The Shoreline Monitor"
-        },
-        {
-            "rel": "child",
-            "href": "./world_pop/collection.json",
-            "type": "application/json",
-            "title": "World Population"
-        },
-        {
-            "rel": "child",
-            "href": "./world_gdp/collection.json",
-            "type": "application/json",
-            "title": "World Gridded GDP"
-        },
-        {
-            "rel": "child",
-            "href": "./shore_mon_hr/collection.json",
-            "type": "application/json",
-            "title": "The Shoreline Monitor High Resolution"
-        },
-        {
-            "rel": "child",
-            "href": "./shore_mon_drivers/collection.json",
-            "type": "application/json",
-            "title": "The Shoreline Monitor Drivers"
-        },
-        {
-            "rel": "child",
-            "href": "./esl_gwl/collection.json",
-            "type": "application/json",
-            "title": "ESL by GWL"
-        },
-        {
-            "rel": "child",
-            "href": "./sub_threat/collection.json",
-            "type": "application/json",
-            "title": "Land Subsidence Threat"
-        }
-    ],
-    "assets": {
-        "metadata": {
-            "href": "https://www.deltares.nl/",
-            "type": "application/html",
-            "title": "Deltares Website",
-            "description": "Deltares Website",
-            "roles": [
-                "metadata"
-            ]
-        }
+  "type": "Catalog",
+  "id": "gca-catalog",
+  "stac_version": "1.0.0",
+  "description": "GlobalCoastalAtlas Catalog",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
     },
-    "summaries": {
-        "keywords": [
-            "GlobalCoastalAtlas",
-            "DeltaPortfolio"
+    {
+      "rel": "child",
+      "href": "./shore_mon_fut/collection.json",
+      "type": "application/json",
+      "title": "The Shoreline Monitor Future Projections"
+    },
+    {
+      "rel": "child",
+      "href": "./sed_class/collection.json",
+      "type": "application/json",
+      "title": "Beach Sediment Classification"
+    },
+    {
+      "rel": "child",
+      "href": "./shore_mon/collection.json",
+      "type": "application/json",
+      "title": "The Shoreline Monitor"
+    },
+    {
+      "rel": "child",
+      "href": "./world_pop/collection.json",
+      "type": "application/json",
+      "title": "World Population"
+    },
+    {
+      "rel": "child",
+      "href": "./world_gdp/collection.json",
+      "type": "application/json",
+      "title": "World Gridded GDP"
+    },
+    {
+      "rel": "child",
+      "href": "./shore_mon_hr/collection.json",
+      "type": "application/json",
+      "title": "The Shoreline Monitor High Resolution"
+    },
+    {
+      "rel": "child",
+      "href": "./shore_mon_drivers/collection.json",
+      "type": "application/json",
+      "title": "The Shoreline Monitor Drivers"
+    },
+    {
+      "rel": "child",
+      "href": "./esl_gwl/collection.json",
+      "type": "application/json",
+      "title": "ESL by GWL"
+    },
+    {
+      "rel": "child",
+      "href": "./sub_threat/collection.json",
+      "type": "application/json",
+      "title": "Land Subsidence Threat"
+    },
+    {
+      "rel": "child",
+      "href": "./SPMN/collection.json",
+      "type": "application/json",
+      "title": "Subsidence Prediction Maps of the Netherlands"
+    }
+  ],
+  "assets": {
+    "metadata": {
+      "href": "https://www.deltares.nl/",
+      "type": "application/html",
+      "title": "Deltares Website",
+      "description": "Deltares Website",
+      "roles": [
+        "metadata"
+      ]
+    }
+  },
+  "summaries": {
+    "keywords": [
+      "GlobalCoastalAtlas",
+      "DeltaPortfolio"
+    ]
+  },
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -90,
+          180,
+          90
         ]
+      ]
     },
-    "extent": {
-        "spatial": {
-            "bbox": [
-                [
-                    -180,
-                    -90,
-                    180,
-                    90
-                ]
-            ]
-        },
-        "temporal": {
-            "interval": [
-                [
-                    "2015-10-22T00:00:00Z",
-                    null
-                ]
-            ]
-        }
-    },
-    "license": "various",
-    "title": "GlobalCoastalAtlas STAC Catalog"
+    "temporal": {
+      "interval": [
+        [
+          "2015-10-22T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "license": "various",
+  "title": "GlobalCoastalAtlas STAC Catalog"
 }

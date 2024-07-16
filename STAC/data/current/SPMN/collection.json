@@ -1,0 +1,118 @@
+{
+  "type": "Collection",
+  "id": "SPMN",
+  "stac_version": "1.0.0",
+  "description": "Merkens et al. 2016 regionalised the population projection of the SSP-Database. The produced grids have a spatial resolution of 30*30 arcsecond (approx. 1 km at the equator) and represent the population count per cell. A detailed description of the methods is given in the reference below.",
+  "links": [
+    {
+      "rel": "license",
+      "href": "https://coclicoservices.eu/legal/",
+      "type": "text/html",
+      "title": "ODbL-1.0 License"
+    },
+    {
+      "rel": "item",
+      "href": "./items/mild/2050.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/mild/2100.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/sterk/2050.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/sterk/2100.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Gridded population projections for the coastal zone under the Shared Socioeconomic Pathways",
+      "roles": [
+        "data"
+      ],
+      "description": "Merkens et al. 2016 regionalised the population projection of the SSP-Database. The produced grids have a spatial resolution of 30*30 arcsecond (approx. 1 km at the equator) and represent the population count per cell. A detailed description of the methods is given in the reference below.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "meters",
+  "deltares:plot_type": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "title": "Subsidence Prediction Maps of the Netherlands",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          3.046475572606294,
+          50.66829922298128,
+          7.275164088626112,
+          53.610055523835456
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-02-22T00:00:00Z",
+          "2022-02-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Projection",
+    "Europe",
+    "Deltares",
+    "Cloud Optimized GeoTIFF"
+  ],
+  "providers": [
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    },
+    {
+      "name": "Geographisches Institut, Kiel University",
+      "roles": [
+        "producer"
+      ],
+      "url": "www.uni-kiel.de"
+    }
+  ],
+  "assets": {
+    "thumbnail": {
+      "href": "https://storage.googleapis.com/dgds-data-public/coclico/assets/thumbnails/SPMN.png",
+      "type": "image/png",
+      "title": "Thumbnail"
+    }
+  }
+}
