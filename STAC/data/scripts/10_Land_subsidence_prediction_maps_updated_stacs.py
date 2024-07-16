@@ -63,7 +63,8 @@ PROJ_NAME = "Land_subsidence_prediction_maps_updated"
 
 # hard-coded STAC templates
 CUR_CWD = pathlib.Path.cwd()
-STAC_DIR = CUR_CWD.parent / "current"
+STAC_DIR = CUR_CWD / "STAC/data/current"
+# STAC_DIR = r"D:\Projects\STAC\Repositories\global-coastal-atlas\STAC\data\current"
 
 # hard-coded input params which differ per dataset
 METADATA = "metadata_subsidence.json"
@@ -136,7 +137,7 @@ def create_collection(
     start_datetime = datetime.datetime(2024, 1, 18, tzinfo=datetime.timezone.utc)
 
     extent = pystac.Extent(
-        pystac.SpatialExtent([[-180, -89.9999999999, 180, 90.0000000001]]),
+        pystac.SpatialExtent([[0, 299900, 280000, 624900]]),
         pystac.TemporalExtent([[start_datetime, None]]),
     )
 
@@ -150,12 +151,8 @@ def create_collection(
     ]
 
     keywords = [
-        "Coast",
-        "Population",
         "Projection",
-        "Shared Socioeconomic Pathways",
         "Europe",
-        "European" "CoCliCo",
         "Deltares",
         "Cloud Optimized GeoTIFF",
     ]
@@ -168,7 +165,7 @@ def create_collection(
 
     collection = pystac.Collection(
         id=COLLECTION_ID,
-        title="Population Projections",
+        title="Subsidence Prediction Maps of the Netherlands",
         description=description,  # noqa: E502
         license=metadata["LICENSE"],
         providers=providers,
@@ -426,9 +423,8 @@ if __name__ == "__main__":
     # NOTE: make sure the resulting path_list (based on folder structure) matches the tif_list
     # NOTE: shortcut taken by calling every year twice, because there are two tif's per year.
     folder_structure = {
-        "SSP1": ["2010", "2030", "2050", "2100", "2150"],
-        "SSP2": ["2010", "2030", "2050", "2100", "2150"],
-        "SSP5": ["2010", "2030", "2050", "2100", "2150"],
+        "mild": [],
+        "sterk": [],
     }
 
     # Get list of paths for the folder structure
@@ -443,9 +439,11 @@ if __name__ == "__main__":
         # Update current data being processed
         print("now working on: " + cur_path)
         # Define tif_list for the cog's created using ../notebooks/26_pp.ipynb
-        tif_list = pathlib.Path.joinpath(cog_dirs, cur_path).glob("*.tif")
+        tif_list = pathlib.Path.joinpath(cog_dirs, cur_path)
+        tif_list = tif_list.glob("*.tif")
 
         for cur_tif in tif_list:
+            print(cur_tif)
 
             # Open original dataset
             pp = xr.open_dataset(cur_tif, engine="rasterio", mask_and_scale=False)
