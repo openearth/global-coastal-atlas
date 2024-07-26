@@ -1,0 +1,299 @@
+{
+    "type": "Catalog",
+    "id": "gca-catalog",
+    "stac_version": "1.0.0",
+    "description": "GlobalCoastalAtlas Catalog",
+    "links": [
+        {
+            "rel": "root",
+            "href": "./catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_fut/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor Future Projections"
+        },
+        {
+            "rel": "child",
+            "href": "./sed_class/collection.json",
+            "type": "application/json",
+            "title": "Beach Sediment Classification"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor"
+        },
+        {
+            "rel": "child",
+            "href": "./world_pop/collection.json",
+            "type": "application/json",
+            "title": "World Population"
+        },
+        {
+            "rel": "child",
+            "href": "./world_gdp/collection.json",
+            "type": "application/json",
+            "title": "World Gridded GDP"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_hr/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor High Resolution"
+        },
+        {
+            "rel": "child",
+            "href": "./shore_mon_drivers/collection.json",
+            "type": "application/json",
+            "title": "The Shoreline Monitor Drivers"
+        },
+        {
+            "rel": "child",
+            "href": "./esl_gwl/collection.json",
+            "type": "application/json",
+            "title": "ESL by GWL"
+        },
+        {
+            "rel": "child",
+            "href": "./sub_threat/collection.json",
+            "type": "application/json",
+            "title": "Land Subsidence Threat"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp_world_pop/collection.json",
+            "type": "application/json",
+            "title": "World Pop"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp_world_pop_parquet/collection.json",
+            "type": "application/json",
+            "title": "World Pop"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ESL/collection.json",
+            "type": "application/json",
+            "title": "Extreme Sea Level Projections"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-Inf_Mort/collection.json",
+            "type": "application/json",
+            "title": "Infant Mortality Rate Indicator"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp-NS_Slopes/collection.json",
+            "type": "application/json",
+            "title": "Global Distribution of Nearshore Slopes"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_MYS/collection.json",
+            "type": "application/json",
+            "title": "Mean Years of Schooling"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_RS/collection.json",
+            "type": "application/json",
+            "title": "Recent Shocks"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-GDP_Cap/collection.json",
+            "type": "application/json",
+            "title": "GDP per Capita"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Land_Sub_2010_COGs/collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2010)"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Land_Sub_2040_COGs/collection.json",
+            "type": "application/json",
+            "title": "Potential Global Subsidence (2040)"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul-Roads_Density_COGs/collection.json",
+            "type": "application/json",
+            "title": "Total Roads Density (GRIP4)"
+        },
+        {
+            "rel": "child",
+            "href": "./Exp-Delta_DEM_COGs/collection.json",
+            "type": "application/json",
+            "title": "DeltaDTM: A global coastal digital terrain model"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ERA5_93-23/collection.json",
+            "type": "application/json",
+            "title": "ERA5 Significant Height of Combined Wind Waves and Swell"
+        },
+        {
+            "rel": "child",
+            "href": "./Vul_World_Protected_Areas/collection.json",
+            "type": "application/json",
+            "title": "The World Database on Protected Areas (WDPA) and World Database on Other Effective Area-based Conservation Measures (WD-OECM)"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MRI-ESM2-0_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MPI-ESM1-2-LR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-KIOST-ESM_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-IPSL-CM6A-LR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-CMCC-CM2-SR5_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-AWI-CM-1-1-MR_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-EC-EARTH3_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ACCESS-CM2_Hind_93-14/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 1993-2014"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MRI-ESM2-0_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-MPI-ESM1-2-LR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-KIOST-ESM_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-IPSL-CM6A-LR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-CMCC-CM2-SR5_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-AWI-CM-1-1-MR_Projected_71-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2071-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-EC-EARTH3_Projected_40-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-ACCESS-CM2_Projected_40-100/collection.json",
+            "type": "application/json",
+            "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Hs_Meucci_2100/collection.json",
+            "type": "application/json",
+            "title": "Projected 21st Century Changes in Extreme Wind-Wave Events"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-TC_CAT3_RP/collection.json",
+            "type": "application/json",
+            "title": "TCWISE 1000year Generated category 3 Tropical cyclone wind maps Present and future"
+        }
+    ],
+    "assets": {
+        "metadata": {
+            "href": "https://www.deltares.nl/",
+            "type": "application/html",
+            "title": "Deltares Website",
+            "description": "Deltares Website",
+            "roles": [
+                "metadata"
+            ]
+        }
+    },
+    "summaries": {
+        "keywords": [
+            "GlobalCoastalAtlas",
+            "DeltaPortfolio"
+        ]
+    },
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180,
+                    -90,
+                    180,
+                    90
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    "2015-10-22T00:00:00Z",
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "various",
+    "title": "GlobalCoastalAtlas STAC Catalog"
+}

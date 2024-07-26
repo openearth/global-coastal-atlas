@@ -1,0 +1,425 @@
+{
+    "type": "Collection",
+    "id": "Haz-Hs_Meucci_2100",
+    "stac_version": "1.0.0",
+    "description": "This study projects changes in extreme wind-wave events for the 21st century, leveraging advanced climate models and wave prediction methodologies. It aims to forecast how future climate change scenarios will affect coastal regions globally, offering crucial insights for coastal management and resilience planning.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "",
+    "deltares:plotSeries": "Meucci_RP100_percent_change_end21C_RCP85",
+    "deltares:plotxAxis": "nstations",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -179.9414,
+                179.9414
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                -68.15104,
+                80.85938
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "Meucci_RP100_percent_change_end21C_RCP45": {
+            "type": "data",
+            "description": "Meucci RP100 percent change end 21C RCP45",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "%",
+            "attrs": {
+                "long_name": "Meucci RP100 percent change end 21C RCP45",
+                "units": "%"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "Meucci_RP100_percent_change_end21C_RCP85": {
+            "type": "data",
+            "description": "Meucci RP100 percent change end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "%",
+            "attrs": {
+                "long_name": "Meucci RP100 percent change end 21C RCP85",
+                "units": "%"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP100_ZtoHs_ens1000_CMIP5_ww3_hs_19792005": {
+            "type": "data",
+            "description": "RP100 Z to Hs 1979-2005",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP100 Z to Hs 1979-2005",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP100_ZtoHs_ens1000_CMIP5_ww3_hs_end21C_RCP45": {
+            "type": "data",
+            "description": "RP100 Z to Hs end 21C RCP45",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP100 Z to Hs end 21C RCP45",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP100_ZtoHs_ens1000_CMIP5_ww3_hs_end21C_RCP85": {
+            "type": "data",
+            "description": "RP100 Z to Hs end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP100 Z to Hs end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP10_ZtoHs_ens1000_CMIP5_ww3_hs_19792005": {
+            "type": "data",
+            "description": "RP10 Z to Hs 1979-2005",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP10 Z to Hs 1979-2005",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP10_ZtoHs_ens1000_CMIP5_ww3_hs_end21C_RCP85": {
+            "type": "data",
+            "description": "RP10 Z to Hs end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP10 Z to Hs end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP20_ZtoHs_ens1000_CMIP5_ww3_hs_19792005": {
+            "type": "data",
+            "description": "RP20 Z to Hs 1979-2005",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP20 Z to Hs 1979-2005",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP20_ZtoHs_ens1000_CMIP5_ww3_hs_end21C_RCP85": {
+            "type": "data",
+            "description": "RP20 Z to Hs end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP20 Z to Hs end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP50_ZtoHs_ens1000_CMIP5_ww3_hs_19792005": {
+            "type": "data",
+            "description": "RP50 Z to Hs 1979-2005",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP50 Z to Hs 1979-2005",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_POT_EXP_RP50_ZtoHs_ens1000_CMIP5_ww3_hs_end21C_RCP85": {
+            "type": "data",
+            "description": "RP50 Z to Hs end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "RP50 Z to Hs end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_changes_RP100_Hs_hist_end21C_RCP85": {
+            "type": "data",
+            "description": "Changes RP100 Hs hist end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Changes RP100 Hs hist end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_changes_RP10_Hs_hist_end21C_RCP85": {
+            "type": "data",
+            "description": "Changes RP10 Hs hist end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Changes RP10 Hs hist end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_changes_RP20_Hs_hist_end21C_RCP85": {
+            "type": "data",
+            "description": "Changes RP20 Hs hist end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Changes RP20 Hs hist end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "atGTSR_changes_RP50_Hs_hist_end21C_RCP85": {
+            "type": "data",
+            "description": "Changes RP50 Hs hist end 21C RCP85",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "Changes RP50 Hs hist end 21C RCP85",
+                "units": "m"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                9866
+            ],
+            "chunks": [
+                9866
+            ]
+        }
+    },
+    "title": "Projected 21st Century Changes in Extreme Wind-Wave Events",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-Hs_Meucci_2100.zarr",
+            "title": "Haz-Hs_Meucci_2100 zarr root",
+            "description": "The root of the Haz-Hs_Meucci_2100 zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

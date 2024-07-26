@@ -90,12 +90,6 @@
         },
         {
             "rel": "child",
-            "href": "./Haz-GCM_90-100/collection.json",
-            "type": "application/json",
-            "title": "Significant Height of Combined Wind Waves and Swell 2090-2100 "
-        },
-        {
-            "rel": "child",
             "href": "./Exp-NS_Slopes/collection.json",
             "type": "application/json",
             "title": "Global Distribution of Nearshore Slopes"
@@ -114,27 +108,9 @@
         },
         {
             "rel": "child",
-            "href": "./Haz-GCM_40-50/collection.json",
-            "type": "application/json",
-            "title": "Significant Height of Combined Wind Waves and Swell 2040-2050"
-        },
-        {
-            "rel": "child",
-            "href": "./Haz-ERA5_04-14/collection.json",
-            "type": "application/json",
-            "title": "Significant Height of Combined Wind Waves and Swell"
-        },
-        {
-            "rel": "child",
             "href": "./Vul-GDP_Cap/collection.json",
             "type": "application/json",
             "title": "GDP per Capita"
-        },
-        {
-            "rel": "child",
-            "href": "./Haz-GCM_04-14/collection.json",
-            "type": "application/json",
-            "title": "Significant Height of Combined Wind Waves and Swell 2004-2014"
         },
         {
             "rel": "child",
@@ -267,6 +243,24 @@
             "href": "./Haz-ACCESS-CM2_Projected_40-100/collection.json",
             "type": "application/json",
             "title": "Significant Height of Combined Wind Waves and Swell 2040-2100 "
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-Hs_Meucci_2100/collection.json",
+            "type": "application/json",
+            "title": "Projected 21st Century Changes in Extreme Wind-Wave Events"
+        },
+        {
+            "rel": "child",
+            "href": "./Haz-TC_CAT3_RP/collection.json",
+            "type": "application/json",
+            "title": "TCWISE 1000year Generated category 3 Tropical cyclone wind maps Present and future"
+        },
+        {
+            "rel": "child",
+            "href": "./SOTC-Coastal_Risk_Levels_PC_FC/collection.json",
+            "type": "application/json",
+            "title": "State of the Coast- Present and Future risk levels (IPCC Caribbean)"
         }
     ],
     "assets": {

@@ -1,0 +1,182 @@
+{
+    "type": "Collection",
+    "id": "Haz-TC_CAT3_RP",
+    "stac_version": "1.0.0",
+    "description": "The dataset includes a return period wind map for windspeeds cat3 or higher. It was statistically generated using IBTracs information in the TCWise tool for 1000 years of synthetically generated cyclone tracks in the north atlantic, for the present and future",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "years",
+    "deltares:plotSeries": "TC_RP_map_96kts_PC",
+    "deltares:plotxAxis": "latitude",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "longitude": {
+            "axis": "x",
+            "extent": [
+                -124,
+                13
+            ],
+            "step": 1,
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "latitude": {
+            "axis": "y",
+            "extent": [
+                2,
+                69
+            ],
+            "step": 1,
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "TC_RP_map_96kts_FC_2050_RCP85": {
+            "type": "data",
+            "description": "Present_Climate_2050_Return_period_for_CAT3_Hurricane",
+            "dimensions": [
+                "latitude",
+                "longitude"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Present_Climate_2050_Return_period_for_CAT3_Hurricane",
+                "units": "1"
+            },
+            "shape": [
+                68,
+                138
+            ],
+            "chunks": [
+                68,
+                138
+            ]
+        },
+        "TC_RP_map_96kts_FC_2100_RCP45": {
+            "type": "data",
+            "description": "Future_Climate_2100_Return_period_for_CAT3_Hurricane",
+            "dimensions": [
+                "latitude",
+                "longitude"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Future_Climate_2100_Return_period_for_CAT3_Hurricane",
+                "units": "1"
+            },
+            "shape": [
+                68,
+                138
+            ],
+            "chunks": [
+                68,
+                138
+            ]
+        },
+        "TC_RP_map_96kts_PC": {
+            "type": "data",
+            "description": "Present_Climate_Return_period_for_CAT3_Hurricane",
+            "dimensions": [
+                "latitude",
+                "longitude"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Present_Climate_Return_period_for_CAT3_Hurricane",
+                "units": "1"
+            },
+            "shape": [
+                68,
+                138
+            ],
+            "chunks": [
+                68,
+                138
+            ]
+        }
+    },
+    "title": "TCWISE 1000year Generated category 3 Tropical cyclone wind maps Present and future",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/Haz-TC_CAT3_RP.zarr",
+            "title": "Haz-TC_CAT3_RP zarr root",
+            "description": "The root of the Haz-TC_CAT3_RP zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}

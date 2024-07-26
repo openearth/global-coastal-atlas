@@ -1,0 +1,1727 @@
+{
+    "type": "Collection",
+    "id": "SOTC-Coastal_Risk_Levels_PC_FC",
+    "stac_version": "1.0.0",
+    "description": "The dataset contains qualitative shoreline parallel values of present climate and future climate projections (2050/2100 Time horizons) with low/high emissions scenarios of coastal risk factoring in common coastal hazards along with suitable Exposure and Vulnerability, for the Caribbean.",
+    "links": [
+        {
+            "rel": "root",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        },
+        {
+            "rel": "parent",
+            "href": "../catalog.json",
+            "type": "application/json",
+            "title": "GlobalCoastalAtlas STAC Catalog"
+        }
+    ],
+    "stac_extensions": [
+        "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+        "https://stac-extensions.github.io/datacube/v2.0.0/schema.json",
+        "https://raw.githubusercontent.com/openearth/coclicodata/main/json-schema/schema.json"
+    ],
+    "deltares:units": "",
+    "deltares:plotSeries": "Cat3_Hurricane_Return_Period_PC_PC___Risk_Level",
+    "deltares:plotxAxis": "country",
+    "deltares:plotType": "line",
+    "deltares:min": 0,
+    "deltares:max": 3,
+    "deltares:linearGradient": [
+        {
+            "color": "hsl(110,90%,80%)",
+            "offset": "0.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsla(55,88%,53%,0.5)",
+            "offset": "50.000%",
+            "opacity": 100
+        },
+        {
+            "color": "hsl(0,90%,70%)",
+            "offset": "100.000%",
+            "opacity": 100
+        }
+    ],
+    "cube:dimensions": {
+        "lon": {
+            "axis": "x",
+            "extent": [
+                -84.9508759371,
+                -59.4225928123
+            ],
+            "description": "longitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        },
+        "lat": {
+            "axis": "y",
+            "extent": [
+                12.000457782,
+                24.9999011729
+            ],
+            "description": "latitude",
+            "reference_system": "EPSG:4326",
+            "type": "spatial"
+        }
+    },
+    "cube:variables": {
+        "Cat3_Hurricane_Return_Period_PC_PC___Hazard_Level": {
+            "type": "data",
+            "description": "Cat3 Hurricane Return Period PC - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 Hurricane Return Period PC - Hazard Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_Hurricane_Return_Period_PC_PC___Risk_Level": {
+            "type": "data",
+            "description": "Cat3 Hurricane Return Period PC - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 Hurricane Return Period PC - Risk Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_Hurricane_Return_Period_PC_PC___Risk_Level_Class": {
+            "type": "data",
+            "description": "Cat3 Hurricane Return Period PC - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 Hurricane Return Period PC - Risk Level Class",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_Hurricane_Return_Period_PC_PC_value": {
+            "type": "data",
+            "description": "Cat3 Hurricane Return Period PC value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 Hurricane Return Period PC value",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                4689
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2050_8_5___Hazard_Level": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2050 85 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2050 85 - Hazard Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2050_8_5___Risk_Level": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2050 85 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2050 85 - Risk Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2050_8_5___Risk_Level_Class": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2050 85 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2050 85 - Risk Level Class",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2050_8_5_value": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2050 85 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2050 85 value",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2100_4_5___Hazard_Level": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2100 45 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2100 45 - Hazard Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2100_4_5___Risk_Level": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2100 45 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2100 45 - Risk Level",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2100_4_5___Risk_Level_Class": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2100 45 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2100 45 - Risk Level Class",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Cat3_TC_Return_Period_FC_2100_4_5_value": {
+            "type": "data",
+            "description": "Cat3 TC Return Period FC 2100 45 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "year",
+            "attrs": {
+                "long_name": "Cat3 TC Return Period FC 2100 45 value",
+                "units": "year"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Change_rate_SSP1_45_2050___Hazard_Level": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2050 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2050 - Hazard Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2050___Risk_Level": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2050 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2050 - Risk Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2050___Risk_Level_Class": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2050 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2050 - Risk Level Class",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2050_value": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2050 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2050 value",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Change_rate_SSP1_45_2100___Hazard_Level": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2100 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2100 - Hazard Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2100___Risk_Level": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2100 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2100 - Risk Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2100___Risk_Level_Class": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2100 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2100 - Risk Level Class",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP1_45_2100_value": {
+            "type": "data",
+            "description": "Change rate SSP1 45 2100 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP1 45 2100 value",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Change_rate_SSP5_85_2050___Hazard_Level": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2050 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2050 - Hazard Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2050___Risk_Level": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2050 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2050 - Risk Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2050___Risk_Level_Class": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2050 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2050 - Risk Level Class",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2050_value": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2050 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2050 value",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Change_rate_SSP5_85_2100___Hazard_Level": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2100 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2100 - Hazard Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2100___Risk_Level": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2100 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2100 - Risk Level",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2100___Risk_Level_Class": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2100 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2100 - Risk Level Class",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Change_rate_SSP5_85_2100_value": {
+            "type": "data",
+            "description": "Change rate SSP5 85 2100 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m/yr",
+            "attrs": {
+                "long_name": "Change rate SSP5 85 2100 value",
+                "units": "m/yr"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Confindence_perc": {
+            "type": "auxiliary",
+            "description": "Confindence Percentage",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Confindence Percentage",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Deaths_from_Recent_Shocks_2004_2023___Vulnerability_level": {
+            "type": "data",
+            "description": "Deaths from Recent Shocks (2004-2023) - Vulnerability level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Deaths from Recent Shocks (2004-2023) - Vulnerability level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_4_5_2050___Hazard_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 4.5 2050 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 4.5 2050 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_4_5_2050___Risk_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 4.5 2050 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 4.5 2050 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_4_5_2050___Risk_Level_Class": {
+            "type": "data",
+            "description": "ESL 100yrRP 4.5 2050 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 4.5 2050 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_4_5_2050_value": {
+            "type": "data",
+            "description": "ESL 100yrRP 4.5 2050 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 4.5 2050 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "ESL_100yrRP_8_5_2050___Hazard_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2050 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2050 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2050___Risk_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2050 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2050 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2050___Risk_Level_Class": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2050 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2050 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2050_value": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2050 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2050 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "ESL_100yrRP_8_5_2100___Hazard_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2100 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2100 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2100___Risk_Level": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2100 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2100 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2100___Risk_Level_Class": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2100 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2100 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_8_5_2100_value": {
+            "type": "data",
+            "description": "ESL 100yrRP 8.5 2100 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL 100yrRP 8.5 2100 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "ESL_100yrRP_PC___Hazard_Level": {
+            "type": "data",
+            "description": "ESL_100yrRP PC - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL_100yrRP PC - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_PC___Risk_Level": {
+            "type": "data",
+            "description": "ESL_100yrRP PC - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL_100yrRP PC - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_PC___Risk_Level_Class": {
+            "type": "data",
+            "description": "ESL_100yrRP PC - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL_100yrRP PC - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_100yrRP_PC_value": {
+            "type": "data",
+            "description": "ESL_100yrRP PC value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL_100yrRP PC value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "ESL_RCP4_5_Time_Horizon2100___Hazard_Level": {
+            "type": "data",
+            "description": "ESL RCP4.5 Time Horizon2100 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL RCP4.5 Time Horizon2100 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_RCP4_5_Time_Horizon2100___Risk_Level": {
+            "type": "data",
+            "description": "ESL RCP4.5 Time Horizon2100 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL RCP4.5 Time Horizon2100 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_RCP4_5_Time_Horizon2100___Risk_Level_Class": {
+            "type": "data",
+            "description": "ESL RCP4.5 Time Horizon2100 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL RCP4.5 Time Horizon2100 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "ESL_RCP4_5_Time_Horizon2100_value": {
+            "type": "data",
+            "description": "ESL RCP4.5 Time Horizon2100 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "ESL RCP4.5 Time Horizon2100 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_45___Hazard_Level": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 45 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 45 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_45___Risk_Level": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 45 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 45 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_45___Risk_Level_Class": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 45 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 45 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_45_value": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 45 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 45 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_85___Hazard_Level": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 85 - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 85 - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_85___Risk_Level": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 85 - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 85 - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_85___Risk_Level_Class": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 85 - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 85 - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_2100_RCP_85_value": {
+            "type": "data",
+            "description": "EWH 100yrRP 2100 RCP 85 value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH 100yrRP 2100 RCP 85 value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "EWH_100yrRP_PC___Hazard_Level": {
+            "type": "data",
+            "description": "EWH_100yrRP PC - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH_100yrRP PC - Hazard Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_PC___Risk_Level": {
+            "type": "data",
+            "description": "EWH_100yrRP PC - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH_100yrRP PC - Risk Level",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_PC___Risk_Level_Class": {
+            "type": "data",
+            "description": "EWH_100yrRP PC - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH_100yrRP PC - Risk Level Class",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "EWH_100yrRP_PC_value": {
+            "type": "data",
+            "description": "EWH_100yrRP PC value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "m",
+            "attrs": {
+                "long_name": "EWH_100yrRP PC value",
+                "units": "m"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "GDP_per_Capita_3_yr_Average___Vulnerability_level": {
+            "type": "data",
+            "description": "GDP per Capita (3_yr_Average) - Vulnerability level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "GDP per Capita (3_yr_Average) - Vulnerability level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "IPCC_REGION": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        },
+        "Infant_Mortality_Rate_3_yr_Average___Vulnerability_level": {
+            "type": "data",
+            "description": "Infant Mortality Rate (3_yr_Average) - Vulnerability level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Infant Mortality Rate (3_yr_Average) - Vulnerability level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "LECZ_Area_LECZ_mean_elevation___Exposure_level": {
+            "type": "data",
+            "description": "LECZ Area\u00f7LECZ mean elevation - Exposure level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "LECZ Area\u00f7LECZ mean elevation - Exposure level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2010_PC___Hazard_Level": {
+            "type": "data",
+            "description": "Land Subsidence 2010 PC - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2010 PC - Hazard Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2010_PC___Risk_Level": {
+            "type": "data",
+            "description": "Land Subsidence 2010 PC - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2010 PC - Risk Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2010_PC___Risk_Level_Class": {
+            "type": "data",
+            "description": "Land Subsidence 2010 PC - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2010 PC - Risk Level Class",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2010_PC_value": {
+            "type": "data",
+            "description": "Land Subsidence 2010 PC value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2010 PC value",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Land_Subsidence_2040_high___Hazard_Level": {
+            "type": "data",
+            "description": "Land Subsidence 2040 high - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2040 high - Hazard Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2040_high___Risk_Level": {
+            "type": "data",
+            "description": "Land Subsidence 2040 high - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2040 high - Risk Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2040_high___Risk_Level_Class": {
+            "type": "data",
+            "description": "Land Subsidence 2040 high - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2040 high - Risk Level Class",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Land_Subsidence_2040_high_value": {
+            "type": "data",
+            "description": "Land Subsidence 2040 high value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Land Subsidence 2040 high value",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Mean_Years_of_Schooling___Vulnerability_level": {
+            "type": "data",
+            "description": "Mean Years of Schooling - Vulnerability level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Mean Years of Schooling - Vulnerability level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Neashore_Slope_tanB_or_m_1___Exposure_level": {
+            "type": "data",
+            "description": "Neashore Slope (tan\u03b2 or m^-1) - Exposure level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Neashore Slope (tan\u03b2 or m^-1) - Exposure level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Percentage_of_Built_Up_Area___Exposure_level": {
+            "type": "data",
+            "description": "Percentage of Built Up Area - Exposure level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Percentage of Built Up Area - Exposure level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Population_Within_1km_of_the_coastline___Exposure_level": {
+            "type": "data",
+            "description": "Population Within 1km of the coastline - Exposure level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Population Within 1km of the coastline - Exposure level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Sediment_Type___Exposure_level": {
+            "type": "data",
+            "description": "Sediment Type - Exposure level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Sediment Type - Exposure level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Shoreline_Change_Rate_PC___Hazard_Level": {
+            "type": "data",
+            "description": "Shoreline Change Rate PC - Hazard Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Shoreline Change Rate PC - Hazard Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Shoreline_Change_Rate_PC___Risk_Level": {
+            "type": "data",
+            "description": "Shoreline Change Rate PC - Risk Level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Shoreline Change Rate PC - Risk Level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Shoreline_Change_Rate_PC___Risk_Level_Class": {
+            "type": "data",
+            "description": "Shoreline Change Rate PC - Risk Level Class",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Shoreline Change Rate PC - Risk Level Class",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "Shoreline_Change_Rate_PC_value": {
+            "type": "data",
+            "description": "Shoreline Change Rate PC value",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Shoreline Change Rate PC value",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                9378
+            ]
+        },
+        "Uncertainty_Columns": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        },
+        "Uncertainty_Columns_length": {
+            "type": "auxiliary",
+            "description": "Uncertainty Columns Length",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "Uncertainty Columns Length",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "World_Protected_Areas_Status_and_Governance___Vulnerability_level": {
+            "type": "data",
+            "description": "World Protected Areas (Status and Governance) - Vulnerability level",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "1",
+            "attrs": {
+                "long_name": "World Protected Areas (Status and Governance) - Vulnerability level",
+                "units": "1"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "continent": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        },
+        "country": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        },
+        "country_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        },
+        "lat": {
+            "type": "auxiliary",
+            "description": "latitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_north",
+            "attrs": {
+                "long_name": "latitude",
+                "standard_name": "latitude",
+                "units": "degrees_north"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "lon": {
+            "type": "auxiliary",
+            "description": "longitude",
+            "dimensions": [
+                "nstations"
+            ],
+            "unit": "degrees_east",
+            "attrs": {
+                "long_name": "longitude",
+                "standard_name": "longitude",
+                "units": "degrees_east"
+            },
+            "shape": [
+                37509
+            ],
+            "chunks": [
+                18755
+            ]
+        },
+        "transect_id": {
+            "type": "auxiliary",
+            "dimensions": [
+                "nstations"
+            ],
+            "attrs": {},
+            "shape": [
+                37509
+            ]
+        }
+    },
+    "title": "State of the Coast- Present and Future risk levels (IPCC Caribbean)",
+    "extent": {
+        "spatial": {
+            "bbox": [
+                [
+                    -180.0,
+                    -90.0,
+                    180.0,
+                    90.0
+                ]
+            ]
+        },
+        "temporal": {
+            "interval": [
+                [
+                    null,
+                    null
+                ]
+            ]
+        }
+    },
+    "license": "proprietary",
+    "providers": [
+        {
+            "name": "Deltares",
+            "description": "Deltares is an independent institute for applied research in the field of water and subsurface.",
+            "roles": [
+                "producer",
+                "processor"
+            ],
+            "url": "https://www.deltares.nl"
+        }
+    ],
+    "assets": {
+        "data": {
+            "href": "https://storage.googleapis.com/dgds-data-public/gca/SOTC/SOTC-Coastal_Risk_Levels_PC_FC.zarr",
+            "title": "SOTC-Coastal_Risk_Levels_PC_FC zarr root",
+            "description": "The root of the SOTC-Coastal_Risk_Levels_PC_FC zarr dataset on public Google Cloud Storage.",
+            "roles": [
+                "data",
+                "zarr-root",
+                "gcs"
+            ]
+        }
+    }
+}
