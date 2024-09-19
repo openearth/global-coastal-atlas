@@ -3,7 +3,7 @@
   "stac_version": "1.0.0",
   "id": "mild/2100.tif",
   "properties": {
-    "created": "2024-07-16T12:41:15.091311Z",
+    "created": "2024-09-19T12:03:41.471031Z",
     "proj:bbox": [
       0.0,
       299900.0,
@@ -105,10 +105,10 @@
       "href": "https://storage.googleapis.com/dgds-data-public/gca/Land_subsidence_prediction_maps_updated/mild/2100.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "band_data",
-      "file:size": 18509016,
+      "file:size": 19262586,
       "raster:bands": [
         {
-          "nodata": NaN,
+          "nodata": -99999.0,
           "data_type": "float32",
           "spatial_resolution": 30
         }
@@ -116,7 +116,7 @@
       "eo:bands": [
         {
           "name": "band_data",
-          "description": "POP_SSPs"
+          "description": "Land subsidence prediction. EOExtension"
         }
       ],
       "roles": [

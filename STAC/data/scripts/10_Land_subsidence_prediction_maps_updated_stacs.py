@@ -62,6 +62,7 @@ BUCKET_PROJ = "gca"
 PROJ_NAME = "Land_subsidence_prediction_maps_updated"
 
 # hard-coded STAC templates
+#TODO:Modify cur_cwd to adapt to your computer.
 CUR_CWD = pathlib.Path.cwd()
 STAC_DIR = CUR_CWD / "STAC/data/current"
 # STAC_DIR = r"D:\Projects\STAC\Repositories\global-coastal-atlas\STAC\data\current"
@@ -158,7 +159,7 @@ def create_collection(
     ]
 
     if description is None:
-        description = "Merkens et al. 2016 regionalised the population projection of the SSP-Database. The produced grids have a spatial resolution of 30*30 arcsecond (approx. 1 km at the equator) and represent the population count per cell. A detailed description of the methods is given in the reference below."
+        description = "Description is not available"
 
     if "Creative Commons" in metadata["LICENSE"] and "4.0" in metadata["LICENSE"]:
         metadata["LICENSE"] = "CC-BY-4.0"
@@ -309,7 +310,7 @@ def create_asset(
         eo.Band.create(
             name=asset_title,
             # common_name=asset_title, # Iff in <eo#common-band-names>`
-            description="POP_SSPs",
+            description="Land subsidence prediction. EOExtension",
         )
     ]
     ...
