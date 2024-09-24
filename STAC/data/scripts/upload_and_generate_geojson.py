@@ -1,33 +1,29 @@
+# %%
 import pathlib
-import pandas as pd
 import sys
 from importlib.resources import path
+import os
 
 # make modules importable when running this file as script
 # sys.path.append(str(pathlib.Path(__file__).parent.parent))
 
-# import coclicodata functionalities (TODO: import as package when ETL is decoupled from CoCliCo STAC; Etiënne & Floris now whereabouts)
-sys.path.append(
-    str(pathlib.Path().home().joinpath("Documents", "GitHub", "coclicodata"))
-)  # import functionality from local clone of coclicodata (make sure you pull the latest version)
-
-import os
 import geojson
 import xarray as xr
-from etl import p_drive, rel_root
-from etl.cloud_services import (
+from coclicodata.etl.cloud_utils import (
+    p_drive,
     dataset_to_google_cloud,
     dataset_from_google_cloud,
     geojson_to_mapbox,
+    load_env_variables,
+    load_google_credentials,
 )
-from etl.extract import (
+from coclicodata.etl.extract import (
     clear_zarr_information,
     get_geojson,
     get_mapbox_url,
     zero_terminated_bytes_as_str,
 )
-from etl.keys import load_env_variables, load_google_credentials
-from stac.utils import (
+from coclicodata.coclico_stac.utils import (
     get_dimension_dot_product,
     get_dimension_values,
     get_mapbox_item_id,
@@ -45,36 +41,40 @@ if __name__ == "__main__":
     gca_data_dir = pathlib.Path(
         # p_drive, "1000545-054-globalbeaches", "15_GlobalCoastalAtlas", "datasets"
         p_drive,
-        "11208003-latedeo2022",
-        "020_InternationalDeltaPortfolio",
-        "datasets",
-        "04_extreme_sea_levels_at_different_global_warming_levels",
+        "11209199-climate-resilient-ports",
+        "00_general",
+        "02_COWCLIP_Harvest_Morim_et_al"
     )
-    dataset_dir = gca_data_dir.joinpath("5DeltasESL")
+    dataset_dir = gca_data_dir.joinpath("output_NetCDF")
 
     credentials_dir = pathlib.Path(p_drive, "11205479-coclico", "FASTTRACK_DATA")
 
-    IN_FILENAME = "ESLbyGWL.zarr"  # original filename as on P drive
-    OUT_FILENAME = "ESLbyGWL.zarr"  # file name in the cloud and on MapBox
+    IN_FILENAME = "waves_by_cowclip_cf_merged.zarr"  # original filename as on P drive
+    OUT_FILENAME = "waves_by_cowclip.zarr"  # file name in the cloud and on MapBox
 
     # what variable(s) do you want to show as marker color?
-    VARIABLES = ["esl"]
+    VARIABLES = ["Dm", "Hs", "Tm"]
 
     # what are the dimensions that you want to use as to affect the marker color (never include stations). These will be the drop down menu's.
-    ADDITIONAL_DIMENSIONS = ["gwl", "rp"]
+    ADDITIONAL_DIMENSIONS = ["ens_perc","rcp", "time", "var_stat"]
+
+    # Create np array with 2 datetimes[ns]: 1991-07-02, 2090-07-20
+    times = np.array([np.datetime64('1991-07-02'), np.datetime64('2090-07-20')])
 
     # which of these dimensions do you want to use, i.e. also specify the subsets (if there are a lot maybe make a selection). These will be the values in the drop down menu's. If only one (like mean), specify a value without a list to squeeze the dataset.
     MAP_SELECTION_DIMS = {
-        "gwl": [0.0, 1.5, 3.0, 5.0],
-        "rp": [5.0, 10.0, 20.0, 50.0, 100.0],
-        "ensemble": 50,
+        "ens_perc": [0, 5, 50, 95, 100],
+        "rcp": [4.5, 8.5],
+        "time": np.array(['1991-07-02T12:00:00.000000000', '2090-07-02T12:00:00.000000000'],
+      dtype='datetime64[ns]'),
+        'var_stat': ['avg', 'max', 'p10', 'p50', 'p90', 'p95', 'p99', 'std'],
     }
 
     # which dimensions to ignore (if n... in front of dim, it goes searching in additional_dimension for dim without n in front (ntime -> time)). This spans up the remainder of the dimension space.
     DIMENSIONS_TO_IGNORE = ["stations"]  # dimensions to ignore
 
     # TODO: safe cloud creds in password client
-    load_env_variables(env_var_keys=["MAPBOX_ACCESS_TOKEN"])
+    #load_env_variables(env_var_keys=["MAPBOX_ACCESS_TOKEN"])
     load_google_credentials(
         google_token_fp=credentials_dir.joinpath("google_credentials.json")
     )
@@ -102,7 +102,7 @@ if __name__ == "__main__":
     # fpath = pathlib.Path.home().joinpath(
     #     "data", "tmp", "shoreline_change_projections.zarr"
     # )
-    fpath = dataset_dir.joinpath("ESLbyGWL.zarr")
+    fpath = dataset_dir.joinpath("waves_by_cowclip_cf_merged.zarr")
     ds = xr.open_zarr(fpath)
 
     ds = zero_terminated_bytes_as_str(ds)
@@ -136,9 +136,9 @@ if __name__ == "__main__":
             ds,
             variable=var,
             dimension_combinations=dimcombs,
-            stations_dim=(  # note, make nstations if stations has string, else make stations
-                "nstations"
-            ),
+            #stations_dim=(  # note, make nstations if stations has string, else make stations
+            #    "nstations"
+            #),
         )
 
         # save feature collection as geojson in tempdir and upload to cloud
@@ -163,3 +163,5 @@ if __name__ == "__main__":
             # Note, if mapbox cli raises en util collection error, this should be monkey
             # patched. Instructions are in documentation of the function.
             geojson_to_mapbox(source_fpath=fp, mapbox_url=mapbox_url)
+
+# %%
