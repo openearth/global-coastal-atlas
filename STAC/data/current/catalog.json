@@ -63,24 +63,6 @@
             "href": "./waves_by_cowclip/collection.json",
             "type": "application/json",
             "title": "Waves by the Coordinated Ocean Wave Climate Project"
-        },
-        {
-            "rel": "child",
-            "href": "./waves_by_cowclip/collection.json",
-            "type": "application/json",
-            "title": "Waves by the Coordinated Ocean Wave Climate Project"
-        },
-        {
-            "rel": "child",
-            "href": "./waves_by_cowclip/collection.json",
-            "type": "application/json",
-            "title": "Waves by the Coordinated Ocean Wave Climate Project"
-        },
-        {
-            "rel": "child",
-            "href": "./waves_by_cowclip/collection.json",
-            "type": "application/json",
-            "title": "Waves by the Coordinated Ocean Wave Climate Project"
         }
     ],
     "assets": {

@@ -1,0 +1,48 @@
+{
+    "name": "@types/webpack-hot-middleware",
+    "version": "2.25.5",
+    "description": "TypeScript definitions for webpack-hot-middleware",
+    "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/webpack-hot-middleware",
+    "license": "MIT",
+    "contributors": [
+        {
+            "name": "Benjamin Lim",
+            "url": "https://github.com/bumbleblym",
+            "githubUsername": "bumbleblym"
+        },
+        {
+            "name": "Ron Martinez",
+            "url": "https://github.com/icylace",
+            "githubUsername": "icylace"
+        },
+        {
+            "name": "Chris Abrams",
+            "url": "https://github.com/chrisabrams",
+            "githubUsername": "chrisabrams"
+        },
+        {
+            "name": "Ilya Zelenko",
+            "url": "https://github.com/iliyaZelenko",
+            "githubUsername": "iliyaZelenko"
+        },
+        {
+            "name": "Rodrigo Saboya",
+            "url": "https://github.com/saboya",
+            "githubUsername": "saboya"
+        }
+    ],
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+        "directory": "types/webpack-hot-middleware"
+    },
+    "scripts": {},
+    "dependencies": {
+        "@types/connect": "*",
+        "@types/webpack": "^4"
+    },
+    "typesPublisherContentHash": "682d0e73f48afa384d6f99382318cb911a20adafbab6031e96b2bed9baf61540",
+    "typeScriptVersion": "3.7"
+}
