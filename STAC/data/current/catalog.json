@@ -30,18 +30,6 @@
         },
         {
             "rel": "child",
-            "href": "./world_pop/collection.json",
-            "type": "application/json",
-            "title": "World Population"
-        },
-        {
-            "rel": "child",
-            "href": "./world_gdp/collection.json",
-            "type": "application/json",
-            "title": "World Gridded GDP"
-        },
-        {
-            "rel": "child",
             "href": "./shore_mon_hr/collection.json",
             "type": "application/json",
             "title": "The Shoreline Monitor High Resolution"

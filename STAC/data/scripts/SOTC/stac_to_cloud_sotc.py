@@ -13,14 +13,16 @@ if __name__ == "__main__":
     GCS_PROJECT = "DGDS - I1000482-002"
     BUCKET_NAME = "dgds-data-public"
     BUCKET_PROJ = "gca/SOTC"
-    STAC_NAME = "gca-stac_sotc"
+    STAC_NAME = "gca-sotc"
     IN_DIRNAME = "current"
 
     # hard-coded input params at project level
     coclico_data_dir = pathlib.Path(p_drive, "11207608-coclico", "FASTTRACK_DATA")
 
     # upload dir to gcs from local drive
-    source_dir_fp = str(pathlib.Path(__file__).parent.parent.parent.joinpath(IN_DIRNAME))
+    source_dir_fp = str(
+        pathlib.Path(__file__).parent.parent.parent.joinpath(IN_DIRNAME)
+    )
     # source_dir_fp=r"C:\Users\rowe\Documents\GitHub\global-coastal-atlas\STAC\data\current"
 
     # load google credentials
