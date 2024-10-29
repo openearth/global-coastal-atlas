@@ -64,7 +64,7 @@ PROJ_NAME = "Land_subsidence_prediction_maps_updated"
 # hard-coded STAC templates
 #TODO:Modify cur_cwd to adapt to your computer.
 CUR_CWD = pathlib.Path.cwd()
-STAC_DIR = CUR_CWD / "STAC/data/current"
+STAC_DIR = CUR_CWD / "global-coastal-atlas/STAC/data/current"
 # STAC_DIR = r"D:\Projects\STAC\Repositories\global-coastal-atlas\STAC\data\current"
 
 # hard-coded input params which differ per dataset
@@ -117,6 +117,7 @@ TMP_DIR = pathlib.Path.home() / "tmp"
 def create_collection(
     description: str | None = None, extra_fields: dict[str, Any] | None = None
 ) -> pystac.Collection:
+    
     providers = [
         pystac.Provider(
             name="Deltares",
@@ -135,7 +136,7 @@ def create_collection(
         ),
     ]
 
-    start_datetime = datetime.datetime(2024, 1, 18, tzinfo=datetime.timezone.utc)
+    start_datetime = datetime.datetime(2024, 7, 16, tzinfo=datetime.timezone.utc)
 
     extent = pystac.Extent(
         pystac.SpatialExtent([[0, 299900, 280000, 624900]]),
@@ -224,7 +225,7 @@ def create_collection(
 
 # %%
 def create_item(block, item_id, antimeridian_strategy=antimeridian.Strategy.SPLIT):
-    dst_crs = rasterio.crs.CRS.from_epsg(4326)
+    dst_crs = rasterio.crs.CRS.from_epsg(28992)
 
     # when the data spans a range, it's common practice to use the middle time as the datetime provided
     # in the STAC item. So then you have to infer the start_datetime, end_datetime and get the middle

@@ -152,3 +152,9 @@ dmypy.json
 # Dask
 *dask-worker-space*
 .vscode/settings.json
+STAC/data/current/SPMN/collection.json
+STAC/data/current/SPMN/items/Mild/2050.json
+STAC/data/current/SPMN/items/mild/2050.json
+STAC/data/current/SPMN/items/Mild/2100.json
+STAC/data/current/SPMN/items/sterk/2050.json
+STAC/data/current/SPMN/items/sterk/2100.json
