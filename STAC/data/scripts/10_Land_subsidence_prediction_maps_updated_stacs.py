@@ -74,16 +74,16 @@ DATASET_DIR = "subsidence"
 COLLECTION_ID = "SPMN"  # name of stac collection
 
 # these are added at collection level, determine dashboard graph layout using all items
-PLOT_SERIES = "scenarios"
-PLOT_X_AXIS = "time"
-PLOT_TYPE = "line"
-MIN = 0
-MAX = 3
-LINEAR_GRADIENT = [
-    {"color": "hsl(110,90%,80%)", "offset": "0.000%", "opacity": 100},
-    {"color": "hsla(55,88%,53%,0.5)", "offset": "50.000%", "opacity": 100},
-    {"color": "hsl(0,90%,70%)", "offset": "100.000%", "opacity": 100},
-]
+# PLOT_SERIES = "scenarios"
+# PLOT_X_AXIS = "time"
+# PLOT_TYPE = "line"
+# MIN = 0
+# MAX = 3
+# LINEAR_GRADIENT = [
+#     {"color": "hsl(110,90%,80%)", "offset": "0.000%", "opacity": 100},
+#     {"color": "hsla(55,88%,53%,0.5)", "offset": "50.000%", "opacity": 100},
+#     {"color": "hsl(0,90%,70%)", "offset": "100.000%", "opacity": 100},
+# ]
 
 # define local directories
 coclico_data_dir = p_drive.joinpath(
@@ -118,6 +118,7 @@ def create_collection(
     description: str | None = None, extra_fields: dict[str, Any] | None = None
 ) -> pystac.Collection:
     
+    #TODO: To be updated with metadata
     providers = [
         pystac.Provider(
             name="Deltares",
@@ -128,14 +129,15 @@ def create_collection(
             url="https://deltares.nl",
         ),
         pystac.Provider(
-            "Geographisches Institut, Kiel University",
+            "To be updated from metadata",
             roles=[
                 pystac.provider.ProviderRole.PRODUCER,
             ],
-            url="www.uni-kiel.de",
+            url="To be updated from metadata",
         ),
     ]
 
+    #TODO: To be updated with metadata
     start_datetime = datetime.datetime(2024, 7, 16, tzinfo=datetime.timezone.utc)
 
     extent = pystac.Extent(
@@ -167,7 +169,7 @@ def create_collection(
 
     collection = pystac.Collection(
         id=COLLECTION_ID,
-        title="Subsidence Prediction Maps of the Netherlands",
+        title=metadata["TITLE"],
         description=description,  # noqa: E502
         license=metadata["LICENSE"],
         providers=providers,
@@ -194,12 +196,13 @@ def create_collection(
         "xarray:storage_options": {"token": "google_default"},
     }
 
+    #TODO: To be updated with metadata
     collection.extra_fields["item_assets"] = {
         "data": {
             "type": pystac.MediaType.COG,
-            "title": "Gridded population projections for the coastal zone under the Shared Socioeconomic Pathways",
+            "title": metadata["TITLE"],
             "roles": ["data"],
-            "description": "Merkens et al. 2016 regionalised the population projection of the SSP-Database. The produced grids have a spatial resolution of 30*30 arcsecond (approx. 1 km at the equator) and represent the population count per cell. A detailed description of the methods is given in the reference below.",
+            "description": metadata["DESCRIPTION"],
             **ASSET_EXTRA_FIELDS,
         }
     }
@@ -216,9 +219,9 @@ def create_collection(
 
     # CoclicoExtension.add_to(collection)
     collection.extra_fields["deltares:units"] = metadata["UNITS"]
-    collection.extra_fields["deltares:plot_type"] = PLOT_TYPE
-    collection.extra_fields["deltares:min"] = MIN
-    collection.extra_fields["deltares:max"] = MAX
+    # collection.extra_fields["deltares:plot_type"] = PLOT_TYPE
+    # collection.extra_fields["deltares:min"] = MIN
+    # collection.extra_fields["deltares:max"] = MAX
 
     return collection
 
@@ -311,7 +314,7 @@ def create_asset(
         eo.Band.create(
             name=asset_title,
             # common_name=asset_title, # Iff in <eo#common-band-names>`
-            description="Land subsidence prediction. EOExtension",
+            description=metadata["DESCRIPTION"],
         )
     ]
     ...
@@ -350,6 +353,7 @@ def process_block(
     block = xr.open_dataset(file_path, engine="rasterio", mask_and_scale=False)
 
     # Date when Lincke et al. sent Deltares this data
+    #TODO: To be updated with metadata
     block = block.assign_coords(time=pd.Timestamp(2022, 2, 22).isoformat())
 
     item_id = file_path.relative_to(base_path).as_posix()

@@ -49,29 +49,26 @@
   "item_assets": {
     "data": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Gridded population projections for the coastal zone under the Shared Socioeconomic Pathways",
+      "title": "Subsidence Prediction Maps of the Netherlands",
       "roles": [
         "data"
       ],
-      "description": "Merkens et al. 2016 regionalised the population projection of the SSP-Database. The produced grids have a spatial resolution of 30*30 arcsecond (approx. 1 km at the equator) and represent the population count per cell. A detailed description of the methods is given in the reference below.",
+      "description": "Subsidence prediction maps of the Netherlands produced by Deltares",
       "xarray:storage_options": {
         "token": "google_default"
       }
     }
   },
   "deltares:units": "meters",
-  "deltares:plot_type": "line",
-  "deltares:min": 0,
-  "deltares:max": 3,
   "title": "Subsidence Prediction Maps of the Netherlands",
   "extent": {
     "spatial": {
       "bbox": [
         [
-          3.046475572606294,
-          50.66829922298128,
-          7.275164088626112,
-          53.610055523835456
+          0.0,
+          299900.0,
+          280000.0,
+          624900.0
         ]
       ]
     },
@@ -101,11 +98,11 @@
       "url": "https://deltares.nl"
     },
     {
-      "name": "Geographisches Institut, Kiel University",
+      "name": "To be updated from metadata",
       "roles": [
         "producer"
       ],
-      "url": "www.uni-kiel.de"
+      "url": "To be updated from metadata"
     }
   ],
   "assets": {
