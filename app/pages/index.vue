@@ -84,7 +84,6 @@ function instantiateDraw(map) {
 
   draw.value = new MapboxDraw({
     displayControlsDefault: false,
-    defaultMode: 'draw_polygon',
   })
 
   map.addControl(draw.value)
