@@ -1,318 +1,112 @@
 <script setup lang="ts">
-import { MapboxMap, MapboxLayer } from '@studiometa/vue-mapbox-gl'
+import { MapboxMap } from '@studiometa/vue-mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
-import groupBy from 'lodash/groupBy'
-import mean from 'lodash/mean'
 import notebookTemplate from '~/assets/sliced_dataset_workbench.ipynb?raw'
+import * as turf from '@turf/turf'
 
-import itemShape from '../../STAC/data/current/sub_threat/eapa-mapbox/eapa-mapbox-time-2010.json'
-import catalogShape from '../../STAC/data/current/catalog.json'
 import collectionShape from '../../STAC/data/current/sub_threat/collection.json'
-import { getDataByPolygon } from '~/utils/zarr'
 
 import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { LineChart, PieChart } from 'echarts/charts'
-import { EChartsOption } from 'echarts/types/dist/echarts'
 import {
   TitleComponent,
   TooltipComponent,
   LegendComponent,
   GridComponent,
 } from 'echarts/components'
-import VChart, { THEME_KEY } from 'vue-echarts'
-import { endsWith } from 'lodash'
+import { THEME_KEY } from 'vue-echarts'
+import CollectionSelector from '~/components/CollectionSelector.vue'
+import { LayerLink } from '~/types'
+import Layer from '~/components/Layer.vue'
+import {
+  BookOpen,
+  Hammer,
+  Home,
+  Info,
+  Loader,
+  Route,
+  Trash,
+} from 'lucide-vue-next'
 
-type ItemType = typeof itemShape
-type CatalogType = typeof catalogShape
 type CollectionType = typeof collectionShape
-
-type Option =
-  | {
-      label: string
-      value: number
-    }
-  | {
-      label: string
-      value: string
-    }
-
-let url = useRequestURL()
 
 let {
   public: { mapboxToken, pdfEndpoint },
 } = useRuntimeConfig()
 
-let baseURL = url.protocol + '//' + url.host + '/stac'
+// let baseURL = url.protocol + '//' + url.host + '/stac'
 
-let catalogPath = `${baseURL}/catalog.json`
+// let catalogPath = `${baseURL}/catalog.json`
 
 let headers = useRequestHeaders()
 
-let { data: catalogJson } = await useFetch<CatalogType>(catalogPath, {
-  headers,
-})
+// let { data: catalogJson } = await useFetch<CatalogType>(catalogPath, {
+//   headers,
+// })
 
-let catalog = catalogJson.value
+// let catalog = catalogJson.value
 
-let childrenLinks = catalog?.links.filter((link) => link.rel === 'child') ?? []
+// let childrenLinks = catalog?.links.filter((link) => link.rel === 'child') ?? []
 
-let collections = (
-  await Promise.all(
-    childrenLinks.map(async (childLink) => {
-      let { data } = await useFetch<CollectionType>(
-        `${baseURL}/${childLink.href}`,
-        {
-          headers,
+let collectionLinks = [
+  'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/cfhp/collection.json',
+  'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/slp/collection.json',
+  'https://raw.githubusercontent.com/openearth/coclicodata/62ccb63944edaaadecb140eca57003a3b95d091d/current/deltares-delta-dtm/collection.json',
+]
+
+const { data: collections } = await useAsyncData('collections', async () => {
+  return Promise.all(
+    collectionLinks.map(async (collectionLink) => {
+      const res = await fetch(collectionLink, {
+        headers: {
+          ...headers,
+          Accept: 'application/json',
         },
-      )
-      return data.value
+      })
+      const text = await res.text()
+      const data = JSON.parse(text)
+      return { ...data, href: collectionLink } as CollectionType & {
+        href: string
+      }
     }),
   )
-).filter((collection) => collection?.links.some((link) => link.rel === 'item'))
-
-let activeCollectionId = ref(collections[0]?.id)
-
-let activeCollection = computed(() => {
-  return collections.find(
-    (collection) => collection?.id === activeCollectionId.value,
-  )
 })
 
-let summaries = computed(() => {
-  return activeCollection.value?.summaries
-})
-
-// let { data: activeCollection } = await useFetch(currentCollectionPath);
-
-// let activeCollection = ref(currentCollection);
-
-let variables = ref(
-  Object.entries(summaries.value ?? {}).reduce((acc, [key, summary]) => {
-    return {
-      ...acc,
-      [key]: summary.options[0],
-    }
-  }, {} as Record<string, Option>),
-)
-
-watchEffect(
-  () => {
-    variables.value = Object.entries(summaries.value ?? {}).reduce(
-      (acc, [key, summary]) => {
-        return {
-          ...acc,
-          [key]: summary.options[0],
-        }
-      },
-      {} as Record<string, Option>,
-    )
-  },
-  { flush: 'pre' },
-)
-
-let activeItemUrl = computed(() => {
-  if (!activeCollection.value) return
-  let foundLink =
-    activeCollection.value.links
-      .filter((l) => l.rel === 'item')
-      .find((link) => {
-        return Object.entries(variables.value).every(
-          ([key, option]) =>
-            link.properties?.[key as keyof typeof link.properties] ===
-            option.value,
-        )
-      }) ?? activeCollection.value.links.filter((l) => l.rel === 'item')[0]
-
-  return foundLink?.href
-})
-
-let { data } = await useAsyncData(
-  () =>
-    $fetch(`${baseURL}/${activeCollectionId.value}/${activeItemUrl.value}`, {
-      headers,
-    }),
-  { watch: [activeItemUrl] },
-)
-
-let geojson = computed(() => {
-  // let item = JSON.parse(data.value);
-  let item = data.value
-
-  if (!item?.assets) return {}
-
-  let { mapbox } = item.assets
-  let { properties } = item
-
-  // if (visual) {
-  //   return {
-  //     id,
-  //     type: "raster",
-  //     source: {
-  //       type: "raster",
-  //       tiles: [visual.href],
-  //       tileSize,
-  //     },
-  //   };
-  // }
-
-  return {
-    id: item.id,
-    type: properties['deltares:type'],
-    source: {
-      type: mapbox.type,
-      url: mapbox.href,
-    },
-    'source-layer': mapbox.source,
-    paint: properties['deltares:paint'],
-  }
-})
-
-const option = ref(null)
-let draw = ref<MapboxDraw>(null)
+let draw = ref<MapboxDraw | null>(null)
 let polygons = ref([])
+let selectedCollections = ref<string[]>([])
 
 function instantiateDraw(map) {
-  draw = new MapboxDraw({
+  if (!process.client) return
+
+  draw.value = new MapboxDraw({
     displayControlsDefault: false,
-    controls: {
-      polygon: true,
-      trash: true,
-    },
     defaultMode: 'draw_polygon',
   })
 
-  map.addControl(draw)
+  map.addControl(draw.value)
 
   map.on('draw.create', updateArea)
   map.on('draw.delete', updateArea)
   map.on('draw.update', updateArea)
 
   async function updateArea(e) {
-    const data = draw.getAll()
+    const data = draw.value.getAll()
     polygons.value = data.features
 
-    let polygonJson = encodeURIComponent(
-      JSON.stringify(draw.getAll().features[0].geometry),
-    )
-
-    pdfLink.value = `${pdfEndpoint}?polygon=${polygonJson}`
-
-    return
-
-    let { allData, indices, rpValues, gwlValues } = await getDataByPolygon(data)
-
-    let dimensions = ['rp', 'gwl', 'ensemble', 'nstations']
-
-    function flattenArray(
-      arr: any[],
-      props: Record<string, any>,
-      dimension: number,
-    ) {
-      return arr.reduce((acc, curr, index) => {
-        return acc.concat(
-          Array.isArray(curr) || curr instanceof Float64Array
-            ? flattenArray(
-                [...curr],
-                {
-                  ...props,
-                  [dimensions[dimension]]: index,
-                },
-                dimension + 1,
-              )
-            : indices.includes(index)
-            ? {
-                ...props,
-                [dimensions[dimension]]: index,
-                value: curr,
-              }
-            : {},
-        )
-      }, [])
+    if (data.features.length > 0) {
+      let polygonJson = encodeURIComponent(
+        JSON.stringify(data.features[0].geometry),
+      )
+      pdfLink.value = `${pdfEndpoint}?polygon=${polygonJson}`
+    } else {
+      pdfLink.value = ''
+      selectedCollections.value = []
     }
-
-    let rows = flattenArray(allData.data, {}, 0)
-
-    let bucketDimension = 'gwl'
-    let aggregateBy = 'rp'
-    let aggregateFunction = mean
-
-    let groupedBuckets = Object.values(groupBy(rows, bucketDimension))
-    let groupedByAggregate = groupedBuckets.map((values) =>
-      Object.values(groupBy(values, aggregateBy)),
-    )
-    let aggregated = groupedByAggregate.map((values) =>
-      values.map((nestedValues) =>
-        aggregateFunction(nestedValues.map((item) => item.value)),
-      ),
-    )
-
-    let series: EChartsOption['series'] = aggregated.map((values, index) => {
-      return {
-        name: gwlValues[index],
-        type: 'line',
-        data: values,
-      }
-    })
-    // Transform data into ECharts format
-    // for (const [rp, gwlArray] of Object.entries(allData.data)) {
-    //   for (const [gwl, allValues] of Object.entries(gwlArray)) {
-    //     if (!series.some((item) => item.name === gwlValues[gwl])) {
-    //       series.push({
-    //         name: gwlValues[gwl],
-    //         type: 'line',
-    //         data: [],
-    //       })
-    //     }
-
-    //     let values = indices.map((i) => allValues[i])
-    //     let gwlIndex = series.findIndex((item) => item.name === gwlValues[gwl])
-    //     series[gwlIndex].data.push(
-    //       values.reduce((acc, curr) => acc + curr, 0) / values.length,
-    //     )
-    //   }
-    // }
-
-    option.value = {
-      title: {
-        text: 'ESL',
-        left: 'center',
-      },
-      tooltip: {
-        trigger: 'axis',
-        // formatter: "{a} <br/>{b} : {c} ({d}%)"
-      },
-      xAxis: {
-        type: 'category',
-        data: [...rpValues],
-      },
-      yAxis: {
-        type: 'value',
-      },
-      legend: {
-        orient: 'horizontal',
-        left: 'center',
-        data: [...gwlValues],
-      },
-      series,
-    }
-
-    // if (data.features.length > 0) {
-    //   const area = turf.area(data)
-    //   // Restrict the area to 2 decimal points.
-    //   const rounded_area = Math.round(area * 100) / 100
-    //   answer.innerHTML = `<p><strong>${rounded_area}</strong></p><p>square meters</p>`
-    // } else {
-    //   answer.innerHTML = ''
-    //   if (e.type !== 'draw.delete') alert('Click the map to draw a polygon.')
-    // }
   }
-}
-
-let chartInit = {
-  height: '400px',
 }
 
 use([
@@ -328,8 +122,10 @@ use([
 provide(THEME_KEY, 'light')
 
 async function downloadNotebook() {
+  if (!process.client) return
+
   let polygonJson = JSON.stringify(
-    draw.getAll().features[0].geometry,
+    draw.value?.getAll().features[0].geometry,
   ).replaceAll('"', '\\"')
   let content = notebookTemplate
     .replace('__POLYGON__', polygonJson)
@@ -349,6 +145,8 @@ async function downloadNotebook() {
 
 let isLoadingPdf = ref(false)
 async function downloadPdf() {
+  if (!process.client) return
+
   isLoadingPdf.value = true
   let file = await $fetch(`${pdfLink.value}`, {
     headers,
@@ -366,98 +164,158 @@ async function downloadPdf() {
 }
 
 let pdfLink = ref('')
+
+let itemLinks = ref<Record<string, LayerLink>>({})
+
+function isCollectionIntersecting(collection: CollectionType) {
+  if (!polygons.value?.length) return false
+  if (!collection.extent?.spatial?.bbox?.[0]) return false
+
+  const bbox = turf.bbox(polygons.value[0])
+  const collectionBboxPolygon = turf.bboxPolygon(
+    collection.extent.spatial.bbox[0],
+  )
+  const drawnBboxPolygon = turf.bboxPolygon(bbox)
+
+  return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
+}
 </script>
 
 <template>
   <div
-    style="
-      position: fixed;
-      width: 300px;
-      left: 0;
-      z-index: 100;
-      background-color: white;
-    "
+    class="p-3 fixed top-0 left-0 w-full z-10 flex items-center justify-center"
   >
-    <v-radio-group v-model="activeCollectionId">
-      <v-expansion-panels :model-value="activeCollectionId">
-        <v-expansion-panel
-          :value="collection?.id"
-          v-for="collection in collections"
-          :key="collection?.id"
-        >
-          <v-expansion-panel-title readonly hide-actions>
-            <v-radio :label="collection?.title" :value="collection?.id" />
-          </v-expansion-panel-title>
-          <v-expansion-panel-text>
-            <div
-              v-for="(summary, key) in collection?.summaries"
-              style="display: flex; gap: 8px; flex-wrap: wrap"
-            >
-              <v-select
-                :label="summary.label"
-                :items="summary.options"
-                item-title="label"
-                item-value="value"
-                density="compact"
-                return-object
-                v-model="variables[key]"
-              />
-            </div>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-    </v-radio-group>
-  </div>
-  <MapboxMap
-    :access-token="mapboxToken"
-    map-style="mapbox://styles/anoet/cljpm695q004t01qo5s7fhf7d"
-    style="height: 100vh"
-    @mb-created="instantiateDraw"
-  >
-    <MapboxLayer
-      v-if="geojson.id"
-      :key="geojson.id"
-      :id="geojson.id"
-      :options="geojson"
-    />
-  </MapboxMap>
+    <div
+      class="bg-white shadow-lg rounded h-10 px-5 text-sm flex items-center justify-center gap-8"
+    >
+      <a
+        href="https://github.com/Deltares-research/IDP-workbench"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center h-full gap-1.5 text-gray-600 hover:text-gray-900 focus:text-gray-900"
+      >
+        <Hammer class="size-4" /> Workbench
+      </a>
 
-  <!--<div
-    v-if="option"
-    style="
-      position: fixed;
-      right: 0;
-      bottom: 0;
-      z-index: 100;
-      background-color: white;
-      width: 400px;
-      height: 400px;
-    "
-  >
-    <client-only>
-      <v-chart :option="option" class="chart" :init-options="chartInit" />
-    </client-only>
-  </div>-->
+      <a
+        href="https://publicwiki.deltares.nl/spaces/viewspace.action?key=LTSV"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center h-full gap-1.5 text-gray-600 hover:text-gray-900 focus:text-gray-900"
+      >
+        <BookOpen class="size-4" /> Wiki
+      </a>
+
+      <a
+        href="https://github.com/Deltares-research/IDP-workbench"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center justify-center h-full gap-1.5 text-gray-600 hover:text-gray-900 focus:text-gray-900"
+      >
+        <Info class="size-4" /> About
+      </a>
+    </div>
+  </div>
 
   <div
-    v-if="polygons?.length > 0"
-    style="
-      position: absolute;
-      right: 32px;
-      bottom: 80px;
-      display: flex;
-      gap: 12px;
-      flex-direction: column;
-    "
+    class="h-fit max-h-full overflow-y-auto fixed w-[320px] top-3 left-3 z-10 rounded"
   >
-    <v-btn @click="downloadNotebook" prepend-icon="mdi-language-python"
-      >Download Notebook</v-btn
+    <client-only>
+      <v-expansion-panels class="rounded shadow-lg">
+        <CollectionSelector
+          v-for="collection in collections || []"
+          :key="collection.id"
+          :collection="collection"
+          :active-value="itemLinks[collection.id]"
+          @change-active="itemLinks[collection.id] = $event"
+        />
+      </v-expansion-panels>
+    </client-only>
+  </div>
+  <client-only>
+    <MapboxMap
+      :access-token="mapboxToken"
+      map-style="mapbox://styles/anoet/cljpm695q004t01qo5s7fhf7d"
+      style="height: 100vh"
+      @mb-created="instantiateDraw"
     >
-    <v-btn
-      @click="downloadPdf"
-      :loading="isLoadingPdf"
-      prepend-icon="mdi-file-pdf-box"
-      >Download PDF</v-btn
-    >
+      <template
+        v-for="itemLink in Object.values(itemLinks)"
+        :key="itemLink?.href"
+      >
+        <Layer v-if="itemLink" :link="itemLink" />
+      </template>
+    </MapboxMap>
+  </client-only>
+
+  <div
+    class="fixed right-3 top-3 w-[320px] bg-white shadow-lg p-4 z-10 overflow-y-auto rounded"
+  >
+    <div v-if="!polygons?.length" class="text-center p-4">
+      <p class="text-sm text-gray-600">
+        Draw a polygon on the map to select your area of interest
+      </p>
+      <v-btn
+        variant="outlined"
+        @click="draw?.changeMode('draw_polygon')"
+        class="mt-3"
+      >
+        <template v-if="draw?.getMode() === 'draw_polygon'">
+          <Loader class="size-4 animate-spin mr-1.5" /> Waiting for
+          drawing&hellip;
+        </template>
+        <template v-else>
+          <Route class="size-4 mr-1.5" /> Draw Polygon
+        </template>
+      </v-btn>
+    </div>
+
+    <template v-if="polygons?.length">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-semibold">Available Datasets</h3>
+        <v-btn variant="outlined" @click="draw?.trash()">
+          <Trash class="size-4 mr-1.5" /> Clear
+        </v-btn>
+      </div>
+
+      <div v-for="collection in collections" :key="collection.id">
+        <v-checkbox
+          v-model="selectedCollections"
+          :value="collection.id"
+          :label="collection.title || collection.id"
+          :disabled="!isCollectionIntersecting(collection)"
+          :hint="
+            !isCollectionIntersecting(collection)
+              ? 'Dataset not available in selected area'
+              : undefined
+          "
+          :persistent-hint="!isCollectionIntersecting(collection)"
+        />
+      </div>
+
+      <div class="mt-6 flex flex-col gap-3">
+        <v-btn
+          color="primary"
+          block
+          disabled
+          @click="downloadNotebook"
+          prepend-icon="mdi-language-python"
+          title="Coming soon"
+        >
+          Analyze in Notebook
+        </v-btn>
+
+        <v-btn
+          color="secondary"
+          block
+          :disabled="!selectedCollections.length"
+          :loading="isLoadingPdf"
+          @click="downloadPdf"
+          prepend-icon="mdi-file-pdf-box"
+        >
+          Download Report
+        </v-btn>
+      </div>
+    </template>
   </div>
 </template>

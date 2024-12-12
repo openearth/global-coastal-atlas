@@ -25,10 +25,13 @@
     "@mapbox/mapbox-gl-draw": "^1.4.3",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@mdi/font": "^7.3.67",
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "@studiometa/vue-mapbox-gl": "^2.2.0",
     "@turf/turf": "^6.5.0",
+    "D": "^1.0.0",
     "echarts": "^5.4.3",
     "lodash": "^4.17.21",
+    "lucide-vue-next": "^0.468.0",
     "mapbox-gl": "^2.15.0",
     "vue-echarts": "^6.6.2",
     "zarr": "^0.6.2"

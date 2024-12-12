@@ -17,16 +17,13 @@ export default defineNuxtConfig({
         config.plugins?.push(vuetify({ autoImport: true }))
       })
     },
+    '@nuxtjs/tailwindcss',
   ],
   vite: {
     server: {
       fs: {
-        allow: [
-          "C:/SnapVolumesTemp/MountPoints/",
-          "..",
-          "."
-        ]
-      }
+        allow: ['C:/SnapVolumesTemp/MountPoints/', '..', '.'],
+      },
     },
     vue: {
       template: {
