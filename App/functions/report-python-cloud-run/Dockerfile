@@ -48,4 +48,21 @@ RUN apt-get update && \
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
+# Clone the coclicodata and global-coastal-atlas repositories STAC catalogs
+RUN mkdir -p /app/data/catalogs
+RUN cd /app/data/catalogs && \
+    git clone -n --depth=1 --filter=tree:0 https://github.com/openearth/coclicodata.git && \
+    cd coclicodata && \
+    git sparse-checkout set --no-cone /current && \
+    git checkout && \
+    cd /app/data/catalogs && \
+    git clone -b subsidence_etienne -n --depth=1 --filter=tree:0 https://github.com/openearth/global-coastal-atlas.git && \
+    cd global-coastal-atlas && \
+    git sparse-checkout set --no-cone /STAC/data/current && \
+    git checkout && \
+    cd /app
+
+ENV STAC_ROOT_DEFAULT="./data/catalogs/global-coastal-atlas/STAC/data/current/catalog.json"
+ENV STAC_COCLICO="./data/catalogs/coclicodata/current/catalog.json"
+
 CMD uv run --with gunicorn gunicorn --bind :8080 --workers 1 --threads 8 --timeout 0 main:app

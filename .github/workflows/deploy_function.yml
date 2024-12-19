@@ -47,8 +47,10 @@ name: Build and Deploy Report function to Cloud Run
 on:
   push:
     branches:
-      - "main"
-      - report-pdf-cloud-run
+      - main
+  pull_request:
+    branches:
+      - main
 
 env:
   PROJECT_ID: dgds-i1000482-002
@@ -97,6 +99,7 @@ jobs:
       # END - Docker auth and build
 
       - name: Deploy to Cloud Run
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v2
         with:
@@ -111,4 +114,5 @@ jobs:
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: echo ${{ steps.deploy.outputs.url }}

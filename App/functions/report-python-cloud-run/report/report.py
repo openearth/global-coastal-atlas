@@ -1,6 +1,7 @@
 # %%
 from dataclasses import dataclass
 from io import BytesIO
+import os
 from pathlib import Path
 
 # import fitz  # type: ignore
@@ -19,9 +20,15 @@ from report.datasets.slr import get_slr_content
 from datetime import datetime
 
 POLYGON_DEFAULT = """{"coordinates":[[[2.3915028831735015,51.7360381463356],[5.071438932343227,50.89406012060684],[6.955992986278972,51.49577449585874],[7.316959036046541,53.18700330195111],[6.636226617140238,53.961350092621075],[3.8631377106468676,54.14643052276938],[2.1218958391276317,53.490771261555096],[2.3915028831735015,51.7360381463356]]],"type":"Polygon"}"""
-STAC_ROOT_DEFAULT = "https://raw.githubusercontent.com/openearth/global-coastal-atlas/subsidence_etienne/STAC/data/current/catalog.json"
-STAC_COCLICO = (
-    "https://raw.githubusercontent.com/openearth/coclicodata/main/current/catalog.json"
+# Get stac catalog location from environment variable if available otherwise use default
+# this is used to use local catalog instead of remote versions in deployed versions
+STAC_ROOT_DEFAULT = os.getenv(
+    "STAC_ROOT_DEFAULT",
+    "https://raw.githubusercontent.com/openearth/global-coastal-atlas/subsidence_etienne/STAC/data/current/catalog.json",
+)
+STAC_COCLICO = os.getenv(
+    "STAC_COCLICO",
+    "https://raw.githubusercontent.com/openearth/coclicodata/main/current/catalog.json",
 )
 
 
