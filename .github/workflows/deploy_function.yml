@@ -48,7 +48,7 @@ on:
   push:
     branches:
       - "main"
-      - report-python-cloud-run
+      - report-pdf-cloud-run
 
 env:
   PROJECT_ID: dgds-i1000482-002
