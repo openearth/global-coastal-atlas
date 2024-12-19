@@ -38,9 +38,14 @@ ADD . /app
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev
 
+# Accept EULA and install Microsoft fonts (including Arial)
+RUN apt-get update && \
+    echo "deb http://deb.debian.org/debian bookworm contrib non-free" > /etc/apt/sources.list.d/contrib.list && \
+    apt-get update && \
+    echo "ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true" | debconf-set-selections && \
+    apt-get install -y ttf-mscorefonts-installer
+
 # Place executables in the environment at the front of the path
 ENV PATH="/app/.venv/bin:$PATH"
 
-# CMD uv run --with waitress waitress-serve main:app
-# CMD uv run python main.py
 CMD uv run --with gunicorn gunicorn --bind :8080 --workers 1 --threads 8 --timeout 0 main:app
