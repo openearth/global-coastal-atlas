@@ -2,22 +2,121 @@
 {{ css }}
 </style>
 
-<h1>Coastal report</h1>
-<p>In this report some coastal characteristics of the selected area are explained.</p>
+<div>
+    <h1>The State of the Coast Report</h1>
+</div>
 
 {% for dataset in data.datasets %}
+
+    {% if dataset.dataset_id == "overview" or dataset.dataset_id == "shoreline_change" or dataset.dataset_id == "land_sub" %}
+        <div class="section-grid">
+    {% else %}
+        <div class="section-grid" style="background-color: rgba(8,12,218,0.05);">
+    {% endif %}
+
+
+    {% if dataset.dataset_id == "sediment_class" %}
+        <h3>The <span style="color: rgb(8,12,218)">Present</span> Day</h3>
+    {% elif dataset.dataset_id == "shoreline_change" %}
+        <h3>The <span style="color: rgb(8,12,218)">Historical</span> Trends</h3>
+    {% elif dataset.dataset_id == "slr" %}
+        <h3>The <span style="color: rgb(8,12,218)">Future</span> Drivers</h3>
+    {% endif %}
+
+    {% if dataset.dataset_id == "slr_RCP26" %}
+        <div>
+            <p>The Most Optimistic Scenario</p>
+            <p>The most optimistic scenario refers to the most sustainable and green scenario in the future. In particular, this refers to SSP126 or RCP2.6 scenarios. </p>
+        </div>
+    {% elif dataset.dataset_id == "slr_RCP45" %}
+        <div>
+            <p>The Intermediate Scenario</p>
+            <p>Intermediate scenario refers to the medium scenario in the future, which refers to SSP245 or RCP4.5 scenarios.</p>
+        </div>
+    {% elif dataset.dataset_id == "slr_RCP85" %}
+        <div>
+            <p>The Most Pessimistic Scenario</p>
+            <p>The most peesimistic scenario refers to the worst climate change scenario in the future. This refers to SSP585 or RCP8.5 scenarios.</p>
+        </div>
+    {% endif %}
+
     <h2>{{ dataset.title }}</h2>
-    <p>{{ dataset.text }}</p>
 
-    {% if dataset.image_svg %}
-    {{ dataset.image_svg }}
-    {% endif %}
+        {% if dataset.dataset_id == "world_pop" or dataset.dataset_id == "slr" or  dataset.dataset_id == "esl_RCP26" or  dataset.dataset_id == "esl_RCP45" or  dataset.dataset_id == "esl_RCP85" %}
+        <div class="left-right-grid">
+            <div class="main-text">
+                <p>{{ dataset.text }}</p>
+            </div>
 
-    {% if dataset.image_base64 %}
-    <img src="data:image/png;base64,{{ dataset.image_base64 }}" />
-    {% endif %}
+            <div>
+                {% if dataset.image_svg %}
+                {{ dataset.image_svg }}
+                {% endif %}
+
+                {% if dataset.image_base64 %}
+                <img class="image" src="data:image/png;base64,{{ dataset.image_base64 }}" />
+                {% endif %}
+            </div>
+        </div>
+
+        {% elif dataset.dataset_id == "overview" %}
+        <div class="overview-grid" style="grid-template-rows: 7fr 3fr">
+            <div class="top-bottom-grid">
+                <div>
+                    <p>{{ dataset.text }}</p>
+                </div>
+
+                <div>
+                    {% if dataset.image_svg %}
+                        {{ dataset.image_svg }}
+                    {% endif %}
+
+                    {% if dataset.image_base64 %}
+                        <img class="image" src="data:image/png;base64,{{ dataset.image_base64 }}" />
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="left-right-grid" style="grid-template-columns: 6fr 4fr; padding-top: 20px">
+                <div class="main-text">
+                    <h2>Contents</h2>
+                </div>
+
+                <div style="border-left: 1px solid black; height: 1 fr; padding-left: 30px">
+                    <h4>The Present Day</h4>
+                    <p style="text-indent: 15px">Coastal Types</p>
+                    <p style="text-indent: 15px">The Population</p>
+                    <h4>The Historical Trends</h4>
+                    <p style="text-indent: 15px">Historical Shoreline Change (1984-2021)</p>
+                    <h4>The Future Drivers</h4>
+                    <p style="text-indent: 15px">Sea Level Rise Projection</p>
+                    <p style="text-indent: 15px">Future Shoreline Projections in 2050</p>
+                    <p style="text-indent: 15px">Future Shoreline Projections in 2100</p>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="top-bottom-grid">
+            <div>
+                <p>{{ dataset.text }}</p>
+            </div>
+
+            <div>
+                {% if dataset.image_svg %}
+                    {{ dataset.image_svg }}
+                {% endif %}
+
+                {% if dataset.image_base64 %}
+                    <img class="image" src="data:image/png;base64,{{ dataset.image_base64 }}" />
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
     
 {% endfor %}
+
 {% if not data.datasets %}
     <p>Unfortunately there was no data available in the region you selected.</p>
 {% endif %}

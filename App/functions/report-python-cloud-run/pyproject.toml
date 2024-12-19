@@ -1,0 +1,28 @@
+[project]
+name = "gca-report"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "flask>=3.1.0",
+    "geopandas>=1.0.1",
+    "ipykernel>=6.29.5",
+    "jinja2>=3.1.4",
+    "langchain>=0.3.11",
+    "matplotlib>=3.9.3",
+    "numba>=0.60.0",
+    "openai>=1.57.1",
+    "opencv-python>=4.10.0.84",
+    "pymupdf>=1.25.1",
+    "pystac-client>=0.7",
+    "resilientplotterclass",
+    "rioxarray>=0.16.0",
+    "sentence-transformers>=3.3.1",
+    "weasyprint>=63.1",
+    "xarray>=2024.4.0",
+    "zarr>=2.18.2",
+]
+
+[tool.uv.sources]
+resilientplotterclass = { git = "https://github.com/Deltares-research/ResilientPlotterClass" }

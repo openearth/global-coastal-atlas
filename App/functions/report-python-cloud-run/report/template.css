@@ -1,5 +1,112 @@
 html,
+
 body {
-  margin: 0;
-  padding: 0;
+  font-family: Arial;
+  text-align: justify;
+  text-justify: auto;
+  line-height: 1.2;
+}
+
+h1 {
+  color: rgb(0, 179, 137);
+  font-size: 35px;
+  padding-left: 14mm;
+}
+
+h2 {
+  color: rgb(0, 204, 150); 
+  margin-top: 0;
+}
+
+h3 {
+  font-style: bold;
+  font-size: 26px;
+  margin-top: 0;
+}
+
+h4 {
+  font-style: bold;
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+div{
+  border-width: 0px;
+  border-style: solid;
+  border-color: gray;
+  break-inside: avoid;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+p{
+  font-size: 12px;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+
+.image{
+  width: 100%;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.section-grid{
+  background-color: None;
+  padding-left: 14mm;
+  padding-right: 14mm;
+  padding-top: 25px;
+}
+
+.left-right-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.top-bottom-grid{
+
+}
+
+.main-text{
+  height: 70%;
+}
+
+.catchy-text{
+  height: 30%;
+}
+
+@page {
+  size: A4;
+  margin-left: 0;
+  margin-right: 0;
+
+  @bottom-right {
+    content: 'Page ' counter(page) ' of ' counter(pages);
+    font-size: 12px;
+    margin-right: 14mm;
+  }
+  
+  @bottom-left {
+    content: " ";
+    background-image: url(./report/images/Deltares_pay-off_D-blauw_RGB.svg);
+    background-repeat: no-repeat;
+    width: 200px;
+    text-align: center;
+    margin-left: 14mm;
+  }
+
+  @top-right {
+    content: " ";
+    background-image: url(./report/images/Deltares_logo_D-blauw_RGB.svg);
+    background-repeat: no-repeat;
+    height: 45px;
+    width: 100px;
+    text-align: center;
+    margin-right: 14mm;
+  }
+
 }
