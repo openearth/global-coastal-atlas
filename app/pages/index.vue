@@ -11,8 +11,6 @@ import { LayerLink } from '~/types'
 import Layer from '~/components/Layer.vue'
 import { BookOpen, Hammer, Info, Loader, Route, X } from 'lucide-vue-next'
 
-import countries from '../../countries.json'
-
 import Map from '~/components/Map.vue'
 import { useCollections } from '~/composables/useCollections'
 
@@ -96,13 +94,18 @@ function isCollectionIntersecting(collection: CollectionType) {
   return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
 }
 
+let url = useRequestURL()
+let { data: countries } = await useFetch(
+  url.protocol + '//' + url.host + '/countries.json',
+)
+
 // Find countries that intersect with drawn polygons
 let intersectingCountries = computed(() => {
   if (!polygons.value?.length) return []
 
   const drawnPolygon = polygons.value[0]
 
-  return countries.features.filter((country) => {
+  return countries.value?.features.filter((country) => {
     return turf.intersect(drawnPolygon, country.geometry) !== null
   })
 })
