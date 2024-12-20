@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { MapboxMap } from '@studiometa/vue-mapbox-gl'
-import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import notebookTemplate from '~/assets/sliced_dataset_workbench.ipynb?raw'
@@ -8,28 +6,15 @@ import * as turf from '@turf/turf'
 
 import collectionShape from '../../STAC/data/current/sub_threat/collection.json'
 
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { LineChart, PieChart } from 'echarts/charts'
-import {
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-} from 'echarts/components'
-import { THEME_KEY } from 'vue-echarts'
 import CollectionSelector from '~/components/CollectionSelector.vue'
 import { LayerLink } from '~/types'
 import Layer from '~/components/Layer.vue'
-import {
-  BookOpen,
-  Hammer,
-  Home,
-  Info,
-  Loader,
-  Route,
-  Trash,
-} from 'lucide-vue-next'
+import { BookOpen, Hammer, Info, Loader, Route, X } from 'lucide-vue-next'
+
+import countries from '../../countries.json'
+
+import Map from '~/components/Map.vue'
+import { useCollections } from '~/composables/useCollections'
 
 type CollectionType = typeof collectionShape
 
@@ -37,94 +22,27 @@ let {
   public: { mapboxToken, pdfEndpoint },
 } = useRuntimeConfig()
 
-// let baseURL = url.protocol + '//' + url.host + '/stac'
-
-// let catalogPath = `${baseURL}/catalog.json`
-
 let headers = useRequestHeaders()
-
-// let { data: catalogJson } = await useFetch<CatalogType>(catalogPath, {
-//   headers,
-// })
-
-// let catalog = catalogJson.value
-
-// let childrenLinks = catalog?.links.filter((link) => link.rel === 'child') ?? []
 
 let collectionLinks = [
   'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/cfhp/collection.json',
   'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/slp/collection.json',
   'https://raw.githubusercontent.com/openearth/coclicodata/62ccb63944edaaadecb140eca57003a3b95d091d/current/deltares-delta-dtm/collection.json',
+  'http://localhost:3000/collections/subsidence.json',
 ]
 
-const { data: collections } = await useAsyncData('collections', async () => {
-  return Promise.all(
-    collectionLinks.map(async (collectionLink) => {
-      const res = await fetch(collectionLink, {
-        headers: {
-          ...headers,
-          Accept: 'application/json',
-        },
-      })
-      const text = await res.text()
-      const data = JSON.parse(text)
-      return { ...data, href: collectionLink } as CollectionType & {
-        href: string
-      }
-    }),
-  )
-})
+let collections = await useCollections({ collectionLinks })
 
-let draw = ref<MapboxDraw | null>(null)
 let polygons = ref([])
 let selectedCollections = ref<string[]>([])
 
-function instantiateDraw(map) {
-  if (!process.client) return
-
-  draw.value = new MapboxDraw({
-    displayControlsDefault: false,
-  })
-
-  map.addControl(draw.value)
-
-  map.on('draw.create', updateArea)
-  map.on('draw.delete', updateArea)
-  map.on('draw.update', updateArea)
-
-  async function updateArea(e) {
-    const data = draw.value.getAll()
-    polygons.value = data.features
-
-    if (data.features.length > 0) {
-      let polygonJson = encodeURIComponent(
-        JSON.stringify(data.features[0].geometry),
-      )
-      pdfLink.value = `${pdfEndpoint}?polygon=${polygonJson}`
-    } else {
-      pdfLink.value = ''
-      selectedCollections.value = []
-    }
-  }
-}
-
-use([
-  CanvasRenderer,
-  LineChart,
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  GridComponent,
-  PieChart,
-])
-
-provide(THEME_KEY, 'light')
+const mapComponent = ref<InstanceType<typeof Map>>()
 
 async function downloadNotebook() {
   if (!process.client) return
 
   let polygonJson = JSON.stringify(
-    draw.value?.getAll().features[0].geometry,
+    mapComponent.value?.draw?.getAll().features[0].geometry,
   ).replaceAll('"', '\\"')
   let content = notebookTemplate
     .replace('__POLYGON__', polygonJson)
@@ -146,23 +64,22 @@ let isLoadingPdf = ref(false)
 async function downloadPdf() {
   if (!process.client) return
 
-  isLoadingPdf.value = true
-  let file = await $fetch(`${pdfLink.value}`, {
-    headers,
-  })
+  if (polygons.value.length > 0) {
+    let polygonJson = encodeURIComponent(
+      JSON.stringify(polygons.value[0].geometry),
+    )
+    let pdfLink = `${pdfEndpoint}?polygon=${polygonJson}`
 
-  let url = URL.createObjectURL(file)
-  // let a = document.createElement('a')
-  // a.href = url
-  // a.download = 'report.pdf'
-  // a.click()
+    isLoadingPdf.value = true
+    let file = await $fetch(pdfLink, {
+      headers,
+    })
 
-  // URL.revokeObjectURL(url)
-  let w = window.open(url)
-  isLoadingPdf.value = false
+    let url = URL.createObjectURL(file)
+    window.open(url)
+    isLoadingPdf.value = false
+  }
 }
-
-let pdfLink = ref('')
 
 let itemLinks = ref<Record<string, LayerLink>>({})
 
@@ -177,6 +94,35 @@ function isCollectionIntersecting(collection: CollectionType) {
   const drawnBboxPolygon = turf.bboxPolygon(bbox)
 
   return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
+}
+
+// Find countries that intersect with drawn polygons
+let intersectingCountries = computed(() => {
+  if (!polygons.value?.length) return []
+
+  const drawnPolygon = polygons.value[0]
+
+  return countries.features.filter((country) => {
+    return turf.intersect(drawnPolygon, country.geometry) !== null
+  })
+})
+
+function setDrawMode(mode: string) {
+  mapComponent.value?.draw?.changeMode(mode)
+}
+
+function trashPolygons() {
+  mapComponent.value?.draw?.deleteAll()
+  polygons.value = []
+}
+
+function formatArea(polygons: any) {
+  let area = turf.area(polygons[0])
+  return area >= 100_000_000_000
+    ? (area / 1000_000_000_000).toFixed(2) + ' million km²'
+    : area / 1000_000 > 1000
+    ? (area / 1000_000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    : (area / 1000_000).toFixed(0) + ' km²'
 }
 </script>
 
@@ -205,14 +151,21 @@ function isCollectionIntersecting(collection: CollectionType) {
         <BookOpen class="size-4" /> Wiki
       </a>
 
-      <a
-        href="https://github.com/Deltares-research/IDP-workbench"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center justify-center h-full gap-1.5 text-gray-600 hover:text-gray-900 focus:text-gray-900"
-      >
-        <Info class="size-4" /> About
-      </a>
+      <v-bottom-sheet>
+        <template v-slot:activator="{ props }">
+          <button
+            v-bind="props"
+            class="flex items-center justify-center h-full gap-1.5 text-gray-600 hover:text-gray-900 focus:text-gray-900"
+          >
+            <Info class="size-4" /> About
+          </button>
+        </template>
+
+        <v-card
+          title="About this project"
+          text="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut, eos? Nulla aspernatur odio rem, culpa voluptatibus eius debitis dolorem perspiciatis asperiores sed consectetur praesentium! Delectus et iure maxime eaque exercitationem!"
+        ></v-card>
+      </v-bottom-sheet>
     </div>
   </div>
 
@@ -232,11 +185,11 @@ function isCollectionIntersecting(collection: CollectionType) {
     </client-only>
   </div>
   <client-only>
-    <MapboxMap
-      :access-token="mapboxToken"
+    <Map
+      ref="mapComponent"
+      :mapbox-token="mapboxToken"
       map-style="mapbox://styles/anoet/cljpm695q004t01qo5s7fhf7d"
-      style="height: 100vh"
-      @mb-created="instantiateDraw"
+      v-model:polygons="polygons"
     >
       <template
         v-for="itemLink in Object.values(itemLinks)"
@@ -244,7 +197,7 @@ function isCollectionIntersecting(collection: CollectionType) {
       >
         <Layer v-if="itemLink" :link="itemLink" />
       </template>
-    </MapboxMap>
+    </Map>
   </client-only>
 
   <div
@@ -256,10 +209,10 @@ function isCollectionIntersecting(collection: CollectionType) {
       </p>
       <v-btn
         variant="outlined"
-        @click="draw?.changeMode('draw_polygon')"
+        @click="setDrawMode('draw_polygon')"
         class="mt-3"
       >
-        <template v-if="draw?.getMode() === 'draw_polygon'">
+        <template v-if="drawMode === 'draw_polygon'">
           <Loader class="size-4 animate-spin mr-1.5" /> Waiting for
           drawing&hellip;
         </template>
@@ -270,11 +223,49 @@ function isCollectionIntersecting(collection: CollectionType) {
     </div>
 
     <template v-if="polygons?.length">
+      <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+        <div class="text-sm text-gray-600">
+          Selected Area:
+          {{ formatArea(polygons) }}
+
+          <div
+            v-if="intersectingCountries?.length"
+            class="font-medium text-black"
+          >
+            {{
+              intersectingCountries
+                .slice(0, 10)
+                .map((country) => country.properties.ADMIN)
+                .join(', ')
+            }}
+
+            <span v-if="intersectingCountries.length > 10">
+              and {{ intersectingCountries.length - 10 }} more
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-3 mb-4">
+        <v-btn
+          color="secondary"
+          :loading="isLoadingPdf"
+          @click="downloadPdf"
+          prepend-icon="mdi-file-pdf-box"
+          class="flex-1"
+        >
+          Download Report
+        </v-btn>
+
+        <v-btn variant="outlined" @click="trashPolygons">
+          <X class="size-4" />
+        </v-btn>
+      </div>
+
+      <hr class="my-6" />
+
       <div class="flex items-center justify-between mb-4">
         <h3 class="text-lg font-semibold">Available Datasets</h3>
-        <v-btn variant="outlined" @click="draw?.trash()">
-          <Trash class="size-4 mr-1.5" /> Clear
-        </v-btn>
       </div>
 
       <div v-for="collection in collections" :key="collection.id">
@@ -302,17 +293,6 @@ function isCollectionIntersecting(collection: CollectionType) {
           title="Coming soon"
         >
           Analyze in Notebook
-        </v-btn>
-
-        <v-btn
-          color="secondary"
-          block
-          :disabled="!selectedCollections.length"
-          :loading="isLoadingPdf"
-          @click="downloadPdf"
-          prepend-icon="mdi-file-pdf-box"
-        >
-          Download Report
         </v-btn>
       </div>
     </template>

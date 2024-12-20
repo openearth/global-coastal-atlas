@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Eye, EyeOff } from 'lucide-vue-next'
+import { Eye, EyeOff, Info } from 'lucide-vue-next'
 import { CollectionType, LayerLink } from '../types'
 import type { Ref } from 'vue'
 
@@ -126,29 +126,45 @@ function toggleActive(value: boolean) {
 </script>
 
 <template>
-  <div v-if="!summaries">
-    <div class="flex items-center gap-3 bg-white p-3 shadow">
-      <button
-        @click="toggleActive(!activeValue)"
-        class="size-8 flex items-center justify-center shrink-0 rounded-md hover:bg-gray-100"
-      >
-        <Eye class="size-4" v-if="!!activeValue" />
-        <EyeOff class="size-4" v-if="!activeValue" />
-      </button>
+  <div v-if="!summaries" class="w-full">
+    <div
+      class="flex items-center gap-3 bg-white p-3 shadow w-full justify-between px-6"
+    >
       <div class="text-sm font-medium">{{ collection.title }}</div>
-    </div>
-  </div>
-  <v-expansion-panel v-if="summaries">
-    <v-expansion-panel-title>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-1.5">
+        <v-tooltip :text="collection.description" class="max-w-[640px]">
+          <template v-slot:activator="{ props }">
+            <Info v-bind="props" class="size-3.5 shrink-0" />
+          </template>
+        </v-tooltip>
         <button
-          @click.stop="!!activeValue && toggleActive(false)"
-          class="z-10 size-8 flex items-center justify-center shrink-0 rounded-md hover:bg-gray-100"
+          @click="toggleActive(!activeValue)"
+          class="size-8 flex items-center justify-center shrink-0 rounded-md hover:bg-gray-100"
         >
           <Eye class="size-4" v-if="!!activeValue" />
           <EyeOff class="size-4" v-if="!activeValue" />
         </button>
+      </div>
+    </div>
+  </div>
+  <v-expansion-panel v-if="summaries">
+    <v-expansion-panel-title>
+      <div class="flex items-center justify-between w-full gap-3">
         <div>{{ collection.title }}</div>
+        <div class="flex items-center gap-1.5 z-10">
+          <v-tooltip :text="collection.description" class="max-w-[640px]">
+            <template v-slot:activator="{ props }">
+              <Info v-bind="props" class="size-3.5 shrink-0" />
+            </template>
+          </v-tooltip>
+          <button
+            @click.stop="!!activeValue && toggleActive(false)"
+            class="z-10 size-8 flex items-center justify-center shrink-0 rounded-md hover:bg-gray-100"
+          >
+            <Eye class="size-4" v-if="!!activeValue" />
+            <EyeOff class="size-4" v-if="!activeValue" />
+          </button>
+        </div>
       </div>
     </v-expansion-panel-title>
     <v-expansion-panel-text>
