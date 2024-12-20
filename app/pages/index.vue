@@ -20,13 +20,15 @@ let {
   public: { mapboxToken, pdfEndpoint },
 } = useRuntimeConfig()
 
+let url = useRequestURL()
+
 let headers = useRequestHeaders()
 
 let collectionLinks = [
   'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/cfhp/collection.json',
   'https://raw.githubusercontent.com/openearth/coclicodata/8aabe3516bdb287d9972618d28e6471b7a69adf9/current/slp/collection.json',
   'https://raw.githubusercontent.com/openearth/coclicodata/62ccb63944edaaadecb140eca57003a3b95d091d/current/deltares-delta-dtm/collection.json',
-  'http://localhost:3000/collections/subsidence.json',
+  url.protocol + '//' + url.host + '/collections/subsidence.json',
 ]
 
 let collections = await useCollections({ collectionLinks })
@@ -96,7 +98,6 @@ function isCollectionIntersecting(collection: CollectionType) {
   return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
 }
 
-let url = useRequestURL()
 let { data: countries } = await useFetch(
   url.protocol + '//' + url.host + '/countries.json',
 )
