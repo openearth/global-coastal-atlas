@@ -96,9 +96,7 @@ function isCollectionIntersecting(collection: CollectionType) {
   return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
 }
 
-let { data: countries } = await useFetch(
-  url.protocol + '//' + url.host + '/countries.json',
-)
+let countries = await $fetch(url.protocol + '//' + url.host + '/countries.json')
 
 console.log(countries, url.protocol + '//' + url.host + '/countries.json')
 
@@ -108,7 +106,7 @@ let intersectingCountries = computed(() => {
 
   const drawnPolygon = polygons.value[0]
 
-  return countries.value?.features.filter((country) => {
+  return countries?.features.filter((country) => {
     return turf.intersect(drawnPolygon, country.geometry) !== null
   })
 })
