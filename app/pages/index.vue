@@ -130,7 +130,8 @@ function formatArea(polygons: any) {
   return area >= 100_000_000_000
     ? (area / 1000_000_000_000).toFixed(2) + ' million km²'
     : area / 1000_000 > 1000
-    ? (area / 1000_000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    ? (area / 1000_000).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, '.') +
+      ' km²'
     : (area / 1000_000).toFixed(0) + ' km²'
 }
 </script>
