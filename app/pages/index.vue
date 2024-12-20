@@ -31,6 +31,8 @@ let collectionLinks = [
 
 let collections = await useCollections({ collectionLinks })
 
+console.log(collections.value, collectionLinks)
+
 let polygons = ref([])
 let selectedCollections = ref<string[]>([])
 
@@ -215,13 +217,11 @@ function formatArea(polygons: any) {
         @click="setDrawMode('draw_polygon')"
         class="mt-3"
       >
-        <template v-if="drawMode === 'draw_polygon'">
+        <!-- <template v-if="drawMode === 'draw_polygon'">
           <Loader class="size-4 animate-spin mr-1.5" /> Waiting for
           drawing&hellip;
-        </template>
-        <template v-else>
-          <Route class="size-4 mr-1.5" /> Draw Polygon
-        </template>
+        </template> -->
+        <Route class="size-4 mr-1.5" /> Draw Polygon
       </v-btn>
     </div>
 
