@@ -96,7 +96,12 @@ function isCollectionIntersecting(collection: CollectionType) {
   return turf.intersect(collectionBboxPolygon, drawnBboxPolygon) !== null
 }
 
-let countries = await $fetch(url.protocol + '//' + url.host + '/countries.json')
+let countries = await $fetch(
+  url.protocol + '//' + url.host + '/countries.json',
+  {
+    headers,
+  },
+)
 
 console.log(countries, url.protocol + '//' + url.host + '/countries.json')
 
