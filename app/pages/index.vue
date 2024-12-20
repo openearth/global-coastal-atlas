@@ -33,8 +33,6 @@ let collectionLinks = [
 
 let collections = await useCollections({ collectionLinks })
 
-console.log(collections.value, collectionLinks)
-
 let polygons = ref([])
 let selectedCollections = ref<string[]>([])
 
@@ -101,6 +99,8 @@ function isCollectionIntersecting(collection: CollectionType) {
 let { data: countries } = await useFetch(
   url.protocol + '//' + url.host + '/countries.json',
 )
+
+console.log(countries, url.protocol + '//' + url.host + '/countries.json')
 
 // Find countries that intersect with drawn polygons
 let intersectingCountries = computed(() => {
