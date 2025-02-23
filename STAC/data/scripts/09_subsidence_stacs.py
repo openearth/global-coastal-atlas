@@ -71,7 +71,7 @@ if __name__ == "__main__":
     }
     # hard-coded frontend properties
     STATIONS = "locationId"
-    TYPE = "circle"
+    TYPE = "fill"
     ON_CLICK = {}
 
     # these are added at collection level (for graph plot in the dashboard)
@@ -93,27 +93,16 @@ if __name__ == "__main__":
     # they also require input arguments
     def get_paint_props(item_key: str):
         return {
-            "circle-color": [
+            "fill-color": [
                 "interpolate",
                 ["linear"],
                 ["get", item_key],
                 0,
-                "hsl(110,90%,80%)",
+                "hsla(110, 90%, 80%, 0.25)",
                 1.5,
-                "hsla(55, 88%, 53%, 0.5)",
+                "hsla(55, 88%, 53%, 0.25)",
                 3.0,
-                "hsl(0, 90%, 70%)",
-            ],
-            "circle-radius": [
-                "interpolate",
-                ["linear"],
-                ["zoom"],
-                0,
-                0.5,
-                1,
-                1,
-                5,
-                5,
+                "hsla(0, 90%, 70%, 0.25)",
             ],
         }
 
