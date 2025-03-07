@@ -56,9 +56,9 @@ env:
   PROJECT_ID: dgds-i1000482-002
   GAR_LOCATION: europe-west3
   REPORT_SERVICE: gca-report-function
-  REPORT_DIRECTORY: app/functions/report-python-cloud-run
+  REPORT_DIRECTORY: App/functions/report-python-cloud-run
   TRANSSECT_SERVICE: gca-transsect-function
-  TRANSSECT_DIRECTORY: app/functions/delta-dtm-transsect-plot
+  TRANSSECT_DIRECTORY: App/functions/delta-dtm-transsect-plot
   REPOSITORY: gca-artifacts
   REGION: europe-west3
 
