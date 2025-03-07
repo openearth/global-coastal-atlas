@@ -34,6 +34,18 @@ class LineStringModel(FeatureBaseModel, geometry_field="line"):
     line: Annotated[LineString, GeometryField()]
 
 
+@app.options("/line-plot", include_in_schema=False)
+async def line_plot_options():
+    return Response(
+        content="",
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "POST, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type",
+        },
+    )
+
+
 @app.post(
     "/line-plot",
     response_class=Response,
@@ -91,6 +103,8 @@ async def line_plot(
             headers={
                 "Content-Disposition": 'attachment; filename="transect_plot.png"',
                 "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "POST, OPTIONS",
+                "Access-Control-Allow-Headers": "Content-Type",
             },
         )
 
