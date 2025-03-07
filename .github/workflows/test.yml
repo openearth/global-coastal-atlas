@@ -9,55 +9,53 @@ jobs:
       run:
         shell: bash -el {0}
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Conda
-      uses: conda-incubator/setup-miniconda@v2
-      with:
-        python-version: "3.10"
-        miniforge-variant: Mambaforge
-        miniforge-version: latest
-        activate-environment: globalcoastalatlas
-        use-mamba: true
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          python-version: "3.10"
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          activate-environment: globalcoastalatlas
+          use-mamba: true
 
-    - name: Get Date
-      id: get-date
-      run: echo "today=$(/bin/date -u '+%Y%m%d')" >> $GITHUB_OUTPUT
-      shell: bash
+      - name: Get Date
+        id: get-date
+        run: echo "today=$(/bin/date -u '+%Y%m%d')" >> $GITHUB_OUTPUT
+        shell: bash
 
-    - name: Restore cached Conda env
-      id: cache
-      uses: actions/cache/restore@v3
-      with:
-        path: ${{ env.CONDA }}/envs
-        key:
-          conda-${{ runner.os }}--${{ runner.arch }}--${{
-          steps.get-date.outputs.today }}-${{
-          hashFiles('environment.yml') }}-${{ env.CACHE_NUMBER }}
-      env:
-        # Increase this value to reset cache if etc/example-environment.yml has not changed
-        CACHE_NUMBER: 0
+      - name: Restore cached Conda env
+        id: cache
+        uses: actions/cache/restore@v3
+        with:
+          path: ${{ env.CONDA }}/envs
+          key: conda-${{ runner.os }}--${{ runner.arch }}--${{
+            steps.get-date.outputs.today }}-${{
+            hashFiles('environment.yml') }}-${{ env.CACHE_NUMBER }}
+        env:
+          # Increase this value to reset cache if etc/example-environment.yml has not changed
+          CACHE_NUMBER: 0
 
-    - name: Update environment
-      run:
-        mamba env update -n globalcoastalatlas -f environment.yml
-      if: steps.cache.outputs.cache-hit != 'true'
+      - name: Update environment
+        run: mamba env update -n globalcoastalatlas -f environment.yml
+        if: steps.cache.outputs.cache-hit != 'true'
 
-    - name: Save Conda Env
-      id: cache-conda-save
-      uses: actions/cache/save@v3
-      with:
-        path: ${{ env.CONDA }}/envs
-        key: ${{ steps.cache.outputs.cache-primary-key }}
-      if: steps.cache.outputs.cache-hit != 'true'
+      - name: Save Conda Env
+        id: cache-conda-save
+        uses: actions/cache/save@v3
+        with:
+          path: ${{ env.CONDA }}/envs
+          key: ${{ steps.cache.outputs.cache-primary-key }}
+        if: steps.cache.outputs.cache-hit != 'true'
 
-    - name: Run Pytest
-      run: python -m pytest STAC/tests --junit-xml=test-results.xml
+      - name: Run Pytest
+        run: python -m pytest STAC/tests --junit-xml=test-results.xml
 
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: |
-          test-results.xml
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: |
+            test-results.xml
