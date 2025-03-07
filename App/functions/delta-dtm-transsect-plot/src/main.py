@@ -4,6 +4,7 @@ from typing import Annotated
 
 import fastapi
 import matplotlib
+from pydantic_settings import BaseSettings
 
 matplotlib.use("AGG")
 
@@ -20,6 +21,13 @@ app = fastapi.FastAPI(
     description="API for generating elevation profile plots along a transect line",
     version="1.0.0",
 )
+
+
+class Settings(BaseSettings):
+    port: int = 8000
+
+
+settings = Settings()
 
 
 class LineStringModel(FeatureBaseModel, geometry_field="line"):
@@ -101,4 +109,4 @@ async def root():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=settings.port, reload=True)
