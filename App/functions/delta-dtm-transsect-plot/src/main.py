@@ -88,8 +88,12 @@ async def line_plot(
         return Response(
             content=buf.getvalue(),
             media_type="image/png",
-            headers={"Content-Disposition": 'attachment; filename="transect_plot.png"'},
+            headers={
+                "Content-Disposition": 'attachment; filename="transect_plot.png"',
+                "Access-Control-Allow-Origin": "*",
+            },
         )
+
     except Exception as e:
         # Log the error
         print("Error generating plot:")
