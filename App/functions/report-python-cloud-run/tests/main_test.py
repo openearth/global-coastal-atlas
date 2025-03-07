@@ -1,7 +1,7 @@
 import os
 import pytest
 
-import main  # type: ignore
+import main as main  # type: ignore
 
 
 @pytest.fixture
