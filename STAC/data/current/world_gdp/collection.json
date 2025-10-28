@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "world_gdp",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The World Gridded GDP dataset contatins GDP per capita estimates at grids with a spatial resolution of 0.5 degree (approximately 50 km at the equator). The GDP data was obtained by integrating sub-national GDP data from various sources such as national statistics offices, the World Bank, and other international organizations. Also spatial data such as night-time light data and land cover data was used to estimate GDP values in areas where no sub-national data was available.",
   "links": [
     {
@@ -183,7 +183,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

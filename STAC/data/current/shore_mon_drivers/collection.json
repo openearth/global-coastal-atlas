@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "shore_mon_drivers",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The Shoreline Monitor Drivers dataset aims to identify the drivers (factors) that contribute to changes in the shoreline at specific locations of high shoreline evolution (hotspots), as described by Kras (2019). This identification process involves analyzing the temporal and spatial characteristics of these locations using monthly satellite-derived shoreline (SDS) data (Luijendijk et al., 2018). The analysis focuses on drivers that have a spatial scale of approximately 10-20 km, including seasonality, reclamations, nourishments, and littoral drift barriers.",
   "links": [
     {
@@ -369,7 +369,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

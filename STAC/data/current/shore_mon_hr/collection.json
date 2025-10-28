@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "shore_mon_hr",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The Shoreline Monitor High Resolution is a dataset of areas with high variability in shoreline development and similar characteristics in space and time (Kras, 2019), also called hotspots. This dataset is derived from the original Shoreline Monitor (Luijendijk, 2018).  This modified high-resolution dataset contains about 60.000 transects from the 1.8 million original amount with monthly rather than annual temporal SDS resolution.",
   "links": [
     {
@@ -233,7 +233,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

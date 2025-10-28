@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "world_pop",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The World Population dataset provides a global population count per pixel at ~100 m resolution. The dataset is based on UNDP 2020 estimates for in total 183 countries.",
   "links": [
     {
@@ -231,7 +231,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

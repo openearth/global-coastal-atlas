@@ -1,0 +1,170 @@
+{
+  "type": "Collection",
+  "id": "salinity",
+  "stac_version": "1.1.0",
+  "description": "Description is not available",
+  "links": [
+    {
+      "rel": "license",
+      "href": "https://coclicoservices.eu/legal/",
+      "type": "text/html",
+      "title": "ODbL-1.0 License"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45y/2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45y/2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85y/2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85y/2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2y/2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2y/2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2y/2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2y/2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2rb1y/2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2rb1y/2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc45sm2rb1y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Salinity",
+      "roles": [
+        "data"
+      ],
+      "description": "NA",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "NA",
+  "title": "Salinity",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -116.49815130233765,
+          3184109.896144633,
+          -8.790959374979138,
+          3894548.719773595
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-02-22T00:00:00Z",
+          "2022-02-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "NA",
+  "keywords": [
+    "Projection",
+    "Europe",
+    "Deltares",
+    "Cloud Optimized GeoTIFF"
+  ],
+  "providers": [
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    },
+    {
+      "name": "To be updated from metadata",
+      "roles": [
+        "producer"
+      ],
+      "url": "To be updated from metadata"
+    }
+  ],
+  "assets": {
+    "thumbnail": {
+      "href": "https://storage.googleapis.com/dgds-data-public/coclico/assets/thumbnails/salinity.png",
+      "type": "image/png",
+      "title": "Thumbnail"
+    }
+  }
+}

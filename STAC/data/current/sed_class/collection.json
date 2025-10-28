@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "sed_class",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The Beach Sediment Classification dataset indicates for a global 500-m spaced shore-normal transect system the sediment composition of the beach at a certain transect. Transects can be either labelled as sandy, muddy, vegetated a coastal cliff or other. The dataset is generated using a supervised random forest classificier (Breiman, 2001) which is trained on uniform coastal features. Coastal features are derived from sattelite image pixels and other parameters (e.g. tidal range)",
   "links": [
     {
@@ -183,7 +183,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

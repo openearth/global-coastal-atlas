@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "esl_gwl",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "Extreme sea level projections for five return periods (5, 10, 20 50 and 100 year) for different global warming levels (present-day, 1.5 degree, 3 degree and 5 degree difference) for five different delta's across the world  for the year 2100.",
   "links": [
     {
@@ -368,7 +368,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "providers": [
     {
       "name": "Deltares",

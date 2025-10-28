@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "shore_mon",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The Shoreline Monitor is a dataset that incorporates a 500-m spaced shore-normal transect system, a sandy beach detection method and a change detection method called satellite derived shorelines (SDS) to provide annual shoreline positions over the period 1984-2021 for each of the 1.8 million transects in the world",
   "links": [
     {
@@ -441,7 +441,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"

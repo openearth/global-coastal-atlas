@@ -1,7 +1,7 @@
 {
   "type": "Collection",
   "id": "shore_mon_fut",
-  "stac_version": "1.0.0",
+  "stac_version": "1.1.0",
   "description": "The Shoreline Monitor Future Projections is a dataset that provides future shoreline projections on a global scale for all sandy coasts. Shoreline projections are based on the ambient change rates of shoreline evolution from Luijendijk (2018) and sea level rise based on several GreenHouse Gas (GHG) emissions.",
   "links": [
     {
@@ -360,7 +360,7 @@
       ]
     }
   },
-  "license": "proprietary",
+  "license": "other",
   "keywords": [
     "GlobalCoastalAtlas",
     "DeltaPortfolio"
