@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-10-28T10:18:00.701088Z",
+    "created": "2025-10-29T13:36:59.311431Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -114,7 +114,7 @@
   ],
   "assets": {
     "band_data": {
-      "href": "https://storage.googleapis.com/dgds-data-public/gca/salinity/cc85y/2040.tif",
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc85y/2040.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "band_data",
       "file:size": 110745,

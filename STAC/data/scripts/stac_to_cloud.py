@@ -21,27 +21,29 @@ if __name__ == "__main__":
 
     # upload dir to gcs from local drive
     source_dir_fp = str(pathlib.Path(__file__).parent.parent.joinpath(IN_DIRNAME))
+    print(source_dir_fp)
+    print(coclico_data_dir.joinpath("google_credentials.json"))
 
-    # load google credentials
-    load_google_credentials(
-        google_token_fp=coclico_data_dir.joinpath("google_credentials.json")
-    )
+    # # load google credentials
+    # load_google_credentials(
+    #     google_token_fp=coclico_data_dir.joinpath("google_credentials.json")
+    # )
 
-    # validate STAC catalog and upload to cloud
-    catalog = pystac_client.Client.open(
-        os.path.join(source_dir_fp, "catalog.json")  # local cloned STAC
-    )
+    # # validate STAC catalog and upload to cloud
+    # catalog = pystac_client.Client.open(
+    #     os.path.join(source_dir_fp, "catalog.json")  # local cloned STAC
+    # )
 
-    # TODO: fix STAC validation to work properly with pystac >1.8
-    # if catalog.validate_all() == None:  # no valid STAC
-    #     print(
-    #         "STAC is not valid and hence not uploaded to cloud, please adjust accordingly"
-    #     )
-    # else:
-    dir_to_google_cloud(
-        dir_path=source_dir_fp,
-        gcs_project=GCS_PROJECT,
-        bucket_name=BUCKET_NAME,
-        bucket_proj=BUCKET_PROJ,
-        dir_name=STAC_NAME,
-    )
+    # # TODO: fix STAC validation to work properly with pystac >1.8
+    # # if catalog.validate_all() == None:  # no valid STAC
+    # #     print(
+    # #         "STAC is not valid and hence not uploaded to cloud, please adjust accordingly"
+    # #     )
+    # # else:
+    # dir_to_google_cloud(
+    #     dir_path=source_dir_fp,
+    #     gcs_project=GCS_PROJECT,
+    #     bucket_name=BUCKET_NAME,
+    #     bucket_proj=BUCKET_PROJ,
+    #     dir_name=STAC_NAME,
+    # )

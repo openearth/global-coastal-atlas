@@ -72,17 +72,17 @@
     },
     {
       "rel": "item",
+      "href": "./items/cc45sm2rb1y/2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
       "href": "./items/cc45sm2rb1y/2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
       "href": "./items/cc45sm2rb1y/2050.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc45sm2rb1y/2030.json",
       "type": "application/geo+json"
     },
     {
