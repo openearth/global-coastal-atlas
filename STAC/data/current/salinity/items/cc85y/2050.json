@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-10-29T13:36:59.433169Z",
+    "created": "2025-11-14T12:53:38.358545Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -113,10 +113,10 @@
     }
   ],
   "assets": {
-    "band_data": {
+    "data": {
       "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc85y/2050.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "band_data",
+      "title": "cc85y_2050",
       "file:size": 110635,
       "raster:bands": [
         {
@@ -127,12 +127,21 @@
       ],
       "eo:bands": [
         {
-          "name": "band_data",
+          "name": "cc85y_2050",
           "description": "NA"
         }
       ],
       "roles": [
         "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/idp",
+      "type": "application/png",
+      "title": "cc85y_2050",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
       ]
     }
   },
