@@ -1,6 +1,6 @@
 {
   "type": "Collection",
-  "id": "salinity",
+  "id": "salinity_increase",
   "stac_version": "1.1.0",
   "description": "Description is not available",
   "links": [
@@ -12,77 +12,77 @@
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/2030.json",
+      "href": "./items/cc45y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/2040.json",
+      "href": "./items/cc45y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/2050.json",
+      "href": "./items/cc45y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85y/2050.json",
+      "href": "./items/cc85y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85y/2040.json",
+      "href": "./items/cc85y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85y/2030.json",
+      "href": "./items/cc85y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2y/2030.json",
+      "href": "./items/cc85sb2y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2y/2040.json",
+      "href": "./items/cc85sb2y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2y/2050.json",
+      "href": "./items/cc85sb2y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2y/2030.json",
+      "href": "./items/cc45sm2y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2y/2050.json",
+      "href": "./items/cc45sm2y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2y/2040.json",
+      "href": "./items/cc45sm2y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/2030.json",
+      "href": "./items/cc45sm2rb1y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/2040.json",
+      "href": "./items/cc45sm2rb1y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/2050.json",
+      "href": "./items/cc45sm2rb1y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
@@ -98,10 +98,13 @@
       "title": "GlobalCoastalAtlas STAC Catalog"
     }
   ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
   "item_assets": {
     "data": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Salinity",
+      "title": "Salinity Increase",
       "roles": [
         "data"
       ],
@@ -112,7 +115,7 @@
     }
   },
   "deltares:units": "NA",
-  "title": "Salinity",
+  "title": "Salinity Increase",
   "extent": {
     "spatial": {
       "bbox": [
@@ -159,7 +162,7 @@
   ],
   "assets": {
     "thumbnail": {
-      "href": "https://storage.googleapis.com/dgds-data-public/coclico/assets/thumbnails/salinity.png",
+      "href": "https://storage.googleapis.com/dgds-data-public/coclico/assets/thumbnails/salinity_increase.png",
       "type": "image/png",
       "title": "Thumbnail"
     }

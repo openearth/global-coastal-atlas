@@ -1,0 +1,149 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "cc45y/p50_2050.tif",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -8.790959374979138,
+          3184109.896144633
+        ],
+        [
+          -8.790959374979138,
+          3894548.719773595
+        ],
+        [
+          -116.49815130233765,
+          3894548.719773595
+        ],
+        [
+          -116.49815130233765,
+          3184109.896144633
+        ],
+        [
+          -8.790959374979138,
+          3184109.896144633
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -116.49815130233765,
+    3184109.896144633,
+    -8.790959374979138,
+    3894548.719773595
+  ],
+  "properties": {
+    "created": "2025-11-19T20:24:28.841967Z",
+    "proj:bbox": [
+      449000.0,
+      949000.0,
+      721000.0,
+      1243000.0
+    ],
+    "proj:shape": [
+      136,
+      147
+    ],
+    "proj:code": "EPSG:32648",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            721000.0,
+            949000.0
+          ],
+          [
+            721000.0,
+            1243000.0
+          ],
+          [
+            449000.0,
+            1243000.0
+          ],
+          [
+            449000.0,
+            949000.0
+          ],
+          [
+            721000.0,
+            949000.0
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      2000.0,
+      0.0,
+      449000.0,
+      0.0,
+      -2000.0,
+      1243000.0
+    ],
+    "deltares:item_key": "cc45y/p50_2050.tif",
+    "datetime": "2022-02-22T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../../collection.json",
+      "type": "application/json",
+      "title": "Salinity Increase"
+    },
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../../collection.json",
+      "type": "application/json",
+      "title": "Salinity Increase"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity_increase/cc45y/p50_2050.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "cc45y_p50_2050",
+      "file:size": 97557,
+      "raster:bands": [
+        {
+          "nodata": -99999.0,
+          "data_type": "float32",
+          "spatial_resolution": 30
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "cc45y_p50_2050",
+          "description": "NA"
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/idp",
+      "type": "application/png",
+      "title": "cc45y_p50_2050",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "salinity_increase"
+}
