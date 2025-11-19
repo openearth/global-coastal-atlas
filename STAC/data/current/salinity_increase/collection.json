@@ -12,7 +12,7 @@
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/p50_2040.json",
+      "href": "./items/cc45y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/p50_2030.json",
+      "href": "./items/cc45y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
@@ -97,9 +97,6 @@
       "type": "application/json",
       "title": "GlobalCoastalAtlas STAC Catalog"
     }
-  ],
-  "stac_extensions": [
-    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
   ],
   "item_assets": {
     "data": {

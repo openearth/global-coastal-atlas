@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-11-19T20:24:30.105202Z",
+    "created": "2025-11-19T20:44:49.735421Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -117,7 +117,7 @@
       "href": "https://storage.googleapis.com/gca-data-public/gca/salinity_increase/cc45y/p50_2030.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "cc45y_p50_2030",
-      "file:size": 97648,
+      "file:size": 97658,
       "raster:bands": [
         {
           "nodata": -99999.0,
@@ -136,7 +136,7 @@
       ]
     },
     "visual": {
-      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/idp",
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/salinity_increase",
       "type": "application/png",
       "title": "cc45y_p50_2030",
       "description": "OGS WMS url",
