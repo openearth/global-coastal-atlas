@@ -37,12 +37,12 @@
     },
     {
       "rel": "item",
-      "href": "./items/cc85y/p50_2040.json",
+      "href": "./items/cc85y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85y/p50_2050.json",
+      "href": "./items/cc85y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
@@ -88,6 +88,21 @@
     {
       "rel": "item",
       "href": "./items/cc45sm2rb1y/p50_2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2rb3y/p50_2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2rb3y/p50_2050.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85sb2rb3y/p50_2040.json",
       "type": "application/geo+json"
     },
     {

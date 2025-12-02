@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-11-19T20:56:07.344992Z",
+    "created": "2025-12-01T12:50:50.705788Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -117,7 +117,7 @@
       "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc85y/p50_2030.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "cc85y_p50_2030",
-      "file:size": 97206,
+      "file:size": 97512,
       "raster:bands": [
         {
           "nodata": -99999.0,
@@ -142,6 +142,15 @@
       "description": "OGS WMS url",
       "roles": [
         "visual"
+      ]
+    },
+    "vector": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc85y/p50_2030.parquet",
+      "type": "application/x-parquet",
+      "title": "cc85y_vector",
+      "description": "Contour salinity lines",
+      "roles": [
+        "vector"
       ]
     }
   },

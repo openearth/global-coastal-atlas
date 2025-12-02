@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-11-19T20:56:13.093703Z",
+    "created": "2025-12-01T12:50:59.246652Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -142,6 +142,15 @@
       "description": "OGS WMS url",
       "roles": [
         "visual"
+      ]
+    },
+    "vector": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc85sb2y/p50_2030.parquet",
+      "type": "application/x-parquet",
+      "title": "cc85sb2y_vector",
+      "description": "Contour salinity lines",
+      "roles": [
+        "vector"
       ]
     }
   },

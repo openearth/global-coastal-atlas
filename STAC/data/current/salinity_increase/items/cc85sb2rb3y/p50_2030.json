@@ -7,7 +7,7 @@
     "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
     "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
   ],
-  "id": "cc45sm2y/p50_2040.tif",
+  "id": "cc85sb2rb3y/p50_2030.tif",
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-12-01T12:51:11.759967Z",
+    "created": "2025-12-01T10:14:07.683699Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -89,7 +89,7 @@
       -2000.0,
       1243000.0
     ],
-    "deltares:item_key": "cc45sm2y/p50_2040.tif",
+    "deltares:item_key": "cc85sb2rb3y/p50_2030.tif",
     "datetime": "2022-02-22T00:00:00Z"
   },
   "links": [
@@ -97,7 +97,7 @@
       "rel": "collection",
       "href": "../../collection.json",
       "type": "application/json",
-      "title": "Salinity"
+      "title": "Salinity Increase"
     },
     {
       "rel": "root",
@@ -109,15 +109,15 @@
       "rel": "parent",
       "href": "../../collection.json",
       "type": "application/json",
-      "title": "Salinity"
+      "title": "Salinity Increase"
     }
   ],
   "assets": {
     "data": {
-      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc45sm2y/p50_2040.tif",
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity_increase/cc85sb2rb3y/p50_2030.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "cc45sm2y_p50_2040",
-      "file:size": 97233,
+      "title": "cc85sb2rb3y_p50_2030",
+      "file:size": 97473,
       "raster:bands": [
         {
           "nodata": -99999.0,
@@ -127,7 +127,7 @@
       ],
       "eo:bands": [
         {
-          "name": "cc45sm2y_p50_2040",
+          "name": "cc85sb2rb3y_p50_2030",
           "description": "NA"
         }
       ],
@@ -136,23 +136,14 @@
       ]
     },
     "visual": {
-      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/salinity",
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/salinity_increase",
       "type": "application/png",
-      "title": "cc45sm2y_p50_2040",
+      "title": "cc85sb2rb3y_p50_2030",
       "description": "OGS WMS url",
       "roles": [
         "visual"
       ]
-    },
-    "vector": {
-      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc45sm2y/p50_2040.parquet",
-      "type": "application/x-parquet",
-      "title": "cc45sm2y_vector",
-      "description": "Contour salinity lines",
-      "roles": [
-        "vector"
-      ]
     }
   },
-  "collection": "salinity"
+  "collection": "salinity_increase"
 }

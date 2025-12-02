@@ -42,7 +42,7 @@
     3894548.719773595
   ],
   "properties": {
-    "created": "2025-11-19T20:44:54.636473Z",
+    "created": "2025-12-01T10:13:36.097163Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -117,7 +117,7 @@
       "href": "https://storage.googleapis.com/gca-data-public/gca/salinity_increase/cc85y/p50_2040.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "cc85y_p50_2040",
-      "file:size": 97700,
+      "file:size": 98034,
       "raster:bands": [
         {
           "nodata": -99999.0,
