@@ -94,7 +94,7 @@ def create_sub_treat_plot(xarr: xr.Dataset):
     p = rpc.scatter(
         xarr,
         ax=ax,
-        data_type="data",
+        data_style="default",
         x="lon",
         y="lat",
         hue="epsi",

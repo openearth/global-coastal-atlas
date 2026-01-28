@@ -251,7 +251,7 @@ def create_shoremon_plot(xarr):
     )
     rpc.scatter(
         xarr,
-        data_type="data",
+        data_style="default",
         ax=axs[0],
         x="lon",
         y="lat",
@@ -329,7 +329,7 @@ def create_shoremon_plot(xarr):
 #                 )
 
 #             p = rpc.scatter(diff / (yearlist[yr + 1] - yearlist[yr]),
-#                             ax=ax[yr, jj], data_type='data',
+#                             ax=ax[yr, jj], data_style='data',
 #                             x='lon', y='lat',
 #                             vmin=-5, vmax=5,
 #                             hue=scenario,
@@ -384,7 +384,7 @@ def create_shoremon_fut_plot(xarr, year):
         p = rpc.scatter(
             rate,
             ax=ax[nn, 0],
-            data_type="data",
+            data_style="default",
             x="lon",
             y="lat",
             vmin=-5,
@@ -474,7 +474,7 @@ def create_shoremon_fut_plot(xarr, year):
 #                 )
 
 #             p = rpc.scatter(rate,
-#                             ax=ax[yr, 0], data_type='data',
+#                             ax=ax[yr, 0], data_style='data',
 #                             x='lon', y='lat',
 #                             vmin=-5, vmax=5,
 #                             hue=var,

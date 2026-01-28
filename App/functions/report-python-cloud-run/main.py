@@ -1,3 +1,4 @@
+# %%
 import json
 import os
 
@@ -12,6 +13,7 @@ from report.report import (
     STAC_ROOT_DEFAULT,
 )
 
+# %%
 app = Flask(__name__)
 
 
@@ -74,3 +76,5 @@ def return_html():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+# %%

@@ -109,7 +109,7 @@ def create_esl_plot(xarr, scenario):
 
     rpc.scatter(
         xarr.sel(ensemble=5),
-        data_type="data",
+        data_style="default",
         ax=ax,
         x="lon",
         y="lat",
@@ -122,7 +122,7 @@ def create_esl_plot(xarr, scenario):
 
     rpc.scatter(
         xarr.sel(ensemble=50),
-        data_type="data",
+        data_style="default",
         ax=ax,
         x="lon",
         y="lat",
@@ -135,7 +135,7 @@ def create_esl_plot(xarr, scenario):
 
     rpc.scatter(
         xarr.sel(ensemble=95),
-        data_type="data",
+        data_style="default",
         ax=ax,
         x="lon",
         y="lat",

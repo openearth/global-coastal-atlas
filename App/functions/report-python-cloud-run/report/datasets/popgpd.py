@@ -47,7 +47,7 @@ def create_world_pop_plot(xarr):
     p = rpc.scatter(
         xarr,
         ax=ax,
-        data_type="data",
+        data_style="default",
         x="lon",
         y="lat",
         s=xarr["pop_tot"].values / 100,

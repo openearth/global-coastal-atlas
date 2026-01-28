@@ -1,23 +1,25 @@
 # %%
-from dataclasses import dataclass
-from io import BytesIO
 import os
+from dataclasses import dataclass
+
+# from datasets.subtreat import get_landsub_content
+from datetime import datetime
+from io import BytesIO
 from pathlib import Path
+
+import weasyprint
 
 # import fitz  # type: ignore
 from jinja2 import Environment, FileSystemLoader
 from shapely import Polygon  # type: ignore
-import weasyprint
 
+from report.datasets.base_dataset import get_dataset_content
+from report.datasets.datasetcontent import DatasetContent
+from report.datasets.overview import get_overview
+from report.datasets.rag import get_rag_overview
+from report.datasets.slr import get_slr_content
 from report.utils.stac import STACClientGCA, ZarrDataset
 from report.utils.zarr_slicing import ZarrSlicer
-from report.datasets.datasetcontent import DatasetContent
-from report.datasets.base_dataset import get_dataset_content
-from report.datasets.overview import get_overview
-from report.datasets.slr import get_slr_content
-
-# from datasets.subtreat import get_landsub_content
-from datetime import datetime
 
 POLYGON_DEFAULT = """{"coordinates":[[[2.3915028831735015,51.7360381463356],[5.071438932343227,50.89406012060684],[6.955992986278972,51.49577449585874],[7.316959036046541,53.18700330195111],[6.636226617140238,53.961350092621075],[3.8631377106468676,54.14643052276938],[2.1218958391276317,53.490771261555096],[2.3915028831735015,51.7360381463356]]],"type":"Polygon"}"""
 # Get stac catalog location from environment variable if available otherwise use default
@@ -37,7 +39,7 @@ class ReportContent:
     datasets: list[DatasetContent]
 
 
-def create_report_html(polygon: Polygon, stac_root: str) -> str:
+def create_report_html(polygon: Polygon) -> str:
     env = Environment(loader=FileSystemLoader(Path(__file__).parent))
     # htmlpath = Path(__file__).parent / Path("template.html.jinja")
     csspath = Path(__file__).parent / Path("template.css")
@@ -119,6 +121,12 @@ def generate_report_content(polygon: Polygon) -> ReportContent:
     dataset_contents.append(dataset_content)
     print("finished making overview {}".format(time - start))
 
+    ### generating rag overview ###
+    print("start making rag overview {}".format(time - start))
+    dataset_content = get_rag_overview(polygon, dataset_contents)
+    dataset_contents.append(dataset_content)
+    print("finished making rag overview {}".format(time - start))
+
     ### re-arranging datasets ###
     collection_dict = [
         "overview",
@@ -133,17 +141,14 @@ def generate_report_content(polygon: Polygon) -> ReportContent:
         "esl",
         "future_shoreline_change_2050",
         "future_shoreline_change_2100",
+        "rag",
     ]
 
-    existing_collection = [
-        dataset_contents[ind].dataset_id for ind in range(len(dataset_contents))
-    ]
+    existing_collection = [dataset_contents[ind].dataset_id for ind in range(len(dataset_contents))]
 
     for item in collection_dict:
         if item in existing_collection:
-            final_dataset_contents.append(
-                dataset_contents[existing_collection.index(item)]
-            )
+            final_dataset_contents.append(dataset_contents[existing_collection.index(item)])
         else:
             None
 

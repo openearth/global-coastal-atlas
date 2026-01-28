@@ -1,31 +1,33 @@
 import os
-from openai import AzureOpenAI
-import numpy as np
-import xarray as xr
 from typing import Union
 
+import numpy as np
+import xarray as xr
+from dllmforge.langchain_api import LangchainAPI
+from dllmforge.rag_search_and_response import LLMResponder
+from openai import AzureOpenAI
+
+from report.utils.rag import set_up_RAG_AZURE
+
+
 def describe_data(xarr: xr.Dataset, dataset_id: str) -> str:
-     # Create prompt
+    # Create prompt
     prompt = make_prompt(xarr, dataset_id)
 
     # Load environment variables
-    api_version = '2024-03-01-preview'
-    api_base_url = os.getenv('OPENAI_API_BASE')
-    api_key = os.getenv('AZURE_OPENAI_API_KEY')
-    deployment_name = os.getenv('AZURE_OPENAI_DEPLOYMENT_NAME')
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    api_base = os.getenv("AZURE_OPENAI_API_BASE")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
     # Initialise large language model
-    model = AzureOpenAI(
-        api_key=api_key,
-        api_version=api_version,
-        base_url=f'{api_base_url}/deployments/{deployment_name}',
-    )
+    model = AzureOpenAI(api_key=api_key, api_version=api_version, azure_endpoint=api_base)
 
     # Trigger model
     response = model.chat.completions.create(
-        model=os.getenv('AZURE_OPENAI_DEPLOYMENT_NAME'),
+        model=deployment_name,
         messages=[
-            {'role': 'system', 'content': prompt},
+            {"role": "system", "content": prompt},
         ],
         max_tokens=1000,
         temperature=0.1,
@@ -33,6 +35,7 @@ def describe_data(xarr: xr.Dataset, dataset_id: str) -> str:
 
     # Return response
     return response.choices[0].message.content
+
 
 def describe_overview(polygon, dataset_contents) -> str:
     para_list = [dataset_contents[ind].text for ind in range(len(dataset_contents))]
@@ -51,24 +54,20 @@ def describe_overview(polygon, dataset_contents) -> str:
     * texts: {}
     """.format(str(coor_list), str(para_list))
 
-    # Load environment variables
-    api_version = '2024-03-01-preview'
-    api_base_url = os.getenv('OPENAI_API_BASE')
-    api_key = os.getenv('AZURE_OPENAI_API_KEY')
-    deployment_name = os.getenv('AZURE_OPENAI_DEPLOYMENT_NAME')
+    ## Load environment variables
+    api_key = os.getenv("AZURE_OPENAI_API_KEY")
+    api_base = os.getenv("AZURE_OPENAI_API_BASE")
+    api_version = os.getenv("AZURE_OPENAI_API_VERSION")
+    deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME")
 
     # Initialise large language model
-    model = AzureOpenAI(
-        api_key=api_key,
-        api_version=api_version,
-        base_url=f'{api_base_url}/deployments/{deployment_name}',
-    )
+    model = AzureOpenAI(api_key=api_key, api_version=api_version, azure_endpoint=api_base)
 
     # Trigger model
     response = model.chat.completions.create(
-        model=os.getenv('AZURE_OPENAI_DEPLOYMENT_NAME'),
+        model=deployment_name,
         messages=[
-            {'role': 'system', 'content': prompt},
+            {"role": "system", "content": prompt},
         ],
         max_tokens=1000,
         temperature=0.1,
@@ -78,17 +77,43 @@ def describe_overview(polygon, dataset_contents) -> str:
     return response.choices[0].message.content
 
 
-def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
-    match dataset_id: 
-        case 'sediment_class':
-            var = 'sediment_label'
-                        
-            sand_port  = np.round(len(np.where(xarr[var].values == 0)[0]) / len(xarr[var].values) * 100, 1)
-            mud_port   = np.round(len(np.where(xarr[var].values == 1)[0]) / len(xarr[var].values) * 100, 1)
-            cliff_port = np.round(len(np.where(xarr[var].values == 2)[0]) / len(xarr[var].values) * 100, 1)
-            veg_port   = np.round(len(np.where(xarr[var].values == 3)[0]) / len(xarr[var].values) * 100, 1)
-            other_port = np.round(len(np.where(xarr[var].values == 4)[0]) / len(xarr[var].values) * 100, 1)
+def describe_rag(polygon, dataset_contents) -> str:
+    coor_list = list(zip(*polygon.boundary.xy))
+    topic_list = list([{dataset_contents[ind].dataset_id: dataset_contents[ind].title} for ind in range(len(dataset_contents))])
 
+    prompt = """
+    You are a coastal scientist tasked with writing for a report describing the state of the coast. This report includes key information about a location,
+    such as population, sediment characteristic of that location, land subsidence risk, shoreline erosion or accretion, future sea level rise, future extreme sea level, and
+    future shoreline change. You should write two paragraphs with the provided information. Provide a description summarising findings from the retrieved contexts from the Deltares Knowledge Bank.
+    If no relevant information is found, please state that no relevant information is found in the Deltares Knowledge Bank.
+    Ensure the description is clear, professional, and aligned with the dataset.
+
+    * Coordinates of this area: {}
+    * Topics to cover: population: {}
+    """.format(str(coor_list), str(topic_list))
+
+    # Initialise large language model and retriever
+    retriever = set_up_RAG_AZURE("minikennisbank", index_exists=True, index_name="minikennisbank-index-antonio")
+    responder = LLMResponder(LangchainAPI(model_provider="azure-openai", temperature=0.4).llm)
+
+    # Trigger model
+    retrieved_contexts = retriever.invoke(prompt)
+    response = responder.generate(prompt, retrieved_contexts)
+
+    # Return response
+    return response
+
+
+def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
+    match dataset_id:
+        case "sediment_class":
+            var = "sediment_label"
+
+            sand_port = np.round(len(np.where(xarr[var].values == 0)[0]) / len(xarr[var].values) * 100, 1)
+            mud_port = np.round(len(np.where(xarr[var].values == 1)[0]) / len(xarr[var].values) * 100, 1)
+            cliff_port = np.round(len(np.where(xarr[var].values == 2)[0]) / len(xarr[var].values) * 100, 1)
+            veg_port = np.round(len(np.where(xarr[var].values == 3)[0]) / len(xarr[var].values) * 100, 1)
+            other_port = np.round(len(np.where(xarr[var].values == 4)[0]) / len(xarr[var].values) * 100, 1)
 
             prompt = """
             You are a coastal scientist tasked with writing a concise paragraph (maximum 100 words) for a report describing the state of the coast.
@@ -102,15 +127,22 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             * Dataset: {} {} {} {} {}
             """.format(sand_port, mud_port, cliff_port, veg_port, other_port)
 
-
-        case 'world_pop':
-            var = 'pop_tot'
+        case "world_pop":
+            var = "pop_tot"
 
             # Create data dictionary
             data_dict = {}
-            data_dict['lon'] = {'value': np.round(xarr['lon'].values, 2), 'long_name': xarr['lon'].attrs['long_name'], 'units': xarr['lon'].attrs['units']}
-            data_dict['lat'] = {'value': np.round(xarr['lat'].values, 2), 'long_name': xarr['lat'].attrs['long_name'], 'units': xarr['lat'].attrs['units']}
-            data_dict[var] = {'value': np.round(xarr[var].values, 0), 'long_name': xarr[var].attrs['long_name']}
+            data_dict["lon"] = {
+                "value": np.round(xarr["lon"].values, 2),
+                "long_name": xarr["lon"].attrs["long_name"],
+                "units": xarr["lon"].attrs["units"],
+            }
+            data_dict["lat"] = {
+                "value": np.round(xarr["lat"].values, 2),
+                "long_name": xarr["lat"].attrs["long_name"],
+                "units": xarr["lat"].attrs["units"],
+            }
+            data_dict[var] = {"value": np.round(xarr[var].values, 0), "long_name": xarr[var].attrs["long_name"]}
 
             prompt = """
             You are a coastal scientist tasked with writing a concise paragraph (maximum 100 words) for a report describing the state of the coast.
@@ -125,28 +157,34 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             * Dataset: {}
             """.format(str(data_dict))
 
+        case "shoreline_change":
+            var = "changerate"
 
-
-        case 'shoreline_change':
-            var = 'changerate'
-            
             # Create data dictionary
             data_dict = {}
-            data_dict['lon'] = {'value': np.round(xarr['lon'].values, 2), 'long_name': xarr['lon'].attrs['long_name'], 'units': xarr['lon'].attrs['units']}
-            data_dict['lat'] = {'value': np.round(xarr['lat'].values, 2), 'long_name': xarr['lat'].attrs['long_name'], 'units': xarr['lat'].attrs['units']}
-            data_dict[var] = {'value': np.round(xarr[var].values, 2), 'long_name': xarr[var].attrs['long_name'], 'units': xarr[var].attrs['units']}
+            data_dict["lon"] = {
+                "value": np.round(xarr["lon"].values, 2),
+                "long_name": xarr["lon"].attrs["long_name"],
+                "units": xarr["lon"].attrs["units"],
+            }
+            data_dict["lat"] = {
+                "value": np.round(xarr["lat"].values, 2),
+                "long_name": xarr["lat"].attrs["long_name"],
+                "units": xarr["lat"].attrs["units"],
+            }
+            data_dict[var] = {"value": np.round(xarr[var].values, 2), "long_name": xarr[var].attrs["long_name"], "units": xarr[var].attrs["units"]}
 
             # Create changerate classes dictionary
             classes_dict = {}
-            classes_dict['extreme_accretion'] = {'min': 5, 'max': np.inf, 'unit': xarr[var].attrs['units']}
-            classes_dict['severe_accretion'] = {'min': 3, 'max': 5, 'unit': xarr[var].attrs['units']}
-            classes_dict['intense_accretion'] = {'min': 1, 'max': 3, 'unit': xarr[var].attrs['units']}
-            classes_dict['accretion'] = {'min': 0.5, 'max': 1, 'unit': xarr[var].attrs['units']}
-            classes_dict['stable'] = {'min': -0.5, 'max': 0.5, 'unit': xarr[var].attrs['units']}
-            classes_dict['erosion'] = {'min': -1, 'max': -0.5, 'unit': xarr[var].attrs['units']}
-            classes_dict['intense_erosion'] = {'min': -3, 'max': -1, 'unit': xarr[var].attrs['units']}
-            classes_dict['severe_erosion'] = {'min': -5, 'max': -3, 'unit': xarr[var].attrs['units']}
-            classes_dict['extreme_erosion'] = {'min': -np.inf, 'max': -5, 'unit': xarr[var].attrs['units']}
+            classes_dict["extreme_accretion"] = {"min": 5, "max": np.inf, "unit": xarr[var].attrs["units"]}
+            classes_dict["severe_accretion"] = {"min": 3, "max": 5, "unit": xarr[var].attrs["units"]}
+            classes_dict["intense_accretion"] = {"min": 1, "max": 3, "unit": xarr[var].attrs["units"]}
+            classes_dict["accretion"] = {"min": 0.5, "max": 1, "unit": xarr[var].attrs["units"]}
+            classes_dict["stable"] = {"min": -0.5, "max": 0.5, "unit": xarr[var].attrs["units"]}
+            classes_dict["erosion"] = {"min": -1, "max": -0.5, "unit": xarr[var].attrs["units"]}
+            classes_dict["intense_erosion"] = {"min": -3, "max": -1, "unit": xarr[var].attrs["units"]}
+            classes_dict["severe_erosion"] = {"min": -5, "max": -3, "unit": xarr[var].attrs["units"]}
+            classes_dict["extreme_erosion"] = {"min": -np.inf, "max": -5, "unit": xarr[var].attrs["units"]}
 
             prompt = """
             You are a coastal scientist tasked with writing a concise paragraph (maximum 100 words) for a report describing the state of the coast.
@@ -158,10 +196,8 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             * coastal erosion classes: {}
             """.format(str(data_dict), str(classes_dict))
 
-
-        case 'land_sub':
+        case "land_sub":
             None
-
 
         # case 'slr_RCP26' | 'slr_RCP45' | 'slr_RCP85':
         #     # Create data dictionary
@@ -188,20 +224,39 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
         #     prompt3 = """
         #     Please describe the trend of the sea level rise with different confidence of projections and Ensure the description is clear, professional,
         #     and aligned with the dataset's trends. Begin your paragraph with: "The coast in this area is characterized by...".
-            
+
         #     * Dataset: {}
         #     """.format(str(data_dict))
 
         #     prompt = prompt1 + prompt2 + prompt3
 
-        case 'slr':
+        case "slr":
             # Create data dictionary
             data_dict = {}
-            data_dict['years'] = {'value': ["2031","2041","2051", "2061", "2071", "2081", "2091", "2101","2111","2121","2131","2141","2151"], 'long_name': 'year'}
-            data_dict['high_end'] = {'value': [slp['value'] for slp in xarr if (slp['ssp'] == 'high_end')], 'long_name': 'Sea level rise projection in high-end scenario', 'units': 'mm'}
-            data_dict['ssp126'] = {'value': [slp['value'] for slp in xarr if (slp['ssp'] == 'ssp126')], 'long_name': 'Sea level rise projection in SSP126 scenario', 'units': 'mm'}
-            data_dict['ssp245'] = {'value': [slp['value'] for slp in xarr if (slp['ssp'] == 'ssp245')], 'long_name': 'Sea level rise projection in SSP245 scenario', 'units': 'mm'}
-            data_dict['ssp585'] = {'value': [slp['value'] for slp in xarr if (slp['ssp'] == 'ssp585')], 'long_name': 'Sea level rise projection in SSP585 scenario', 'units': 'mm'}
+            data_dict["years"] = {
+                "value": ["2031", "2041", "2051", "2061", "2071", "2081", "2091", "2101", "2111", "2121", "2131", "2141", "2151"],
+                "long_name": "year",
+            }
+            data_dict["high_end"] = {
+                "value": [slp["value"] for slp in xarr if (slp["ssp"] == "high_end")],
+                "long_name": "Sea level rise projection in high-end scenario",
+                "units": "mm",
+            }
+            data_dict["ssp126"] = {
+                "value": [slp["value"] for slp in xarr if (slp["ssp"] == "ssp126")],
+                "long_name": "Sea level rise projection in SSP126 scenario",
+                "units": "mm",
+            }
+            data_dict["ssp245"] = {
+                "value": [slp["value"] for slp in xarr if (slp["ssp"] == "ssp245")],
+                "long_name": "Sea level rise projection in SSP245 scenario",
+                "units": "mm",
+            }
+            data_dict["ssp585"] = {
+                "value": [slp["value"] for slp in xarr if (slp["ssp"] == "ssp585")],
+                "long_name": "Sea level rise projection in SSP585 scenario",
+                "units": "mm",
+            }
 
             prompt = """
             You are a coastal scientist tasked with writing a concise paragraph (maximum 100 words) for a report describing the state of the coast.
@@ -213,39 +268,53 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             * Dataset: {}
             """.format(str(data_dict))
 
-
-        case 'esl_RCP26' | 'esl_RCP45' | 'esl_RCP85':
+        case "esl_RCP26" | "esl_RCP45" | "esl_RCP85":
             None
 
-
-        case 'future_shoreline_change_2050' | 'future_shoreline_change_2100':
+        case "future_shoreline_change_2050" | "future_shoreline_change_2100":
             # recalculate average shoreline charnge rate
-            if dataset_id == 'future_shoreline_change_2050':
-                rate = xarr.diff('time', 1).sel(time='2050') / (2050 - 2021)
+            if dataset_id == "future_shoreline_change_2050":
+                rate = xarr.diff("time", 1).sel(time="2050") / (2050 - 2021)
             else:
-                rate = xarr.diff('time', 1).sel(time='2100') / (2100 - 2050)
+                rate = xarr.diff("time", 1).sel(time="2100") / (2100 - 2050)
 
-            rate45 = rate['sp_rcp45_p50']
-            rate85 = rate['sp_rcp85_p50']
+            rate45 = rate["sp_rcp45_p50"]
+            rate85 = rate["sp_rcp85_p50"]
 
             # Create data dictionary
             data_dict = {}
-            data_dict['lon'] = {'value': np.round(xarr['lon'].values, 2), 'long_name': xarr['lon'].attrs['long_name'], 'units': xarr['lon'].attrs['units']}
-            data_dict['lat'] = {'value': np.round(xarr['lat'].values, 2), 'long_name': xarr['lat'].attrs['long_name'], 'units': xarr['lat'].attrs['units']}
-            data_dict['RCP45'] = {'value': np.round(rate45.values, 2), 'long_name': 'average shoreline change rate in RCP4.5 scenario', 'units': 'm/yr'}
-            data_dict['RCP85'] = {'value': np.round(rate85.values, 2), 'long_name': 'average shoreline change rate in RCP8.5 scenario', 'units': 'm/yr'}
+            data_dict["lon"] = {
+                "value": np.round(xarr["lon"].values, 2),
+                "long_name": xarr["lon"].attrs["long_name"],
+                "units": xarr["lon"].attrs["units"],
+            }
+            data_dict["lat"] = {
+                "value": np.round(xarr["lat"].values, 2),
+                "long_name": xarr["lat"].attrs["long_name"],
+                "units": xarr["lat"].attrs["units"],
+            }
+            data_dict["RCP45"] = {
+                "value": np.round(rate45.values, 2),
+                "long_name": "average shoreline change rate in RCP4.5 scenario",
+                "units": "m/yr",
+            }
+            data_dict["RCP85"] = {
+                "value": np.round(rate85.values, 2),
+                "long_name": "average shoreline change rate in RCP8.5 scenario",
+                "units": "m/yr",
+            }
 
             # Create changerate classes dictionary
             classes_dict = {}
-            classes_dict['extreme_accretion'] = {'min': 5, 'max': np.inf, 'unit': 'm/yr'}
-            classes_dict['severe_accretion'] = {'min': 3, 'max': 5, 'unit': 'm/yr'}
-            classes_dict['intense_accretion'] = {'min': 1, 'max': 3, 'unit': 'm/yr'}
-            classes_dict['accretion'] = {'min': 0.5, 'max': 1, 'unit': 'm/yr'}
-            classes_dict['stable'] = {'min': -0.5, 'max': 0.5, 'unit': 'm/yr'}
-            classes_dict['erosion'] = {'min': -1, 'max': -0.5, 'unit': 'm/yr'}
-            classes_dict['intense_erosion'] = {'min': -3, 'max': -1, 'unit': 'm/yr'}
-            classes_dict['severe_erosion'] = {'min': -5, 'max': -3, 'unit': 'm/yr'}
-            classes_dict['extreme_erosion'] = {'min': -np.inf, 'max': -5, 'unit': 'm/yr'}
+            classes_dict["extreme_accretion"] = {"min": 5, "max": np.inf, "unit": "m/yr"}
+            classes_dict["severe_accretion"] = {"min": 3, "max": 5, "unit": "m/yr"}
+            classes_dict["intense_accretion"] = {"min": 1, "max": 3, "unit": "m/yr"}
+            classes_dict["accretion"] = {"min": 0.5, "max": 1, "unit": "m/yr"}
+            classes_dict["stable"] = {"min": -0.5, "max": 0.5, "unit": "m/yr"}
+            classes_dict["erosion"] = {"min": -1, "max": -0.5, "unit": "m/yr"}
+            classes_dict["intense_erosion"] = {"min": -3, "max": -1, "unit": "m/yr"}
+            classes_dict["severe_erosion"] = {"min": -5, "max": -3, "unit": "m/yr"}
+            classes_dict["extreme_erosion"] = {"min": -np.inf, "max": -5, "unit": "m/yr"}
 
             prompt1 = """
             You are a coastal scientist tasked with writing a concise paragraph (maximum 200 words) for a report describing the state of the coast.
@@ -253,7 +322,7 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             under two scenarios, RCP4.5 (indicated as the 'RCP45' dictionary) and RCP8.5 (indicated as the 'RCP85' dictionary).
             """
 
-            if dataset_id == 'future_shoreline_change_2050':
+            if dataset_id == "future_shoreline_change_2050":
                 prompt2 = "The dataset is projected to 2050"
             else:
                 prompt2 = "The dataset is projected to 2100"
@@ -270,5 +339,5 @@ def make_prompt(xarr: Union[xr.Dataset, dict], dataset_id: str) -> str:
             """.format(str(data_dict), str(classes_dict))
 
             prompt = prompt1 + prompt2 + prompt3
-    
+
     return prompt
