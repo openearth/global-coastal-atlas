@@ -81,6 +81,12 @@
       "href": "./salinity/collection.json",
       "type": "application/json",
       "title": "Title"
+    },
+    {
+      "rel": "child",
+      "href": "./crop_production/collection.json",
+      "type": "application/json",
+      "title": "Title"
     }
   ],
   "assets": {

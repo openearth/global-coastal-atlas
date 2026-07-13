@@ -1,0 +1,733 @@
+{
+  "type": "Collection",
+  "id": "crop_production",
+  "stac_version": "1.1.0",
+  "description": "Description",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./RIB_CULT_prod/RIB_CULT_prod.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./RIB_ADVIR_dmnd/RIB_ADVIR_dmnd.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "deltares:units": " Units",
+  "deltares:plotSeries": "",
+  "deltares:plotxAxis": "time",
+  "deltares:plotType": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [],
+  "item_assets": {
+    "data": {
+      "type": "application/zarr",
+      "title": "Title",
+      "roles": [
+        "data"
+      ],
+      "description": "Description",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "cube:dimensions": {
+    "time": {
+      "extent": [
+        "2014-01-01T00:00:00Z",
+        "2016-01-01T00:00:00Z"
+      ],
+      "description": "Time",
+      "step": "P365DT0H0M0S",
+      "type": "temporal"
+    },
+    "station": {
+      "values": [
+        "Nd______42 / Cr__3 /",
+        "Nd______42 / Cr__1 /",
+        "Nd______42 / Cr__4 /",
+        "Nd______42 / Cr__2 /",
+        "Nd______43 / Cr__3 /",
+        "Nd______43 / Cr__1 /",
+        "Nd______43 / Cr__4 /",
+        "Nd______43 / Cr__2 /",
+        "Nd______44 / Cr__3 /",
+        "Nd______44 / Cr__1 /",
+        "Nd______44 / Cr__4 /",
+        "Nd______44 / Cr__2 /",
+        "Nd______45 / Cr__3 /",
+        "Nd______45 / Cr__1 /",
+        "Nd______45 / Cr__4 /",
+        "Nd______45 / Cr__2 /",
+        "Nd______74 / Cr__3 /",
+        "Nd______74 / Cr__1 /",
+        "Nd______74 / Cr__4 /",
+        "Nd______74 / Cr__2 /",
+        "Nd______75 / Cr__3 /",
+        "Nd______75 / Cr__1 /",
+        "Nd______75 / Cr__4 /",
+        "Nd______75 / Cr__2 /",
+        "Nd______76 / Cr__3 /",
+        "Nd______76 / Cr__1 /",
+        "Nd______76 / Cr__4 /",
+        "Nd______76 / Cr__2 /",
+        "Nd______77 / Cr__3 /",
+        "Nd______77 / Cr__1 /",
+        "Nd______77 / Cr__4 /",
+        "Nd______77 / Cr__2 /",
+        "Nd______78 / Cr__3 /",
+        "Nd______78 / Cr__1 /",
+        "Nd______78 / Cr__4 /",
+        "Nd______78 / Cr__2 /",
+        "Nd_____164 / Cr__3 /",
+        "Nd_____164 / Cr__1 /",
+        "Nd_____164 / Cr__4 /",
+        "Nd_____164 / Cr__2 /",
+        "Nd_____175 / Cr__3 /",
+        "Nd_____175 / Cr__1 /",
+        "Nd_____175 / Cr__4 /",
+        "Nd_____175 / Cr__2 /",
+        "Nd_____182 / Cr__3 /",
+        "Nd_____182 / Cr__1 /",
+        "Nd_____182 / Cr__4 /",
+        "Nd_____182 / Cr__2 /"
+      ],
+      "reference_system": "EPSG:4326",
+      "type": "temporal"
+    }
+  },
+  "cube:variables": {
+    "+ Actual rainfall (": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "+ Allocation (Mcm)": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "+ Decrease RZ SM +": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "- Act.evapotranspir": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "- Act.percolation (": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "- Increase RZ SM +": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "- Outflow (Mcm)": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Actual farm gate pr": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Actual farm gate pr_2": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Actual field level": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Actual field level_2": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Actual production c": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Cult.water balance": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Cultivation area [h": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Demand (Mcm)": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Not used": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Pot.evapotranspirat": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Potent.farm gate pr": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Potent.farm gate pr_2": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Potent.field level": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Potent.field level_2": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Potent.production c": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    },
+    "Survival fraction (": {
+      "type": "data",
+      "dimensions": [
+        "time",
+        "station"
+      ],
+      "attrs": {},
+      "shape": [
+        3,
+        48
+      ],
+      "chunks": [
+        3,
+        48
+      ]
+    }
+  },
+  "title": "Title",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          104.532771,
+          8.580031,
+          107.024243,
+          11.244372
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2014-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "License",
+  "keywords": [
+    "Keyword 1",
+    "Keyword 2",
+    "Keyword 3"
+  ],
+  "providers": [
+    {
+      "name": "Provider Name",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "Providers URL"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ],
+  "summaries": {
+    "RIB_CULT_prod": {
+      "label": "Crop production",
+      "options": [
+        {
+          "label": "+ Actual rainfall (",
+          "value": "+ Actual rainfall ("
+        },
+        {
+          "label": "+ Allocation (Mcm)",
+          "value": "+ Allocation (Mcm)"
+        },
+        {
+          "label": "+ Decrease RZ SM +",
+          "value": "+ Decrease RZ SM +"
+        },
+        {
+          "label": "- Act.evapotranspir",
+          "value": "- Act.evapotranspir"
+        },
+        {
+          "label": "- Act.percolation (",
+          "value": "- Act.percolation ("
+        },
+        {
+          "label": "- Increase RZ SM +",
+          "value": "- Increase RZ SM +"
+        },
+        {
+          "label": "- Outflow (Mcm)",
+          "value": "- Outflow (Mcm)"
+        },
+        {
+          "label": "Actual farm gate pr",
+          "value": "Actual farm gate pr"
+        },
+        {
+          "label": "Actual farm gate pr_2",
+          "value": "Actual farm gate pr_2"
+        },
+        {
+          "label": "Actual field level",
+          "value": "Actual field level"
+        },
+        {
+          "label": "Actual field level_2",
+          "value": "Actual field level_2"
+        },
+        {
+          "label": "Actual production c",
+          "value": "Actual production c"
+        },
+        {
+          "label": "Cult.water balance",
+          "value": "Cult.water balance"
+        },
+        {
+          "label": "Cultivation area [h",
+          "value": "Cultivation area [h"
+        },
+        {
+          "label": "Demand (Mcm)",
+          "value": "Demand (Mcm)"
+        },
+        {
+          "label": "Not used",
+          "value": "Not used"
+        },
+        {
+          "label": "Pot.evapotranspirat",
+          "value": "Pot.evapotranspirat"
+        },
+        {
+          "label": "Potent.farm gate pr",
+          "value": "Potent.farm gate pr"
+        },
+        {
+          "label": "Potent.farm gate pr_2",
+          "value": "Potent.farm gate pr_2"
+        },
+        {
+          "label": "Potent.field level",
+          "value": "Potent.field level"
+        },
+        {
+          "label": "Potent.field level_2",
+          "value": "Potent.field level_2"
+        },
+        {
+          "label": "Potent.production c",
+          "value": "Potent.production c"
+        },
+        {
+          "label": "Survival fraction (",
+          "value": "Survival fraction ("
+        }
+      ]
+    },
+    "RIB_ADVIR_dmnd": {
+      "label": "Crop area demand",
+      "options": [
+        {
+          "label": "+ Actual rainfall (Mcm)",
+          "value": "+ Actual rainfall (Mcm)"
+        },
+        {
+          "label": "+ Decrease RZ SM + S field (Mcm)",
+          "value": "+ Decrease RZ SM + S field (Mcm)"
+        },
+        {
+          "label": "+ Gross water supply (Mcm)",
+          "value": "+ Gross water supply (Mcm)"
+        },
+        {
+          "label": "- Actual evapotranspiration (Mcm)",
+          "value": "- Actual evapotranspiration (Mcm)"
+        },
+        {
+          "label": "- Actual percolation (Mcm)",
+          "value": "- Actual percolation (Mcm)"
+        },
+        {
+          "label": "- Drainage from fields (Mcm)",
+          "value": "- Drainage from fields (Mcm)"
+        },
+        {
+          "label": "- Increase RZ SM + S field (Mcm)",
+          "value": "- Increase RZ SM + S field (Mcm)"
+        },
+        {
+          "label": "Area cultivated actual (ha)",
+          "value": "Area cultivated actual (ha)"
+        },
+        {
+          "label": "Area cultivated potential (ha)",
+          "value": "Area cultivated potential (ha)"
+        },
+        {
+          "label": "Area total (ha)",
+          "value": "Area total (ha)"
+        },
+        {
+          "label": "Effective rainfall (Mcm)",
+          "value": "Effective rainfall (Mcm)"
+        },
+        {
+          "label": "Effective supply (Mcm)",
+          "value": "Effective supply (Mcm)"
+        },
+        {
+          "label": "Overall irrigation efficiency (%)",
+          "value": "Overall irrigation efficiency (%)"
+        },
+        {
+          "label": "Rainfall effectiveness (%)",
+          "value": "Rainfall effectiveness (%)"
+        },
+        {
+          "label": "Shortage per time step (# of times)",
+          "value": "Shortage per time step (# of times)"
+        },
+        {
+          "label": "Shortage per time step (%)",
+          "value": "Shortage per time step (%)"
+        },
+        {
+          "label": "Supply-demand ratio (%)",
+          "value": "Supply-demand ratio (%)"
+        },
+        {
+          "label": "Water balance term (must be 0.0 during grow.season)",
+          "value": "Water balance term (must be 0.0 during grow.season)"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "RIB_CULT_prod": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/crop_production/RIB_CULT_prod.zarr",
+      "title": "Crop production zarr root",
+      "description": "The root of the Crop production zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    },
+    "RIB_ADVIR_dmnd": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/crop_production/RIB_ADVIR_dmnd.zarr",
+      "title": "Crop area demand zarr root",
+      "description": "The root of the Crop area demand zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "RIB_ADVIR_dmnd",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          104.532771,
+          8.580031
+        ],
+        [
+          107.024243,
+          8.580031
+        ],
+        [
+          107.024243,
+          11.244372
+        ],
+        [
+          104.532771,
+          11.244372
+        ],
+        [
+          104.532771,
+          8.580031
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    104.532771,
+    8.580031,
+    107.024243,
+    11.244372
+  ],
+  "properties": {
+    "store": "RIB_ADVIR_dmnd",
+    "description": "RIBASIM HIS crop hectares per season",
+    "created": "2026-07-13T15:37:27.621451Z",
+    "deltares:item_key": "RIB_ADVIR_dmnd",
+    "datetime": "2014-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Title"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Title"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/crop_production/RIB_ADVIR_dmnd.zarr",
+      "title": "Crop area demand zarr root",
+      "description": "The root of the Crop area demand zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  },
+  "collection": "crop_production"
+}
