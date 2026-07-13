@@ -36,6 +36,7 @@ dependencies:
   - statsmodels
   - pytest
   - pip:
+      - geoserver-rest
       - xstac
       - mapbox
       - mapboxcli # requires monkey patch for python 3.10

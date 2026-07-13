@@ -74,13 +74,13 @@
       "rel": "child",
       "href": "./salinity_increase/collection.json",
       "type": "application/json",
-      "title": "Salinity Increase"
+      "title": "Title"
     },
     {
       "rel": "child",
       "href": "./salinity/collection.json",
       "type": "application/json",
-      "title": "Salinity"
+      "title": "Title"
     }
   ],
   "assets": {

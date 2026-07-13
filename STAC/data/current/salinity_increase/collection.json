@@ -2,57 +2,27 @@
   "type": "Collection",
   "id": "salinity_increase",
   "stac_version": "1.1.0",
-  "description": "Description is not available",
+  "description": "Description",
   "links": [
     {
-      "rel": "license",
-      "href": "https://coclicoservices.eu/legal/",
-      "type": "text/html",
-      "title": "ODbL-1.0 License"
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/p50_2030.json",
+      "href": "./items/cc45sm2rb1y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/p50_2050.json",
+      "href": "./items/cc45sm2rb1y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45y/p50_2040.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85y/p50_2030.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85y/p50_2040.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85y/p50_2050.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85sb2y/p50_2040.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85sb2y/p50_2050.json",
-      "type": "application/geo+json"
-    },
-    {
-      "rel": "item",
-      "href": "./items/cc85sb2y/p50_2030.json",
+      "href": "./items/cc45sm2rb1y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
@@ -72,39 +42,48 @@
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/p50_2050.json",
+      "href": "./items/cc45y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/p50_2040.json",
+      "href": "./items/cc45y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc45sm2rb1y/p50_2030.json",
+      "href": "./items/cc45y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2rb3y/p50_2030.json",
+      "href": "./items/cc85sb2y/p50_2030.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2rb3y/p50_2040.json",
+      "href": "./items/cc85sb2y/p50_2040.json",
       "type": "application/geo+json"
     },
     {
       "rel": "item",
-      "href": "./items/cc85sb2rb3y/p50_2050.json",
+      "href": "./items/cc85sb2y/p50_2050.json",
       "type": "application/geo+json"
     },
     {
-      "rel": "root",
-      "href": "../catalog.json",
-      "type": "application/json",
-      "title": "GlobalCoastalAtlas STAC Catalog"
+      "rel": "item",
+      "href": "./items/cc85y/p50_2030.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85y/p50_2040.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/cc85y/p50_2050.json",
+      "type": "application/geo+json"
     },
     {
       "rel": "parent",
@@ -116,46 +95,53 @@
   "item_assets": {
     "data": {
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "Salinity Increase",
+      "title": "Title",
       "roles": [
         "data"
       ],
-      "description": "NA",
+      "description": "Description",
       "xarray:storage_options": {
         "token": "google_default"
       }
     }
   },
-  "deltares:units": "NA",
-  "title": "Salinity Increase",
+  "deltares:units": " Units",
+  "title": "Title",
   "extent": {
     "spatial": {
       "bbox": [
         [
-          -116.49815130233765,
-          3184109.896144633,
-          -8.790959374979138,
-          3894548.719773595
+          104.53277078622102,
+          8.580030717560604,
+          107.02424347913376,
+          11.244371862015878
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          "2022-02-22T00:00:00Z",
-          "2022-02-22T00:00:00Z"
+          "2030-01-01T00:00:00Z",
+          "2050-01-01T00:00:00Z"
         ]
       ]
     }
   },
-  "license": "NA",
+  "license": "License",
   "keywords": [
-    "Projection",
-    "Europe",
-    "Deltares",
-    "Cloud Optimized GeoTIFF"
+    "Keyword 1",
+    "Keyword 2",
+    "Keyword 3"
   ],
   "providers": [
+    {
+      "name": "Provider Name",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "Providers URL"
+    },
     {
       "name": "Deltares",
       "roles": [
@@ -163,20 +149,6 @@
         "host"
       ],
       "url": "https://deltares.nl"
-    },
-    {
-      "name": "To be updated from metadata",
-      "roles": [
-        "producer"
-      ],
-      "url": "To be updated from metadata"
     }
-  ],
-  "assets": {
-    "thumbnail": {
-      "href": "https://storage.googleapis.com/dgds-data-public/coclico/assets/thumbnails/salinity_increase.png",
-      "type": "image/png",
-      "title": "Thumbnail"
-    }
-  }
+  ]
 }

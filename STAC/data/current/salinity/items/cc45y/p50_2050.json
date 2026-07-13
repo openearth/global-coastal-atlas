@@ -13,36 +13,36 @@
     "coordinates": [
       [
         [
-          -8.790959374979138,
-          3184109.896144633
+          107.02424347913376,
+          8.580030717560604
         ],
         [
-          -8.790959374979138,
-          3894548.719773595
+          107.02424347913376,
+          11.244371862015878
         ],
         [
-          -116.49815130233765,
-          3894548.719773595
+          104.53277078622102,
+          11.244371862015878
         ],
         [
-          -116.49815130233765,
-          3184109.896144633
+          104.53277078622102,
+          8.580030717560604
         ],
         [
-          -8.790959374979138,
-          3184109.896144633
+          107.02424347913376,
+          8.580030717560604
         ]
       ]
     ]
   },
   "bbox": [
-    -116.49815130233765,
-    3184109.896144633,
-    -8.790959374979138,
-    3894548.719773595
+    104.53277078622102,
+    8.580030717560604,
+    107.02424347913376,
+    11.244371862015878
   ],
   "properties": {
-    "created": "2025-12-01T12:50:47.680840Z",
+    "created": "2026-07-12T20:23:55.415701Z",
     "proj:bbox": [
       449000.0,
       949000.0,
@@ -90,15 +90,9 @@
       1243000.0
     ],
     "deltares:item_key": "cc45y/p50_2050.tif",
-    "datetime": "2022-02-22T00:00:00Z"
+    "datetime": "2050-01-01T00:00:00Z"
   },
   "links": [
-    {
-      "rel": "collection",
-      "href": "../../collection.json",
-      "type": "application/json",
-      "title": "Salinity"
-    },
     {
       "rel": "root",
       "href": "../../../catalog.json",
@@ -106,10 +100,16 @@
       "title": "GlobalCoastalAtlas STAC Catalog"
     },
     {
+      "rel": "collection",
+      "href": "../../collection.json",
+      "type": "application/json",
+      "title": "Title"
+    },
+    {
       "rel": "parent",
       "href": "../../collection.json",
       "type": "application/json",
-      "title": "Salinity"
+      "title": "Title"
     }
   ],
   "assets": {
@@ -117,18 +117,18 @@
       "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc45y/p50_2050.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "cc45y_p50_2050",
-      "file:size": 97178,
+      "file:size": 54045,
       "raster:bands": [
         {
           "nodata": -99999.0,
           "data_type": "float32",
-          "spatial_resolution": 30
+          "spatial_resolution": 2000
         }
       ],
       "eo:bands": [
         {
           "name": "cc45y_p50_2050",
-          "description": "NA"
+          "description": "Description"
         }
       ],
       "roles": [
@@ -142,15 +142,6 @@
       "description": "OGS WMS url",
       "roles": [
         "visual"
-      ]
-    },
-    "vector": {
-      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/cc45y/p50_2050.parquet",
-      "type": "application/x-parquet",
-      "title": "cc45y_vector",
-      "description": "Contour salinity lines",
-      "roles": [
-        "vector"
       ]
     }
   },
