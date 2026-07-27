@@ -72,7 +72,7 @@
     },
     {
       "rel": "child",
-      "href": "./salinity_increase/collection.json",
+      "href": "./crop_production/collection.json",
       "type": "application/json",
       "title": "Title"
     },
@@ -84,9 +84,15 @@
     },
     {
       "rel": "child",
-      "href": "./crop_production/collection.json",
+      "href": "./salinity_increase/collection.json",
       "type": "application/json",
       "title": "Title"
+    },
+    {
+      "rel": "child",
+      "href": "./crop_productivity_correction/collection.json",
+      "type": "application/json",
+      "title": "Crop productivity correction (salinity)"
     }
   ],
   "assets": {

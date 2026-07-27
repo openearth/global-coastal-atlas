@@ -12,6 +12,21 @@
     },
     {
       "rel": "item",
+      "href": "./items/baseline/p50_2014.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/baseline/p50_2015.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/baseline/p50_2016.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
       "href": "./items/baseline/p50_2018.json",
       "type": "application/geo+json"
     },
@@ -116,17 +131,17 @@
     "spatial": {
       "bbox": [
         [
-          104.53277078622102,
-          8.580030717560604,
-          107.02424347913376,
-          11.244371862015878
+          104.54186037690243,
+          8.567785522499676,
+          109.5580914423632,
+          11.289591423371533
         ]
       ]
     },
     "temporal": {
       "interval": [
         [
-          "2018-01-01T00:00:00Z",
+          "2014-01-01T00:00:00Z",
           "2050-01-01T00:00:00Z"
         ]
       ]

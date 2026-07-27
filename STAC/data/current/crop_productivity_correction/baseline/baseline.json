@@ -1,0 +1,175 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "baseline",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          106.82566220200007,
+          8.380953215000092
+        ],
+        [
+          106.82566220200007,
+          11.03326806100009
+        ],
+        [
+          103.41797806300008,
+          11.03326806100009
+        ],
+        [
+          103.41797806300008,
+          8.380953215000092
+        ],
+        [
+          106.82566220200007,
+          8.380953215000092
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    103.41797806300008,
+    8.380953215000092,
+    106.82566220200007,
+    11.03326806100009
+  ],
+  "properties": {
+    "title": "Corrected crop yield (baseline)",
+    "description": "Salinity-corrected crop production by Mekong freshwater zone / year",
+    "table:row_count": 228,
+    "table:columns": [
+      {
+        "name": "Name",
+        "type": "object",
+        "description": "Polygon name from province_fwzone"
+      },
+      {
+        "name": "OBJECTID",
+        "type": "int64",
+        "description": ""
+      },
+      {
+        "name": "zone",
+        "type": "object",
+        "description": ""
+      },
+      {
+        "name": "crop_affec",
+        "type": "float64",
+        "description": ""
+      },
+      {
+        "name": "geometry",
+        "type": "geometry",
+        "description": "Polygon geometry (EPSG:4326)"
+      },
+      {
+        "name": "area_map_name",
+        "type": "object",
+        "description": "Administrative / freshwater-zone name (join key)"
+      },
+      {
+        "name": "crop_name",
+        "type": "object",
+        "description": "Crop / season name used in RIBASIM mapping"
+      },
+      {
+        "name": "crop_name_fao",
+        "type": "object",
+        "description": "FAO crop name used for salt tolerance / prices"
+      },
+      {
+        "name": "salinity",
+        "type": "float64",
+        "description": "Median salinity over crop area (dS/m or model units)"
+      },
+      {
+        "name": "yield",
+        "type": "float64",
+        "description": "Uncorrected production"
+      },
+      {
+        "name": "hectares",
+        "type": "float64",
+        "description": "Crop area (ha)"
+      },
+      {
+        "name": "year",
+        "type": "int64",
+        "description": "Calendar year"
+      },
+      {
+        "name": "a",
+        "type": "float64",
+        "description": "FAO salinity threshold (ECe)"
+      },
+      {
+        "name": "b",
+        "type": "float64",
+        "description": "FAO yield decline slope (% per dS/m)"
+      },
+      {
+        "name": "corrected_yield",
+        "type": "float64",
+        "description": "Salinity-corrected production"
+      },
+      {
+        "name": "corrected_yield_pp",
+        "type": "float64",
+        "description": "Corrected production valued with producer prices"
+      },
+      {
+        "name": "comment",
+        "type": "object",
+        "description": "Correction notes"
+      },
+      {
+        "name": "FTE",
+        "type": "float64",
+        "description": "Full-time equivalent labour indicator"
+      }
+    ],
+    "created": "2026-07-27T08:35:29.783463Z",
+    "deltares:item_key": "baseline",
+    "proj:epsg": 4326,
+    "datetime": "2014-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Crop productivity correction (salinity)"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Crop productivity correction (salinity)"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/crop_productivity_correction/parquets/baseline/corrected_yield.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Corrected crop yield (baseline)",
+      "description": "Salinity-corrected crop production by Mekong freshwater zone / year",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "crop_productivity_correction"
+}

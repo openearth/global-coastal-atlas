@@ -1,0 +1,94 @@
+{
+  "type": "Collection",
+  "id": "crop_productivity_correction",
+  "stac_version": "1.1.0",
+  "description": "Salinity-corrected crop production and related labour indicators for Vietnam Mekong Delta provinces / freshwater zones. Tabular results from Food-Security salinity correction joined to administrative polygons.",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./baseline/baseline.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "deltares:units": "t; ha; FTE",
+  "deltares:plotSeries": "",
+  "deltares:plotxAxis": "",
+  "deltares:plotType": "map",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd.apache.parquet",
+      "title": "Crop productivity correction (salinity)",
+      "roles": [
+        "data"
+      ],
+      "description": "Salinity-corrected crop production and related labour indicators for Vietnam Mekong Delta provinces / freshwater zones. Tabular results from Food-Security salinity correction joined to administrative polygons."
+    }
+  },
+  "title": "Crop productivity correction (salinity)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          103.41797806300008,
+          8.380953215000092,
+          106.82566220200007,
+          11.03326806100009
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-01-01T00:00:00Z",
+          "2014-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "crop productivity",
+    "salinity correction",
+    "Vietnam",
+    "Mekong",
+    "food security",
+    "GeoParquet"
+  ],
+  "providers": [
+    {
+      "name": "Deltares",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.deltares.nl"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

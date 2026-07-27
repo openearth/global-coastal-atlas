@@ -39,7 +39,7 @@
   "properties": {
     "store": "RIB_CULT_prod",
     "description": "RIBASIM HIS crop production variables (Mcm)",
-    "created": "2026-07-13T15:37:27.435108Z",
+    "created": "2026-07-24T15:22:38.577013Z",
     "deltares:item_key": "RIB_CULT_prod",
     "datetime": "2014-01-01T00:00:00Z"
   },

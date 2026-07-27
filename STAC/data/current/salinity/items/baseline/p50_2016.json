@@ -7,7 +7,7 @@
     "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
     "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
   ],
-  "id": "cc45y/p50_2040.tif",
+  "id": "baseline/p50_2016.tif",
   "geometry": {
     "type": "Polygon",
     "coordinates": [
@@ -42,7 +42,7 @@
     11.289591423371533
   ],
   "properties": {
-    "created": "2026-07-24T20:26:13.331695Z",
+    "created": "2026-07-24T20:26:06.775441Z",
     "proj:bbox": [
       450000.0,
       950000.0,
@@ -89,8 +89,8 @@
       -1986.666666666667,
       1248000.0
     ],
-    "deltares:item_key": "cc45y/p50_2040.tif",
-    "datetime": "2040-01-01T00:00:00Z"
+    "deltares:item_key": "baseline/p50_2016.tif",
+    "datetime": "2016-01-01T00:00:00Z"
   },
   "links": [
     {
@@ -114,10 +114,10 @@
   ],
   "assets": {
     "data": {
-      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity_increase/cc45y/p50_2040.tif",
+      "href": "https://storage.googleapis.com/gca-data-public/gca/salinity/baseline/p50_2016.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
-      "title": "cc45y_p50_2040",
-      "file:size": 64707,
+      "title": "baseline_p50_2016",
+      "file:size": 93984,
       "raster:bands": [
         {
           "nodata": "nan",
@@ -127,7 +127,7 @@
       ],
       "eo:bands": [
         {
-          "name": "cc45y_p50_2040",
+          "name": "baseline_p50_2016",
           "description": "Description"
         }
       ],
@@ -136,14 +136,14 @@
       ]
     },
     "visual": {
-      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/salinity_increase",
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/salinity",
       "type": "application/png",
-      "title": "cc45y_p50_2040",
+      "title": "baseline_p50_2016",
       "description": "OGS WMS url",
       "roles": [
         "visual"
       ]
     }
   },
-  "collection": "salinity_increase"
+  "collection": "salinity"
 }

@@ -29,7 +29,6 @@
   ],
   "stac_extensions": [
     "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
-    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
     "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
   ],
   "deltares:units": " Units",
@@ -662,6 +661,22 @@
           "value": "- Increase RZ SM + S field (Mcm)"
         },
         {
+          "label": "A Cr01_MUA (ha)",
+          "value": "A Cr01_MUA (ha)"
+        },
+        {
+          "label": "A Cr02_WinterSpring (ha)",
+          "value": "A Cr02_WinterSpring (ha)"
+        },
+        {
+          "label": "A Cr03_SummerAutumn (ha)",
+          "value": "A Cr03_SummerAutumn (ha)"
+        },
+        {
+          "label": "A Cr04_AutumnWinter (ha)",
+          "value": "A Cr04_AutumnWinter (ha)"
+        },
+        {
           "label": "Area cultivated actual (ha)",
           "value": "Area cultivated actual (ha)"
         },
@@ -674,6 +689,22 @@
           "value": "Area total (ha)"
         },
         {
+          "label": "Demand if feedback (l_s_ha)",
+          "value": "Demand if feedback (l_s_ha)"
+        },
+        {
+          "label": "Demand if feedback (mm_day)",
+          "value": "Demand if feedback (mm_day)"
+        },
+        {
+          "label": "Demand to network if feedback (m3_s)",
+          "value": "Demand to network if feedback (m3_s)"
+        },
+        {
+          "label": "Demand to network if no feedback (m3_s)",
+          "value": "Demand to network if no feedback (m3_s)"
+        },
+        {
           "label": "Effective rainfall (Mcm)",
           "value": "Effective rainfall (Mcm)"
         },
@@ -682,20 +713,64 @@
           "value": "Effective supply (Mcm)"
         },
         {
+          "label": "Field crop water requirements (l_s_ha)",
+          "value": "Field crop water requirements (l_s_ha)"
+        },
+        {
+          "label": "Field crop water requirements (mm_day)",
+          "value": "Field crop water requirements (mm_day)"
+        },
+        {
           "label": "Overall irrigation efficiency (%)",
           "value": "Overall irrigation efficiency (%)"
+        },
+        {
+          "label": "P Cr01_MUA (ha)",
+          "value": "P Cr01_MUA (ha)"
+        },
+        {
+          "label": "P Cr02_WinterSpring (ha)",
+          "value": "P Cr02_WinterSpring (ha)"
+        },
+        {
+          "label": "P Cr03_SummerAutumn (ha)",
+          "value": "P Cr03_SummerAutumn (ha)"
+        },
+        {
+          "label": "P Cr04_AutumnWinter (ha)",
+          "value": "P Cr04_AutumnWinter (ha)"
         },
         {
           "label": "Rainfall effectiveness (%)",
           "value": "Rainfall effectiveness (%)"
         },
         {
-          "label": "Shortage per time step (# of times)",
-          "value": "Shortage per time step (# of times)"
+          "label": "Shortage (l_s_ha)",
+          "value": "Shortage (l_s_ha)"
+        },
+        {
+          "label": "Shortage (mm_day)",
+          "value": "Shortage (mm_day)"
         },
         {
           "label": "Shortage per time step (%)",
           "value": "Shortage per time step (%)"
+        },
+        {
+          "label": "Shortage per time step (num of times)",
+          "value": "Shortage per time step (num of times)"
+        },
+        {
+          "label": "Supply (l_s_ha)",
+          "value": "Supply (l_s_ha)"
+        },
+        {
+          "label": "Supply (mm_day)",
+          "value": "Supply (mm_day)"
+        },
+        {
+          "label": "Supply from network (m3_s)",
+          "value": "Supply from network (m3_s)"
         },
         {
           "label": "Supply-demand ratio (%)",
