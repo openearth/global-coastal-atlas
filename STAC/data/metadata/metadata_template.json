@@ -1,0 +1,43 @@
+{
+    "TITLE": "",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "",
+    "SHORT_DESCRIPTION": "",
+    "INSTITUTION": "",
+    "PROVIDERS": {
+        "name": "",
+        "url": "",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "",
+    "DOI": "",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}
