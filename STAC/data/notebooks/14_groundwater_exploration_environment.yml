@@ -1,0 +1,26 @@
+# Environment for STAC/data/notebooks/14_groundwater_exploration.ipynb
+#
+# Install with miniforge (mamba) or conda:
+#   mamba env create -f 14_groundwater_exploration_environment.yml
+#   conda activate groundwater-exploration
+#
+# Then register the kernel for Jupyter (optional, if not already available):
+#   python -m ipykernel install --user --name groundwater-exploration
+name: groundwater-exploration
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - geopandas
+  - rasterio
+  - rio-cogeo
+  - pyarrow
+  - pandas
+  - pyogrio
+  - fiona
+  - matplotlib
+  - folium
+  - mapclassify
+  - jupyterlab
+  - ipykernel

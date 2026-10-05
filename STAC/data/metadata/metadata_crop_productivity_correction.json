@@ -1,0 +1,61 @@
+{
+    "TITLE": "Crop productivity correction (salinity)",
+    "TITLE_ABBREVIATION": "CropProdCorr",
+    "DESCRIPTION": "Salinity-corrected crop production and related labour indicators for Vietnam Mekong Delta provinces / freshwater zones. Tabular results from Food-Security salinity correction joined to administrative polygons.",
+    "SHORT_DESCRIPTION": "Salinity-corrected crop yield by area and year (GeoParquet).",
+    "INSTITUTION": "Deltares",
+    "PROVIDERS": {
+        "name": "Deltares",
+        "url": "https://www.deltares.nl",
+        "roles": "provider",
+        "description": "International Delta Platform / Food Security"
+    },
+    "HISTORY": [
+        "Deltares",
+        "Food-Security salinity_correction"
+    ],
+    "MEDIA_TYPE": "application/vnd.apache.parquet",
+    "DATA_MODEL": "geoparquet_table",
+    "DIMENSIONS": [
+        "year",
+        "area_map_name"
+    ],
+    "SPATIAL_EXTENT": [
+        103.41797806300008,
+        8.380953215000092,
+        106.82566220200007,
+        11.03326806100009
+    ],
+    "TEMPORAL_EXTENT": [
+        "2014-01-01T00:00:00",
+        "2016-12-31T00:00:00"
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Deltares",
+    "KEYWORDS": [
+        "crop productivity",
+        "salinity correction",
+        "Vietnam",
+        "Mekong",
+        "food security",
+        "GeoParquet"
+    ],
+    "TAGS": [
+        "crop",
+        "salinity",
+        "yield",
+        "parquet"
+    ],
+    "CITATION": "Deltares International Delta Platform \u2014 Food Security salinity correction",
+    "DOI": "",
+    "LONG_NAME": "Corrected crop yield",
+    "UNITS": "t; ha; FTE",
+    "COMMENT": "Geometry joined from province_fwzone.shp on Name = area_map_name. Source CSV: corrected-yield-base-stac.csv",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "float64",
+    "COLLECTION_ID": "crop_productivity_correction",
+    "WMS_DATASET": "crop_productivity_correction"
+}

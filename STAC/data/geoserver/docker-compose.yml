@@ -1,0 +1,38 @@
+# Local GeoServer for salinity / salinity_increase WMS (optional, step 10)
+#
+# Prerequisites:
+#   1. Set STAC_FOLDER_HOST_PATH in this folder's .env (or export it)
+#      to the 11b output parent folder that contains:
+#        <path>/salinity/cogs/...
+#        <path>/salinity_increase/cogs/...
+#   2. Start before running notebook section 10:
+#        docker compose up -d
+#
+# UI:       http://localhost:8085/geoserver
+# REST:     http://localhost:8085/geoserver
+# Default:  admin / geoserver
+
+services:
+  geoserver:
+    image: docker.osgeo.org/geoserver:2.25.2
+    container_name: gca-geoserver-local
+    ports:
+      - "8085:8080"
+    environment:
+      GEOSERVER_ADMIN_USER: admin
+      GEOSERVER_ADMIN_PASSWORD: geoserver
+      EXTRA_JAVA_OPTS: "-Xms512m -Xmx2g"
+      SKIP_DEMO_DATA: "true"
+    volumes:
+      # Persistent GeoServer data dir (workspaces, stores, styles)
+      - ./geoserver_data:/opt/geoserver_data
+      # Local COGs from 11b preprocessing (read-only)
+      # Inside container: /data/stac_folder/{salinity|salinity_increase}/cogs/<scenario>/*.tif
+      - ${STAC_FOLDER_HOST_PATH}:/data/stac_folder:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/geoserver/web/"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+    restart: unless-stopped
