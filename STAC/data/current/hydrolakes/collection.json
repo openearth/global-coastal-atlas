@@ -1,0 +1,90 @@
+{
+  "type": "Collection",
+  "id": "hydrolakes",
+  "stac_version": "1.1.0",
+  "description": "HydroLAKES aims to provide the shoreline polygons of all global lakes with a surface area of at least 10 ha. HydroLAKES has been developed using a suite of auxiliary data sources of lake polygons and gridded lake surface areas. All lakes are co-registered to the global river network of the HydroSHEDS database via their lake pour points. The global coverage of HydroLAKES encompasses 1.4 million individual lakes or reservoirs representing a total surface area of 2.67 million km², a total shoreline length of 7.2 million km, and a total storage volume of 181,900 km³. HydroLAKES only includes a limited amount of (mostly geometric) attribute information, such as surface area, shoreline length, and estimates of average depth, water volume and residence time. Every lake is also co-registered to a river reach of the HydroRIVERS dataset and a sub-basin of the HydroBASINS database (via shared IDs).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./hydrolakes/hydrolakes.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd.apache.parquet",
+      "title": "HydroLAKES",
+      "roles": [
+        "data"
+      ],
+      "description": "Shoreline polygons of all global lakes with a surface area of at least 10 ha."
+    }
+  },
+  "sci:citation": "Messager ML, Lehner B, Grill G, Nedeva I, Schmitt O (2016) Estimating the volume and age of water stored in global lakes using a geo-statistical approach. Nature Communications 7:13603. https://doi.org/10.1038/ncomms13603",
+  "sci:doi": "10.1038/ncomms13603",
+  "title": "HydroLAKES",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -55.865139,
+          180.0,
+          83.575951
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2016-01-01T00:00:00Z",
+          "2016-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "lakes",
+    "reservoirs",
+    "surface water",
+    "hydrology",
+    "freshwater",
+    "HydroSHEDS",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "HydroSHEDS",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.hydrosheds.org/products/hydrolakes"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

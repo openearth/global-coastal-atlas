@@ -1,4 +1,5 @@
-# Environment for STAC/data/scripts/exploration/17_seabed_litho_check.ipynb
+# Environment for the notebooks in STAC/data/scripts/exploration/
+# (17_seabed_litho_check.ipynb and 18_hydrolakes_check.ipynb)
 #
 # Install with miniforge (mamba) or conda:
 #   mamba env create -f environment_exploration.yml
@@ -16,6 +17,12 @@ dependencies:
   - pandas
   - matplotlib
   - rasterio
+  - geopandas>=1.0
+  - pyogrio
+  - pyarrow
+  - fsspec
+  - aiohttp
+  - requests
   - pystac
   - pystac-client
   - jupyterlab

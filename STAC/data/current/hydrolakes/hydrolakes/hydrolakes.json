@@ -1,0 +1,201 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "hydrolakes",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          180.0,
+          -55.865139
+        ],
+        [
+          180.0,
+          83.575951
+        ],
+        [
+          -180.0,
+          83.575951
+        ],
+        [
+          -180.0,
+          -55.865139
+        ],
+        [
+          180.0,
+          -55.865139
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -55.865139,
+    180.0,
+    83.575951
+  ],
+  "properties": {
+    "title": "HydroLAKES",
+    "description": "Shoreline polygons of all global lakes with a surface area of at least 10 ha.",
+    "table:row_count": 1427688,
+    "table:columns": [
+      {
+        "name": "Hylak_id",
+        "type": "int32",
+        "description": "Unique lake identifier (shared with HydroRIVERS / HydroBASINS)"
+      },
+      {
+        "name": "Lake_name",
+        "type": "large_string",
+        "description": "Lake or reservoir name"
+      },
+      {
+        "name": "Country",
+        "type": "large_string",
+        "description": "Country in which the lake is located"
+      },
+      {
+        "name": "Continent",
+        "type": "large_string",
+        "description": "Continent in which the lake is located"
+      },
+      {
+        "name": "Poly_src",
+        "type": "large_string",
+        "description": "Source of the lake polygon (e.g. SWBD, CanVec, CLAKES)"
+      },
+      {
+        "name": "Lake_type",
+        "type": "int32",
+        "description": "Lake type: 1 = lake, 2 = reservoir, 3 = lake control structure"
+      },
+      {
+        "name": "Grand_id",
+        "type": "int32",
+        "description": "ID of the reservoir in the GRanD database (0 if not a GRanD reservoir)"
+      },
+      {
+        "name": "Lake_area",
+        "type": "double",
+        "description": "Lake surface area (km2)"
+      },
+      {
+        "name": "Shore_len",
+        "type": "double",
+        "description": "Shoreline length (km)"
+      },
+      {
+        "name": "Shore_dev",
+        "type": "double",
+        "description": "Shoreline development: shoreline length / circumference of a circle with the same area (-)"
+      },
+      {
+        "name": "Vol_total",
+        "type": "double",
+        "description": "Total lake or reservoir volume (million m3)"
+      },
+      {
+        "name": "Vol_res",
+        "type": "double",
+        "description": "Reported reservoir volume (million m3)"
+      },
+      {
+        "name": "Vol_src",
+        "type": "int32",
+        "description": "Source of the volume: 1 = reported total volume, 2 = reported reservoir volume, 3 = estimated"
+      },
+      {
+        "name": "Depth_avg",
+        "type": "double",
+        "description": "Average lake depth (m)"
+      },
+      {
+        "name": "Dis_avg",
+        "type": "double",
+        "description": "Average long-term discharge through the lake (m3/s)"
+      },
+      {
+        "name": "Res_time",
+        "type": "double",
+        "description": "Average residence time (days)"
+      },
+      {
+        "name": "Elevation",
+        "type": "int32",
+        "description": "Elevation of the lake surface (m above sea level)"
+      },
+      {
+        "name": "Slope_100",
+        "type": "double",
+        "description": "Average slope within a 100 m buffer around the lake (degrees ?)"
+      },
+      {
+        "name": "Wshd_area",
+        "type": "double",
+        "description": "Area of the upstream watershed (km2)"
+      },
+      {
+        "name": "Pour_long",
+        "type": "double",
+        "description": "Longitude of the lake pour point (degrees)"
+      },
+      {
+        "name": "Pour_lat",
+        "type": "double",
+        "description": "Latitude of the lake pour point (degrees)"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "Lake / reservoir shoreline polygon (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "hydrolakes",
+    "created": "2026-10-08T17:05:28.917072Z",
+    "datetime": "2016-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "HydroLAKES"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "HydroLAKES"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/hydrolakes/hydrolakes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "HydroLAKES",
+      "description": "Shoreline polygons of all global lakes with a surface area of at least 10 ha.",
+      "file:size": 1010784881,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "hydrolakes"
+}

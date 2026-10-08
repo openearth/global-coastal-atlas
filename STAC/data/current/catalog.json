@@ -111,6 +111,12 @@
       "href": "./seabed_lithology/collection.json",
       "type": "application/json",
       "title": "Seafloor sediments in the world's ocean"
+    },
+    {
+      "rel": "child",
+      "href": "./hydrolakes/collection.json",
+      "type": "application/json",
+      "title": "HydroLAKES"
     }
   ],
   "assets": {

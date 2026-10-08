@@ -5,5 +5,7 @@ pandas
 pyproj
 rasterio
 rioxarray
+geopandas>=1.0
+pyarrow
 jupyterlab
 ipykernel

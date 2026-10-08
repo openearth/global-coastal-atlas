@@ -1,6 +1,7 @@
 param(
     [string]$Notebook = "17_seabed_litho.ipynb",
     [string]$Variable = "seabed_litho",
+    [string]$InputPattern = "$Variable.*",
     [string]$PDir = "P:\11209117-041-ipdc-egypt-swi\data\IntDeltaPlatform_QGA\Data_Vivian",
     [string]$Mirror = "C:\Ocean\Work\Projects\2026\Africa\Data\Data_Vivian"
 )
@@ -11,7 +12,7 @@ $ErrorActionPreference = "Stop"
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 
 New-Item -ItemType Directory -Force $Mirror | Out-Null
-Copy-Item "$PDir\$Variable.tif" $Mirror -Force
+Copy-Item "$PDir\$InputPattern" $Mirror -Force
 
 Push-Location $here
 try {
