@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+pystac
+fsspec
+aiohttp
+requests
+pyarrow
+shapely>=2
+numpy

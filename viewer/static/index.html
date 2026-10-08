@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Global Coastal Atlas viewer</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@9.2.4/ol.css" />
+<script src="https://cdn.jsdelivr.net/npm/ol@9.2.4/dist/ol.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; margin: 0; height: 100vh; display: flex; background: #fafafa; }
+  #side { width: 360px; min-width: 360px; overflow-y: auto; padding: 12px 14px; border-right: 1px solid #ccc; background: #fff; }
+  #map { flex: 1; position: relative; }
+  h2 { margin: 0 0 4px; font-size: 18px; }
+  h3 { margin: 16px 0 6px; font-size: 13px; text-transform: uppercase; color: #555; letter-spacing: .04em; }
+  .hint { color: #666; font-size: 12px; margin: 2px 0 8px; }
+  .bbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; font-size: 12px; }
+  .bbox-grid input { width: 100%; padding: 3px 4px; }
+  .row { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  button { padding: 4px 10px; cursor: pointer; }
+  .layer { border: 1px solid #ddd; border-radius: 4px; padding: 6px 8px; margin-bottom: 6px; background: #fcfcfc; }
+  .layer label { font-size: 13px; font-weight: bold; cursor: pointer; }
+  .layer .status { font-size: 11px; color: #888; margin-left: 4px; font-weight: normal; }
+  .layer .status.err { color: #b00020; }
+  .layer .more { display: none; margin-top: 6px; font-size: 12px; color: #444; }
+  .layer.open .more { display: block; }
+  .layer .toggle { float: right; font-size: 11px; color: #06c; cursor: pointer; }
+  .layer .desc { max-height: 110px; overflow-y: auto; margin: 4px 0; }
+  .layer img.legend { max-width: 100%; margin-top: 4px; }
+  .group { font-size: 12px; color: #666; margin: 10px 0 4px; font-weight: bold; }
+  #popup { position: absolute; background: #fff; border: 1px solid #888; border-radius: 4px; padding: 8px 10px; font-size: 12px;
+           max-width: 340px; max-height: 300px; overflow: auto; box-shadow: 0 2px 8px rgba(0,0,0,.3); }
+  #popup .close { float: right; cursor: pointer; margin-left: 8px; color: #666; }
+  #popup pre { margin: 2px 0 6px; white-space: pre-wrap; }
+  #popup b.t { display: block; margin-top: 4px; }
+  #loading { position: absolute; top: 10px; left: 50px; background: rgba(255,255,255,.9); padding: 4px 10px; border-radius: 4px; font-size: 12px; display: none; z-index: 5; }
+</style>
+</head>
+<body>
+<div id="side">
+  <h2>Global Coastal Atlas viewer</h2>
+  <div class="hint">Layers published in the GCA STAC catalog (collections 17-21), shown for an area of interest. WMS layers come from GeoServer; vector layers are read from GeoParquet for the bounding box.</div>
+
+  <h3>Bounding box (lon / lat)</h3>
+  <div class="bbox-grid">
+    <label>West <input id="minx" type="number" step="any"></label>
+    <label>East <input id="maxx" type="number" step="any"></label>
+    <label>South <input id="miny" type="number" step="any"></label>
+    <label>North <input id="maxy" type="number" step="any"></label>
+  </div>
+  <div class="row">
+    <button id="applyBtn" title="Zoom to the box and reload the vector layers for it">Apply</button>
+    <button id="drawBtn" title="Drag a rectangle on the map">Draw on map</button>
+    <button id="defaultBtn">Reset</button>
+  </div>
+  <div class="hint" id="bboxHint"></div>
+
+  <h3>Basemap</h3>
+  <select id="baseSelect" style="width:100%">
+    <option value="osm">OpenStreetMap</option>
+    <option value="none">None</option>
+  </select>
+
+  <h3>Layers</h3>
+  <div id="layers">Loading layers...</div>
+  <div class="hint">Click the map to query the active layers.</div>
+</div>
+<div id="map"><div id="loading"></div></div>
+<div id="popup" style="display:none"></div>
+
+<script>
+const WMS_PROXY = "/api/wms";
+let defaultBbox = [24, 21, 37.5, 32];
+let currentBbox = defaultBbox.slice();
+let maxFeatures = 20000;
+
+// ---- basemaps ----
+const baseLayers = {
+  osm: new ol.layer.Tile({ zIndex: 0, source: new ol.source.OSM() }),
+};
+
+// ---- bbox rectangle ----
+const bboxSource = new ol.source.Vector();
+const bboxLayer = new ol.layer.Vector({
+  source: bboxSource, zIndex: 100,
+  style: new ol.style.Style({ stroke: new ol.style.Stroke({ color: "#d81b60", width: 2, lineDash: [8, 6] }) }),
+});
+
+const map = new ol.Map({
+  target: "map",
+  layers: [baseLayers.osm, bboxLayer],
+  view: new ol.View({ center: [0, 0], zoom: 2 }),
+});
+
+const popupEl = document.getElementById("popup");
+const popup = new ol.Overlay({ element: popupEl, autoPan: true, positioning: "bottom-center", offset: [0, -8] });
+map.addOverlay(popup);
+
+document.getElementById("baseSelect").addEventListener("change", (e) => {
+  baseLayers.osm.setVisible(e.target.value === "osm");
+});
+
+// ---- layers ----
+const registry = {};  // id -> {meta, olLayer, checkbox, statusEl, loadedKey}
+const vectorStyles = {
+  hydrolakes: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(33,150,243,.55)" }), stroke: new ol.style.Stroke({ color: "#0d47a1", width: 0.8 }) }),
+  country_boundaries: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(0,0,0,0.01)" }), stroke: new ol.style.Stroke({ color: "#0b2a6f", width: 2.5 }) }),
+};
+
+function makeOlLayer(meta, zIndex) {
+  if (meta.type === "wms") {
+    return new ol.layer.Tile({
+      zIndex, visible: false,
+      source: new ol.source.TileWMS({
+        url: WMS_PROXY, serverType: "geoserver", crossOrigin: "anonymous", transition: 0,
+        params: { LAYERS: meta.wms_layers, VERSION: "1.1.1", FORMAT: "image/png", TRANSPARENT: true, TILED: true },
+      }),
+    });
+  }
+  return new ol.layer.Vector({ zIndex, visible: false, source: new ol.source.Vector(), style: vectorStyles[meta.id] });
+}
+
+function setStatus(id, text, isError) {
+  const el = registry[id].statusEl;
+  el.textContent = text ? "(" + text + ")" : "";
+  el.className = "status" + (isError ? " err" : "");
+}
+
+let pending = 0;
+function busy(delta) {
+  pending += delta;
+  const el = document.getElementById("loading");
+  el.style.display = pending > 0 ? "block" : "none";
+  el.textContent = "Loading data...";
+}
+
+async function loadVector(id, force) {
+  const r = registry[id];
+  const key = currentBbox.map((v) => v.toFixed(4)).join(",");
+  if (!force && r.loadedKey === key) return;
+  r.loadedKey = key;
+  setStatus(id, "loading...");
+  busy(1);
+  try {
+    const res = await fetch(`/api/vector/${id}?bbox=${key}`);
+    if (!res.ok) throw new Error((await res.json()).detail || res.status);
+    const geojson = await res.json();
+    if (r.loadedKey !== key) return;  // the bbox changed while loading
+    const src = r.olLayer.getSource();
+    src.clear();
+    src.addFeatures(new ol.format.GeoJSON().readFeatures(geojson, { dataProjection: "EPSG:4326", featureProjection: "EPSG:3857" }));
+    setStatus(id, geojson.features.length + " features");
+  } catch (err) {
+    r.loadedKey = null;
+    setStatus(id, "error: " + err.message, true);
+  } finally {
+    busy(-1);
+  }
+}
+
+function addLegend(meta, box) {
+  const img = document.createElement("img");
+  img.className = "legend";
+  img.alt = "legend";
+  img.src = `${WMS_PROXY}?SERVICE=WMS&REQUEST=GetLegendGraphic&VERSION=1.1.1&FORMAT=image/png&LAYER=${encodeURIComponent(meta.wms_layers)}`;
+  img.onerror = () => img.remove();
+  box.append(img);
+}
+
+function buildLayerPanel(metas) {
+  const container = document.getElementById("layers");
+  container.innerHTML = "";
+  // rasters below, vectors on top
+  metas.forEach((meta, i) => {
+    const olLayer = makeOlLayer(meta, 10 + (meta.type === "vector" ? 50 : 0) + i);
+    olLayer.setOpacity(0.8);
+    map.addLayer(olLayer);
+
+    const div = document.createElement("div");
+    div.className = "layer";
+    const toggle = document.createElement("span");
+    toggle.className = "toggle"; toggle.textContent = "details";
+    toggle.onclick = () => div.classList.toggle("open");
+    const label = document.createElement("label");
+    const cb = document.createElement("input");
+    cb.type = "checkbox";
+    const status = document.createElement("span");
+    status.className = "status";
+    label.append(cb, " " + meta.title + " ", status);
+
+    const more = document.createElement("div");
+    more.className = "more";
+    const desc = document.createElement("div");
+    desc.className = "desc"; desc.textContent = meta.description || "";
+    const info = document.createElement("div");
+    info.textContent = `Type: ${meta.type === "wms" ? "raster (GeoServer WMS)" : "vector (GeoParquet)"}` + (meta.license ? ` | License: ${meta.license}` : "");
+    const opLabel = document.createElement("label");
+    opLabel.style.fontWeight = "normal";
+    opLabel.append("Opacity ");
+    const op = document.createElement("input");
+    op.type = "range"; op.min = 0; op.max = 1; op.step = 0.05; op.value = 0.8;
+    op.oninput = () => olLayer.setOpacity(parseFloat(op.value));
+    opLabel.append(op);
+    const zoom = document.createElement("button");
+    zoom.textContent = "Zoom to extent";
+    zoom.onclick = () => {
+      if (meta.bbox) map.getView().fit(ol.proj.transformExtent(meta.bbox, "EPSG:4326", "EPSG:3857"), { padding: [20, 20, 20, 20], maxZoom: 6 });
+    };
+    const legendBox = document.createElement("div");
+    more.append(desc, info, opLabel, document.createElement("br"), zoom, legendBox);
+    div.append(toggle, label, more);
+
+    registry[meta.id] = { meta, olLayer, checkbox: cb, statusEl: status, loadedKey: null };
+    const onChange = () => {
+      olLayer.setVisible(cb.checked);
+      if (cb.checked && meta.type === "vector") loadVector(meta.id);
+      if (cb.checked && meta.type === "wms" && !legendBox.firstChild) addLegend(meta, legendBox);
+    };
+    cb.addEventListener("change", onChange);
+
+    if (!container.querySelector(`[data-group="${CSS.escape(meta.group)}"]`)) {
+      const g = document.createElement("div");
+      g.className = "group"; g.dataset.group = meta.group; g.textContent = meta.group;
+      container.append(g);
+    }
+    container.append(div);
+    if (meta.default) { cb.checked = true; onChange(); }
+  });
+}
+
+// ---- bbox handling ----
+const inputs = ["minx", "miny", "maxx", "maxy"].map((n) => document.getElementById(n));
+function showBbox() {
+  inputs.forEach((el, i) => (el.value = currentBbox[i]));
+  bboxSource.clear();
+  const [a, b, c, d] = currentBbox;
+  const poly = new ol.geom.Polygon([[[a, b], [c, b], [c, d], [a, d], [a, b]]]).transform("EPSG:4326", "EPSG:3857");
+  bboxSource.addFeature(new ol.Feature(poly));
+  document.getElementById("bboxHint").textContent = `Vector layers are read for this box (up to ${maxFeatures} features per layer).`;
+}
+
+function applyBbox(bbox, fit) {
+  const [a, b, c, d] = bbox;
+  if (!(a < c && b < d && a >= -180 && c <= 180 && b >= -90 && d <= 90)) { alert("Invalid bounding box"); return; }
+  currentBbox = bbox;
+  showBbox();
+  if (fit) map.getView().fit(ol.proj.transformExtent(bbox, "EPSG:4326", "EPSG:3857"), { padding: [30, 30, 30, 30] });
+  for (const r of Object.values(registry)) if (r.meta.type === "vector" && r.checkbox.checked) loadVector(r.meta.id);
+}
+
+document.getElementById("applyBtn").onclick = () => applyBbox(inputs.map((el) => parseFloat(el.value)), true);
+document.getElementById("defaultBtn").onclick = () => applyBbox(defaultBbox.slice(), true);
+
+let dragBox = null;
+document.getElementById("drawBtn").onclick = () => {
+  if (dragBox) map.removeInteraction(dragBox);
+  dragBox = new ol.interaction.DragBox({ condition: ol.events.condition.always });
+  dragBox.on("boxend", () => {
+    const e = ol.proj.transformExtent(dragBox.getGeometry().getExtent(), "EPSG:3857", "EPSG:4326");
+    map.removeInteraction(dragBox); dragBox = null;
+    applyBbox(e.map((v) => Math.round(v * 1e4) / 1e4), false);
+  });
+  map.addInteraction(dragBox);
+};
+
+// ---- click: vector features + GetFeatureInfo of the active WMS layers ----
+map.on("singleclick", async (evt) => {
+  popupEl.style.display = "none";
+  const sections = [];
+  map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => {
+    const entry = Object.values(registry).find((r) => r.olLayer === layer);
+    if (!entry) return;
+    const props = { ...feature.getProperties() };
+    delete props.geometry;
+    sections.push([entry.meta.title, Object.entries(props).filter(([, v]) => v !== null && v !== "").map(([k, v]) => `${k}: ${v}`).join("\n")]);
+  });
+  const view = map.getView();
+  const wmsEntries = Object.values(registry).filter((r) => r.meta.type === "wms" && r.checkbox.checked);
+  await Promise.all(wmsEntries.map(async (r) => {
+    const url = r.olLayer.getSource().getFeatureInfoUrl(evt.coordinate, view.getResolution(), view.getProjection(), { INFO_FORMAT: "text/plain" });
+    try {
+      const res = await fetch(url);
+      const text = (await res.text()).trim();
+      if (res.ok && text) sections.push([r.meta.title, text.replace(/^Results for.*\n-+\n?/m, "")]);
+    } catch (e) { /* GeoServer not reachable: nothing to show */ }
+  }));
+  if (!sections.length) return;
+  popupEl.innerHTML = '<span class="close">&times;</span>';
+  popupEl.querySelector(".close").onclick = () => (popupEl.style.display = "none");
+  for (const [title, body] of sections) {
+    const t = document.createElement("b"); t.className = "t"; t.textContent = title;
+    const p = document.createElement("pre"); p.textContent = body;
+    popupEl.append(t, p);
+  }
+  popup.setPosition(evt.coordinate);
+  popupEl.style.display = "block";
+});
+
+// ---- start ----
+(async function init() {
+  const cfg = await (await fetch("/api/config")).json();
+  defaultBbox = cfg.default_bbox; maxFeatures = cfg.max_features;
+  currentBbox = defaultBbox.slice();
+  showBbox();
+  map.getView().fit(ol.proj.transformExtent(currentBbox, "EPSG:4326", "EPSG:3857"), { padding: [30, 30, 30, 30] });
+  const metas = await (await fetch("/api/layers")).json();
+  buildLayerPanel(metas);
+})();
+</script>
+</body>
+</html>

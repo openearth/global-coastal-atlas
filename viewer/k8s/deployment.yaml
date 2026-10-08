@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gca-viewer
+  labels:
+    app: gca-viewer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gca-viewer
+  template:
+    metadata:
+      labels:
+        app: gca-viewer
+    spec:
+      containers:
+        - name: viewer
+          image: localhost:5000/gca-viewer:local
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: STAC_CATALOG_URL
+              value: "https://storage.googleapis.com/gca-data-public/gca/gca-stac-7/catalog.json"
+            # Area shown when the viewer opens (minx,miny,maxx,maxy): Egypt
+            - name: DEFAULT_BBOX
+              value: "24.0,21.0,37.5,32.0"
+            # Uncomment to use another GeoServer WMS endpoint (default: taken from the STAC items)
+            # - name: WMS_URL
+            #   value: "https://international-delta-platform.avi.directory.intra/geoserver/wms"
+          resources:
+            requests:
+              memory: 256Mi
+            limits:
+              memory: 2Gi
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 20
