@@ -1,0 +1,110 @@
+{
+  "type": "Collection",
+  "id": "gebco",
+  "stac_version": "1.1.0",
+  "description": "GEBCO's gridded bathymetric data set, the GEBCO_2025 Grid, is a global terrain model for ocean and land, providing elevation data, in metres, on a 15 arc-second interval grid. This is the sub-ice topography/bathymetry version (under-ice topography for Greenland and Antarctica), delivered as four 90 x 90 degree Cloud Optimized GeoTIFF tiles covering longitude -90 to 90 and latitude -90 to 90.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/gebco_2025_sub_ice_n0_s-90_w-90_e0.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/gebco_2025_sub_ice_n0_s-90_w0_e90.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/gebco_2025_sub_ice_n90_s0_w-90_e0.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/gebco_2025_sub_ice_n90_s0_w0_e90.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)",
+      "roles": [
+        "data"
+      ],
+      "description": "Global terrain data (elevation and bathymetry, m) for land and ocean, GEBCO_2025 grid",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "m",
+  "sci:citation": "GEBCO Compilation Group (2025) GEBCO 2025 Grid (doi:10.5285/37c52e96-24ea-67ce-e063-7086abc05f29)",
+  "sci:doi": "10.5285/37c52e96-24ea-67ce-e063-7086abc05f29",
+  "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.0,
+          -90.0,
+          90.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "bathymetry",
+    "topography",
+    "elevation",
+    "terrain",
+    "ocean",
+    "seabed",
+    "GEBCO",
+    "Seabed 2030"
+  ],
+  "providers": [
+    {
+      "name": "GEBCO",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.gebco.net/data-products/gridded-bathymetry-data"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

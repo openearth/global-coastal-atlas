@@ -1,9 +1,13 @@
-# Environment for the notebooks in STAC/data/scripts/exploration/
-# (17_seabed_litho_check.ipynb and 18_hydrolakes_check.ipynb)
+# Environment for the notebooks in STAC/data/scripts/exploration/ (the *_check.ipynb notebooks) and
+# for running the preprocessing notebooks in STAC/data/notebooks/ (17 onwards) directly on the P: drive
+# (xarray + rioxarray for the COG notebooks, geopandas + pyarrow for the GeoParquet notebooks).
 #
 # Install with miniforge (mamba) or conda:
 #   mamba env create -f environment_exploration.yml
 #   conda activate gca-exploration
+#
+# Already installed? Update it with:
+#   mamba env update -n gca-exploration -f environment_exploration.yml
 #
 # Then register the kernel for Jupyter (optional, if not already available):
 #   python -m ipykernel install --user --name gca-exploration
@@ -17,6 +21,8 @@ dependencies:
   - pandas
   - matplotlib
   - rasterio
+  - xarray
+  - rioxarray
   - geopandas>=1.0
   - pyogrio
   - pyarrow

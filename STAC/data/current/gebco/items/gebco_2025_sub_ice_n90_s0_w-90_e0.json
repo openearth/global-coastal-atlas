@@ -1,0 +1,154 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "gebco_2025_sub_ice_n90_s0_w-90_e0",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          90.0
+        ],
+        [
+          -90.0,
+          90.0
+        ],
+        [
+          -90.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -90.0,
+    0.0,
+    0.0,
+    90.0
+  ],
+  "properties": {
+    "title": "GEBCO 2025 grid, tile lon -90..0, lat 0..90",
+    "description": "GEBCO_2025 Grid (sub-ice topography/bathymetry), 15 arc-second tile covering lon -90 to 0 and lat 0 to 90.",
+    "start_datetime": "2025-01-01T00:00:00Z",
+    "end_datetime": "2025-12-31T23:59:59Z",
+    "created": "2026-10-08T18:44:06.126400Z",
+    "proj:bbox": [
+      -90.0,
+      -1.8947517166356675e-15,
+      1.8947517166356675e-15,
+      90.0
+    ],
+    "proj:shape": [
+      21600,
+      21600
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            1.8947517166356675e-15,
+            -1.8947517166356675e-15
+          ],
+          [
+            1.8947517166356675e-15,
+            90.0
+          ],
+          [
+            -90.0,
+            90.0
+          ],
+          [
+            -90.0,
+            -1.8947517166356675e-15
+          ],
+          [
+            1.8947517166356675e-15,
+            -1.8947517166356675e-15
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.004166666666666667,
+      0.0,
+      -90.0,
+      0.0,
+      -0.004166666666666667,
+      90.0
+    ],
+    "deltares:item_key": "gebco_2025_sub_ice_n90_s0_w-90_e0",
+    "datetime": "2025-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/gebco/gebco_2025_sub_ice_n90_s0_w-90_e0.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "gebco_2025_sub_ice_n90_s0_w-90_e0",
+      "file:size": 444028830,
+      "raster:bands": [
+        {
+          "nodata": -32767,
+          "data_type": "int16",
+          "spatial_resolution": 0.004167,
+          "unit": "m"
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "gebco_2025_sub_ice_n90_s0_w-90_e0",
+          "description": "GEBCO_2025 Grid (sub-ice topography/bathymetry), 15 arc-second tile covering lon -90 to 0 and lat 0 to 90."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/gebco",
+      "type": "application/png",
+      "title": "gebco_2025_sub_ice_n90_s0_w-90_e0",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "gebco"
+}

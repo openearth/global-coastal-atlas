@@ -129,6 +129,12 @@
       "href": "./groundwater_recharge/collection.json",
       "type": "application/json",
       "title": "Groundwater Recharge in Africa from Ground Based Measurements"
+    },
+    {
+      "rel": "child",
+      "href": "./gebco/collection.json",
+      "type": "application/json",
+      "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)"
     }
   ],
   "assets": {
