@@ -1,0 +1,43 @@
+{
+    "TITLE": "GLiM Global Lithological Map",
+    "TITLE_ABBREVIATION": "GLiM",
+    "DESCRIPTION": "The GLiM v1.0 has been developed as tool for global modeling in a detail yet unmatched. The database contains about 1,2 million polygons. The average resolution is 1:3 750 000. The map is about 100 times more detailed than previous global lithological maps.",
+    "SHORT_DESCRIPTION": "The new global lithological map database GLiM, a representation of rock properties at the Earth surface.",
+    "INSTITUTION": "University of Hamburg",
+    "PROVIDERS": {
+        "name": "University of Hamburg",
+        "url": "https://www.geo.uni-hamburg.de/en/geologie/forschung/aquatische-geochemie/glim.html",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "Shapefile",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Hartmann J, Moosdorf N",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Hartmann J, Moosdorf N (2012) The new global lithological map database GLiM: A representation of rock properties at the Earth surface. Geochem Geophys Geosyst 13:2012GC004370. https://doi.org/10.1029/2012GC004370",
+    "DOI": "https://doi.org/10.1029/2012GC004370",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "Link to data: https://www.dropbox.com/scl/fi/5v00i8op7a9brmn4qeg8b/LiMW_GIS-2015.gdb.zip?rlkey=89q1aj8zfpmiv82y41xe6ttmp&e=1&dl=0, I downloaded the shapefile not the GeoTIFF",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

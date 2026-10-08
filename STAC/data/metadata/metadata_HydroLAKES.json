@@ -1,0 +1,43 @@
+{
+    "TITLE": "HydroLAKES",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "HydroLAKES aims to provide the shoreline polygons of all global lakes with a surface area of at least 10 ha. HydroLAKES has been developed using a suite of auxiliary data sources of lake polygons and gridded lake surface areas. All lakes are co-registered to the global river network of the HydroSHEDS database via their lake pour points. The global coverage of HydroLAKES encompasses 1.4 million individual lakes or reservoirs representing a total surface area of 2.67 million km², a total shoreline length of 7.2 million km, and a total storage volume of 181,900 km³. HydroLAKES only includes a limited amount of (mostly geometric) attribute information, such as surface area, shoreline length, and estimates of average depth, water volume and residence time. Every lake is also co-registered to a river reach of the HydroRIVERS dataset and a sub-basin of the HydroBASINS database (via shared IDs).",
+    "SHORT_DESCRIPTION": "Shoreline polygons of all global lakes with a surface area of at least 10 ha.",
+    "INSTITUTION": "McGill University, Montreal, Canada, World Wildlife Fund (WWF) US",
+    "PROVIDERS": {
+        "name": "HydroSHEDS",
+        "url": "https://www.hydrosheds.org/products/hydrolakes",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution (CC-BY) 4.0 International License",
+    "AUTHOR": "Messager ML, Lehner B, Grill G",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Messager ML, Lehner B, Grill G, et al (2016) Estimating the volume and age of water stored in global lakes using a geo-statistical approach. Nature Communications 7:. https://doi.org/https://doi.org/10.1038/ncomms1360364",
+    "DOI": "https://doi.org/https://doi.org/10.1038/ncomms1360364",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

@@ -1,0 +1,43 @@
+{
+    "TITLE": "SOILDGRIDS Absolute Depth to Bedrock",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "Absolute depth to bedrock (in cm) predicted using the global compilation of soil ground observations. Accuracy assessement of the maps is availble in Hengl et at. (2017) DOI: 10.1371/journal.pone.0169748. Data provided as GeoTIFFs with internal compression (co='COMPRESS=DEFLATE'). Measurement units: cm.",
+    "SHORT_DESCRIPTION": "",
+    "INSTITUTION": "",
+    "PROVIDERS": {
+        "name": "",
+        "url": "https://data.isric.org/geonetwork/srv/api/records/f36117ea-9be5-4afd-bb7d-7a3e77bf392a",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "1950",
+        "2015"
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Tom Hengl",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Hengl T, Mendes De Jesus J, Heuvelink GBM, et al (2017) SoilGrids250m: Global gridded soil information based on machine learning. PLoS ONE 12:e0169748. https://doi.org/10.1371/journal.pone.0169748",
+    "DOI": "https://doi.org/10.1371/journal.pone.0169748",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "GeoTIFF",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

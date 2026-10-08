@@ -1,0 +1,43 @@
+{
+    "TITLE": "GLobal HYdrogeology MaPS 2.0",
+    "TITLE_ABBREVIATION": "GLHYMPS 2.0",
+    "DESCRIPTION": "The spatial distribution of subsurface parameters such as permeability are increasingly relevant for regional to global climate, land surface, and hydrologic models that are integrating groundwater dynamics and interactions. Despite the large fraction of unconsolidated sediments on Earth’s surface with a wide range of permeability values, current global, high-resolution permeability maps distinguish solely fine-grained and coarse-grained unconsolidated sediments. Representative permeability values are derived for a wide variety of unconsolidated sediments and applied to a new global map of unconsolidated sediments to produce the first geologically constrained, two-layer global map of shallower and deeper permeability. The new mean logarithmic permeability of the Earth’s surface is 12.7 ± 1.7m2 being 1 order of magnitude higher than that derived from previous maps, which is consistent with the dominance of the coarser sediments. The new data set will benefit a variety of scientific applications including the next generation of climate, land surface, and hydrology models at regional to global scales. (2018-03-08) ",
+    "SHORT_DESCRIPTION": "Global porosity and permeability data.",
+    "INSTITUTION": "University of Victoria",
+    "PROVIDERS": {
+        "name": "Borealis",
+        "url": "https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP2/TTJNIU",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Huscroft J, Gleeson T, Hartmann J, Börker J",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Huscroft J, Gleeson T, Hartmann J, Börker J (2018) Compiling and Mapping Global Permeability of the Unconsolidated and Consolidated Earth: GLobal HYdrogeology MaPS 2.0 (GLHYMPS 2.0). Geophysical Research Letters 45:1897-1904. https://doi.org/10.1002/2017GL075860",
+    "DOI": "https://doi.org/10.1002/2017GL075860",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "I only use the porosity data.",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

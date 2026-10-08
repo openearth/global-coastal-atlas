@@ -1,0 +1,43 @@
+{
+    "TITLE": "General Bathymetric Chart of the Oceans",
+    "TITLE_ABBREVIATION": "GEBCO",
+    "DESCRIPTION": "GEBCO’s current gridded bathymetric data set, the GEBCO_2026 Grid, is a global terrain model for ocean and land, providing elevation data, in meters, on a 15 arc-second interval grid.",
+    "SHORT_DESCRIPTION": "Global terrain data for land and ocean",
+    "INSTITUTION": "British Oceanographic Data Centre (BODC)",
+    "PROVIDERS": {
+        "name": "GEBCO",
+        "url": "https://www.gebco.net/data-products/gridded-bathymetry-data",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "GeoTiff",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "GEBCO Compilation Group",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "GEBCO Bathymetric Compilation Group 2026 (2026). The GEBCO_2026 Grid - a continuous terrain model for oceans and land at 15 arc-second intervals. https://doi.org/10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+    "DOI": "https://doi.org/10.5285/4f68d5c7-45eb-f999-e063-7086abc036fa",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "I use the data set: GEBCO_2026 Grid (sub-ice topo/bathy) and downloaded only the tiles relevant for Africa (e.g. gebco_2025_sub_ice_n0.0_s-90.0_w0.0_e90.0). Then they were merged into 1 GeoTiff called GEBCO_Africa_merged. ",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

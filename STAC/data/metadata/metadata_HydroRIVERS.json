@@ -1,0 +1,43 @@
+{
+    "TITLE": "HydroRIVERS",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "HydroRIVERS represents a vectorized line network of all global rivers that have a catchment area of at least 10 km² or an average river flow of at least 0.1 m³/sec, or both. HydroRIVERS has been extracted from the gridded HydroSHEDS core layers at 15 arc-second resolution. The global coverage of HydroRIVERS encompasses 8.5 million individual river reaches with an average length of 4.2 km, representing a total of 35.9 million km of rivers globally. HydroRIVERS only includes a limited amount of (mostly geometric) attribute information, such as the river reach length, the distance from upstream headwaters and ocean outlet, the river order, and an estimate of long-term average discharge. Every river reach is also co-registered to the sub-basin of the HydroBASINS database in which it resides (via a shared ID).",
+    "SHORT_DESCRIPTION": "Vectorized line network of all global rivers that have a catchment area of at least 10 km² or an average river flow of at least 0.1 m³/sec, or both.",
+    "INSTITUTION": "World Wildlife Fund (WWF) US",
+    "PROVIDERS": {
+        "name": "HydroSHEDS",
+        "url": "https://www.hydrosheds.org/products/hydrorivers",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Lehner B, Grill G",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Lehner B, Grill G (2013) Global river hydrography and network routing: baseline data and new approaches to study the world’s large river systems. Hydrological Processes 27:. https://doi.org/https://doi.org/10.1002/hyp.9740",
+    "DOI": "https://doi.org/https://doi.org/10.1002/hyp.9740",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "Here the tecnical documentation: https://data.hydrosheds.org/file/technical-documentation/HydroSHEDS_TechDoc_v1_4.pdf",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

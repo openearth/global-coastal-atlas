@@ -1,0 +1,43 @@
+{
+    "TITLE": "Global Sedimentary Thickness model 1",
+    "TITLE_ABBREVIATION": "GST1",
+    "DESCRIPTION": "GST-1 is a global sedimentary thickness model, on a 0.125° x 0.125° grid. It was created by suites of 3D free air gravity inversions that modified the sediment thickness model of Mooney et al. (2023), which is gridded at 1° x 1°. ",
+    "SHORT_DESCRIPTION": "GST-1 is a global sedimentary thickness model, on a 0.125° x 0.125° grid. ",
+    "INSTITUTION": "",
+    "PROVIDERS": {
+        "name": "Bird Geophysical ",
+        "url": "http://www.birdgeo.com/gst-1.htm",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Bird DE, Mooney WD",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Bird DE, Mooney WD (2026) GST-1: A high-resolution global sediment thickness model. Tectonophysics 929:231175. https://doi.org/10.1016/j.tecto.2026.231175",
+    "DOI": "https://doi.org/10.1016/j.tecto.2026.231175",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "XYZ file",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

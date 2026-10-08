@@ -1,0 +1,43 @@
+{
+    "TITLE": "GUM – Global Unconsolidated Sediment Map Database",
+    "TITLE_ABBREVIATION": "GUM",
+    "DESCRIPTION": "Mapped unconsolidated sediments cover half of the global land surface. They are of considerable importance for many Earth surface processes like weathering, hydrological fluxes or biogeochemical cycles. Ignoring their characteristics or spatial extent may lead to misinterpretations in Earth System studies. Therefore, a new Global Unconsolidated Sediments Map database (GUM) was compiled, using regional maps specifically representing unconsolidated and quaternary sediments. The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available. Previous global lithological maps or databases lacked detail for reported unconsolidated sediment areas or missed large areas, and reported a global coverage of 25 to 30%, considering the ice-free land area. Here, alluvial sediments cover about 23% of the mapped total ice-free area, followed by aeolian sediments (~21%), glacial sediments (~20%), and colluvial sediments (~16%). A specific focus during the creation of the database was on the distribution of loess deposits, since loess is highly reactive and relevant to understand geochemical cycles related to dust deposition and weathering processes. An additional layer compiling pyroclastic sediment is added, which merges consolidated and unconsolidated pyroclastic sediments. The compilation shows latitudinal abundances of sediment types related to climate of the past.",
+    "SHORT_DESCRIPTION": "The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available.",
+    "INSTITUTION": "University of Hamburg, Alfred Wegener Institute, Helmholtz Center for Polar and Marine Research (AWI) Center for Marine Environmental Sciences, University of Bremen (MARUM) ",
+    "PROVIDERS": {
+        "name": "University of Hamburg",
+        "url": "https://www.geo.uni-hamburg.de/en/geologie/forschung/aquatische-geochemie/gum.html",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 3.0 Unported (CC-BY-3.0)",
+    "AUTHOR": "Börker J, Hartmann J, Amann T, Romero-Mujalli G",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Börker J, Hartmann J, Amann T, Romero-Mujalli G (2018) Terrestrial Sediments of the Earth: Development of a Global Unconsolidated Sediments Map Database (GUM). Geochem Geophys Geosyst 19:997-1024. https://doi.org/10.1002/2017GC007273",
+    "DOI": "https://doi.pangaea.de/10.1594/PANGAEA.884822",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "The data is downloaded from PANGEA: https://doi.pangaea.de/10.1594/PANGAEA.884822",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

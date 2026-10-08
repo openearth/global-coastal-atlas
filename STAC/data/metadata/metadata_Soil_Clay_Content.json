@@ -1,0 +1,43 @@
+{
+    "TITLE": "SoilGrids250m 2.0 - Clay content ",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "Clay content (0-2 micro meter) mass fraction in ‰ at 6 standard depths. Predictions were derived using a digital soil mapping approach based on Quantile Random Forest, drawing on a global compilation of soil profile data and environmental layers. To visualize these layers please use www.soilgrids.org.",
+    "SHORT_DESCRIPTION": "Clay content in different depth intervals.",
+    "INSTITUTION": "SOILGrids",
+    "PROVIDERS": {
+        "name": "ISRIC",
+        "url": "https://data.isric.org/geonetwork/srv/api/records/713396f7-1687-11ea-a7c0-a0481ca9e724",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Batjes NH, Ribeiro E, van Oostrum A",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Batjes NH, Ribeiro E, van Oostrum A (2020) Standardised soil profile data to support global mapping and modelling (WoSIS snapshot 2019)",
+    "DOI": "https://doi.org/10.5194/soil-7-217-2021",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "The files are named: clay_5km_[depth], I used the mean clay content per depth interval. I downloaded the data in 5x5 km grid resolution via Google Earth Engine.",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "GeoTIFF",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}
