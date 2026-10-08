@@ -1,0 +1,99 @@
+{
+  "type": "Collection",
+  "id": "groundwater_recharge",
+  "stac_version": "1.1.0",
+  "description": "This dataset consists of a set of maps of groundwater recharge for Africa at two spatial resolutions: 0.5° and 0.1°. The maps show long term average annual groundwater recharge in mm per annum relevant to the period 1970 to 2020. The maps were created using different versions of random forest models, and were based on a database of recharge sample points compiled by MacDonald et al. 2021. At 0.5°, three map variants are available, generated using the following models: random forest, random forest with residual kriging, and random forest trained on an extended observational dataset (including zero-recharge sample points). At 0.1°, three variants are available: random forest and random forest with residual kriging, as well as an additional map generated using a linear mixed model (replicating results by MacDonald et al. 2021 at a higher resolution). All maps are in the form of a georeferenced TIFF. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/RF_recharge_01.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/RF_RK_recharge_01.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Groundwater Recharge in Africa from Ground Based Measurements",
+      "roles": [
+        "data"
+      ],
+      "description": "Long term average annual groundwater recharge in mm per annum relevant to the period 1970 to 2020.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "mm/year",
+  "sci:citation": "Pazola A, Shamsudduha M, French J, et al (2024) High-resolution long-term average groundwater recharge in Africa estimated using random forest regression and residual interpolation. Hydrol Earth Syst Sci 28:2949-2967. https://doi.org/10.5194/hess-28-2949-2024",
+  "sci:doi": "10.5194/hess-28-2949-2024",
+  "title": "Groundwater Recharge in Africa from Ground Based Measurements",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -25.375,
+          -34.825,
+          63.475,
+          37.325
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1970-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "groundwater recharge",
+    "african groundwater resources",
+    "groundwater",
+    "machine learning",
+    "random forest",
+    "residual kriging",
+    "Africa"
+  ],
+  "providers": [
+    {
+      "name": "Figshare",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://figshare.com/articles/dataset/High-resolution_long-term_average_groundwater_recharge_in_Africa_estimated_using_random_forest_regression_and_residual_interpolation/22591375/1"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

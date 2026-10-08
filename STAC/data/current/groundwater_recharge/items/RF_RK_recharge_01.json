@@ -1,0 +1,155 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "RF_RK_recharge_01",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          63.475,
+          -34.825
+        ],
+        [
+          63.475,
+          37.325
+        ],
+        [
+          -25.375,
+          37.325
+        ],
+        [
+          -25.375,
+          -34.825
+        ],
+        [
+          63.475,
+          -34.825
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -25.375,
+    -34.825,
+    63.475,
+    37.325
+  ],
+  "properties": {
+    "title": "Groundwater recharge, random forest with residual kriging (0.1 degree)",
+    "description": "Long term average annual groundwater recharge in Africa (1970-2020) at 0.1 degree, predicted with a random forest model whose residuals are interpolated with kriging and added back to the prediction.",
+    "start_datetime": "1970-01-01T00:00:00Z",
+    "end_datetime": "2020-12-31T23:59:59Z",
+    "created": "2026-10-08T17:51:47.863551Z",
+    "proj:bbox": [
+      -25.375,
+      -34.825,
+      63.47499999999998,
+      37.325
+    ],
+    "proj:shape": [
+      888,
+      721
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            63.47499999999998,
+            -34.825
+          ],
+          [
+            63.47499999999998,
+            37.325
+          ],
+          [
+            -25.375,
+            37.325
+          ],
+          [
+            -25.375,
+            -34.825
+          ],
+          [
+            63.47499999999998,
+            -34.825
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.1000563063063063,
+      0.0,
+      -25.375,
+      0.0,
+      -0.10006934812760056,
+      37.325
+    ],
+    "deltares:item_key": "RF_RK_recharge_01",
+    "recharge:model": "RF_RK",
+    "datetime": "1970-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Groundwater Recharge in Africa from Ground Based Measurements"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Groundwater Recharge in Africa from Ground Based Measurements"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/groundwater_recharge/RF_RK_recharge_01.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "RF_RK_recharge_01",
+      "file:size": 898941,
+      "raster:bands": [
+        {
+          "nodata": -9999.0,
+          "data_type": "float32",
+          "spatial_resolution": 0.1,
+          "unit": "mm/year"
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "RF_RK_recharge_01",
+          "description": "Long term average annual groundwater recharge in Africa (1970-2020) at 0.1 degree, predicted with a random forest model whose residuals are interpolated with kriging and added back to the prediction."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/groundwater_recharge",
+      "type": "application/png",
+      "title": "RF_RK_recharge_01",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "groundwater_recharge"
+}

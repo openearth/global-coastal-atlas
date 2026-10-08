@@ -123,6 +123,12 @@
       "href": "./country_boundaries/collection.json",
       "type": "application/json",
       "title": "Admin 0 – Countries"
+    },
+    {
+      "rel": "child",
+      "href": "./groundwater_recharge/collection.json",
+      "type": "application/json",
+      "title": "Groundwater Recharge in Africa from Ground Based Measurements"
     }
   ],
   "assets": {
