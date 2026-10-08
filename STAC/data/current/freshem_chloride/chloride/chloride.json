@@ -1,0 +1,79 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "chloride",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          3.64028,
+          51.375148
+        ],
+        [
+          3.960967,
+          51.375148
+        ],
+        [
+          3.960967,
+          51.616396
+        ],
+        [
+          3.64028,
+          51.616396
+        ],
+        [
+          3.64028,
+          51.375148
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    3.64028,
+    51.375148,
+    3.960967,
+    51.616396
+  ],
+  "properties": {
+    "store": "chloride",
+    "description": "Freshem chloride datacube (x, y, z)",
+    "created": "2026-10-05T11:52:57.397033Z",
+    "deltares:item_key": "chloride",
+    "datetime": "2026-10-05T11:52:57.397015Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Freshem groundwater chloride concentration model (Zeeland)"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Freshem groundwater chloride concentration model (Zeeland)"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/freshem_chloride/chloride.zarr",
+      "title": "Chloride zarr root",
+      "description": "The root of the Chloride zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  },
+  "collection": "freshem_chloride"
+}

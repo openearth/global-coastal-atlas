@@ -93,6 +93,18 @@
       "href": "./salinity_increase/collection.json",
       "type": "application/json",
       "title": "Title"
+    },
+    {
+      "rel": "child",
+      "href": "./freshem_resistivity/collection.json",
+      "type": "application/json",
+      "title": "Freshem subsurface resistivity model (Zeeland)"
+    },
+    {
+      "rel": "child",
+      "href": "./freshem_chloride/collection.json",
+      "type": "application/json",
+      "title": "Freshem groundwater chloride concentration model (Zeeland)"
     }
   ],
   "assets": {

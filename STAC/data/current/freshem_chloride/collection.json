@@ -1,0 +1,862 @@
+{
+  "type": "Collection",
+  "id": "freshem_chloride",
+  "stac_version": "1.1.0",
+  "description": "Modelled 3D groundwater chloride concentration for the Freshem project, covering the Zeeland survey area, derived from GeoTOP lithology combined with airborne-EM resistivity. The cube provides chloride concentration percentiles (Q1-Q99) and mean, the GeoTOP unit used, and the top/bottom elevation of each depth layer on a regular x/y grid in the Dutch RD New projection (EPSG:28992), with a non-uniform vertical (z) axis following the original layer boundaries (no vertical interpolation).",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./chloride/chloride.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "deltares:units": "mg/l",
+  "deltares:plotSeries": "",
+  "deltares:plotxAxis": "z",
+  "deltares:plotType": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd+zarr",
+      "title": "Freshem groundwater chloride concentration model (Zeeland)",
+      "roles": [
+        "data"
+      ],
+      "description": "Modelled 3D groundwater chloride concentration for the Freshem project, covering the Zeeland survey area, derived from GeoTOP lithology combined with airborne-EM resistivity. The cube provides chloride concentration percentiles (Q1-Q99) and mean, the GeoTOP unit used, and the top/bottom elevation of each depth layer on a regular x/y grid in the Dutch RD New projection (EPSG:28992), with a non-uniform vertical (z) axis following the original layer boundaries (no vertical interpolation).",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "cube:dimensions": {
+    "x": {
+      "axis": "x",
+      "extent": [
+        33375.0,
+        56225.0
+      ],
+      "step": 50.0,
+      "reference_system": "EPSG:28992",
+      "type": "spatial"
+    },
+    "y": {
+      "axis": "y",
+      "extent": [
+        377675.0,
+        404025.0
+      ],
+      "step": 50.0,
+      "reference_system": "EPSG:28992",
+      "type": "spatial"
+    },
+    "z": {
+      "values": [
+        -126.0,
+        -124.0,
+        -122.0,
+        -120.0,
+        -118.0,
+        -116.0,
+        -114.0,
+        -112.0,
+        -110.0,
+        -108.0,
+        -106.0,
+        -104.0,
+        -102.0,
+        -100.0,
+        -98.0,
+        -96.0,
+        -94.0,
+        -92.0,
+        -90.0,
+        -88.0,
+        -86.0,
+        -84.0,
+        -82.0,
+        -80.0,
+        -78.0,
+        -76.0,
+        -74.0,
+        -72.0,
+        -70.0,
+        -68.0,
+        -66.0,
+        -64.0,
+        -62.0,
+        -60.0,
+        -58.0,
+        -56.0,
+        -54.0,
+        -52.0,
+        -50.0,
+        -48.0,
+        -46.0,
+        -44.0,
+        -42.0,
+        -40.0,
+        -38.0,
+        -36.0,
+        -34.0,
+        -32.0,
+        -30.0,
+        -28.0,
+        -26.0,
+        -24.0,
+        -22.0,
+        -20.0,
+        -18.0,
+        -16.0,
+        -14.0,
+        -12.0,
+        -10.0,
+        -8.0,
+        -6.0,
+        -4.0,
+        -2.0,
+        0.0,
+        2.0,
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0
+      ],
+      "reference_system": "EPSG:28992",
+      "type": "temporal"
+    }
+  },
+  "cube:variables": {
+    "bottom": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_mean": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q1": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q10": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q15": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q2": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q20": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q25": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q30": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q35": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q40": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q45": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q5": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q50": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q55": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q60": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q65": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q70": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q75": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q80": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q85": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q90": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q95": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q98": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "cl_q99": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "top": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "used_geotop": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    },
+    "z_orig": {
+      "type": "data",
+      "dimensions": [
+        "z",
+        "y",
+        "x"
+      ],
+      "attrs": {},
+      "shape": [
+        70,
+        528,
+        458
+      ],
+      "chunks": [
+        18,
+        132,
+        115
+      ]
+    }
+  },
+  "title": "Freshem groundwater chloride concentration model (Zeeland)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          3.64028,
+          51.375148,
+          3.960967,
+          51.616396
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-05T11:52:57.397015Z",
+          "2026-10-05T11:52:57.397015Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "chloride",
+    "groundwater salinity",
+    "GeoTOP",
+    "freshwater-saltwater interface",
+    "Zeeland",
+    "Netherlands",
+    "Zarr"
+  ],
+  "providers": [
+    {
+      "name": "Deltares",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.deltares.nl"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ],
+  "summaries": {
+    "chloride": {
+      "label": "Chloride",
+      "options": [
+        {
+          "label": "bottom",
+          "value": "bottom"
+        },
+        {
+          "label": "cl_mean",
+          "value": "cl_mean"
+        },
+        {
+          "label": "cl_q1",
+          "value": "cl_q1"
+        },
+        {
+          "label": "cl_q10",
+          "value": "cl_q10"
+        },
+        {
+          "label": "cl_q15",
+          "value": "cl_q15"
+        },
+        {
+          "label": "cl_q2",
+          "value": "cl_q2"
+        },
+        {
+          "label": "cl_q20",
+          "value": "cl_q20"
+        },
+        {
+          "label": "cl_q25",
+          "value": "cl_q25"
+        },
+        {
+          "label": "cl_q30",
+          "value": "cl_q30"
+        },
+        {
+          "label": "cl_q35",
+          "value": "cl_q35"
+        },
+        {
+          "label": "cl_q40",
+          "value": "cl_q40"
+        },
+        {
+          "label": "cl_q45",
+          "value": "cl_q45"
+        },
+        {
+          "label": "cl_q5",
+          "value": "cl_q5"
+        },
+        {
+          "label": "cl_q50",
+          "value": "cl_q50"
+        },
+        {
+          "label": "cl_q55",
+          "value": "cl_q55"
+        },
+        {
+          "label": "cl_q60",
+          "value": "cl_q60"
+        },
+        {
+          "label": "cl_q65",
+          "value": "cl_q65"
+        },
+        {
+          "label": "cl_q70",
+          "value": "cl_q70"
+        },
+        {
+          "label": "cl_q75",
+          "value": "cl_q75"
+        },
+        {
+          "label": "cl_q80",
+          "value": "cl_q80"
+        },
+        {
+          "label": "cl_q85",
+          "value": "cl_q85"
+        },
+        {
+          "label": "cl_q90",
+          "value": "cl_q90"
+        },
+        {
+          "label": "cl_q95",
+          "value": "cl_q95"
+        },
+        {
+          "label": "cl_q98",
+          "value": "cl_q98"
+        },
+        {
+          "label": "cl_q99",
+          "value": "cl_q99"
+        },
+        {
+          "label": "top",
+          "value": "top"
+        },
+        {
+          "label": "used_geotop",
+          "value": "used_geotop"
+        },
+        {
+          "label": "z_orig",
+          "value": "z_orig"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "chloride": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/freshem_chloride/chloride.zarr",
+      "title": "Chloride zarr root",
+      "description": "The root of the Chloride zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  }
+}

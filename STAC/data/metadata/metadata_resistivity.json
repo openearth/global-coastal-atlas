@@ -1,0 +1,64 @@
+{
+    "TITLE": "Freshem subsurface resistivity model (Zeeland)",
+    "TITLE_ABBREVIATION": "FreshemResistivity",
+    "DESCRIPTION": "Airborne electromagnetic (AEM) derived 3D subsurface electrical resistivity model for the Freshem project, covering the Zeeland survey area. The cube provides resistivity percentiles (Q05-Q95), hydraulic conductivity (K), lithoclass, depth-of-investigation and the top/bottom elevation of each depth layer on a regular x/y grid in the Dutch RD New projection (EPSG:28992), with a non-uniform vertical (z) axis following the original layer boundaries (no vertical interpolation).",
+    "SHORT_DESCRIPTION": "3D airborne-EM resistivity and derived hydrogeological properties (Zarr datacube).",
+    "INSTITUTION": "Deltares",
+    "PROVIDERS": {
+        "name": "Deltares",
+        "url": "https://www.deltares.nl",
+        "roles": "provider",
+        "description": "Freshem project - airborne electromagnetic survey processing"
+    },
+    "HISTORY": [
+        "Deltares",
+        "Freshem prepare_data.py: NetCDF (layer top/bottom + resistivity percentiles) resampled to regular x/y grid, converted to Zarr, variable names made Zarr/NTFS safe (Z -> Z_orig)"
+    ],
+    "MEDIA_TYPE": "application/vnd+zarr",
+    "DATA_MODEL": "zarr_datacube",
+    "DIMENSIONS": [
+        "x",
+        "y",
+        "z"
+    ],
+    "SPATIAL_EXTENT": [
+        4.874925,
+        51.68599,
+        5.169946,
+        51.832971
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Deltares",
+    "KEYWORDS": [
+        "resistivity",
+        "airborne electromagnetic",
+        "AEM",
+        "groundwater",
+        "freshwater-saltwater interface",
+        "Zeeland",
+        "Netherlands",
+        "Zarr"
+    ],
+    "TAGS": [
+        "resistivity",
+        "geophysics",
+        "groundwater",
+        "zarr"
+    ],
+    "CITATION": "Deltares Freshem project - airborne electromagnetic resistivity model",
+    "DOI": "",
+    "LONG_NAME": "Subsurface electrical resistivity",
+    "UNITS": "ohm.m",
+    "COMMENT": "Vertical axis z is layer-based, not a uniform grid: top/bottom variables give the real upper/lower elevation (m, Dutch NAP datum) of each layer at every x/y/z cell, so several z indices can share the same top or bottom. No interpolation is applied along z; values are the original per-layer values.",
+    "CRS": "EPSG:28992",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": 50,
+    "NODATA": null,
+    "DATA_TYPE": "float32",
+    "COLLECTION_ID": "freshem_resistivity",
+    "WMS_DATASET": ""
+}

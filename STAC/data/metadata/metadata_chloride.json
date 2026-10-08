@@ -1,0 +1,63 @@
+{
+    "TITLE": "Freshem groundwater chloride concentration model (Zeeland)",
+    "TITLE_ABBREVIATION": "FreshemChloride",
+    "DESCRIPTION": "Modelled 3D groundwater chloride concentration for the Freshem project, covering the Zeeland survey area, derived from GeoTOP lithology combined with airborne-EM resistivity. The cube provides chloride concentration percentiles (Q1-Q99) and mean, the GeoTOP unit used, and the top/bottom elevation of each depth layer on a regular x/y grid in the Dutch RD New projection (EPSG:28992), with a non-uniform vertical (z) axis following the original layer boundaries (no vertical interpolation).",
+    "SHORT_DESCRIPTION": "3D groundwater chloride concentration percentiles (Zarr datacube).",
+    "INSTITUTION": "Deltares",
+    "PROVIDERS": {
+        "name": "Deltares",
+        "url": "https://www.deltares.nl",
+        "roles": "provider",
+        "description": "Freshem project - groundwater salinity/chloride modelling"
+    },
+    "HISTORY": [
+        "Deltares",
+        "Freshem prepare_data.py: GeoParquet point data (chloride percentiles per layer) resampled to regular x/y grid, converted to Zarr, variable names made Zarr/NTFS safe (z -> z_orig)"
+    ],
+    "MEDIA_TYPE": "application/vnd+zarr",
+    "DATA_MODEL": "zarr_datacube",
+    "DIMENSIONS": [
+        "x",
+        "y",
+        "z"
+    ],
+    "SPATIAL_EXTENT": [
+        3.64028,
+        51.375148,
+        3.960967,
+        51.616396
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "Deltares",
+    "KEYWORDS": [
+        "chloride",
+        "groundwater salinity",
+        "GeoTOP",
+        "freshwater-saltwater interface",
+        "Zeeland",
+        "Netherlands",
+        "Zarr"
+    ],
+    "TAGS": [
+        "chloride",
+        "salinity",
+        "groundwater",
+        "zarr"
+    ],
+    "CITATION": "Deltares Freshem project - groundwater chloride concentration model",
+    "DOI": "",
+    "LONG_NAME": "Groundwater chloride concentration",
+    "UNITS": "mg/l",
+    "COMMENT": "Vertical axis z is layer-based, not a uniform grid: top/bottom variables give the real upper/lower elevation (m, Dutch NAP datum) of each layer at every x/y/z cell, so several z indices can share the same top or bottom. No interpolation is applied along z; values are the original per-layer values. Percentile variables (cl_q1 ... cl_q99) originate from parquet source columns of the same name.",
+    "CRS": "EPSG:28992",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": 50,
+    "NODATA": null,
+    "DATA_TYPE": "float32",
+    "COLLECTION_ID": "freshem_chloride",
+    "WMS_DATASET": ""
+}

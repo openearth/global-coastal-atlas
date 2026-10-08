@@ -1,0 +1,79 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "resistivity",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          4.874925,
+          51.68599
+        ],
+        [
+          5.169946,
+          51.68599
+        ],
+        [
+          5.169946,
+          51.832971
+        ],
+        [
+          4.874925,
+          51.832971
+        ],
+        [
+          4.874925,
+          51.68599
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    4.874925,
+    51.68599,
+    5.169946,
+    51.832971
+  ],
+  "properties": {
+    "store": "resistivity",
+    "description": "Freshem resistivity datacube (x, y, z)",
+    "created": "2026-10-05T11:35:35.255957Z",
+    "deltares:item_key": "resistivity",
+    "datetime": "2026-10-05T11:35:35.255943Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Freshem subsurface resistivity model (Zeeland)"
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Freshem subsurface resistivity model (Zeeland)"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/freshem_resistivity/resistivity.zarr",
+      "title": "Resistivity zarr root",
+      "description": "The root of the Resistivity zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  },
+  "collection": "freshem_resistivity"
+}
