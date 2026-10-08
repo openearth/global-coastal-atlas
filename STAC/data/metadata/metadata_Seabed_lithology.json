@@ -1,0 +1,43 @@
+{
+    "TITLE": "Seafloor sediments in the world's ocean",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "This dataset contains data and colour cpt file used to construct the digital map of seafloor lithologies in A. Dutkiewicz, R. D. Müller, S. O'Callaghan and H. Jónasson, 2015, Census of seafloor sediments in the world's ocean basins, Geology, 43(9), 795–798. doi:10.1130/G36883.1 (open access).",
+    "SHORT_DESCRIPTION": "This data includes the seabed lithology of the worlds oceans.",
+    "INSTITUTION": "University of Sydney",
+    "PROVIDERS": {
+        "name": "PANGAEA - Data Publisher for Earth & Environmental Science",
+        "url": "https://doi.pangaea.de/10.1594/PANGAEA.932412",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution-ShareAlike 4.0 International (CC-BY-SA-4.0)",
+    "AUTHOR": "Dutkiewicz A, Müller RD",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "Dutkiewicz, Adriana; Müller, Dietmar (2021): Seafloor sediments in the world's ocean [dataset]. PANGAEA, https://doi.org/10.1594/PANGAEA.932412",
+    "DOI": "https://doi.pangaea.de/10.1594/PANGAEA.932412",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

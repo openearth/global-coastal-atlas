@@ -1,0 +1,90 @@
+{
+  "type": "Collection",
+  "id": "seabed_lithology",
+  "stac_version": "1.1.0",
+  "description": "This dataset contains data and colour cpt file used to construct the digital map of seafloor lithologies in A. Dutkiewicz, R. D. Müller, S. O'Callaghan and H. Jónasson, 2015, Census of seafloor sediments in the world's ocean basins, Geology, 43(9), 795–798. doi:10.1130/G36883.1 (open access).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/seabed_litho.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Seafloor sediments in the world's ocean",
+      "roles": [
+        "data"
+      ],
+      "description": "This dataset contains data and colour cpt file used to construct the digital map of seafloor lithologies in A. Dutkiewicz, R. D. Müller, S. O'Callaghan and H. Jónasson, 2015, Census of seafloor sediments in the world's ocean basins, Geology, 43(9), 795–798. doi:10.1130/G36883.1 (open access).",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "class code (categorical)",
+  "title": "Seafloor sediments in the world's ocean",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-08T16:33:23.600150Z",
+          "2026-10-08T16:33:23.600150Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-SA-4.0",
+  "keywords": [
+    "seabed",
+    "seafloor sediments",
+    "lithology",
+    "geology",
+    "ocean",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "PANGAEA - Data Publisher for Earth & Environmental Science",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://doi.pangaea.de/10.1594/PANGAEA.932412"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

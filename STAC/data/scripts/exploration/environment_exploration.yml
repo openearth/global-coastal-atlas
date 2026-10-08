@@ -1,0 +1,22 @@
+# Environment for STAC/data/scripts/exploration/17_seabed_litho_check.ipynb
+#
+# Install with miniforge (mamba) or conda:
+#   mamba env create -f environment_exploration.yml
+#   conda activate gca-exploration
+#
+# Then register the kernel for Jupyter (optional, if not already available):
+#   python -m ipykernel install --user --name gca-exploration
+name: gca-exploration
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - matplotlib
+  - rasterio
+  - pystac
+  - pystac-client
+  - jupyterlab
+  - ipykernel

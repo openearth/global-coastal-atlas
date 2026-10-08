@@ -1,0 +1,149 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "seabed_litho.tif",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -90.0,
+    180.0,
+    90.0
+  ],
+  "properties": {
+    "created": "2026-10-08T16:33:23.600150Z",
+    "proj:bbox": [
+      -180.05,
+      -90.04999999999997,
+      180.05,
+      90.05
+    ],
+    "proj:shape": [
+      3601,
+      1801
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            180.05,
+            -90.04999999999997
+          ],
+          [
+            180.05,
+            90.05
+          ],
+          [
+            -180.05,
+            90.05
+          ],
+          [
+            -180.05,
+            -90.04999999999997
+          ],
+          [
+            180.05,
+            -90.04999999999997
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.1,
+      0.0,
+      -180.05,
+      0.0,
+      -0.09999999999999998,
+      90.05
+    ],
+    "deltares:item_key": "seabed_litho.tif",
+    "datetime": "2026-10-08T16:33:23.600150Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Seafloor sediments in the world's ocean"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Seafloor sediments in the world's ocean"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/seabed_lithology/seabed_litho.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "seabed_litho",
+      "file:size": 347504,
+      "raster:bands": [
+        {
+          "nodata": -32768,
+          "data_type": "int16",
+          "spatial_resolution": 0.1
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "seabed_litho",
+          "description": "This dataset contains data and colour cpt file used to construct the digital map of seafloor lithologies in A. Dutkiewicz, R. D. Müller, S. O'Callaghan and H. Jónasson, 2015, Census of seafloor sediments in the world's ocean basins, Geology, 43(9), 795–798. doi:10.1130/G36883.1 (open access)."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/seabed_lithology",
+      "type": "application/png",
+      "title": "seabed_litho",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "seabed_lithology"
+}

@@ -1,0 +1,9 @@
+xarray>=2025.1
+zarr>=3
+numpy
+pandas
+pyproj
+rasterio
+rioxarray
+jupyterlab
+ipykernel

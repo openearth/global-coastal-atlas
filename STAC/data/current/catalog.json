@@ -105,6 +105,12 @@
       "href": "./freshem_chloride/collection.json",
       "type": "application/json",
       "title": "Freshem groundwater chloride concentration model (Zeeland)"
+    },
+    {
+      "rel": "child",
+      "href": "./seabed_lithology/collection.json",
+      "type": "application/json",
+      "title": "Seafloor sediments in the world's ocean"
     }
   ],
   "assets": {

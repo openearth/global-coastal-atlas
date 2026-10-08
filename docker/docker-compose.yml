@@ -1,0 +1,26 @@
+services:
+  stac-notebooks:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gca-freshem-stac-notebooks:latest
+    container_name: gca-freshem-stac-notebooks
+    ports:
+      - "8889:8888"
+    environment:
+      # Paths as seen *inside* the container; the notebooks fall back to the
+      # original Windows host paths when these are not set, so they still run
+      # unchanged directly in the "coclico"/"globalcoastalatlas" conda env.
+      - STAC_DATA_REPO=/workspace/global-coastal-atlas/STAC/data
+      - FRESHEM_REPO=/workspace/freshem_stac
+      - AFRICA_DATA=/workspace/africa_data
+      - DATA_VIVIAN=/workspace/africa_data/Data_Vivian
+    volumes:
+      # Whole global-coastal-atlas repo (read-write: notebooks write STAC
+      # collection/item JSON under STAC/data/current/).
+      - ..:/workspace/global-coastal-atlas
+      # Freshem processed Zarr cubes (read-write: the 15_/16_ data-prep
+      # notebooks write a copy + metadata JSON under processed/stac_folder/).
+      - C:\Ocean\Work\Projects\2026\Freshem\Tools\freshem_stac:/workspace/freshem_stac
+      # Africa project data (input rasters + processed outputs for 17_seabed_litho).
+      - C:\Ocean\Work\Projects\2026\Africa\Data:/workspace/africa_data
