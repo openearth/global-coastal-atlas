@@ -1,0 +1,43 @@
+{
+    "TITLE": "Admin 0 – Countries",
+    "TITLE_ABBREVIATION": "",
+    "DESCRIPTION": "There are 258 countries in the world. Greenland as separate from Denmark. Most users will want this file instead of sovereign states, though some users will want map units instead when needing to distinguish overseas regions of France. Natural Earth shows de facto boundaries by default according to who controls the territory, versus de jure. Optional point-of-view (POV) variants are available for several dozen countries in the next section. ",
+    "SHORT_DESCRIPTION": "Administrative country boundaries for the world.",
+    "INSTITUTION": "",
+    "PROVIDERS": {
+        "name": "Natural Earth",
+        "url": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/",
+        "roles": "provider",
+        "description": ""
+    },
+    "HISTORY": [],
+    "MEDIA_TYPE": "",
+    "DATA_MODEL": "",
+    "DIMENSIONS": [],
+    "SPATIAL_EXTENT": [
+        null,
+        null,
+        null,
+        null
+    ],
+    "TEMPORAL_EXTENT": [
+        "",
+        ""
+    ],
+    "LICENSE": "Creative Commons Attribution 4.0",
+    "AUTHOR": "",
+    "KEYWORDS": [],
+    "TAGS": [],
+    "CITATION": "",
+    "DOI": "",
+    "LONG_NAME": "",
+    "UNITS": "",
+    "COMMENT": "Version 5.1.1, name: ne_10m_admin_0_countries.shp",
+    "CRS": "EPSG:4326",
+    "ITEM_BBOX_CRS": "EPSG:4326",
+    "SPATIAL_RESOLUTION": null,
+    "NODATA": null,
+    "DATA_TYPE": "Shapefile",
+    "COLLECTION_ID": "",
+    "WMS_DATASET": ""
+}

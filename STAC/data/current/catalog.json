@@ -117,6 +117,12 @@
       "href": "./hydrolakes/collection.json",
       "type": "application/json",
       "title": "HydroLAKES"
+    },
+    {
+      "rel": "child",
+      "href": "./country_boundaries/collection.json",
+      "type": "application/json",
+      "title": "Admin 0 – Countries"
     }
   ],
   "assets": {

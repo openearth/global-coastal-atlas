@@ -1,0 +1,936 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "country_boundaries",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          83.634101
+        ],
+        [
+          -180.0,
+          83.634101
+        ],
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -90.0,
+    180.0,
+    83.634101
+  ],
+  "properties": {
+    "title": "CountryBoundaries",
+    "description": "Administrative country boundaries for the world.",
+    "table:row_count": 258,
+    "table:columns": [
+      {
+        "name": "featurecla",
+        "type": "large_string",
+        "description": "Natural Earth feature class (Admin-0 country)"
+      },
+      {
+        "name": "scalerank",
+        "type": "int32",
+        "description": "Natural Earth scale rank (map scale at which the feature is shown)"
+      },
+      {
+        "name": "LABELRANK",
+        "type": "int32",
+        "description": "Label rank, used to prioritise labels"
+      },
+      {
+        "name": "SOVEREIGNT",
+        "type": "large_string",
+        "description": "Name of the sovereign state"
+      },
+      {
+        "name": "SOV_A3",
+        "type": "large_string",
+        "description": "Three-letter code of the sovereign state"
+      },
+      {
+        "name": "ADM0_DIF",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "LEVEL",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "TYPE",
+        "type": "large_string",
+        "description": "Type of country (e.g. Sovereign country, Dependency, Country)"
+      },
+      {
+        "name": "TLC",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ADMIN",
+        "type": "large_string",
+        "description": "Administrative unit name"
+      },
+      {
+        "name": "ADM0_A3",
+        "type": "large_string",
+        "description": "Three-letter administrative unit code"
+      },
+      {
+        "name": "GEOU_DIF",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "GEOUNIT",
+        "type": "large_string",
+        "description": "Geographic unit name"
+      },
+      {
+        "name": "GU_A3",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "SU_DIF",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "SUBUNIT",
+        "type": "large_string",
+        "description": "Subunit name"
+      },
+      {
+        "name": "SU_A3",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "BRK_DIFF",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "NAME",
+        "type": "large_string",
+        "description": "Short country name"
+      },
+      {
+        "name": "NAME_LONG",
+        "type": "large_string",
+        "description": "Long country name"
+      },
+      {
+        "name": "BRK_A3",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "BRK_NAME",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "BRK_GROUP",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ABBREV",
+        "type": "large_string",
+        "description": "Abbreviated country name"
+      },
+      {
+        "name": "POSTAL",
+        "type": "large_string",
+        "description": "Postal abbreviation"
+      },
+      {
+        "name": "FORMAL_EN",
+        "type": "large_string",
+        "description": "Formal English name"
+      },
+      {
+        "name": "FORMAL_FR",
+        "type": "large_string",
+        "description": "Formal French name"
+      },
+      {
+        "name": "NAME_CIAWF",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "NOTE_ADM0",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "NOTE_BRK",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "NAME_SORT",
+        "type": "large_string",
+        "description": "Name used for sorting"
+      },
+      {
+        "name": "NAME_ALT",
+        "type": "large_string",
+        "description": "Alternative name"
+      },
+      {
+        "name": "MAPCOLOR7",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MAPCOLOR8",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MAPCOLOR9",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MAPCOLOR13",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "POP_EST",
+        "type": "double",
+        "description": "Estimated population"
+      },
+      {
+        "name": "POP_RANK",
+        "type": "int32",
+        "description": "Population rank"
+      },
+      {
+        "name": "POP_YEAR",
+        "type": "int32",
+        "description": "Year of the population estimate"
+      },
+      {
+        "name": "GDP_MD",
+        "type": "int32",
+        "description": "Gross domestic product (million USD)"
+      },
+      {
+        "name": "GDP_YEAR",
+        "type": "int32",
+        "description": "Year of the GDP estimate"
+      },
+      {
+        "name": "ECONOMY",
+        "type": "large_string",
+        "description": "Economy classification"
+      },
+      {
+        "name": "INCOME_GRP",
+        "type": "large_string",
+        "description": "World Bank income group"
+      },
+      {
+        "name": "FIPS_10",
+        "type": "large_string",
+        "description": "FIPS 10-4 country code"
+      },
+      {
+        "name": "ISO_A2",
+        "type": "large_string",
+        "description": "ISO 3166-1 alpha-2 code"
+      },
+      {
+        "name": "ISO_A2_EH",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ISO_A3",
+        "type": "large_string",
+        "description": "ISO 3166-1 alpha-3 code"
+      },
+      {
+        "name": "ISO_A3_EH",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ISO_N3",
+        "type": "large_string",
+        "description": "ISO 3166-1 numeric code"
+      },
+      {
+        "name": "ISO_N3_EH",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "UN_A3",
+        "type": "large_string",
+        "description": "United Nations numeric code"
+      },
+      {
+        "name": "WB_A2",
+        "type": "large_string",
+        "description": "World Bank two-letter code"
+      },
+      {
+        "name": "WB_A3",
+        "type": "large_string",
+        "description": "World Bank three-letter code"
+      },
+      {
+        "name": "WOE_ID",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "WOE_ID_EH",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "WOE_NOTE",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ADM0_ISO",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ADM0_DIFF",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ADM0_TLC",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ADM0_A3_US",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'US' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_FR",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'FR' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_RU",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'RU' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_ES",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'ES' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_CN",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'CN' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_TW",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'TW' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_IN",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'IN' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_NP",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'NP' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_PK",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'PK' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_DE",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'DE' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_GB",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'GB' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_BR",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'BR' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_IL",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'IL' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_PS",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'PS' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_SA",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'SA' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_EG",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'EG' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_MA",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'MA' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_PT",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'PT' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_AR",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'AR' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_JP",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'JP' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_KO",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'KO' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_VN",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'VN' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_TR",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'TR' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_ID",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'ID' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_PL",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'PL' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_GR",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'GR' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_IT",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'IT' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_NL",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'NL' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_SE",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'SE' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_BD",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'BD' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_UA",
+        "type": "large_string",
+        "description": "Administrative unit code as recognised by 'UA' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_UN",
+        "type": "int32",
+        "description": "Administrative unit code as recognised by 'UN' (point-of-view variant)"
+      },
+      {
+        "name": "ADM0_A3_WB",
+        "type": "int32",
+        "description": "Administrative unit code as recognised by 'WB' (point-of-view variant)"
+      },
+      {
+        "name": "CONTINENT",
+        "type": "large_string",
+        "description": "Continent"
+      },
+      {
+        "name": "REGION_UN",
+        "type": "large_string",
+        "description": "United Nations region"
+      },
+      {
+        "name": "SUBREGION",
+        "type": "large_string",
+        "description": "United Nations subregion"
+      },
+      {
+        "name": "REGION_WB",
+        "type": "large_string",
+        "description": "World Bank region"
+      },
+      {
+        "name": "NAME_LEN",
+        "type": "int32",
+        "description": "Country name in language 'len'"
+      },
+      {
+        "name": "LONG_LEN",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "ABBREV_LEN",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "TINY",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "HOMEPART",
+        "type": "int32",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MIN_ZOOM",
+        "type": "double",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MIN_LABEL",
+        "type": "double",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "MAX_LABEL",
+        "type": "double",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "LABEL_X",
+        "type": "double",
+        "description": "Longitude of the label point"
+      },
+      {
+        "name": "LABEL_Y",
+        "type": "double",
+        "description": "Latitude of the label point"
+      },
+      {
+        "name": "NE_ID",
+        "type": "int64",
+        "description": "Unique Natural Earth feature id"
+      },
+      {
+        "name": "WIKIDATAID",
+        "type": "large_string",
+        "description": "Wikidata identifier"
+      },
+      {
+        "name": "NAME_AR",
+        "type": "large_string",
+        "description": "Country name in language 'ar'"
+      },
+      {
+        "name": "NAME_BN",
+        "type": "large_string",
+        "description": "Country name in language 'bn'"
+      },
+      {
+        "name": "NAME_DE",
+        "type": "large_string",
+        "description": "Country name in language 'de'"
+      },
+      {
+        "name": "NAME_EN",
+        "type": "large_string",
+        "description": "Country name in language 'en'"
+      },
+      {
+        "name": "NAME_ES",
+        "type": "large_string",
+        "description": "Country name in language 'es'"
+      },
+      {
+        "name": "NAME_FA",
+        "type": "large_string",
+        "description": "Country name in language 'fa'"
+      },
+      {
+        "name": "NAME_FR",
+        "type": "large_string",
+        "description": "Country name in language 'fr'"
+      },
+      {
+        "name": "NAME_EL",
+        "type": "large_string",
+        "description": "Country name in language 'el'"
+      },
+      {
+        "name": "NAME_HE",
+        "type": "large_string",
+        "description": "Country name in language 'he'"
+      },
+      {
+        "name": "NAME_HI",
+        "type": "large_string",
+        "description": "Country name in language 'hi'"
+      },
+      {
+        "name": "NAME_HU",
+        "type": "large_string",
+        "description": "Country name in language 'hu'"
+      },
+      {
+        "name": "NAME_ID",
+        "type": "large_string",
+        "description": "Country name in language 'id'"
+      },
+      {
+        "name": "NAME_IT",
+        "type": "large_string",
+        "description": "Country name in language 'it'"
+      },
+      {
+        "name": "NAME_JA",
+        "type": "large_string",
+        "description": "Country name in language 'ja'"
+      },
+      {
+        "name": "NAME_KO",
+        "type": "large_string",
+        "description": "Country name in language 'ko'"
+      },
+      {
+        "name": "NAME_NL",
+        "type": "large_string",
+        "description": "Country name in language 'nl'"
+      },
+      {
+        "name": "NAME_PL",
+        "type": "large_string",
+        "description": "Country name in language 'pl'"
+      },
+      {
+        "name": "NAME_PT",
+        "type": "large_string",
+        "description": "Country name in language 'pt'"
+      },
+      {
+        "name": "NAME_RU",
+        "type": "large_string",
+        "description": "Country name in language 'ru'"
+      },
+      {
+        "name": "NAME_SV",
+        "type": "large_string",
+        "description": "Country name in language 'sv'"
+      },
+      {
+        "name": "NAME_TR",
+        "type": "large_string",
+        "description": "Country name in language 'tr'"
+      },
+      {
+        "name": "NAME_UK",
+        "type": "large_string",
+        "description": "Country name in language 'uk'"
+      },
+      {
+        "name": "NAME_UR",
+        "type": "large_string",
+        "description": "Country name in language 'ur'"
+      },
+      {
+        "name": "NAME_VI",
+        "type": "large_string",
+        "description": "Country name in language 'vi'"
+      },
+      {
+        "name": "NAME_ZH",
+        "type": "large_string",
+        "description": "Country name in language 'zh'"
+      },
+      {
+        "name": "NAME_ZHT",
+        "type": "large_string",
+        "description": "Country name in language 'zht'"
+      },
+      {
+        "name": "FCLASS_ISO",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'ISO' (point-of-view variant)"
+      },
+      {
+        "name": "TLC_DIFF",
+        "type": "large_string",
+        "description": "Natural Earth attribute (see the Natural Earth Admin 0 – Countries documentation)"
+      },
+      {
+        "name": "FCLASS_TLC",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'TLC' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_US",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'US' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_FR",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'FR' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_RU",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'RU' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_ES",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'ES' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_CN",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'CN' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_TW",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'TW' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_IN",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'IN' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_NP",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'NP' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_PK",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'PK' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_DE",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'DE' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_GB",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'GB' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_BR",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'BR' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_IL",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'IL' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_PS",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'PS' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_SA",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'SA' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_EG",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'EG' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_MA",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'MA' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_PT",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'PT' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_AR",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'AR' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_JP",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'JP' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_KO",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'KO' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_VN",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'VN' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_TR",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'TR' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_ID",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'ID' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_PL",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'PL' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_GR",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'GR' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_IT",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'IT' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_NL",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'NL' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_SE",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'SE' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_BD",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'BD' (point-of-view variant)"
+      },
+      {
+        "name": "FCLASS_UA",
+        "type": "large_string",
+        "description": "Feature class as recognised by 'UA' (point-of-view variant)"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "Country polygon (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "country_boundaries",
+    "created": "2026-10-08T17:24:36.623520Z",
+    "datetime": "2022-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Admin 0 – Countries"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Admin 0 – Countries"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/country_boundaries/country_boundaries.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "CountryBoundaries",
+      "description": "Administrative country boundaries for the world.",
+      "file:size": 5945458,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "country_boundaries"
+}
