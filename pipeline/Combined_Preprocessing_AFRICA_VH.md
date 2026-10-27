@@ -2,6 +2,34 @@
 
 Notebook: `Combined_Preprocessing_AFRICA_VH.ipynb`
 
+STAC version (reads its inputs from the STAC catalog and from local files): `Combined_Preprocessing_AFRICA_VH_STAC.ipynb`. Same 8 steps; see section 0 of that notebook.
+
+## 0. Environment to run the pipeline
+
+Both notebooks run in the conda environment `gca-exploration`, defined in `STAC/data/scripts/exploration/environment_exploration.yml` (Python 3.11, numpy, pandas, matplotlib, rasterio, geopandas, pyarrow, rasterstats, fsspec, pystac-client, jupyterlab, ipykernel and others).
+
+Install it with miniforge (or conda), from the repository root:
+
+```
+mamba env create -f STAC/data/scripts/exploration/environment_exploration.yml
+conda activate gca-exploration
+python -m ipykernel install --user --name gca-exploration
+```
+
+If the environment already exists, update it instead (needed to get `rasterstats` for step 8):
+
+```
+mamba env update -n gca-exploration -f STAC/data/scripts/exploration/environment_exploration.yml
+```
+
+Then open the notebook in VS Code or JupyterLab (`jupyter lab`) and select the kernel `gca-exploration`.
+
+Before running the STAC version, edit the setup cell (section 0 of the notebook):
+- `MODEL_DIR`: output folder.
+- `DOMAIN_PATH`, `INLAND_PATH`, `ARIDITY_PATH`, `UNCONSOLIDATED_PATH`: local files that are not in the STAC. An empty or wrong path skips only the outputs that need that file.
+
+Internet access is needed to read the STAC (public bucket `gca-data-public`); no credentials are required. Reading the Africa area takes some minutes and a few GB of memory.
+
 Purpose: prepare the input data of the continental-scale groundwater flow model of Africa (variable-density flow and salt transport, iMOD/MODFLOW). The notebook turns about 20 global/continental datasets into a stack of rasters on one common model grid, plus a MODFLOW RIV package.
 
 Status of this document: written from reading the notebook code. Nothing was executed. File names are those hard-coded in the notebook.
@@ -134,7 +162,7 @@ Catalog checked: `https://storage.googleapis.com/gca-data-public/gca/gca-stac-7/
 | HydroLAKES | 3 | **Yes** | `hydrolakes` | |
 | GLHYMPS 2.0 | 3, 6 | **Yes** | `glhymps` | Column `Porosity_x` present |
 | GLiM | 4, 5, 6 | **Yes** | `glim` | Column `Litho` present |
-| GUM | 5 | **Yes** | `gum` | The notebook reads column `XX`; the STAC layer has `Symbol` and `Descriptio`, so check which holds the class code |
+| GUM | 5 | **Yes** | `gum` | The notebook reads column `XX`; the STAC layer also has `XX` (class code), `YY` and `ZZ`, so it can be used directly |
 | HydroRIVERS | 8 | **Yes** | `hydrorivers` | Column `DIS_AV_CMS` present |
 | Seabed lithology (`seabed_litho_epsg3857.tif`) | 7 | **Yes** | `seabed_lithology` | Rasterization to EPSG:3857 is done outside the notebook |
 | Global sediment thickness (Bird & Mooney, `gst_points...shp`) | 2, 3, 7 | **Yes** | `gst` | Stored as a global 0.125° COG (`gst.tif`, nodata -9999), not as points. Step 2 can be replaced by reading it and clipping to Africa; step 3 resamples it to 10 km (nearest) |
