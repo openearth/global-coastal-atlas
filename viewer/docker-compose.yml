@@ -1,0 +1,22 @@
+services:
+  viewer:
+    build: .
+    image: gca-viewer:local
+    container_name: gca-viewer
+    ports:
+      - "8183:8000"
+    environment:
+      STAC_CATALOG_URL: ${STAC_CATALOG_URL:-https://storage.googleapis.com/gca-data-public/gca/gca-stac-7/catalog.json}
+      # Area shown when the viewer opens (minx,miny,maxx,maxy): Egypt
+      DEFAULT_BBOX: ${DEFAULT_BBOX:-24.0,21.0,37.5,32.0}
+      MAX_FEATURES: ${MAX_FEATURES:-20000}
+      # Another GeoServer WMS endpoint (empty: taken from the STAC items)
+      WMS_URL: ${WMS_URL:-}
+    restart: unless-stopped
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/health')"]
+      interval: 20s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
