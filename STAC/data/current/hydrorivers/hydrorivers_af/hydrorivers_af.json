@@ -1,0 +1,166 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "hydrorivers_af",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          54.416667,
+          -34.79375
+        ],
+        [
+          54.416667,
+          37.33125
+        ],
+        [
+          -17.99375,
+          37.33125
+        ],
+        [
+          -17.99375,
+          -34.79375
+        ],
+        [
+          54.416667,
+          -34.79375
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -17.99375,
+    -34.79375,
+    54.416667,
+    37.33125
+  ],
+  "properties": {
+    "title": "HydroRIVERS (Africa)",
+    "description": "Vectorized line network of all global rivers that have a catchment area of at least 10 km² or an average river flow of at least 0.1 m³/sec, or both.",
+    "table:row_count": 1527551,
+    "table:columns": [
+      {
+        "name": "HYRIV_ID",
+        "type": "int32",
+        "description": "Unique river reach identifier"
+      },
+      {
+        "name": "NEXT_DOWN",
+        "type": "int32",
+        "description": "ID of the next downstream reach (0 for reaches that end at the ocean or in an endorheic sink)"
+      },
+      {
+        "name": "MAIN_RIV",
+        "type": "int32",
+        "description": "ID of the most downstream reach of the main river the reach belongs to"
+      },
+      {
+        "name": "LENGTH_KM",
+        "type": "double",
+        "description": "Length of the reach (km)"
+      },
+      {
+        "name": "DIST_DN_KM",
+        "type": "double",
+        "description": "Distance from the reach outlet to the river mouth / sink (km)"
+      },
+      {
+        "name": "DIST_UP_KM",
+        "type": "double",
+        "description": "Distance from the reach outlet to the most upstream point of the river (km)"
+      },
+      {
+        "name": "CATCH_SKM",
+        "type": "double",
+        "description": "Catchment area of the reach itself (km2)"
+      },
+      {
+        "name": "UPLAND_SKM",
+        "type": "double",
+        "description": "Total upstream drainage area at the reach outlet (km2)"
+      },
+      {
+        "name": "ENDORHEIC",
+        "type": "int32",
+        "description": "Endorheic flag: 0 = drains to the ocean, 1 = reach flows into an endorheic basin, 2 = reach ends in an endorheic sink (?)"
+      },
+      {
+        "name": "DIS_AV_CMS",
+        "type": "double",
+        "description": "Average long-term discharge (m3/s)"
+      },
+      {
+        "name": "ORD_STRA",
+        "type": "int32",
+        "description": "River order, Strahler classification"
+      },
+      {
+        "name": "ORD_CLAS",
+        "type": "int32",
+        "description": "River order, classification by average discharge"
+      },
+      {
+        "name": "ORD_FLOW",
+        "type": "int32",
+        "description": "River order, classification by discharge (log10 scale)"
+      },
+      {
+        "name": "HYBAS_L12",
+        "type": "int64",
+        "description": "ID of the HydroBASINS level 12 sub-basin the reach resides in"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "River reach line (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "hydrorivers_af",
+    "created": "2026-10-20T13:52:00.411698Z",
+    "datetime": "2013-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "HydroRIVERS"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "HydroRIVERS"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/hydrorivers/hydrorivers_af.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "HydroRIVERS (Africa)",
+      "description": "Vectorized line network of all global rivers that have a catchment area of at least 10 km² or an average river flow of at least 0.1 m³/sec, or both.",
+      "file:size": 84799996,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "hydrorivers"
+}

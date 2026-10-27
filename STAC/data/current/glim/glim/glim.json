@@ -1,0 +1,126 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "glim",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.999989,
+          -89.985257
+        ],
+        [
+          179.999989,
+          83.682524
+        ],
+        [
+          -179.999989,
+          83.682524
+        ],
+        [
+          -179.999989,
+          -89.985257
+        ],
+        [
+          179.999989,
+          -89.985257
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -179.999989,
+    -89.985257,
+    179.999989,
+    83.682524
+  ],
+  "properties": {
+    "title": "GLiM",
+    "description": "The new global lithological map database GLiM, a representation of rock properties at the Earth surface.",
+    "table:row_count": 1235259,
+    "table:columns": [
+      {
+        "name": "OBJECTID",
+        "type": "double",
+        "description": "Feature identifier"
+      },
+      {
+        "name": "IDENTITY_",
+        "type": "large_string",
+        "description": "Polygon identifier (region code + number, e.g. FJI232)"
+      },
+      {
+        "name": "Litho",
+        "type": "large_string",
+        "description": "Lithology code: three 2-letter levels (main class, subclass, additional characteristics); '_' = not available"
+      },
+      {
+        "name": "xx",
+        "type": "large_string",
+        "description": "First level lithological class (2-letter code, first level of Litho)"
+      },
+      {
+        "name": "Shape_Leng",
+        "type": "double",
+        "description": "Polygon perimeter in the original EPSG:3857 CRS (m, not updated after reprojection)"
+      },
+      {
+        "name": "Shape_Area",
+        "type": "double",
+        "description": "Polygon area in the original EPSG:3857 CRS (m2, not updated after reprojection)"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "Lithological unit polygon (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "glim",
+    "created": "2026-10-20T13:52:00.467745Z",
+    "datetime": "2012-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GLiM Global Lithological Map"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GLiM Global Lithological Map"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/glim/glim.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GLiM",
+      "description": "The new global lithological map database GLiM, a representation of rock properties at the Earth surface.",
+      "file:size": 2157330248,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "glim"
+}

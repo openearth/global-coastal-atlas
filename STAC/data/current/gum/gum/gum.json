@@ -1,0 +1,146 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "gum",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.999986,
+          -89.985257
+        ],
+        [
+          179.999986,
+          83.589292
+        ],
+        [
+          -179.999981,
+          83.589292
+        ],
+        [
+          -179.999981,
+          -89.985257
+        ],
+        [
+          179.999986,
+          -89.985257
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -179.999981,
+    -89.985257,
+    179.999986,
+    83.589292
+  ],
+  "properties": {
+    "title": "GUM",
+    "description": "The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available.",
+    "table:row_count": 911551,
+    "table:columns": [
+      {
+        "name": "OBJECTID",
+        "type": "int64",
+        "description": "Feature identifier"
+      },
+      {
+        "name": "Symbol",
+        "type": "large_string",
+        "description": "Map symbol of the unit in the source map"
+      },
+      {
+        "name": "Descriptio",
+        "type": "large_string",
+        "description": "Description of the unit in the source map (original language)"
+      },
+      {
+        "name": "XX",
+        "type": "large_string",
+        "description": "Sediment type code (?)"
+      },
+      {
+        "name": "YY",
+        "type": "large_string",
+        "description": "Sediment subtype code (?)"
+      },
+      {
+        "name": "ZZ",
+        "type": "large_string",
+        "description": "Grain size / texture code (?)"
+      },
+      {
+        "name": "AA",
+        "type": "large_string",
+        "description": "Age code (?)"
+      },
+      {
+        "name": "DD",
+        "type": "large_string",
+        "description": "Additional attribute code, e.g. thickness or deposit characteristic (?)"
+      },
+      {
+        "name": "Shape_Leng",
+        "type": "double",
+        "description": "Polygon perimeter (degrees, computed in EPSG:4326)"
+      },
+      {
+        "name": "Shape_Area",
+        "type": "double",
+        "description": "Polygon area (square degrees, computed in EPSG:4326)"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "Unconsolidated sediment unit polygon (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "gum",
+    "created": "2026-10-22T16:32:24.859267Z",
+    "datetime": "2018-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GUM – Global Unconsolidated Sediment Map Database"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GUM – Global Unconsolidated Sediment Map Database"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/gum/gum.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GUM",
+      "description": "The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available.",
+      "file:size": 1447458229,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "gum"
+}

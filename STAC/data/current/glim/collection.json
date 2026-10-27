@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "glim",
+  "stac_version": "1.1.0",
+  "description": "The GLiM v1.0 has been developed as tool for global modeling in a detail yet unmatched. The database contains about 1,2 million polygons. The average resolution is 1:3 750 000. The map is about 100 times more detailed than previous global lithological maps.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./glim/glim.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd.apache.parquet",
+      "title": "GLiM Global Lithological Map",
+      "roles": [
+        "data"
+      ],
+      "description": "The new global lithological map database GLiM, a representation of rock properties at the Earth surface."
+    }
+  },
+  "sci:citation": "Hartmann J, Moosdorf N (2012) The new global lithological map database GLiM: A representation of rock properties at the Earth surface. Geochem Geophys Geosyst 13:2012GC004370. https://doi.org/10.1029/2012GC004370",
+  "sci:doi": "10.1029/2012GC004370",
+  "title": "GLiM Global Lithological Map",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.999989,
+          -89.985257,
+          179.999989,
+          83.682524
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2012-01-01T00:00:00Z",
+          "2012-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "lithology",
+    "geology",
+    "rock types",
+    "geochemistry",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "University of Hamburg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.geo.uni-hamburg.de/en/geologie/forschung/aquatische-geochemie/glim.html"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

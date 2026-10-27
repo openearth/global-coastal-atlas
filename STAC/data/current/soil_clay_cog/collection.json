@@ -1,0 +1,117 @@
+{
+  "type": "Collection",
+  "id": "soil_clay_cog",
+  "stac_version": "1.1.0",
+  "description": "Clay content (0-2 micro meter) mass fraction in % (g/100 g) at 6 standard depths. Predictions were derived using a digital soil mapping approach based on Quantile Random Forest, drawing on a global compilation of soil profile data and environmental layers. To visualize these layers please use www.soilgrids.org.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_0-5cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_5-15cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_15-30cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_30-60cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_60-100cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "item",
+      "href": "./items/clay_5km_100-200cm.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "SoilGrids250m 2.0 - Clay content ",
+      "roles": [
+        "data"
+      ],
+      "description": "Clay content in different depth intervals.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "%",
+  "sci:citation": "Batjes NH, Ribeiro E, van Oostrum A (2020) Standardised soil profile data to support global mapping and modelling (WoSIS snapshot 2019)",
+  "sci:doi": "10.5194/soil-7-217-2021",
+  "title": "SoilGrids250m 2.0 - Clay content ",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -20.032431,
+          -46.622563,
+          55.021811,
+          46.622563
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "clay content",
+    "soil texture",
+    "soil",
+    "SoilGrids",
+    "depth intervals",
+    "cog"
+  ],
+  "providers": [
+    {
+      "name": "ISRIC",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.isric.org/geonetwork/srv/api/records/713396f7-1687-11ea-a7c0-a0481ca9e724"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

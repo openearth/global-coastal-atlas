@@ -34,12 +34,24 @@
   #popup pre { margin: 2px 0 6px; white-space: pre-wrap; }
   #popup b.t { display: block; margin-top: 4px; }
   #loading { position: absolute; top: 10px; left: 50px; background: rgba(255,255,255,.9); padding: 4px 10px; border-radius: 4px; font-size: 12px; display: none; z-index: 5; }
+  .zctl { display: none; margin-top: 6px; font-size: 12px; }
+  .zctl select { margin-left: 4px; }
+  .zctl canvas.bar { display: block; width: 100%; height: 12px; margin-top: 6px; border: 1px solid #bbb; }
+  .zctl .scale { display: flex; justify-content: space-between; font-size: 11px; color: #555; }
+  .zctl button { margin-top: 6px; }
+  #section { position: absolute; left: 10px; right: 10px; bottom: 10px; z-index: 6; display: none; background: #fff; border: 1px solid #888;
+             border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,.3); padding: 6px 10px; font-size: 12px; }
+  #section .head { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+  #section .head b { flex: 1; }
+  #section .close { cursor: pointer; color: #666; font-size: 16px; }
+  #section canvas { display: block; width: 100%; height: 250px; }
+  #section .readout { min-height: 16px; color: #333; margin-top: 2px; }
 </style>
 </head>
 <body>
 <div id="side">
   <h2>Global Coastal Atlas viewer</h2>
-  <div class="hint">Layers published in the GCA STAC catalog (collections 17-21), shown for an area of interest. WMS layers come from GeoServer; vector layers are read from GeoParquet for the bounding box.</div>
+  <div class="hint">Layers published in the GCA STAC catalog (collections 17-31), shown for an area of interest. WMS layers come from GeoServer; vector layers are read from GeoParquet for the bounding box. Soil Zarr depth cubes are drawn by the viewer: pick a depth interval, click the map for a depth profile, or draw a transect to get a section through the depth dimension.</div>
 
   <h3>Bounding box (lon / lat)</h3>
   <div class="bbox-grid">
@@ -65,7 +77,17 @@
   <div id="layers">Loading layers...</div>
   <div class="hint">Click the map to query the active layers.</div>
 </div>
-<div id="map"><div id="loading"></div></div>
+<div id="map"><div id="loading"></div>
+  <div id="section">
+    <div class="head">
+      <b id="sectionTitle"></b>
+      <label><input type="checkbox" id="sectionEqual"> equal height per depth interval</label>
+      <span class="close" id="sectionClose" title="Close">&times;</span>
+    </div>
+    <canvas id="sectionCanvas"></canvas>
+    <div class="readout" id="sectionReadout">Move the mouse over the section to read the values; the position is shown on the map.</div>
+  </div>
+</div>
 <div id="popup" style="display:none"></div>
 
 <script>
@@ -105,6 +127,10 @@ const registry = {};  // id -> {meta, olLayer, checkbox, statusEl, loadedKey}
 const vectorStyles = {
   hydrolakes: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(33,150,243,.55)" }), stroke: new ol.style.Stroke({ color: "#0d47a1", width: 0.8 }) }),
   country_boundaries: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(0,0,0,0.01)" }), stroke: new ol.style.Stroke({ color: "#0b2a6f", width: 2.5 }) }),
+  glhymps: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(255,152,0,.35)" }), stroke: new ol.style.Stroke({ color: "#e65100", width: 0.5 }) }),
+  glim: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(121,85,72,.35)" }), stroke: new ol.style.Stroke({ color: "#4e342e", width: 0.5 }) }),
+  gum: new ol.style.Style({ fill: new ol.style.Fill({ color: "rgba(255,235,59,.4)" }), stroke: new ol.style.Stroke({ color: "#f9a825", width: 0.5 }) }),
+  hydrorivers: new ol.style.Style({ stroke: new ol.style.Stroke({ color: "#0288d1", width: 1.2 }) }),
 };
 
 function makeOlLayer(meta, zIndex) {
@@ -117,8 +143,206 @@ function makeOlLayer(meta, zIndex) {
       }),
     });
   }
+  if (meta.type === "zarr") {
+    return new ol.layer.Image({
+      zIndex, visible: false,
+      source: new ol.source.ImageWMS({
+        url: `/api/zarr/${meta.id}/map`, ratio: 1, hidpi: false,
+        params: { LAYERS: meta.id, VERSION: "1.1.1", DEPTH: 0 },
+      }),
+    });
+  }
   return new ol.layer.Vector({ zIndex, visible: false, source: new ol.source.Vector(), style: vectorStyles[meta.id] });
 }
+
+// ---- Zarr depth cubes: colours, depth selector, profile, transect section ----
+const COLOR_STOPS = [[68, 1, 84], [59, 82, 139], [33, 145, 140], [94, 201, 98], [253, 231, 37]];  // viridis, same as the backend
+function colorAt(t) {
+  t = Math.min(1, Math.max(0, t)) * (COLOR_STOPS.length - 1);
+  const i = Math.min(COLOR_STOPS.length - 2, Math.floor(t)), f = t - i;
+  return "rgb(" + [0, 1, 2].map((c) => Math.round(COLOR_STOPS[i][c] + f * (COLOR_STOPS[i + 1][c] - COLOR_STOPS[i][c]))).join(",") + ")";
+}
+
+function buildZarrControls(meta, olLayer) {
+  const z = meta.zarr;
+  const box = document.createElement("div");
+  box.className = "zctl";
+  if (!z) { box.textContent = "Cube metadata not available."; return box; }
+  const sel = document.createElement("select");
+  z.depths.forEach((d, i) => { const o = document.createElement("option"); o.value = i; o.textContent = `${d.top}-${d.bottom} cm`; sel.append(o); });
+  sel.onchange = () => olLayer.getSource().updateParams({ DEPTH: parseInt(sel.value) });
+  const lab = document.createElement("label");
+  lab.style.fontWeight = "normal";
+  lab.append("Depth interval", sel);
+  const bar = document.createElement("canvas");
+  bar.className = "bar"; bar.width = 256; bar.height = 12;
+  const g = bar.getContext("2d");
+  for (let x = 0; x < 256; x++) { g.fillStyle = colorAt(x / 255); g.fillRect(x, 0, 1, 12); }
+  const scale = document.createElement("div");
+  scale.className = "scale";
+  scale.innerHTML = `<span>${z.vmin} ${z.units}</span><span>${z.vmax} ${z.units}</span>`;
+  const btn = document.createElement("button");
+  btn.textContent = "Draw transect (depth section)";
+  btn.onclick = () => startTransect(meta);
+  const hint = document.createElement("div");
+  hint.className = "hint";
+  hint.textContent = "Click the map for the depth profile of a point. Transect: click the vertices, double-click to finish, Esc to cancel.";
+  box.append(lab, bar, scale, btn, hint);
+  return box;
+}
+
+function profileNode(p, meta) {
+  const z = meta.zarr, n = p.values.length, rowH = 20, left = 62, width = 300, height = n * rowH + 4;
+  const c = document.createElement("canvas");
+  c.width = width; c.height = height;
+  const g = c.getContext("2d");
+  g.font = "11px Arial"; g.textBaseline = "middle";
+  p.values.forEach((v, i) => {
+    const y = 2 + i * rowH;
+    g.fillStyle = "#333"; g.fillText(`${p.top[i]}-${p.bottom[i]} cm`, 2, y + rowH / 2);
+    if (v === null) { g.fillStyle = "#999"; g.fillText("no data", left, y + rowH / 2); return; }
+    const t = (v - z.vmin) / (z.vmax - z.vmin);
+    g.fillStyle = colorAt(t);
+    g.fillRect(left, y + 2, Math.max(2, Math.min(1, Math.max(0, t)) * (width - left - 50)), rowH - 4);
+    g.fillStyle = "#222"; g.fillText(`${v} ${p.units}`, left + Math.max(2, Math.min(1, Math.max(0, t)) * (width - left - 50)) + 4, y + rowH / 2);
+  });
+  return c;
+}
+
+const transectSource = new ol.source.Vector();
+const transectLayer = new ol.layer.Vector({
+  source: transectSource, zIndex: 120,
+  style: (f) => f.getGeometry().getType() === "Point"
+    ? new ol.style.Style({ image: new ol.style.Circle({ radius: 6, fill: new ol.style.Fill({ color: "#fff" }), stroke: new ol.style.Stroke({ color: "#d81b60", width: 3 }) }) })
+    : new ol.style.Style({ stroke: new ol.style.Stroke({ color: "#d81b60", width: 3 }) }),
+});
+map.addLayer(transectLayer);
+
+let drawInteraction = null, drawing = false, hoverFeature = null, section = null;
+function removeDraw() {
+  if (drawInteraction) { map.removeInteraction(drawInteraction); drawInteraction = null; }
+}
+function cancelTransect() {
+  removeDraw();
+  setTimeout(() => { if (!drawInteraction) drawing = false; }, 400);  // swallow the click that ended the drawing
+}
+document.addEventListener("keydown", (e) => { if (e.key === "Escape" && drawInteraction) { cancelTransect(); transectSource.clear(); } });
+
+function startTransect(meta) {
+  removeDraw();
+  transectSource.clear();
+  hideSection();
+  drawing = true;
+  popupEl.style.display = "none";
+  drawInteraction = new ol.interaction.Draw({ source: transectSource, type: "LineString", stopClick: true });
+  drawInteraction.on("drawend", async (e) => {
+    const coords = e.feature.getGeometry().getCoordinates().map((c) => ol.proj.toLonLat(c));
+    cancelTransect();
+    if (coords.length < 2) return;
+    busy(1);
+    try {
+      const q = coords.map((c) => c[0].toFixed(5) + "," + c[1].toFixed(5)).join(";");
+      const res = await fetch(`/api/zarr/${meta.id}/transect?coords=${q}&n=300`);
+      if (!res.ok) throw new Error((await res.json()).detail || res.status);
+      showSection(meta, await res.json());
+    } catch (err) {
+      alert("Transect failed: " + err.message);
+    } finally {
+      busy(-1);
+    }
+  });
+  map.addInteraction(drawInteraction);
+}
+
+const sectionEl = document.getElementById("section");
+const sectionCanvas = document.getElementById("sectionCanvas");
+const sectionEqual = document.getElementById("sectionEqual");
+const sectionReadout = document.getElementById("sectionReadout");
+function hideSection() {
+  sectionEl.style.display = "none"; section = null;
+  if (hoverFeature) { transectSource.removeFeature(hoverFeature); hoverFeature = null; }
+}
+document.getElementById("sectionClose").onclick = () => { hideSection(); transectSource.clear(); };
+sectionEqual.onchange = () => { if (section) drawSection(); };
+
+function showSection(meta, data) {
+  section = { meta, data };
+  document.getElementById("sectionTitle").textContent =
+    `${meta.title}: depth section along the transect (${data.distance_km[data.distance_km.length - 1].toFixed(1)} km)`;
+  sectionEl.style.display = "block";
+  drawSection();
+}
+
+// plot area of the section canvas (CSS pixels)
+function sectionLayout(w, h) { return { l: 62, r: 78, t: 8, b: 34, w, h, pw: w - 62 - 78, ph: h - 8 - 34 }; }
+function rowSpan(data, i, equal, L) {
+  const n = data.top.length;
+  if (equal) return [L.t + (i * L.ph) / n, L.t + ((i + 1) * L.ph) / n];
+  const maxD = data.bottom[n - 1];
+  return [L.t + (data.top[i] / maxD) * L.ph, L.t + (data.bottom[i] / maxD) * L.ph];
+}
+
+function drawSection() {
+  const { data, meta } = section, z = meta.zarr;
+  const dpr = window.devicePixelRatio || 1;
+  const w = sectionCanvas.clientWidth, h = sectionCanvas.clientHeight;
+  sectionCanvas.width = w * dpr; sectionCanvas.height = h * dpr;
+  const g = sectionCanvas.getContext("2d");
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.clearRect(0, 0, w, h);
+  const L = sectionLayout(w, h), n = data.distance_km.length, equal = sectionEqual.checked;
+  g.font = "11px Arial"; g.fillStyle = "#333"; g.textBaseline = "middle";
+  data.top.forEach((_, i) => {
+    const [y0, y1] = rowSpan(data, i, equal, L);
+    for (let j = 0; j < n; j++) {
+      const v = data.values[i][j];
+      g.fillStyle = v === null ? "#eee" : colorAt((v - data.vmin) / (data.vmax - data.vmin));
+      g.fillRect(L.l + (j * L.pw) / n, y0, L.pw / n + 1, y1 - y0 + 0.5);
+    }
+  });
+  // depth axis: one tick per interval limit, labels skipped when they would overlap
+  g.fillStyle = "#333"; g.textAlign = "right";
+  let lastY = -100;
+  const limits = [...data.top, data.bottom[data.bottom.length - 1]];
+  limits.forEach((d, k) => {
+    const y = k < data.top.length ? rowSpan(data, k, equal, L)[0] : rowSpan(data, k - 1, equal, L)[1];
+    g.fillRect(L.l - 4, y - 0.5, 4, 1);
+    if (y - lastY >= 11) { g.fillText(d + " cm", L.l - 7, y); lastY = y; }
+  });
+  g.save(); g.translate(10, L.t + L.ph / 2); g.rotate(-Math.PI / 2); g.textAlign = "center"; g.fillText("depth", 0, 0); g.restore();
+  // distance axis
+  const total = data.distance_km[n - 1];
+  g.textAlign = "center"; g.textBaseline = "top";
+  for (let k = 0; k <= 5; k++) {
+    const x = L.l + (k / 5) * L.pw;
+    g.fillRect(x - 0.5, L.t + L.ph, 1, 4);
+    g.fillText((total * k / 5).toFixed(total < 100 ? 1 : 0), x, L.t + L.ph + 6);
+  }
+  g.fillText("distance along the transect (km)", L.l + L.pw / 2, L.t + L.ph + 19);
+  // colour bar
+  const bx = L.l + L.pw + 16, bw = 12;
+  for (let y = 0; y < L.ph; y++) { g.fillStyle = colorAt(1 - y / (L.ph - 1)); g.fillRect(bx, L.t + y, bw, 1.5); }
+  g.fillStyle = "#333"; g.textAlign = "left"; g.textBaseline = "middle";
+  g.fillText(`${data.vmax} ${data.units}`, bx + bw + 4, L.t + 5);
+  g.fillText(`${data.vmin} ${data.units}`, bx + bw + 4, L.t + L.ph - 5);
+  g.strokeStyle = "#888"; g.strokeRect(L.l - 0.5, L.t - 0.5, L.pw + 1, L.ph + 1);
+}
+
+sectionCanvas.addEventListener("mousemove", (e) => {
+  if (!section) return;
+  const { data } = section, r = sectionCanvas.getBoundingClientRect();
+  const L = sectionLayout(r.width, r.height), n = data.distance_km.length;
+  const x = e.clientX - r.left, y = e.clientY - r.top;
+  const j = Math.floor(((x - L.l) / L.pw) * n);
+  const i = data.top.findIndex((_, k) => { const [y0, y1] = rowSpan(data, k, sectionEqual.checked, L); return y >= y0 && y < y1; });
+  if (j < 0 || j >= n || i < 0) { sectionReadout.textContent = ""; return; }
+  const v = data.values[i][j];
+  sectionReadout.textContent = `${data.distance_km[j].toFixed(1)} km | lon ${data.lon[j]}, lat ${data.lat[j]} | ${data.top[i]}-${data.bottom[i]} cm: ` + (v === null ? "no data" : `${v} ${data.units}`);
+  const pt = new ol.geom.Point(ol.proj.fromLonLat([data.lon[j], data.lat[j]]));
+  if (hoverFeature) hoverFeature.setGeometry(pt);
+  else { hoverFeature = new ol.Feature(pt); transectSource.addFeature(hoverFeature); }
+});
+window.addEventListener("resize", () => { if (section) drawSection(); });
 
 function setStatus(id, text, isError) {
   const el = registry[id].statusEl;
@@ -193,7 +417,7 @@ function buildLayerPanel(metas) {
     const desc = document.createElement("div");
     desc.className = "desc"; desc.textContent = meta.description || "";
     const info = document.createElement("div");
-    info.textContent = `Type: ${meta.type === "wms" ? "raster (GeoServer WMS)" : "vector (GeoParquet)"}` + (meta.license ? ` | License: ${meta.license}` : "");
+    info.textContent = `Type: ${{ wms: "raster (GeoServer WMS)", zarr: "raster datacube (Zarr, drawn by the viewer)" }[meta.type] || "vector (GeoParquet)"}` + (meta.license ? ` | License: ${meta.license}` : "");
     const opLabel = document.createElement("label");
     opLabel.style.fontWeight = "normal";
     opLabel.append("Opacity ");
@@ -208,11 +432,15 @@ function buildLayerPanel(metas) {
     };
     const legendBox = document.createElement("div");
     more.append(desc, info, opLabel, document.createElement("br"), zoom, legendBox);
-    div.append(toggle, label, more);
+    const zctl = meta.type === "zarr" ? buildZarrControls(meta, olLayer) : null;
+    div.append(toggle, label);
+    if (zctl) div.append(zctl);
+    div.append(more);
 
     registry[meta.id] = { meta, olLayer, checkbox: cb, statusEl: status, loadedKey: null };
     const onChange = () => {
       olLayer.setVisible(cb.checked);
+      if (zctl) zctl.style.display = cb.checked ? "block" : "none";
       if (cb.checked && meta.type === "vector") loadVector(meta.id);
       if (cb.checked && meta.type === "wms" && !legendBox.firstChild) addLegend(meta, legendBox);
     };
@@ -265,6 +493,7 @@ document.getElementById("drawBtn").onclick = () => {
 
 // ---- click: vector features + GetFeatureInfo of the active WMS layers ----
 map.on("singleclick", async (evt) => {
+  if (drawing) return;
   popupEl.style.display = "none";
   const sections = [];
   map.forEachFeatureAtPixel(evt.pixel, (feature, layer) => {
@@ -284,11 +513,19 @@ map.on("singleclick", async (evt) => {
       if (res.ok && text) sections.push([r.meta.title, text.replace(/^Results for.*\n-+\n?/m, "")]);
     } catch (e) { /* GeoServer not reachable: nothing to show */ }
   }));
+  const [clon, clat] = ol.proj.toLonLat(evt.coordinate);
+  await Promise.all(Object.values(registry).filter((r) => r.meta.type === "zarr" && r.checkbox.checked && r.meta.zarr).map(async (r) => {
+    try {
+      const res = await fetch(`/api/zarr/${r.meta.id}/profile?lon=${clon}&lat=${clat}`);
+      if (res.ok) sections.push([`${r.meta.title}: depth profile at ${clon.toFixed(3)}, ${clat.toFixed(3)}`, profileNode(await res.json(), r.meta)]);
+    } catch (e) { /* outside the cube or backend not reachable: nothing to show */ }
+  }));
   if (!sections.length) return;
   popupEl.innerHTML = '<span class="close">&times;</span>';
   popupEl.querySelector(".close").onclick = () => (popupEl.style.display = "none");
   for (const [title, body] of sections) {
     const t = document.createElement("b"); t.className = "t"; t.textContent = title;
+    if (body instanceof Node) { popupEl.append(t, body); continue; }
     const p = document.createElement("pre"); p.textContent = body;
     popupEl.append(t, p);
   }

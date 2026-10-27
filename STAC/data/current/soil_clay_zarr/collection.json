@@ -1,0 +1,234 @@
+{
+  "type": "Collection",
+  "id": "soil_clay_zarr",
+  "stac_version": "1.1.0",
+  "description": "Clay content (0-2 micro meter) mass fraction in % (g/100 g) at 6 standard depths. Predictions were derived using a digital soil mapping approach based on Quantile Random Forest, drawing on a global compilation of soil profile data and environmental layers. To visualize these layers please use www.soilgrids.org.",
+  "links": [
+    {
+      "rel": "item",
+      "href": "./soil_clay_zarr/soil_clay_zarr.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://raw.githubusercontent.com/openearth/coclicodata/feat/update-deltares-stac-properties/json-schema/schema.json",
+    "https://stac-extensions.github.io/datacube/v2.2.0/schema.json"
+  ],
+  "deltares:units": "%",
+  "deltares:plotSeries": "",
+  "deltares:plotxAxis": "depth",
+  "deltares:plotType": "line",
+  "deltares:min": 0,
+  "deltares:max": 3,
+  "deltares:linearGradient": [],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd+zarr",
+      "title": "SoilGrids250m 2.0 - Clay content ",
+      "roles": [
+        "data"
+      ],
+      "description": "Clay content (0-2 micro meter) mass fraction in % (g/100 g) at 6 standard depths. Predictions were derived using a digital soil mapping approach based on Quantile Random Forest, drawing on a global compilation of soil profile data and environmental layers. To visualize these layers please use www.soilgrids.org.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "cube:dimensions": {
+    "x": {
+      "axis": "x",
+      "extent": [
+        -20.009972953762343,
+        54.99935327021771
+      ],
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    },
+    "y": {
+      "axis": "y",
+      "extent": [
+        -46.60010536370018,
+        46.60010536370017
+      ],
+      "reference_system": "EPSG:4326",
+      "type": "spatial"
+    },
+    "depth": {
+      "values": [
+        2.5,
+        10.0,
+        22.5,
+        45.0,
+        80.0,
+        150.0
+      ],
+      "description": "middle of the depth interval",
+      "reference_system": "EPSG:4326",
+      "type": "temporal"
+    }
+  },
+  "cube:variables": {
+    "clay": {
+      "type": "data",
+      "description": "Clay content (mean per depth interval)",
+      "dimensions": [
+        "depth",
+        "y",
+        "x"
+      ],
+      "unit": "%",
+      "attrs": {
+        "long_name": "Clay content (mean per depth interval)",
+        "units": "%"
+      },
+      "shape": [
+        6,
+        2076,
+        1671
+      ],
+      "chunks": [
+        1,
+        512,
+        512
+      ]
+    },
+    "depth_bottom": {
+      "type": "auxiliary",
+      "description": "bottom of the depth interval",
+      "dimensions": [
+        "depth"
+      ],
+      "unit": "cm",
+      "attrs": {
+        "long_name": "bottom of the depth interval",
+        "units": "cm"
+      },
+      "shape": [
+        6
+      ],
+      "chunks": [
+        6
+      ]
+    },
+    "depth_top": {
+      "type": "auxiliary",
+      "description": "top of the depth interval",
+      "dimensions": [
+        "depth"
+      ],
+      "unit": "cm",
+      "attrs": {
+        "long_name": "top of the depth interval",
+        "units": "cm"
+      },
+      "shape": [
+        6
+      ],
+      "chunks": [
+        6
+      ]
+    },
+    "spatial_ref": {
+      "type": "auxiliary",
+      "dimensions": [],
+      "attrs": {
+        "crs_wkt": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]",
+        "semi_major_axis": 6378137.0,
+        "semi_minor_axis": 6356752.314245179,
+        "inverse_flattening": 298.257223563,
+        "reference_ellipsoid_name": "WGS 84",
+        "longitude_of_prime_meridian": 0.0,
+        "prime_meridian_name": "Greenwich",
+        "geographic_crs_name": "WGS 84",
+        "horizontal_datum_name": "World Geodetic System 1984",
+        "grid_mapping_name": "latitude_longitude",
+        "spatial_ref": "GEOGCS[\"WGS 84\",DATUM[\"WGS_1984\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]],AUTHORITY[\"EPSG\",\"6326\"]],PRIMEM[\"Greenwich\",0,AUTHORITY[\"EPSG\",\"8901\"]],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]],AXIS[\"Latitude\",NORTH],AXIS[\"Longitude\",EAST],AUTHORITY[\"EPSG\",\"4326\"]]"
+      },
+      "shape": []
+    }
+  },
+  "title": "SoilGrids250m 2.0 - Clay content ",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -20.032431,
+          -46.622563,
+          55.021811,
+          46.622563
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "clay content",
+    "soil texture",
+    "soil",
+    "SoilGrids",
+    "depth intervals",
+    "zarr",
+    "datacube"
+  ],
+  "providers": [
+    {
+      "name": "ISRIC",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.isric.org/geonetwork/srv/api/records/713396f7-1687-11ea-a7c0-a0481ca9e724"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ],
+  "summaries": {
+    "soil_clay_zarr": {
+      "label": "Clay content (depth cube)",
+      "options": [
+        {
+          "label": "Clay content (mean per depth interval)",
+          "value": "clay"
+        }
+      ]
+    }
+  },
+  "assets": {
+    "soil_clay_zarr": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/soil_clay_zarr/soil_clay_zarr.zarr",
+      "title": "Clay content (depth cube) zarr root",
+      "description": "The root of the Clay content (depth cube) zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [],
+  "id": "soil_clay_zarr",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -20.032431,
+          -46.622563
+        ],
+        [
+          55.021811,
+          -46.622563
+        ],
+        [
+          55.021811,
+          46.622563
+        ],
+        [
+          -20.032431,
+          46.622563
+        ],
+        [
+          -20.032431,
+          -46.622563
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -20.032431,
+    -46.622563,
+    55.021811,
+    46.622563
+  ],
+  "properties": {
+    "store": "soil_clay_zarr",
+    "description": "SoilGrids 2.0 clay content datacube (depth, y, x)",
+    "created": "2026-10-26T14:13:39.692229Z",
+    "deltares:item_key": "soil_clay_zarr",
+    "datetime": "2020-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Clay content "
+    },
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Clay content "
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/soil_clay_zarr/soil_clay_zarr.zarr",
+      "title": "Clay content (depth cube) zarr root",
+      "description": "The root of the Clay content (depth cube) zarr dataset on public Google Cloud Storage.",
+      "roles": [
+        "data",
+        "zarr-root",
+        "gcs"
+      ]
+    }
+  },
+  "collection": "soil_clay_zarr"
+}

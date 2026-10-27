@@ -1,0 +1,91 @@
+{
+  "type": "Collection",
+  "id": "soil_depth",
+  "stac_version": "1.1.0",
+  "description": "Absolute depth to bedrock (in cm) predicted using the global compilation of soil ground observations. Accuracy assessement of the maps is availble in Hengl et at. (2017) DOI: 10.1371/journal.pone.0169748. Data provided as GeoTIFFs with internal compression (co='COMPRESS=DEFLATE'). Measurement units: cm.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/soil_depth.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "SOILDGRIDS Absolute Depth to Bedrock",
+      "roles": [
+        "data"
+      ],
+      "description": "Absolute depth to bedrock in cm at 250 m resolution, globally.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "cm",
+  "sci:citation": "Hengl T, Mendes De Jesus J, Heuvelink GBM, et al (2017) SoilGrids250m: Global gridded soil information based on machine learning. PLoS ONE 12:e0169748. https://doi.org/10.1371/journal.pone.0169748",
+  "sci:doi": "10.1371/journal.pone.0169748",
+  "title": "SOILDGRIDS Absolute Depth to Bedrock",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -56.00081,
+          179.999942,
+          83.999167
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1950-01-01T00:00:00Z",
+          "2015-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "depth to bedrock",
+    "soil",
+    "SoilGrids",
+    "bedrock",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "ISRIC - World Soil Information",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.isric.org/geonetwork/srv/api/records/f36117ea-9be5-4afd-bb7d-7a3e77bf392a"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

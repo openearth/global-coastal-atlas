@@ -1,8 +1,11 @@
 import json
 import logging
+import math
 import os
 import re
+import struct
 import threading
+import zlib
 from functools import lru_cache
 
 import fsspec
@@ -39,7 +42,7 @@ if not WMS_VERIFY_SSL:
     urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # One entry per map layer. Title, description, extent and licence come from the STAC collection;
-# the GeoServer layer names are the ones published by the STAC/data/scripts/17_ ... 21_ notebooks.
+# the GeoServer layer names are the ones published by the STAC/data/scripts/17_ ... 21_ notebooks (22_ ... 25_ are GeoParquet vector layers).
 LAYERS = [
     {"id": "gebco", "collection": "gebco", "type": "wms", "wms_layers": "gebco:gebco", "title": "GEBCO 2025 bathymetry / elevation", "default": False},
     {"id": "seabed_lithology", "collection": "seabed_lithology", "type": "wms", "wms_layers": "seabed_lithology:seabed_litho", "title": "Seabed lithology", "default": True},
@@ -47,7 +50,29 @@ LAYERS = [
     {"id": "recharge_rf_rk", "collection": "groundwater_recharge", "item": "RF_RK_recharge_01", "type": "wms", "wms_layers": "groundwater_recharge:RF_RK_recharge_01", "title": "Groundwater recharge, RF + residual kriging (RF_RK)", "default": False},
     {"id": "hydrolakes", "collection": "hydrolakes", "type": "vector", "title": "HydroLAKES", "default": False},
     {"id": "country_boundaries", "collection": "country_boundaries", "type": "vector", "title": "Country boundaries", "default": True},
+    {"id": "glhymps", "collection": "glhymps", "type": "vector", "title": "GLHYMPS 2.0 hydrogeology (Africa)", "default": False},
+    {"id": "glim", "collection": "glim", "type": "vector", "title": "GLiM lithological map (Africa)", "default": False},
+    {"id": "gum", "collection": "gum", "type": "vector", "title": "GUM unconsolidated sediments (Africa)", "default": False},
+    {"id": "hydrorivers", "collection": "hydrorivers", "type": "vector", "title": "HydroRIVERS (Africa)", "default": False},
+    {"id": "soil_depth", "collection": "soil_depth", "type": "wms", "wms_layers": "soil_depth:soil_depth", "title": "Absolute depth to bedrock (cm)", "default": False},
+    {"id": "gst", "collection": "gst", "type": "wms", "wms_layers": "gst:gst", "title": "Global sediment thickness GST-1 (m)", "default": False},
 ]
+# Soil clay / sand (26_ ... 30_ notebooks): one COG layer per depth interval on GeoServer, plus one Zarr depth cube
+# per variable (drawn by this backend; supports depth profiles and transects through the depth dimension)
+SOIL_DEPTHS = ["0-5cm", "5-15cm", "15-30cm", "30-60cm", "60-100cm", "100-200cm"]
+SOIL_VARIABLES = {"clay": ("Clay", (0.0, 60.0)), "sand": ("Sand", (0.0, 100.0))}  # name: (label, colour range in %)
+for _var, (_label, _) in SOIL_VARIABLES.items():
+    for _d in SOIL_DEPTHS:
+        LAYERS.append({
+            "id": f"soil_{_var}_{_d}", "collection": f"soil_{_var}_cog", "item": f"{_var}_5km_{_d}", "type": "wms",
+            "wms_layers": f"soil_{_var}_cog:{_var}_5km_{_d}", "title": f"{_label} content {_d.replace('cm', ' cm')}",
+            "group": f"Soil {_var} content, one layer per depth (COG, GeoServer)", "default": False,
+        })
+for _var, (_label, _range) in SOIL_VARIABLES.items():
+    LAYERS.append({
+        "id": f"soil_{_var}_zarr", "collection": f"soil_{_var}_zarr", "type": "zarr", "variable": _var, "range": _range,
+        "title": f"{_label} content, depth cube (Zarr)", "group": f"Soil {_var} content, depth cube (Zarr)", "default": False,
+    })
 LAYER_BY_ID = {layer["id"]: layer for layer in LAYERS}
 ALLOWED_WMS_LAYERS = {layer["wms_layers"] for layer in LAYERS if layer["type"] == "wms"}
 
@@ -55,9 +80,15 @@ ALLOWED_WMS_LAYERS = {layer["wms_layers"] for layer in LAYERS if layer["type"] =
 VECTOR_COLUMNS = {
     "hydrolakes": ["Hylak_id", "Lake_name", "Country", "Continent", "Lake_area", "Depth_avg", "Vol_total", "Elevation"],
     "country_boundaries": ["NAME", "ADMIN", "ISO_A3", "CONTINENT", "SUBREGION", "POP_EST"],
+    "glhymps": ["OBJECTID_1", "Descriptio", "Porosity_x", "logK_Ice_x", "Transmissi", "Shape_Area"],
+    "glim": ["OBJECTID", "Litho", "xx", "Shape_Area"],
+    "gum": ["OBJECTID", "Symbol", "Descriptio", "Shape_Area"],
+    "hydrorivers": ["HYRIV_ID", "LENGTH_KM", "UPLAND_SKM", "DIS_AV_CMS", "ORD_STRA", "ORD_FLOW"],
 }
 # Column used to keep the biggest features when a bbox holds more than MAX_FEATURES
-VECTOR_SIZE_COLUMN = {"hydrolakes": "Lake_area"}
+VECTOR_SIZE_COLUMN = {
+    "hydrolakes": "Lake_area", "glhymps": "Shape_Area", "glim": "Shape_Area", "gum": "Shape_Area", "hydrorivers": "DIS_AV_CMS",
+}
 
 _catalog = None
 _catalog_lock = threading.Lock()
@@ -99,7 +130,7 @@ def layer_metadata(layer: dict) -> dict:
     try:
         collection, item = get_item(layer)
         out.update(
-            group=collection.title or collection.id,
+            group=layer.get("group") or collection.title or collection.id,
             description=collection.description,
             license=collection.license,
             bbox=collection.extent.spatial.bboxes[0],
@@ -108,7 +139,16 @@ def layer_metadata(layer: dict) -> dict:
         )
     except Exception as exc:  # the layer stays usable without its STAC metadata
         log.warning("STAC metadata for %s not available: %s", layer["id"], exc)
-        out.update(group=layer["collection"], description="", license=None, bbox=None, collection=layer["collection"], data_href=None)
+        out.update(group=layer.get("group") or layer["collection"], description="", license=None, bbox=None, collection=layer["collection"], data_href=None)
+    if layer["type"] == "zarr":
+        try:
+            cube = get_cube(layer["id"])
+            out["zarr"] = {
+                "depths": [{"top": t, "bottom": b} for t, b in zip(cube.top, cube.bottom)],
+                "vmin": layer["range"][0], "vmax": layer["range"][1], "units": cube.units, "variable": layer["variable"],
+            }
+        except Exception as exc:
+            log.warning("Zarr cube %s not available: %s", layer["id"], exc)
     return out
 
 
@@ -160,7 +200,10 @@ def read_vector(layer_id: str, bbox: tuple) -> bytes:
     tolerance = max(maxx - minx, maxy - miny) / 3000  # simplify to roughly one screen pixel of the whole bbox
     features = []
     for _, wkb, prop in rows:
-        geom = shapely.set_precision(shapely.simplify(shapely.from_wkb(wkb), tolerance), tolerance / 10)
+        geom = shapely.from_wkb(wkb)
+        if not geom.is_valid:
+            geom = shapely.make_valid(geom)
+        geom = shapely.set_precision(shapely.simplify(geom, tolerance), tolerance / 10)
         if geom.is_empty:
             continue
         features.append('{"type":"Feature","geometry":%s,"properties":%s}' % (shapely.to_geojson(geom), json.dumps(prop, default=str)))
@@ -195,6 +238,78 @@ def parse_bbox(text: str) -> tuple:
     if not (-180 <= minx < maxx <= 180 and -90 <= miny < maxy <= 90):
         raise HTTPException(400, "bbox must be in lon/lat degrees (minx < maxx, miny < maxy)")
     return minx, miny, maxx, maxy
+
+
+class Cube:
+    """A (depth, y, x) Zarr datacube on the public bucket, read with zarr directly (no xarray needed)."""
+
+    def __init__(self, href: str, variable: str):
+        import zarr
+        from zarr.storage import FsspecStore
+
+        store = FsspecStore.from_url(href, read_only=True, storage_options={"asynchronous": True})
+        group = zarr.open_group(store=store, mode="r", zarr_format=2)  # no consolidated metadata in these stores
+        self.arr = group[variable]
+        self.x = group["x"][:]
+        self.y = group["y"][:]
+        self.top = [int(v) for v in group["depth_top"][:]]
+        self.bottom = [int(v) for v in group["depth_bottom"][:]]
+        self.units = str(self.arr.attrs.get("units", ""))
+        self.dx = float(self.x[1] - self.x[0])
+        self.dy = float(self.y[1] - self.y[0])  # negative: y runs north to south
+
+    def index(self, lon, lat):
+        """Nearest-cell indices and a mask of the points that fall inside the grid."""
+        ix = np.rint((np.asarray(lon) - self.x[0]) / self.dx).astype(int)
+        iy = np.rint((np.asarray(lat) - self.y[0]) / self.dy).astype(int)
+        ok = (ix >= 0) & (ix < len(self.x)) & (iy >= 0) & (iy < len(self.y))
+        return ix, iy, ok
+
+
+_cubes = {}
+_cubes_lock = threading.Lock()
+
+
+def get_cube(layer_id: str) -> Cube:
+    layer = LAYER_BY_ID.get(layer_id)
+    if not layer or layer["type"] != "zarr":
+        raise HTTPException(404, "Unknown Zarr layer")
+    with _cubes_lock:
+        if layer_id not in _cubes:
+            _, item = get_item(layer)
+            _cubes[layer_id] = Cube(item.assets["data"].href, layer["variable"])
+        return _cubes[layer_id]
+
+
+@lru_cache(maxsize=12)
+def cube_slice(layer_id: str, depth: int) -> np.ndarray:
+    """One whole depth level (about 14 MB), kept in memory so that panning the map does not hit the bucket again."""
+    return np.asarray(get_cube(layer_id).arr[depth, :, :])
+
+
+_STOPS = np.array([[68, 1, 84], [59, 82, 139], [33, 145, 140], [94, 201, 98], [253, 231, 37]], dtype=float)  # viridis
+LUT = np.stack([np.interp(np.linspace(0, 1, 256), np.linspace(0, 1, len(_STOPS)), _STOPS[:, c]) for c in range(3)], axis=1).astype(np.uint8)
+
+
+def encode_png(rgba: np.ndarray) -> bytes:
+    h, w, _ = rgba.shape
+    raw = np.concatenate([np.zeros((h, 1), np.uint8), rgba.reshape(h, w * 4)], axis=1).tobytes()
+
+    def chunk(kind: bytes, data: bytes) -> bytes:
+        return struct.pack(">I", len(data)) + kind + data + struct.pack(">I", zlib.crc32(kind + data) & 0xFFFFFFFF)
+
+    return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", w, h, 8, 6, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(raw, 3)) + chunk(b"IEND", b"")
+
+
+def clean(values) -> list:
+    """JSON-safe list: NaN becomes null."""
+    return [round(float(v), 2) if math.isfinite(v) else None for v in values]
+
+
+def haversine_km(lon1, lat1, lon2, lat2):
+    p1, p2 = np.radians(lat1), np.radians(lat2)
+    a = np.sin((p2 - p1) / 2) ** 2 + np.cos(p1) * np.cos(p2) * np.sin(np.radians(lon2 - lon1) / 2) ** 2
+    return 2 * 6371.0088 * np.arcsin(np.sqrt(a))
 
 
 app = FastAPI(title="Global Coastal Atlas viewer")
@@ -249,6 +364,76 @@ def wms(request: Request):
         media_type=upstream.headers.get("Content-Type", "application/octet-stream"),
         headers={"Cache-Control": "public, max-age=300"},
     )
+
+
+@app.get("/api/zarr/{layer_id}/map")
+def zarr_map(layer_id: str, request: Request):
+    """WMS-like GetMap for a Zarr cube: BBOX in EPSG:3857, WIDTH, HEIGHT and DEPTH (index of the depth interval) -> PNG."""
+    q = {k.upper(): v for k, v in request.query_params.items()}
+    try:
+        minx, miny, maxx, maxy = (float(v) for v in q["BBOX"].split(","))
+        w, h, depth = int(q["WIDTH"]), int(q["HEIGHT"]), int(q.get("DEPTH", 0))
+    except (KeyError, ValueError):
+        raise HTTPException(400, "BBOX (EPSG:3857), WIDTH, HEIGHT and DEPTH are required")
+    cube = get_cube(layer_id)
+    if not (0 < w <= 4096 and 0 < h <= 4096 and 0 <= depth < len(cube.top)):
+        raise HTTPException(400, "Invalid size or depth index")
+    r = 6378137.0
+    lon = np.degrees((minx + (np.arange(w) + 0.5) * (maxx - minx) / w) / r)
+    lat = np.degrees(np.arctan(np.sinh((maxy - (np.arange(h) + 0.5) * (maxy - miny) / h) / r)))
+    ix = np.rint((lon - cube.x[0]) / cube.dx).astype(int)
+    iy = np.rint((lat - cube.y[0]) / cube.dy).astype(int)
+    okx, oky = (ix >= 0) & (ix < len(cube.x)), (iy >= 0) & (iy < len(cube.y))
+    img = np.zeros((h, w, 4), np.uint8)
+    if okx.any() and oky.any():
+        values = cube_slice(layer_id, depth)[np.clip(iy, 0, len(cube.y) - 1)[:, None], np.clip(ix, 0, len(cube.x) - 1)[None, :]]
+        valid = oky[:, None] & okx[None, :] & np.isfinite(values)
+        vmin, vmax = LAYER_BY_ID[layer_id]["range"]
+        t = np.clip((np.nan_to_num(values) - vmin) / (vmax - vmin), 0, 1)
+        img[..., :3] = LUT[(t * 255).astype(np.uint8)]
+        img[..., 3] = np.where(valid, 255, 0)
+    return Response(encode_png(img), media_type="image/png", headers={"Cache-Control": "public, max-age=3600"})
+
+
+@app.get("/api/zarr/{layer_id}/profile")
+def zarr_profile(layer_id: str, lon: float, lat: float):
+    """Values of every depth interval at one point (the nearest grid cell)."""
+    cube = get_cube(layer_id)
+    ix, iy, ok = cube.index([lon], [lat])
+    if not ok[0]:
+        raise HTTPException(404, "Point outside the cube")
+    values = [float(cube_slice(layer_id, d)[iy[0], ix[0]]) for d in range(len(cube.top))]
+    return {"lon": round(float(cube.x[ix[0]]), 4), "lat": round(float(cube.y[iy[0]]), 4), "values": clean(values),
+            "top": cube.top, "bottom": cube.bottom, "units": cube.units}
+
+
+@app.get("/api/zarr/{layer_id}/transect")
+def zarr_transect(layer_id: str, coords: str, n: int = 200):
+    """Depth cross-section along a line: coords = 'lon,lat;lon,lat;...' (at least two vertices), n samples along it."""
+    try:
+        pts = np.array([[float(v) for v in p.split(",")] for p in coords.split(";")])
+        if pts.ndim != 2 or pts.shape[0] < 2 or pts.shape[1] != 2 or pts.shape[0] > 200:
+            raise ValueError
+    except ValueError:
+        raise HTTPException(400, "coords must be lon,lat;lon,lat;... (2 to 200 vertices)")
+    n = max(2, min(int(n), 500))
+    cube = get_cube(layer_id)
+    seg = haversine_km(pts[:-1, 0], pts[:-1, 1], pts[1:, 0], pts[1:, 1])
+    cum = np.concatenate([[0.0], np.cumsum(seg)])
+    if cum[-1] <= 0:
+        raise HTTPException(400, "The line has no length")
+    dist = np.linspace(0, cum[-1], n)
+    lon = np.interp(dist, cum, pts[:, 0])
+    lat = np.interp(dist, cum, pts[:, 1])
+    ix, iy, ok = cube.index(lon, lat)
+    ix, iy = np.clip(ix, 0, len(cube.x) - 1), np.clip(iy, 0, len(cube.y) - 1)
+    rows = []
+    for d in range(len(cube.top)):
+        values = np.where(ok, cube_slice(layer_id, d)[iy, ix], np.nan)
+        rows.append(clean(values))
+    vmin, vmax = LAYER_BY_ID[layer_id]["range"]
+    return {"distance_km": [round(float(v), 3) for v in dist], "lon": [round(float(v), 4) for v in lon], "lat": [round(float(v), 4) for v in lat],
+            "values": rows, "top": cube.top, "bottom": cube.bottom, "units": cube.units, "vmin": vmin, "vmax": vmax}
 
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")

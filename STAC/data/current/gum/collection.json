@@ -1,0 +1,87 @@
+{
+  "type": "Collection",
+  "id": "gum",
+  "stac_version": "1.1.0",
+  "description": "Mapped unconsolidated sediments cover half of the global land surface. They are of considerable importance for many Earth surface processes like weathering, hydrological fluxes or biogeochemical cycles. Ignoring their characteristics or spatial extent may lead to misinterpretations in Earth System studies. Therefore, a new Global Unconsolidated Sediments Map database (GUM) was compiled, using regional maps specifically representing unconsolidated and quaternary sediments. The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available. Previous global lithological maps or databases lacked detail for reported unconsolidated sediment areas or missed large areas, and reported a global coverage of 25 to 30%, considering the ice-free land area. Here, alluvial sediments cover about 23% of the mapped total ice-free area, followed by aeolian sediments (~21%), glacial sediments (~20%), and colluvial sediments (~16%). A specific focus during the creation of the database was on the distribution of loess deposits, since loess is highly reactive and relevant to understand geochemical cycles related to dust deposition and weathering processes. An additional layer compiling pyroclastic sediment is added, which merges consolidated and unconsolidated pyroclastic sediments. The compilation shows latitudinal abundances of sediment types related to climate of the past.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./gum/gum.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd.apache.parquet",
+      "title": "GUM – Global Unconsolidated Sediment Map Database",
+      "roles": [
+        "data"
+      ],
+      "description": "The new GUM database provides insights into the regional distribution of unconsolidated sediments and their properties. The GUM comprises 911,551 polygons and describes not only sediment types and subtypes, but also parameters like grain size, mineralogy, age and thickness, where available."
+    }
+  },
+  "sci:citation": "Börker J, Hartmann J, Amann T, Romero-Mujalli G (2018) Terrestrial Sediments of the Earth: Development of a Global Unconsolidated Sediments Map Database (GUM). Geochem Geophys Geosyst 19:997-1024. https://doi.org/10.1002/2017GC007273",
+  "sci:doi": "10.1002/2017GC007273",
+  "title": "GUM – Global Unconsolidated Sediment Map Database",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.999981,
+          -89.985257,
+          179.999986,
+          83.589292
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2018-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-3.0",
+  "keywords": [
+    "unconsolidated sediments",
+    "quaternary",
+    "loess",
+    "geology",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "University of Hamburg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.geo.uni-hamburg.de/en/geologie/forschung/aquatische-geochemie/gum.html"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

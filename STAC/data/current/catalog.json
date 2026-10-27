@@ -135,6 +135,66 @@
       "href": "./gebco/collection.json",
       "type": "application/json",
       "title": "General Bathymetric Chart of the Oceans (GEBCO 2025 Grid)"
+    },
+    {
+      "rel": "child",
+      "href": "./glim/collection.json",
+      "type": "application/json",
+      "title": "GLiM Global Lithological Map"
+    },
+    {
+      "rel": "child",
+      "href": "./hydrorivers/collection.json",
+      "type": "application/json",
+      "title": "HydroRIVERS"
+    },
+    {
+      "rel": "child",
+      "href": "./gum/collection.json",
+      "type": "application/json",
+      "title": "GUM – Global Unconsolidated Sediment Map Database"
+    },
+    {
+      "rel": "child",
+      "href": "./glhymps/collection.json",
+      "type": "application/json",
+      "title": "GLobal HYdrogeology MaPS 2.0"
+    },
+    {
+      "rel": "child",
+      "href": "./soil_depth/collection.json",
+      "type": "application/json",
+      "title": "SOILDGRIDS Absolute Depth to Bedrock"
+    },
+    {
+      "rel": "child",
+      "href": "./soil_sand_cog/collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Sand content"
+    },
+    {
+      "rel": "child",
+      "href": "./soil_clay_cog/collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Clay content "
+    },
+    {
+      "rel": "child",
+      "href": "./soil_clay_zarr/collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Clay content "
+    },
+    {
+      "rel": "child",
+      "href": "./soil_sand_zarr/collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Sand content"
+    },
+    {
+      "rel": "child",
+      "href": "./gst/collection.json",
+      "type": "application/json",
+      "title": "Global Sedimentary Thickness model 1"
     }
   ],
   "assets": {

@@ -1,0 +1,155 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "gst",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          90.0
+        ],
+        [
+          -180.0,
+          -90.0
+        ],
+        [
+          180.0,
+          -90.0
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -90.0,
+    180.0,
+    90.0
+  ],
+  "properties": {
+    "title": "GST-1 sediment thickness (0.125 degree)",
+    "description": "Global sedimentary thickness model GST-1 in m on a 0.125 degree grid.",
+    "start_datetime": "2026-01-01T00:00:00Z",
+    "end_datetime": "2026-12-31T23:59:59Z",
+    "created": "2026-10-26T14:58:14.968130Z",
+    "proj:bbox": [
+      -180.0625,
+      -90.0625,
+      180.0625,
+      90.0625
+    ],
+    "proj:shape": [
+      2881,
+      1441
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            180.0625,
+            -90.0625
+          ],
+          [
+            180.0625,
+            90.0625
+          ],
+          [
+            -180.0625,
+            90.0625
+          ],
+          [
+            -180.0625,
+            -90.0625
+          ],
+          [
+            180.0625,
+            -90.0625
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.125,
+      0.0,
+      -180.0625,
+      0.0,
+      -0.125,
+      90.0625
+    ],
+    "deltares:item_key": "gst",
+    "gst:variable": "sediment_thickness",
+    "datetime": "2026-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Global Sedimentary Thickness model 1"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "Global Sedimentary Thickness model 1"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/gst/gst.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "gst",
+      "file:size": 13887906,
+      "raster:bands": [
+        {
+          "nodata": -9999.0,
+          "data_type": "float32",
+          "spatial_resolution": 0.125,
+          "unit": "m"
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "gst",
+          "description": "Global sedimentary thickness model GST-1 in m on a 0.125 degree grid."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/gst",
+      "type": "application/png",
+      "title": "gst",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "gst"
+}

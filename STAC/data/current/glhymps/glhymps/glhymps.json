@@ -1,0 +1,211 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "id": "glhymps",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.999989,
+          -89.985255
+        ],
+        [
+          179.999989,
+          83.682524
+        ],
+        [
+          -179.999989,
+          83.682524
+        ],
+        [
+          -179.999989,
+          -89.985255
+        ],
+        [
+          179.999989,
+          -89.985255
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -179.999989,
+    -89.985255,
+    179.999989,
+    83.682524
+  ],
+  "properties": {
+    "title": "GLHYMPS 2.0",
+    "description": "Global porosity and permeability data.",
+    "table:row_count": 1803242,
+    "table:columns": [
+      {
+        "name": "OBJECTID_1",
+        "type": "int64",
+        "description": "Feature identifier"
+      },
+      {
+        "name": "IDENTITY_",
+        "type": "large_string",
+        "description": "Polygon identifier (region code + number, e.g. USA_VA5290)"
+      },
+      {
+        "name": "logK_Ice_x",
+        "type": "int32",
+        "description": "Mean log10 permeability (m2) x 100, permafrost (ice) adjusted variant (?)"
+      },
+      {
+        "name": "logK_Ferr_",
+        "type": "int32",
+        "description": "Mean log10 permeability (m2) x 100, permafrost (Ferrians) adjusted variant (?)"
+      },
+      {
+        "name": "Porosity_x",
+        "type": "int32",
+        "description": "Porosity x 100 (percent)"
+      },
+      {
+        "name": "K_stdev_x1",
+        "type": "int32",
+        "description": "Standard deviation of log10 permeability x 100"
+      },
+      {
+        "name": "OBJECTID",
+        "type": "int64",
+        "description": "Identifier inherited from the source layer (0 where not available)"
+      },
+      {
+        "name": "Descriptio",
+        "type": "large_string",
+        "description": "Lithology description from the source map"
+      },
+      {
+        "name": "XX",
+        "type": "large_string",
+        "description": "Lithology/sediment class code 1 inherited from the source map (?)"
+      },
+      {
+        "name": "YY",
+        "type": "large_string",
+        "description": "Lithology/sediment class code 2 inherited from the source map (?)"
+      },
+      {
+        "name": "ZZ",
+        "type": "large_string",
+        "description": "Lithology/sediment class code 3 inherited from the source map (?)"
+      },
+      {
+        "name": "AA",
+        "type": "large_string",
+        "description": "Lithology/sediment class code 4 inherited from the source map (?)"
+      },
+      {
+        "name": "DD",
+        "type": "large_string",
+        "description": "Lithology/sediment class code 5 inherited from the source map (?)"
+      },
+      {
+        "name": "Shape_Leng",
+        "type": "double",
+        "description": "Polygon perimeter in the original projected CRS (m, not updated after reprojection)"
+      },
+      {
+        "name": "GUM_K",
+        "type": "int32",
+        "description": "Flag: polygon permeability derived from the GUM unconsolidated sediment map (?)"
+      },
+      {
+        "name": "Prmfrst",
+        "type": "int32",
+        "description": "Permafrost flag (?)"
+      },
+      {
+        "name": "Shape_Le_1",
+        "type": "double",
+        "description": "Polygon perimeter in the original projected CRS (m, not updated after reprojection)"
+      },
+      {
+        "name": "Shape_Area",
+        "type": "double",
+        "description": "Polygon area in the original projected CRS (m2, not updated after reprojection)"
+      },
+      {
+        "name": "Transmissi",
+        "type": "double",
+        "description": "Transmissivity (?; mostly 0)"
+      },
+      {
+        "name": "COUNT",
+        "type": "int64",
+        "description": "Zonal statistics helper field: number of raster cells (?; mostly 0)"
+      },
+      {
+        "name": "AREA_1",
+        "type": "double",
+        "description": "Zonal statistics helper field: area (?; mostly 0)"
+      },
+      {
+        "name": "MEAN",
+        "type": "double",
+        "description": "Zonal statistics helper field: mean value (?; mostly 0)"
+      },
+      {
+        "name": "STD",
+        "type": "double",
+        "description": "Zonal statistics helper field: standard deviation (?; mostly 0)"
+      },
+      {
+        "name": "geometry",
+        "type": "binary",
+        "description": "Hydrogeological unit polygon (EPSG:4326)"
+      },
+      {
+        "name": "bbox",
+        "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+        "description": ""
+      }
+    ],
+    "proj:epsg": 4326,
+    "deltares:item_key": "glhymps",
+    "created": "2026-10-26T13:36:42.232227Z",
+    "datetime": "2018-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GLobal HYdrogeology MaPS 2.0"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "GLobal HYdrogeology MaPS 2.0"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/glhymps/glhymps.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "GLHYMPS 2.0",
+      "description": "Global porosity and permeability data.",
+      "file:size": 2931346011,
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "collection": "glhymps"
+}

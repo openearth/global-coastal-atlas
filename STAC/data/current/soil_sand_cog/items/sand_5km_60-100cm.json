@@ -1,0 +1,157 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "sand_5km_60-100cm",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          55.021811,
+          -46.622563
+        ],
+        [
+          55.021811,
+          46.622563
+        ],
+        [
+          -20.032431,
+          46.622563
+        ],
+        [
+          -20.032431,
+          -46.622563
+        ],
+        [
+          55.021811,
+          -46.622563
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -20.032431,
+    -46.622563,
+    55.021811,
+    46.622563
+  ],
+  "properties": {
+    "title": "Sand content, 60-100 cm depth (5 km)",
+    "description": "Sand content (mean of the 60-100 cm depth interval, SoilGrids 2.0) at about 5 km resolution, in %.",
+    "start_datetime": "2020-01-01T00:00:00Z",
+    "end_datetime": "2020-12-31T23:59:59Z",
+    "created": "2026-10-26T13:47:07.829852Z",
+    "proj:bbox": [
+      -20.03243083586533,
+      -46.622563245803164,
+      55.02181115232069,
+      46.622563245803164
+    ],
+    "proj:shape": [
+      1671,
+      2076
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            55.02181115232069,
+            -46.622563245803164
+          ],
+          [
+            55.02181115232069,
+            46.622563245803164
+          ],
+          [
+            -20.03243083586533,
+            46.622563245803164
+          ],
+          [
+            -20.03243083586533,
+            -46.622563245803164
+          ],
+          [
+            55.02181115232069,
+            -46.622563245803164
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.04491576420597607,
+      0.0,
+      -20.03243083586533,
+      0.0,
+      -0.04491576420597607,
+      46.622563245803164
+    ],
+    "deltares:item_key": "sand_5km_60-100cm",
+    "soil:depth_range": "60-100 cm",
+    "soil:depth_top_cm": 60,
+    "soil:depth_bottom_cm": 100,
+    "datetime": "2020-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Sand content"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SoilGrids250m 2.0 - Sand content"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/soil_sand_cog/sand_5km_60-100cm.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "sand_5km_60-100cm",
+      "file:size": 6450402,
+      "raster:bands": [
+        {
+          "nodata": -9999.0,
+          "data_type": "float32",
+          "spatial_resolution": 0.0449,
+          "unit": "%"
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "sand_5km_60-100cm",
+          "description": "Sand content (mean of the 60-100 cm depth interval, SoilGrids 2.0) at about 5 km resolution, in %."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/soil_sand_cog",
+      "type": "application/png",
+      "title": "sand_5km_60-100cm",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "soil_sand_cog"
+}

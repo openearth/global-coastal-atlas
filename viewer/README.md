@@ -1,7 +1,7 @@
 # GCA viewer
 
 Small web map that shows the datasets published in the Global Coastal Atlas STAC catalog from the
-`17_` to `21_` notebooks (`STAC/data/scripts`), for an area of interest (default: Egypt).
+`17_` to `25_` notebooks (`STAC/data/scripts`), for an area of interest (default: Egypt).
 Layers can be switched on and off, have an opacity slider, a legend (WMS) and a click query.
 
 | Layer | STAC collection | How it is shown |
@@ -11,6 +11,13 @@ Layers can be switched on and off, have an opacity slider, a legend (WMS) and a 
 | Groundwater recharge (RF, RF_RK) | `groundwater_recharge` | GeoServer WMS `groundwater_recharge:<item>` |
 | HydroLAKES | `hydrolakes` | GeoParquet read for the bbox, drawn as GeoJSON |
 | Country boundaries | `country_boundaries` | GeoParquet read for the bbox, drawn as GeoJSON |
+| GLHYMPS 2.0 hydrogeology, GLiM lithology, GUM sediments, HydroRIVERS (Africa) | `glhymps`, `glim`, `gum`, `hydrorivers` | GeoParquet read for the bbox, drawn as GeoJSON |
+
+Datasets 15 and 16 (Zeeland Zarr cubes) are not shown.
+
+Dataset 31: GST-1 global sediment thickness in m (WMS).
+
+Soil datasets 26-30: depth map (WMS), clay and sand COGs per depth interval (WMS), and the clay and sand Zarr depth cubes. The backend reads the Zarr cubes over HTTPS and draws them itself (`/api/zarr/{id}/map`). Pick a depth interval, click the map for a depth profile, or use "Draw transect (depth section)" to get a distance-vs-depth section (`/api/zarr/{id}/transect`).
 
 None of the layers has a time dimension.
 

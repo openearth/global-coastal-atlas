@@ -1,0 +1,88 @@
+{
+  "type": "Collection",
+  "id": "glhymps",
+  "stac_version": "1.1.0",
+  "description": "The spatial distribution of subsurface parameters such as permeability are increasingly relevant for regional to global climate, land surface, and hydrologic models that are integrating groundwater dynamics and interactions. Despite the large fraction of unconsolidated sediments on Earth’s surface with a wide range of permeability values, current global, high-resolution permeability maps distinguish solely fine-grained and coarse-grained unconsolidated sediments. Representative permeability values are derived for a wide variety of unconsolidated sediments and applied to a new global map of unconsolidated sediments to produce the first geologically constrained, two-layer global map of shallower and deeper permeability. The new mean logarithmic permeability of the Earth’s surface is 12.7 ± 1.7m2 being 1 order of magnitude higher than that derived from previous maps, which is consistent with the dominance of the coarser sediments. The new data set will benefit a variety of scientific applications including the next generation of climate, land surface, and hydrology models at regional to global scales. (2018-03-08) ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./glhymps/glhymps.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "application/vnd.apache.parquet",
+      "title": "GLobal HYdrogeology MaPS 2.0",
+      "roles": [
+        "data"
+      ],
+      "description": "Global porosity and permeability data."
+    }
+  },
+  "sci:citation": "Huscroft J, Gleeson T, Hartmann J, Börker J (2018) Compiling and Mapping Global Permeability of the Unconsolidated and Consolidated Earth: GLobal HYdrogeology MaPS 2.0 (GLHYMPS 2.0). Geophysical Research Letters 45:1897-1904. https://doi.org/10.1002/2017GL075860",
+  "sci:doi": "10.1002/2017GL075860",
+  "title": "GLobal HYdrogeology MaPS 2.0",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.999989,
+          -89.985255,
+          179.999989,
+          83.682524
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2018-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "hydrogeology",
+    "permeability",
+    "porosity",
+    "groundwater",
+    "subsurface",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "Borealis",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP2/TTJNIU"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

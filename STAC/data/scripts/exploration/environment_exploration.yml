@@ -26,6 +26,9 @@ dependencies:
   - geopandas>=1.0
   - pyogrio
   - pyarrow
+  - zarr>=3
+  - rasterstats
+  - dask
   - fsspec
   - aiohttp
   - requests

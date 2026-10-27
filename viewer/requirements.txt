@@ -4,6 +4,7 @@ pystac
 fsspec
 aiohttp
 requests
+zarr>=3
 pyarrow
 shapely>=2
 numpy

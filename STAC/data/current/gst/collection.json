@@ -1,0 +1,92 @@
+{
+  "type": "Collection",
+  "id": "gst",
+  "stac_version": "1.1.0",
+  "description": "GST-1 is a global sedimentary thickness model, on a 0.125° x 0.125° grid. It was created by suites of 3D free air gravity inversions that modified the sediment thickness model of Mooney et al. (2023), which is gridded at 1° x 1°. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "item",
+      "href": "./items/gst.json",
+      "type": "application/geo+json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Global Sedimentary Thickness model 1",
+      "roles": [
+        "data"
+      ],
+      "description": "GST-1 global sedimentary thickness model in m, 0.125 degree grid.",
+      "xarray:storage_options": {
+        "token": "google_default"
+      }
+    }
+  },
+  "deltares:units": "m",
+  "sci:citation": "Bird DE, Mooney WD (2026) GST-1: A high-resolution global sediment thickness model. Tectonophysics 929:231175. https://doi.org/10.1016/j.tecto.2026.231175",
+  "sci:doi": "10.1016/j.tecto.2026.231175",
+  "title": "Global Sedimentary Thickness model 1",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "sediment thickness",
+    "sedimentary basins",
+    "gravity inversion",
+    "geology",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "Bird Geophysical",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "http://www.birdgeo.com/gst-1.htm"
+    },
+    {
+      "name": "Deltares",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://deltares.nl"
+    }
+  ]
+}

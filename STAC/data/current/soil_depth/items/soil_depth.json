@@ -1,0 +1,155 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v1.1.0/schema.json",
+    "https://stac-extensions.github.io/eo/v1.1.0/schema.json"
+  ],
+  "id": "soil_depth",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          179.999942,
+          -56.00081
+        ],
+        [
+          179.999942,
+          83.999167
+        ],
+        [
+          -180.0,
+          83.999167
+        ],
+        [
+          -180.0,
+          -56.00081
+        ],
+        [
+          179.999942,
+          -56.00081
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -180.0,
+    -56.00081,
+    179.999942,
+    83.999167
+  ],
+  "properties": {
+    "title": "Absolute depth to bedrock (250 m)",
+    "description": "SoilGrids250m absolute depth to bedrock in cm, global, 250 m resolution.",
+    "start_datetime": "1950-01-01T00:00:00Z",
+    "end_datetime": "2015-12-31T23:59:59Z",
+    "created": "2026-10-26T13:39:28.377019Z",
+    "proj:bbox": [
+      -180.0,
+      -56.00081039406058,
+      179.99994240015582,
+      83.99916720600001
+    ],
+    "proj:shape": [
+      172800,
+      67200
+    ],
+    "proj:code": "EPSG:4326",
+    "proj:geometry": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            179.99994240015582,
+            -56.00081039406058
+          ],
+          [
+            179.99994240015582,
+            83.99916720600001
+          ],
+          [
+            -180.0,
+            83.99916720600001
+          ],
+          [
+            -180.0,
+            -56.00081039406058
+          ],
+          [
+            179.99994240015582,
+            -56.00081039406058
+          ]
+        ]
+      ]
+    },
+    "proj:transform": [
+      0.0020833330000009018,
+      0.0,
+      -180.0,
+      0.0,
+      -0.0020833330000009018,
+      83.99916720600001
+    ],
+    "deltares:item_key": "soil_depth",
+    "soil:variable": "depth_to_bedrock",
+    "datetime": "1950-01-01T00:00:00Z"
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "GlobalCoastalAtlas STAC Catalog"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SOILDGRIDS Absolute Depth to Bedrock"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json",
+      "title": "SOILDGRIDS Absolute Depth to Bedrock"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/gca-data-public/gca/soil_depth/soil_depth.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "soil_depth",
+      "file:size": 7224085519,
+      "raster:bands": [
+        {
+          "nodata": -32768,
+          "data_type": "int32",
+          "spatial_resolution": 0.0020833,
+          "unit": "cm"
+        }
+      ],
+      "eo:bands": [
+        {
+          "name": "soil_depth",
+          "description": "SoilGrids250m absolute depth to bedrock in cm, global, 250 m resolution."
+        }
+      ],
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "https://international-delta-platform.avi.directory.intra/geoserver/wms/soil_depth",
+      "type": "application/png",
+      "title": "soil_depth",
+      "description": "OGS WMS url",
+      "roles": [
+        "visual"
+      ]
+    }
+  },
+  "collection": "soil_depth"
+}
